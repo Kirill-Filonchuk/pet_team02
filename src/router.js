@@ -68,6 +68,6 @@ const routes = [
   },
 ];
 
-const router = createBrowserRouter(routes, { basename: '/pet_team02/' });
+const router = createBrowserRouter(routes, { basename: '/pet_team02' });
 
 export default router;
