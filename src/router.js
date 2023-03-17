@@ -2,9 +2,24 @@ import NoticesCategoriesList from 'components/NoticesCategoriesList';
 import NoticesPage from 'pages/NoticesPage';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 
+export const ROUTES = {
+  HOME: '/',
+  NEWS: '/news',
+  FRIENDS: '/friends',
+  REGISTER: '/register',
+  LOGIN: '/login',
+  USER: '/user',
+  NOTICES: '/notices',
+  NOTICES_SELL: '/notices/sell',
+  NOTICES_FOR_FREE: '/notices/for-free',
+  NOTICES_LOST_FOUND: '/notices/lost-found',
+  NOTICES_FAVORITE: '/notices/favorite',
+  NOTICES_OWN: '/notices/own',
+};
+
 const routes = [
   {
-    path: '/',
+    path: ROUTES.HOME,
     element: (
       <div>
         Layout / <Outlet />
@@ -16,34 +31,37 @@ const routes = [
         element: <div>HomePage</div>,
       },
       {
-        path: 'news',
+        path: ROUTES.NEWS,
         element: <div>NewsPage</div>,
       },
       {
-        path: 'notices',
+        path: ROUTES.NOTICES,
         element: <NoticesPage />,
         children: [
-          { path: 'sell', element: <NoticesCategoriesList /> },
-          { path: 'lost-found', element: <NoticesCategoriesList /> },
-          { path: 'for-free', element: <NoticesCategoriesList /> },
-          { path: 'favorite', element: <NoticesCategoriesList /> },
-          { path: 'own', element: <NoticesCategoriesList /> },
+          { path: ROUTES.NOTICES_SELL, element: <NoticesCategoriesList /> },
+          {
+            path: ROUTES.NOTICES_LOST_FOUND,
+            element: <NoticesCategoriesList />,
+          },
+          { path: ROUTES.NOTICES_FOR_FREE, element: <NoticesCategoriesList /> },
+          { path: ROUTES.NOTICES_FAVORITE, element: <NoticesCategoriesList /> },
+          { path: ROUTES.NOTICES_OWN, element: <NoticesCategoriesList /> },
         ],
       },
       {
-        path: 'friends',
+        path: ROUTES.FRIENDS,
         element: <div>OurFriendsPage</div>,
       },
       {
-        path: 'register',
+        path: ROUTES.REGISTER,
         element: <div>RegisterPage</div>,
       },
       {
-        path: 'login',
+        path: ROUTES.LOGIN,
         element: <div>LoginPage</div>,
       },
       {
-        path: 'user',
+        path: ROUTES.USER,
         element: <div>UserPage</div>,
       },
     ],
