@@ -1,15 +1,15 @@
-import AddNoticeButton from "../AddNoticeButton/AddNoticeButton";
-import NoticesCategoriesNav from "../NoticesCategoriesNav/NoticesCategoriesNav";
-import NoticesSearch from "../NoticesSearch";
-import TempContainer from "../TempContainer/TempContainer";
+import AddNoticeButton from '../AddNoticeButton';
+import NoticesCategoriesNav from '../NoticesCategoriesNav';
+import NoticesSearch from '../NoticesSearch';
+import Container from '../Container';
 // import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 import {
   NoticeSection,
   NoticesToolBar,
   NoticesWrapper,
   Title,
-} from "./Notices.styled";
+} from './Notices.styled';
 
 const Notices = () => {
   // const [category, setCategory] = useState("sales");
@@ -17,7 +17,7 @@ const Notices = () => {
   return (
     <NoticesWrapper>
       <NoticeSection>
-        <TempContainer>
+        <Container>
           <Title>Find your favorite pet</Title>
 
           <NoticesSearch />
@@ -26,7 +26,7 @@ const Notices = () => {
             <NoticesCategoriesNav />
             <AddNoticeButton />
           </NoticesToolBar>
-        </TempContainer>
+        </Container>
       </NoticeSection>
 
       {/* <Outlet context={[category, setCategory]} /> */}

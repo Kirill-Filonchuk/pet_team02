@@ -1,4 +1,4 @@
-import { StyledTempContainer } from "./TempContainer.styled";
+import { StyledTempContainer } from './Container.styled';
 
 const TempContainer = ({ children }) => {
   return <StyledTempContainer>{children}</StyledTempContainer>;

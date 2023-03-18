@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import NoticesCardList from '../NoticesCardList/NoticesCardList';
-import TempContainer from '../TempContainer/TempContainer';
+import NoticesCardList from '../NoticesCardList';
+import Container from '../Container';
 // import { useOutletContext } from "react-router-dom";
 
 const NoticesCategoriesList = () => {
@@ -21,9 +21,9 @@ const NoticesCategoriesList = () => {
 
   return (
     <section>
-      <TempContainer>
+      <Container>
         <NoticesCardList label="sell" list={pets} />
-      </TempContainer>
+      </Container>
     </section>
   );
 };

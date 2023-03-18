@@ -1,4 +1,4 @@
-import { HiTrash } from "react-icons/hi";
+import { HiTrash } from 'react-icons/hi';
 import {
   Article,
   BtnWrapper,
@@ -12,7 +12,7 @@ import {
   Td,
   Title,
   Tr,
-} from "./NoticesCard.styled";
+} from './NoticesCard.styled';
 
 const NoticesCard = ({
   id,
@@ -49,12 +49,10 @@ const NoticesCard = ({
               <Td>{age}</Td>
             </Tr>
 
-            {price && (
-              <Tr>
-                <Td>Price:</Td>
-                <Td>${price}</Td>
-              </Tr>
-            )}
+            <Tr hasPrice={price} isPrice>
+              <Td>Price:</Td>
+              <Td>${price}</Td>
+            </Tr>
           </tbody>
         </Table>
 
@@ -62,7 +60,7 @@ const NoticesCard = ({
           <Button type="button">Learn more</Button>
           {isMine && (
             <Button type="button">
-              Delete <HiTrash />{" "}
+              Delete <HiTrash />
             </Button>
           )}
         </BtnWrapper>
