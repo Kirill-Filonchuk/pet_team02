@@ -59,15 +59,15 @@ const NoticesCard = ({
         <BtnWrapper>
           <Button type="button">Learn more</Button>
           {isMine && (
-            <Button type="button">
-              Delete <HiTrash />
+            <Button type="button" isDelete>
+              Delete <HiTrash size={18} />
             </Button>
           )}
         </BtnWrapper>
       </Meta>
 
       <Label>{label}</Label>
-      <Favorite>heart</Favorite>
+      {/* <Favorite>heart</Favorite> */}
     </Article>
   );
 };

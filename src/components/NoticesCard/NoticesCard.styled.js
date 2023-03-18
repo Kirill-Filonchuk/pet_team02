@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Article = styled('article')`
-  /* width: 100%; */
+  position: relative;
 `;
 
 export const ImageWrapper = styled('div')`
@@ -32,6 +32,8 @@ export const Title = styled('h1')`
 `;
 
 export const Table = styled('table')`
+  margin-bottom: 20px;
+
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
@@ -65,22 +67,75 @@ export const Td = styled('td')`
   }
 `;
 
-export const BtnWrapper = styled('div')``;
+export const BtnWrapper = styled('div')`
+  height: 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 12px;
+`;
 
 export const Button = styled('button')`
-  display: block;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 12px;
   margin: 0;
   padding: 0;
   background-color: transparent;
 
-  padding: 8px 0;
+  padding: 6px 0;
   width: 100%;
 
+  font-family: 'Manrope';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.375;
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.04em;
+
+  color: #f59256;
+
   background: #ffffff;
-  border: 2px solid #f59256;
+  /* border: 2px solid #f59256; */
+  border: 2px solid ${({ isDelete }) => (isDelete ? '#FF6101' : '#f59256')};
   border-radius: 40px;
+
+  /* &:first-child {
+    margin-bottom: 12px;
+  } */
 `;
 
-export const Label = styled('div')``;
+export const Label = styled('div')`
+  position: absolute;
+  left: 0;
+  top: 20px;
+
+  height: 28px;
+  width: 158px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 20px;
+  /* padding-left: 20px; */
+  /* padding-top: 6px; */
+
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  color: #111111;
+
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+`;
 
 export const Favorite = styled('div')``;

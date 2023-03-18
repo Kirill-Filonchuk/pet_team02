@@ -22,7 +22,7 @@ const NoticesCategoriesList = () => {
   return (
     <section>
       <Container>
-        <NoticesCardList label="sell" list={pets} />
+        <NoticesCardList label="Sell" list={pets} />
       </Container>
     </section>
   );
