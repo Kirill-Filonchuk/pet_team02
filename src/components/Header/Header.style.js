@@ -16,6 +16,7 @@ export const HeaderStyle = styled.header`
   height: 100%; */
   gap: 12px;
   padding: 8px 0;
+
 `;
 
 export const MenuBtn = styled.button`

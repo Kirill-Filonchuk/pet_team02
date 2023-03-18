@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const NoticesWrapper = styled("div")`
+export const NoticesWrapper = styled('div')`
   padding-top: 40px;
   padding-bottom: 100px;
 
@@ -15,7 +15,7 @@ export const NoticesWrapper = styled("div")`
   }
 `;
 
-export const NoticeSection = styled("section")`
+export const NoticeSection = styled('section')`
   margin-bottom: 30px;
 
   @media screen and (min-width: 768px) {
@@ -23,12 +23,12 @@ export const NoticeSection = styled("section")`
   }
 `;
 
-export const Title = styled("h1")`
+export const Title = styled('h1')`
   margin: 0;
   margin-bottom: 30px;
 
   text-align: center;
-  font-family: "Manrope";
+  font-family: 'Manrope';
   font-weight: 700;
   font-size: 24px;
   line-height: 1, 375;
@@ -40,7 +40,7 @@ export const Title = styled("h1")`
   }
 `;
 
-export const NoticesToolBar = styled("div")`
+export const NoticesToolBar = styled('div')`
   display: flex;
   justify-content: space-between;
 `;

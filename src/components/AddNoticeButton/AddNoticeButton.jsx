@@ -3,7 +3,7 @@ import {
   AddButtonText,
   IconWrapper,
   PlusIcon,
-} from "./AddNoticeButton.styled";
+} from './AddNoticeButton.styled';
 
 const AddNoticeButton = () => {
   return (

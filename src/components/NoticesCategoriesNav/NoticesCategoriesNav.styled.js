@@ -1,9 +1,9 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
-export const Wrapper = styled("nav")``;
+export const Wrapper = styled('nav')``;
 
-export const List = styled("ul")`
+export const List = styled('ul')`
   list-style: none;
   padding: 0;
   margin: 0;
@@ -14,7 +14,7 @@ export const List = styled("ul")`
   row-gap: 12px;
 `;
 
-export const Item = styled("li")``;
+export const Item = styled('li')``;
 
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
@@ -22,7 +22,7 @@ export const StyledNavLink = styled(NavLink)`
 
   padding: 6px 28px;
 
-  font-family: "Manrope";
+  font-family: 'Manrope';
   font-weight: 500;
   font-size: 14px;
   line-height: 1.35;
