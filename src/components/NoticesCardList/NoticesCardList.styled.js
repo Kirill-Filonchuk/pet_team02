@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const List = styled("ul")`
+export const List = styled('ul')`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -17,13 +17,13 @@ export const List = styled("ul")`
   } */
 `;
 
-export const Item = styled("li")`
+export const Item = styled('li')`
   width: 100%;
   margin-bottom: 32px;
 
-  border-bottom-left-radius: 20px;
+  /* border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07); */
 
   &:last-child {
     margin-bottom: 0;

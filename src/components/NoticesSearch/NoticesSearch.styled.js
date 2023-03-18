@@ -1,8 +1,8 @@
-import { BiSearchAlt2 } from "react-icons/bi";
-import { CgCloseO } from "react-icons/cg";
-import styled from "styled-components";
+import { BiSearchAlt2 } from 'react-icons/bi';
+import { CgCloseO } from 'react-icons/cg';
+import styled from 'styled-components';
 
-export const SearchForm = styled("form")`
+export const SearchForm = styled('form')`
   position: relative;
   width: 100%;
   margin-bottom: 30px;
@@ -15,11 +15,11 @@ export const SearchForm = styled("form")`
   }
 `;
 
-export const SearchField = styled("input")`
+export const SearchField = styled('input')`
   padding: 9px 48px 9px 12px;
   width: 100%;
 
-  font-family: "Manrope";
+  font-family: 'Manrope';
   font-weight: 500;
   font-size: 16px;
   line-height: 1.375;
@@ -42,7 +42,7 @@ export const SearchField = styled("input")`
   }
 `;
 
-export const IconButton = styled("button")`
+export const IconButton = styled('button')`
   cursor: pointer;
   padding: 0;
   width: 20px;

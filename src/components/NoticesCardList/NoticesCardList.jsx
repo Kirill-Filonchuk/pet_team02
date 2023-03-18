@@ -1,10 +1,10 @@
-import NoticesCard from "../NoticesCard";
-import { Item, List } from "./NoticesCardList.styled";
+import NoticesCard from '../NoticesCard';
+import { Item, List } from './NoticesCardList.styled';
 
 const NoticesCardList = ({ list, label }) => {
   return (
     <List>
-      {list.map((item) => (
+      {list.map(item => (
         <Item key={item.id}>
           <NoticesCard {...item} label={label} />
         </Item>
