@@ -1,16 +1,18 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 import NoticesCardList from '../NoticesCardList';
 import Container from '../Container';
-// import { useOutletContext } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 const NoticesCategoriesList = () => {
-  // const [category, setCategory] = useOutletContext();
-  const location = useLocation();
+  const noticesNavLinks = useOutletContext();
+  const { pathname: currentLocationPath } = useLocation();
 
   const [pets, setPets] = useState([]);
+  const [title, setTitle] = useState();
 
+  //Temporary useEffect -> mockAPI
   useEffect(() => {
     const getPets = async () => {
       const response = await axios.get(
@@ -23,14 +25,17 @@ const NoticesCategoriesList = () => {
     getPets();
   }, []);
 
-  // useEffect(() => {
-
-  // }, []);
+  useEffect(() => {
+    const { title } = noticesNavLinks.find(
+      ({ to }) => to === currentLocationPath
+    );
+    setTitle(title);
+  }, [noticesNavLinks, currentLocationPath]);
 
   return (
     <section>
       <Container>
-        <NoticesCardList label="Sell" list={pets} />
+        <NoticesCardList label={title} list={pets} />
       </Container>
     </section>
   );
