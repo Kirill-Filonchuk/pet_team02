@@ -1,6 +1,12 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
 import NoticesPage from 'pages/NoticesPage';
-import { createBrowserRouter, Outlet } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
+import { SharedLayout } from 'components/SharedLayout/SharedLayout';
+import HomePage from './pages/HomePage/HomePage';
+import NewsPage from './pages/NewsPage/NewsPage';
+import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
+import RegisterPage from './pages/RegisterPage/RegisterPage';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 export const ROUTES = {
   HOME: '/',
@@ -20,19 +26,15 @@ export const ROUTES = {
 const routes = [
   {
     path: ROUTES.HOME,
-    element: (
-      <div>
-        Layout / <Outlet />
-      </div>
-    ),
+    element: <SharedLayout />,
     children: [
       {
         index: true,
-        element: <div>HomePage</div>,
+        element: <HomePage />,
       },
       {
         path: ROUTES.NEWS,
-        element: <div>NewsPage</div>,
+        element: <NewsPage />,
       },
       {
         path: ROUTES.NOTICES,
@@ -50,15 +52,15 @@ const routes = [
       },
       {
         path: ROUTES.FRIENDS,
-        element: <div>OurFriendsPage</div>,
+        element: <OurFriendsPage />,
       },
       {
         path: ROUTES.REGISTER,
-        element: <div>RegisterPage</div>,
+        element: <RegisterPage />,
       },
       {
         path: ROUTES.LOGIN,
-        element: <div>LoginPage</div>,
+        element: <LoginPage />,
       },
       {
         path: ROUTES.USER,
