@@ -3,7 +3,7 @@ import NoticesCategoriesNav from '../NoticesCategoriesNav';
 import NoticesSearch from '../NoticesSearch';
 import Container from '../Container';
 // import { useState } from "react";
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {
   NoticeSection,
   NoticesToolBar,
@@ -18,11 +18,13 @@ const Notices = () => {
   // const [category, setCategory] = useState("sales");
 
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (pathname === ROUTES.NOTICES) {
+      navigate(ROUTES.NOTICES_SELL, { replace: true });
     }
-  }, [pathname]);
+  }, [pathname, navigate]);
 
   return (
     <NoticesWrapper>
