@@ -19,11 +19,12 @@ const Link = styled(NavLink)`
   border-radius: 4px;
   text-decoration: none;
   color: black;
-  font-weight: 500;
+
+  /* font-weight: 500; */
 `;
 const LogoStyle = styled.p`
   position: absolute;
-  top: 0;
+  top: 1%;
   left: 0;
   font-weight: 700;
   margin: 0 auto;
