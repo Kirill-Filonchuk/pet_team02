@@ -47,11 +47,16 @@ export const Tr = styled('tr')`
     css`
       opacity: 0;
     `}
+
+  & > td:first-child {
+    padding-bottom: 8px;
+  }
+  &:last-child > td:first-child {
+    padding-bottom: 0;
+  }
 `;
 
 export const Td = styled('td')`
-  padding-bottom: 8px;
-
   &:first-child {
     padding-right: 40px;
   }

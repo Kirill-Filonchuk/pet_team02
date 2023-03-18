@@ -11,7 +11,7 @@ export const HeaderStyle = styled.header`
   > nav {
     display: flex;
     //Temporary cancel nav, because of styles conflicts
-    display: none;
+    /* display: none; */
   }
 `;
 
