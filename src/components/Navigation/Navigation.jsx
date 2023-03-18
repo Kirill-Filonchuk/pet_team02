@@ -41,7 +41,8 @@ export const Menu = styled.nav`
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 100vh;
+  /* Временно решение полногоперекрытия всей страницы */
+  /* height: 100vh; */
   background-color: '#fffff';
   z-index: 1;
   transition: left 1s;
