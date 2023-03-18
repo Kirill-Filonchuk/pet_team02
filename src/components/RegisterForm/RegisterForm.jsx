@@ -1,34 +1,25 @@
 import { useState } from 'react';
-// import { useDispatch } from "react-redux";
-// import { useNavigate } from 'react-router-dom';
-// import { register } from "redux/auth/operations";
-import { Formik } from 'formik';
+//import { useDispatch } from 'react-redux';
+// import { register } from 'redux/auth/operations';
 import {
   validationRegisterStepOne,
   validationRegisterStepTwo,
   InputError,
 } from 'components/FormValidation';
+import { MultiStepForm, FormStep } from './MultiForm';
+import { BiShow, BiHide } from 'react-icons/bi';
+
 import {
   Wrapper,
   Title,
-  FormLogin,
   Label,
   Input,
   IconShow,
-  BtnFormSubmit,
-  TextLink,
-  LinkToRegister,
-} from '../LoginForm/LoginForm.styled';
-
-import Container from '../ContainerForm';
-import { BiShow, BiHide } from 'react-icons/bi';
+} from 'components/LoginForm/LoginForm.styled';
 
 const RegisterForm = () => {
-  // const navigate = useNavigate();
- // const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const initialValues = {
     email: '',
     password: '',
@@ -36,118 +27,103 @@ const RegisterForm = () => {
     name: '',
     location: '',
     phone: '',
-    
   };
-  const togglePassword = () => {
-    setShowPassword(!showPassword);
-  };
-  const togglePasswordConfirm = () => {
-    setShowPasswordConfirm(!showPasswordConfirm)
-  }
-  const handleSubmit = (values, actions, error) => {
-    // const {email, password, confirm_password, name, location, phone, } = values;
-    // if(password===confirm_password) {
-    //   dispatch(
-    //     register({
-    //     email,
-    //     password
-    //     name,
-    //     location,
-    //     phone,
-    //     
-    //     })
-    //   )
-    // }
+  // const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
     console.log(values);
     actions.resetForm();
   };
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
-    <Container>
-      <Wrapper>
-        <Title>Registration</Title>
-        <Formik
-          initialValues={initialValues}
+    <Wrapper>
+      <Title>Registration</Title>
+      <MultiStepForm initialValues={initialValues} onSubmit={handleSubmit}>
+        <FormStep
+          stepName="UserMain"
           validationSchema={validationRegisterStepOne}
-          onSubmit={handleSubmit}
         >
-          {() => (
-            <FormLogin>
-              <Label>
-                <Input
-                  name="email"
-                  type="text"
-                  placeholder="Email"
-                  autoComplete="off"
-                />
-                <InputError name="email" />
-              </Label>
-              <Label>
-                <Input
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="Password"
-                  autoComplete="off"
-                />
-                <IconShow onClick={togglePassword}>
-                  {showPassword ? <BiHide size={24} /> : <BiShow size={24} />}
-                </IconShow>
-                <InputError name="password" />
-              </Label>
-              <Label>
-                <Input
-                  name="confirm_password"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="Confirm Password"
-                  autoComplete="off"
-                />
-                <IconShow onClick={togglePasswordConfirm}>
-                  {showPasswordConfirm ? <BiHide size={24} /> : <BiShow size={24} />}
-                </IconShow>
-                <InputError name="confirm_password" />
-              </Label>
-              <BtnFormSubmit type="submit">Next</BtnFormSubmit>
-              <TextLink>
-          <span>Don't have an account?</span>
-          {/* <LinkToRegister to="/register">Register</LinkToRegister> */}
-          <span> Login</span>
-        </TextLink>
-              <Label>
-                <Input
-                  name="name"
-                  type="text"
-                  placeholder="Name"
-                  autoComplete="off"
-                />
-                <InputError name="name" />
-              </Label>
-              <Label>
-                <Input
-                  name="location"
-                  placeholder="City, region"
-                  autoComplete="off"
-                />
-                <InputError name="location" />
-              </Label>
-              <Label>
-                <Input
-                  name="phone"
-                  type="text"
-                  placeholder="Mobile phone"
-                  autoComplete="off"
-                />
-                <InputError name="phone" />
-              </Label>
-              <BtnFormSubmit type="submit">Register</BtnFormSubmit>
-            </FormLogin>
-          )}
-        </Formik>
-        <TextLink>
-          <span>Don't have an account?</span>
-          {/* <LinkToRegister to="/register">Register</LinkToRegister> */}
-          <span> Login</span>
-        </TextLink>
-      </Wrapper>
-    </Container>
+          <Label>
+            <Input
+              autoComplete="off"
+              type="text"
+              name="email"
+              placeholder="Email"
+            />
+            <InputError name="email" />
+          </Label>
+          <Label>
+            <Input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Password"
+              autoComplete="off"
+            />
+            <IconShow onClick={togglePassword}>
+              {showPassword ? <BiHide size={24} /> : <BiShow size={24} />}
+            </IconShow>
+            <InputError name="password" />
+          </Label>
+          <Label>
+            <Input
+              type={showConfirmPassword ? 'text' : 'password'}
+              name="confirm_password"
+              placeholder="Confirm Password"
+              autoComplete="off"
+            />
+            <IconShow onClick={toggleConfirmPassword}>
+              {showConfirmPassword ? (
+                <BiHide size={24} />
+              ) : (
+                <BiShow size={24} />
+              )}
+            </IconShow>
+            <InputError name="confirm_password" />
+          </Label>
+        </FormStep>
+
+        <FormStep
+          stepName="UserLocation"
+          validationSchema={validationRegisterStepTwo}
+        >
+          <Label>
+            <Input
+              type="text"
+              name="name"
+              placeholder="Name"
+              autoComplete="off"
+            />
+            <InputError name="name" />
+          </Label>
+          <Label>
+            <Input
+              type="text"
+              name="location"
+              placeholder="City, region"
+              autoComplete="off"
+            />
+            <InputError name="location" />
+          </Label>
+          <Label>
+            <Input
+              type="text"
+              name="phone"
+              placeholder="Mobile phone"
+              autoComplete="off"
+            />
+            <InputError name="phone" />
+          </Label>
+        </FormStep>
+      </MultiStepForm>
+    </Wrapper>
   );
 };
 

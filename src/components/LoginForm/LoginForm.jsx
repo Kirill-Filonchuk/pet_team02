@@ -11,13 +11,12 @@ import { BiShow, BiHide } from 'react-icons/bi';
 import {
   Wrapper,
   Title,
-  FormLogin,
+  FormAuth,
   Label,
   Input,
   IconShow,
   BtnFormSubmit,
   TextLink,
-  LinkToRegister,
 } from './LoginForm.styled';
 
 const LoginForm = () => {
@@ -46,7 +45,7 @@ const LoginForm = () => {
           onSubmit={handleSubmit}
         >
           {() => (
-            <FormLogin>
+            <FormAuth>
               <Label>
                 <Input
                   name="email"
@@ -69,7 +68,7 @@ const LoginForm = () => {
                 <InputError name="password" />
               </Label>
               <BtnFormSubmit type="submit">Login</BtnFormSubmit>
-            </FormLogin>
+            </FormAuth>
           )}
         </Formik>
         <TextLink>

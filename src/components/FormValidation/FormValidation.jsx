@@ -5,9 +5,9 @@ import { Error } from './FormValidation.styled';
 const emailValid =
   /^[^-._]{1}[A-Za-z0-9._-]{1,}@[^-._]{1}[A-Za-z0-9.-]{0,}\.[A-Za-z]{2,4}$/;
 const nameValid = /^[a-zA-zа-яіїєА-ЯІЇЄ ]+$/;
-const passwordValid = /^[^ ]{7,32}$/;
+const passwordValid = /^[^ ]{7,18}$/;
 const phoneValid = /^[+]{1}[0-9]{12}$/;
-const locationValid = /^[a-zA-Z]+[,][ ][a-zA-Z]+$/;
+const locationValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ]+$/;
 
 const validationLogin = yup.object().shape({
   email: yup
@@ -17,8 +17,8 @@ const validationLogin = yup.object().shape({
     .email(),
   password: yup
     .string()
-    .matches(passwordValid, 'Please enter minimum 7 characters, maximum 32')
-    .max(32, 'Please enter 32 characters or less')
+    .matches(passwordValid, 'Please enter min 7 characters and max 18')
+    .max(18, 'Please enter 18 characters or less')
     .min(7, 'Enter 7 or more characters')
     .required('Password field is required'),
 });
@@ -31,13 +31,16 @@ const validationRegisterStepOne = yup.object().shape({
     .email(),
   password: yup
     .string()
-    .matches(passwordValid, 'Please enter minimum 7 characters, maximum 32')
-    .max(32, 'Please enter 32 characters or less')
+    .matches(passwordValid, 'Please enter min 7 characters and max 18')
+    .max(18, 'Please enter 18 characters or less')
     .min(7, 'Enter 7 or more characters')
     .required('Password field is required'),
-  password_confirm: yup.string().when('password', {
-    is: valid => (valid && valid.length > 0 ? true : false),
-    then: yup.string().oneOf([yup.ref('password')], 'Confirm your password'),
+  confirm_password: yup.string().when('password', {
+    is: val => (val && val.length > 0 ? true : false),
+    then: () =>
+      yup
+        .string()
+        .oneOf([yup.ref('password')], ' Please confirm your password'),
   }),
 });
 

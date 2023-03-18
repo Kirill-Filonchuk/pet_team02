@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   background-size: contain; */
 `;
 
-const FormLogin = styled(Form)`
+const FormAuth = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -65,6 +65,7 @@ const BtnFormSubmit = styled.button`
 
 const TextLink = styled.p`
   text-align: center;
+  margin: 0;
 `;
 
 const LinkToRegister = styled(Link)`
@@ -73,7 +74,7 @@ const LinkToRegister = styled(Link)`
 export {
   Wrapper,
   Title,
-  FormLogin,
+  FormAuth,
   Label,
   Input,
   IconShow,
