@@ -3,10 +3,14 @@ import { useEffect, useState } from 'react';
 import NoticesCardList from '../NoticesCardList';
 import Container from '../Container';
 // import { useOutletContext } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 const NoticesCategoriesList = () => {
   // const [category, setCategory] = useOutletContext();
+  const location = useLocation();
+
   const [pets, setPets] = useState([]);
+
   useEffect(() => {
     const getPets = async () => {
       const response = await axios.get(
@@ -18,6 +22,10 @@ const NoticesCategoriesList = () => {
 
     getPets();
   }, []);
+
+  // useEffect(() => {
+
+  // }, []);
 
   return (
     <section>

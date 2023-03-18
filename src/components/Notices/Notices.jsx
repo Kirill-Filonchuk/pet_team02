@@ -10,9 +10,19 @@ import {
   NoticesWrapper,
   Title,
 } from './Notices.styled';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { ROUTES } from 'router';
 
 const Notices = () => {
   // const [category, setCategory] = useState("sales");
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname === ROUTES.NOTICES) {
+    }
+  }, [pathname]);
 
   return (
     <NoticesWrapper>
