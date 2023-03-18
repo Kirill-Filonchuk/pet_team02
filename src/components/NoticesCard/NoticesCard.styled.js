@@ -2,6 +2,10 @@ import styled, { css } from 'styled-components';
 
 export const Article = styled('article')`
   position: relative;
+  background-color: #ffffff;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 `;
 
 export const ImageWrapper = styled('div')`
@@ -100,13 +104,17 @@ export const Button = styled('button')`
   color: #f59256;
 
   background: #ffffff;
-  /* border: 2px solid #f59256; */
   border: 2px solid ${({ isDelete }) => (isDelete ? '#FF6101' : '#f59256')};
   border-radius: 40px;
 
-  /* &:first-child {
-    margin-bottom: 12px;
-  } */
+  transition-property: color, background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: ${({ isDelete }) => (isDelete ? '#FF6101' : '#f59256')};
+    color: #ffffff;
+  }
 `;
 
 export const Label = styled('div')`
@@ -121,8 +129,6 @@ export const Label = styled('div')`
   align-items: center;
   justify-content: center;
   padding-right: 20px;
-  /* padding-left: 20px; */
-  /* padding-top: 6px; */
 
   font-family: 'Inter';
   font-weight: 500;
@@ -138,4 +144,20 @@ export const Label = styled('div')`
   backdrop-filter: blur(2px);
 `;
 
-export const Favorite = styled('div')``;
+export const Favorite = styled('button')`
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(2px);
+  border: none;
+  border-radius: 50%;
+`;

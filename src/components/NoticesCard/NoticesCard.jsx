@@ -1,3 +1,4 @@
+import HeartIcon from './HeartIcon';
 import { HiTrash } from 'react-icons/hi';
 import {
   Article,
@@ -13,6 +14,7 @@ import {
   Title,
   Tr,
 } from './NoticesCard.styled';
+import { useState } from 'react';
 
 const NoticesCard = ({
   id,
@@ -26,6 +28,8 @@ const NoticesCard = ({
   isMine,
   isFavorite,
 }) => {
+  const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
+
   return (
     <Article>
       <ImageWrapper>
@@ -67,7 +71,14 @@ const NoticesCard = ({
       </Meta>
 
       <Label>{label}</Label>
-      {/* <Favorite>heart</Favorite> */}
+
+      <Favorite
+        onClick={() => {
+          setIsFavoriteCard(!isFavoriteCard);
+        }}
+      >
+        <HeartIcon isFavorite={isFavoriteCard} />
+      </Favorite>
     </Article>
   );
 };
