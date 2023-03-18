@@ -16,11 +16,11 @@
 // };
 
 // import LoginForm from "components/LoginForm";
-import RegisterForm from "components/RegisterForm";
+// import RegisterForm from "components/RegisterForm";
 
-export const App = () => {
-  return (
+// export const App = () => {
+  // return (
     // <LoginForm/>
-    <RegisterForm/>
-  );
-};
+  //   <RegisterForm/>
+//   );
+// };
