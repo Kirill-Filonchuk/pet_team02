@@ -2,7 +2,9 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled('nav')`
-  flex-basis: 500px;
+  @media screen and (min-width: 768px) and (max-width: calc(1280px - 0.02px)) {
+    flex-basis: 500px;
+  }
 `;
 
 export const List = styled('ul')`
