@@ -2,7 +2,6 @@ import AddNoticeButton from '../AddNoticeButton';
 import NoticesCategoriesNav from '../NoticesCategoriesNav';
 import NoticesSearch from '../NoticesSearch';
 import Container from '../Container';
-// import { useState } from "react";
 import { Outlet, useNavigate } from 'react-router-dom';
 import {
   NoticeSection,
@@ -13,11 +12,9 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ROUTES } from 'router';
-import TempBtn from 'components/tempBtn/TempBtn';
+// import SampleAddButton from 'components/AddButton/SampleAddButton';
 
 const Notices = () => {
-  // const [category, setCategory] = useState("sales");
-
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -39,7 +36,7 @@ const Notices = () => {
     <NoticesWrapper>
       <NoticeSection>
         <Container>
-          <TempBtn />
+          {/* <SampleAddButton /> */}
           <Title>Find your favorite pet</Title>
 
           <NoticesSearch />
@@ -51,9 +48,7 @@ const Notices = () => {
         </Container>
       </NoticeSection>
 
-      {/* <Outlet context={[category, setCategory]} /> */}
       <Outlet context={noticesNavLinks} />
-      {/* <Outlet /> */}
     </NoticesWrapper>
   );
 };

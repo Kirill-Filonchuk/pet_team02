@@ -2,8 +2,6 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled('nav')`
-  /* flex-grow: 1; */
-
   flex-basis: 500px;
 `;
 

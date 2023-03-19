@@ -7,18 +7,10 @@ export const AddButtonStyled = styled('button')`
   margin: 0;
   border: none;
 
-  /* position: static; */
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
-
-  /* flex-shrink: 0; */
   column-gap: 12px;
-
-  width: auto;
-  /* width: 100%; */
-  height: auto;
-  transform: translateY(0);
 
   background-color: transparent;
 
@@ -42,16 +34,12 @@ export const AddButtonStyled = styled('button')`
         box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
       `}
   }
-
-  /* @media screen and (min-width: 768px) {
-  } */
 `;
 
 export const IconWrapper = styled('div')`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* flex-shrink: 0; */
 
   width: 44px;
   height: 44px;
@@ -68,13 +56,9 @@ export const IconWrapper = styled('div')`
         height: 32px;
       `}
   }
-
-  /* @media screen and (min-width: 768px) {
-  } */
 `;
 
-export const PlusIcon = styled(BsPlusLg)`
-  display: block;
+export const IconContainer = styled('div')`
   width: 24px;
   height: 24px;
   color: #ffffff;
@@ -87,13 +71,15 @@ export const PlusIcon = styled(BsPlusLg)`
         height: 32px;
       `}
   }
-  /* 
-  @media screen and (min-width: 768px) {
-  } */
+`;
+
+export const PlusIcon = styled(BsPlusLg)`
+  display: block;
+  width: 100%;
+  height: 100%;
 `;
 
 export const AddButtonText = styled('span')`
-  /* flex-shrink: 0; */
   font-family: 'Manrope';
   font-weight: 500;
   font-size: 20px;
@@ -109,13 +95,4 @@ export const AddButtonText = styled('span')`
         color: #ffffff;
       `}
   }
-
-  /* @media screen and (min-width: 768px) {
-  } */
 `;
-
-// export const AddButtonStyledForNotices = styled(AddButton)`
-//   align-self: flex-start;
-
-//   & > .AddButtonIconWrapper {}
-// `;
