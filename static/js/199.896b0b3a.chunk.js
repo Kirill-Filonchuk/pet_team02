@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpet_team02=self.webpackChunkpet_team02||[]).push([[199],{3199:function(e,t,n){n.r(t);var u=n(3329);t.default=function(){return(0,u.jsx)("div",{children:(0,u.jsx)("h1",{children:"NEWS"})})}}}]);
+//# sourceMappingURL=199.896b0b3a.chunk.js.map
