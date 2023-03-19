@@ -1,7 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const Wrapper = styled('nav')``;
+export const Wrapper = styled('nav')`
+  flex-basis: 500px;
+`;
 
 export const List = styled('ul')`
   list-style: none;
