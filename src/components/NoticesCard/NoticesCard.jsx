@@ -15,7 +15,6 @@ import {
   Tr,
 } from './NoticesCard.styled';
 import { useState } from 'react';
-import { Button } from 'components/UIKit/Button/Button.styled';
 
 const NoticesCard = ({
   id,
