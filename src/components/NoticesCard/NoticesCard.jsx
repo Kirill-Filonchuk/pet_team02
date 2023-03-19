@@ -1,18 +1,20 @@
-import { HiTrash } from "react-icons/hi";
+import HeartIcon from './HeartIcon';
+import { HiTrash } from 'react-icons/hi';
 import {
   Article,
   BtnWrapper,
-  Button,
   Favorite,
   Image,
   ImageWrapper,
   Label,
   Meta,
+  NoticeCardButton,
   Table,
   Td,
   Title,
   Tr,
-} from "./NoticesCard.styled";
+} from './NoticesCard.styled';
+import { useState } from 'react';
 
 const NoticesCard = ({
   id,
@@ -26,6 +28,8 @@ const NoticesCard = ({
   isMine,
   isFavorite,
 }) => {
+  const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
+
   return (
     <Article>
       <ImageWrapper>
@@ -49,27 +53,32 @@ const NoticesCard = ({
               <Td>{age}</Td>
             </Tr>
 
-            {price && (
-              <Tr>
-                <Td>Price:</Td>
-                <Td>${price}</Td>
-              </Tr>
-            )}
+            <Tr hasPrice={price} isPrice>
+              <Td>Price:</Td>
+              <Td>${price}</Td>
+            </Tr>
           </tbody>
         </Table>
 
         <BtnWrapper>
-          <Button type="button">Learn more</Button>
+          <NoticeCardButton type="button">Learn more</NoticeCardButton>
           {isMine && (
-            <Button type="button">
-              Delete <HiTrash />{" "}
-            </Button>
+            <NoticeCardButton type="button" isDelete>
+              Delete <HiTrash size={18} />
+            </NoticeCardButton>
           )}
         </BtnWrapper>
       </Meta>
 
       <Label>{label}</Label>
-      <Favorite>heart</Favorite>
+
+      <Favorite
+        onClick={() => {
+          setIsFavoriteCard(!isFavoriteCard);
+        }}
+      >
+        <HeartIcon isFavorite={isFavoriteCard} />
+      </Favorite>
     </Article>
   );
 };
