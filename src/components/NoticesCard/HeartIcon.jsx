@@ -1,4 +1,6 @@
-const HeartIcon = ({ isFavorite }) => {
+import PropTypes from 'prop-types';
+
+const HeartIcon = ({ isFavorite = false }) => {
   return (
     <svg
       width="28"
@@ -77,3 +79,7 @@ const HeartIcon = ({ isFavorite }) => {
 };
 
 export default HeartIcon;
+
+HeartIcon.propTypes = {
+  isFavorite: PropTypes.bool,
+};
