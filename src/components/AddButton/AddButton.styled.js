@@ -57,6 +57,15 @@ export const IconWrapper = styled('div')`
         height: 32px;
       `}
   }
+
+  ${theme.mq.tablet} {
+    transition-property: background-color;
+    transition-duration: ${p => p.theme.transitions.durations.default};
+    transition-timing-function: ${p => p.theme.transitions.functions.default};
+    &:hover {
+      background-color: ${p => p.theme.colors.accentActive};
+    }
+  }
 `;
 
 export const IconContainer = styled('div')`

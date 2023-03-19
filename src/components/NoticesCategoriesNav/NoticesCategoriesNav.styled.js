@@ -39,8 +39,8 @@ export const StyledNavLink = styled(NavLink)`
   border-radius: ${p => p.theme.radii.normal};
 
   transition-property: color, background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: ${p => p.theme.transitions.durations.default};
+  transition-timing-function: ${p => p.theme.transitions.functions.default};
 
   &.active,
   &:hover {
