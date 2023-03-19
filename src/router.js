@@ -1,5 +1,7 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
 import NoticesPage from 'pages/NoticesPage';
+import UserData from './components/UserData/UserData.jsx';
+// import PetsData from './components/PetsData/PetsData.jsx';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 
 export const ROUTES = {
@@ -62,7 +64,8 @@ const routes = [
       },
       {
         path: ROUTES.USER,
-        element: <div>UserPage</div>,
+        element: <UserData />,
+        // element: <PetsData />,
       },
     ],
   },
