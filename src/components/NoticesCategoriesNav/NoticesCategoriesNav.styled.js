@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { theme } from 'theme';
 
 export const Wrapper = styled('nav')`
-  @media screen and (min-width: 768px) and (max-width: calc(1280px - 0.02px)) {
+  ${theme.mq.tabletOnly} {
     flex-basis: 500px;
   }
 `;
@@ -26,16 +27,16 @@ export const StyledNavLink = styled(NavLink)`
 
   padding: 6px 28px;
 
-  font-family: 'Manrope';
-  font-weight: 500;
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.medium};
   font-size: 14px;
   line-height: 1.35;
   letter-spacing: 0.04em;
-  color: #111111;
+  color: ${p => p.theme.colors.black};
 
-  background: #ffffff;
-  border: 2px solid #f59256;
-  border-radius: 40px;
+  background: ${p => p.theme.colors.white};
+  border: 2px solid ${p => p.theme.colors.accent};
+  border-radius: ${p => p.theme.radii.normal};
 
   transition-property: color, background-color;
   transition-duration: 250ms;
@@ -43,16 +44,16 @@ export const StyledNavLink = styled(NavLink)`
 
   &.active,
   &:hover {
-    background: #f59256;
-    color: #ffffff;
+    background: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
   }
 
   &:focus,
   &:focus-visible {
-    outline: 1px solid #f59256;
+    outline: 1px solid ${p => p.theme.colors.accent};
   }
 
-  @media screen and (min-width: 768px) {
+  ${theme.mq.tablet} {
     padding: 8px 28px;
     font-size: 20px;
   }

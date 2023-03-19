@@ -3,9 +3,9 @@ import { Button } from 'components/UIKit/Button/Button.styled';
 
 export const Article = styled('article')`
   position: relative;
-  background-color: #ffffff;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  background-color: ${p => p.theme.colors.white};
+  border-bottom-left-radius: ${p => p.theme.radii.small};
+  border-bottom-right-radius: ${p => p.theme.radii.small};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 `;
 
@@ -26,23 +26,22 @@ export const Title = styled('h1')`
   margin: 0;
   margin-bottom: 20px;
 
-  font-family: 'Manrope';
-  font-weight: 700;
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.bold};
   font-size: 28px;
   line-height: 1.357;
   letter-spacing: -0.01em;
-  color: #111111;
+  color: ${p => p.theme.colors.black};
 `;
 
 export const Table = styled('table')`
   margin-bottom: 20px;
 
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.medium};
   font-size: 16px;
   line-height: 1.375;
-  color: #111111;
+  color: ${p => p.theme.colors.black};
 `;
 
 export const Tr = styled('tr')`
@@ -79,10 +78,13 @@ export const BtnWrapper = styled('div')`
 `;
 
 export const NoticeCardButton = styled(Button)`
-  border: 2px solid ${({ isDelete }) => (isDelete ? '#FF6101' : '#f59256')};
+  border: 2px solid
+    ${p => (p.isDelete ? p.theme.colors.accentActive : p.theme.colors.accent)};
+
   &:hover {
-    background-color: ${({ isDelete }) => (isDelete ? '#FF6101' : '#f59256')};
-    color: #ffffff;
+    background-color: ${p =>
+      p.isDelete ? p.theme.colors.accentActive : p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
   }
 `;
 

@@ -13,24 +13,23 @@ export const Button = styled('button')`
   padding: 6px 0;
   width: ${({ width }) => (width ? width : '100%')};
 
-  font-family: 'Manrope';
-  font-weight: 500;
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.medium};
   font-size: 16px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: #f59256;
-  color: ${({ color }) => (color ? color : '#f59256')};
+  color: ${p => (p.color ? p.color : p.theme.colors.accent)};
 
-  background: #ffffff;
-  border: 2px solid #f59256;
-  border-radius: 40px;
+  background: ${p => p.theme.colors.white};
+  border: 2px solid ${p => p.theme.colors.accent};
+  border-radius: ${p => p.theme.radii.normal};
 
   transition-property: color, background-color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background-color: #f59256;
-    color: #ffffff;
+    background-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
   }
 `;

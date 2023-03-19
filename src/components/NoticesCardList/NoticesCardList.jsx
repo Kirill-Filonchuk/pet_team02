@@ -18,7 +18,7 @@ export default NoticesCardList;
 
 NoticesCardList.propTypes = {
   list: PropTypes.arrayOf(PropTypes.object).isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
 };
 
 //isMine could be changed according to backend
