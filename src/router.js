@@ -1,4 +1,5 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
+import UserPage from 'components/UserPage';
 import NoticesPage from 'pages/NoticesPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
@@ -73,7 +74,7 @@ const routes = [
       },
       {
         path: ROUTES.USER,
-        element: <div>UserPage</div>,
+        element: <UserPage/>,
       },
     ],
   },
