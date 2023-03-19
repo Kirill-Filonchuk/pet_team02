@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpet_team02=self.webpackChunkpet_team02||[]).push([[680],{680:function(e,t,n){n.r(t);var u=n(184);t.default=function(){return(0,u.jsx)("div",{children:(0,u.jsx)("h1",{children:"HOME"})})}}}]);
+//# sourceMappingURL=680.de911730.chunk.js.map

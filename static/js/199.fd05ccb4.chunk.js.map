@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/199.fd05ccb4.chunk.js","mappings":"iIAQA,UARiB,WACf,OACE,0BACE,kCAGL,C","sources":["pages/NewsPage/NewsPage.jsx"],"sourcesContent":["const NewsPage = () => {\n  return (\n    <div>\n      <h1>NEWS</h1>\n    </div>\n  );\n};\n\nexport default NewsPage;\n"],"names":[],"sourceRoot":""}
