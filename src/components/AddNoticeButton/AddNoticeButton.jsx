@@ -1,18 +1,11 @@
-import {
-  AddButton,
-  AddButtonText,
-  IconWrapper,
-  PlusIcon,
-} from './AddNoticeButton.styled';
+import AddButton from 'components/AddButton';
+import { Wrapper } from './AddNoticeButton.styled';
 
 const AddNoticeButton = () => {
   return (
-    <AddButton>
-      <IconWrapper>
-        <PlusIcon />
-      </IconWrapper>
-      <AddButtonText>Add pet</AddButtonText>
-    </AddButton>
+    <Wrapper>
+      <AddButton label="Add pet" hasMobileStyles />
+    </Wrapper>
   );
 };
 

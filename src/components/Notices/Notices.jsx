@@ -13,6 +13,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ROUTES } from 'router';
+import TempBtn from 'components/tempBtn/TempBtn';
 
 const Notices = () => {
   // const [category, setCategory] = useState("sales");
@@ -38,6 +39,7 @@ const Notices = () => {
     <NoticesWrapper>
       <NoticeSection>
         <Container>
+          <TempBtn />
           <Title>Find your favorite pet</Title>
 
           <NoticesSearch />
