@@ -14,6 +14,7 @@ import {
 } from './NoticesCard.styled';
 import { useState } from 'react';
 import OptionsTable from './OptionsTable';
+import { trimText } from 'utils/trimText';
 
 const NoticesCard = ({
   id,
@@ -36,11 +37,11 @@ const NoticesCard = ({
       </ImageWrapper>
 
       <Meta>
-        <Title>{title}</Title>
+        <Title>{trimText(title, 13)}</Title>
         <OptionsTable
           options={[
-            { key: 'Breed', value: breed },
-            { key: 'Place', value: place },
+            { key: 'Breed', value: trimText(breed, 13) },
+            { key: 'Place', value: trimText(place, 13) },
             { key: 'Age', value: age },
             { key: 'Price', value: price, isPrice: true },
           ]}
