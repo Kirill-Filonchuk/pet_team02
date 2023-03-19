@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
+import { theme } from '../../theme';
 
 // import BgImage from "./img/bgMobile.svg"
 //  background-image: url(${BgImage});
 
 const Title = styled.h2`
   text-align: center;
-  color: #111111;
-  font-size: 24px;
-  line-height: 33px;
+  color: ${theme.colors.black};
+  font-family: ${theme.fonts.manrope};
+  font-size: ${theme.fontSizes[4] + `px`};
+  line-height: ${theme.lineHeights[4]};
+  font-weight: ${theme.fontWeights.bold};
   letter-spacing: 0.04em;
-  margin: 100px 0 40px 0;
+  margin-bottom: 40px;
 `;
 const Wrapper = styled.div`
   padding: 0 20px;
@@ -24,20 +27,21 @@ const Wrapper = styled.div`
 const FormAuth = styled(Form)`
   display: flex;
   flex-direction: column;
-  gap: 24px;
 `;
 
 const Label = styled.label`
   position: relative;
+  margin-bottom: 24px;
 `;
 const Input = styled(Field)`
   padding: 0 14px;
-  box-sizing: border-box;
   min-width: 100%;
   height: 40px;
-  outline: 1px solid rgba(245, 146, 86, 0.5);
-  border: none;
-  border-radius: 40px;
+  border: ${theme.borders.normal} ${theme.colors.borderActive};
+  font-family: ${theme.fonts.manrope};
+  font-weight: ${theme.fontWeights.normal};
+  color: ${theme.colors.grey};
+  border-radius: ${theme.radii.normal};
 `;
 
 const IconShow = styled.span`
@@ -47,29 +51,40 @@ const IconShow = styled.span`
   top: 50%;
   transform: translateY(-50%);
   right: 10px;
-  color: grey;
+  color: ${theme.colors.grey};
 `;
 
 const BtnFormSubmit = styled.button`
   display: flex;
   height: 44px;
-  border-radius: 40px;
+  border-radius: ${theme.radii.normal};
   margin-top: 16px;
+  font-size: ${theme.fontSizes[3] + `px`};
+  line-height: ${theme.lineHeights[2]};
   margin-bottom: 40px;
-  color: #fff;
+  color: ${theme.colors.white};
+  font-family: ${theme.fonts.manrope};
+  font-weight: ${theme.fontWeights.medium};
   justify-content: center;
   align-items: center;
-  border: 1px solid #f59256;
-  background-color: #f59256;
+  border: ${theme.borders.medium} ${theme.colors.borderActive};
+  background-color: ${theme.colors.accent};
 `;
 
 const TextLink = styled.p`
+  color: ${theme.colors.grey};
+  font-family: ${theme.fonts.manrope};
+  font-weight: ${theme.fontWeights.normal};
   text-align: center;
+  font-size: ${theme.fontSizes[0] + `px`};
+  line-height: ${theme.lineHeights[2]};
+  letter-spacing: 0.04em;
   margin: 0;
 `;
 
 const LinkToRegister = styled(Link)`
-  color: rgba(48, 145, 235, 1);
+  color: ${theme.colors.blueLinks};
+  text-decoration: underline;
 `;
 export {
   Wrapper,

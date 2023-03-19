@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
-import { FormAuth, Wrapper } from 'components/LoginForm/LoginForm.styled';
+import { FormAuth } from 'components/LoginForm/LoginForm.styled';
 import FormNavigation from '../NavigationForm';
 
 const MultiStepForm = ({ children, initialValues, onSubmit }) => {
@@ -44,17 +44,15 @@ const MultiStepForm = ({ children, initialValues, onSubmit }) => {
         validationSchema={step.props.validationSchema}
       >
         {formik => (
-          <Wrapper>
-            <FormAuth onSubmit={formik.handleSubmit}>
-              {step}
+          <FormAuth onSubmit={formik.handleSubmit}>
+            {step}
 
-              <FormNavigation
-                isLastStep={isLastStep}
-                hasPrevious={stepNumber > 0}
-                onBackClick={() => previous(formik.values)}
-              />
-            </FormAuth>
-          </Wrapper>
+            <FormNavigation
+              isLastStep={isLastStep}
+              hasPrevious={stepNumber > 0}
+              onBackClick={() => previous(formik.values)}
+            />
+          </FormAuth>
         )}
       </Formik>
     </>
