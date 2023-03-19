@@ -64,4 +64,13 @@ export const theme = {
     notDesktop: `@media screen and (max-width: ${breakpoints.desk - 0.02}px)`,
     desktop: `@media screen and (min-width: ${breakpoints.desk}px)`,
   },
+
+  transitions: {
+    durations: {
+      default: '250ms',
+    },
+    functions: {
+      default: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    },
+  },
 };
