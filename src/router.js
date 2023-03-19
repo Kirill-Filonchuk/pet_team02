@@ -1,10 +1,5 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
 import NoticesPage from 'pages/NoticesPage';
-<<<<<<< HEAD
-import UserData from './components/UserData/UserData.jsx';
-// import PetsData from './components/PetsData/PetsData.jsx';
-import { createBrowserRouter, Outlet } from 'react-router-dom';
-=======
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 // import HomePage from './pages/HomePage/HomePage';
@@ -21,7 +16,6 @@ const OurFriendsPage = lazy(() =>
 );
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
->>>>>>> 27abad4447eeafb3fec2b5b1f817a7b89ec21660
 
 export const ROUTES = {
   HOME: '/',
@@ -79,7 +73,7 @@ const routes = [
       },
       {
         path: ROUTES.USER,
-        element: <UserData />,
+        // element: <UserData />,
         // element: <PetsData />,
       },
     ],
