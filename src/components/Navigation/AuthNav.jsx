@@ -25,7 +25,7 @@ const Link = styled(NavLink)`
   }
   @media screen and (min-width: 1280px) {
     &&:nth-last-child(2) {
-      margin-left: 352px;
+      margin-left: 274px;
     }
   }
 `;
