@@ -1,4 +1,5 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
+import UserPage from 'components/UserPage';
 import NoticesPage from 'pages/NoticesPage';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 
@@ -62,7 +63,7 @@ const routes = [
       },
       {
         path: ROUTES.USER,
-        element: <div>UserPage</div>,
+        element: <UserPage/>,
       },
     ],
   },
