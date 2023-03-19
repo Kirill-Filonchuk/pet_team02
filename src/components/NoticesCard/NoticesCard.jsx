@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import HeartIcon from './HeartIcon';
 import { HiTrash } from 'react-icons/hi';
 import {
@@ -9,12 +10,10 @@ import {
   Label,
   Meta,
   NoticeCardButton,
-  Table,
-  Td,
   Title,
-  Tr,
 } from './NoticesCard.styled';
 import { useState } from 'react';
+import OptionsTable from './OptionsTable';
 
 const NoticesCard = ({
   id,
@@ -25,8 +24,8 @@ const NoticesCard = ({
   place,
   age,
   price,
-  isMine,
-  isFavorite,
+  isMine = false,
+  isFavorite = false,
 }) => {
   const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
 
@@ -38,27 +37,14 @@ const NoticesCard = ({
 
       <Meta>
         <Title>{title}</Title>
-        <Table>
-          <tbody>
-            <Tr>
-              <Td>Breed:</Td>
-              <Td>{breed}</Td>
-            </Tr>
-            <Tr>
-              <Td>Place:</Td>
-              <Td>{place}</Td>
-            </Tr>
-            <Tr>
-              <Td>Age:</Td>
-              <Td>{age}</Td>
-            </Tr>
-
-            <Tr hasPrice={price} isPrice>
-              <Td>Price:</Td>
-              <Td>${price}</Td>
-            </Tr>
-          </tbody>
-        </Table>
+        <OptionsTable
+          options={[
+            { key: 'Breed', value: breed },
+            { key: 'Place', value: place },
+            { key: 'Age', value: age },
+            { key: 'Price', value: price, isPrice: true },
+          ]}
+        />
 
         <BtnWrapper>
           <NoticeCardButton type="button">Learn more</NoticeCardButton>
@@ -84,3 +70,16 @@ const NoticesCard = ({
 };
 
 export default NoticesCard;
+
+NoticesCard.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  img: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  place: PropTypes.string.isRequired,
+  age: PropTypes.string.isRequired,
+  price: PropTypes.string,
+  isMine: PropTypes.bool,
+  isFavorite: PropTypes.bool,
+};
