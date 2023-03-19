@@ -2,11 +2,20 @@ import NoticesCategoriesList from 'components/NoticesCategoriesList';
 import NoticesPage from 'pages/NoticesPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
-import HomePage from './pages/HomePage/HomePage';
-import NewsPage from './pages/NewsPage/NewsPage';
-import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
-import RegisterPage from './pages/RegisterPage/RegisterPage';
-import LoginPage from './pages/LoginPage/LoginPage';
+// import HomePage from './pages/HomePage/HomePage';
+// import NewsPage from './pages/NewsPage/NewsPage';
+// import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
+// import RegisterPage from './pages/RegisterPage/RegisterPage';
+// import LoginPage from './pages/LoginPage/LoginPage';
+import { lazy } from 'react';
+
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
+const OurFriendsPage = lazy(() =>
+  import('./pages/OurFriendsPage/OurFriendsPage')
+);
+const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
 
 export const ROUTES = {
   HOME: '/',
