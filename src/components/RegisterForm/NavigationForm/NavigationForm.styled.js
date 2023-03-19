@@ -1,34 +1,18 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { theme } from '../../../theme';
+import { BtnFormSubmit } from 'components/LoginForm/LoginForm.styled';
 
-const ButtonBack = styled.button`
-  display: flex;
+const ButtonBack = styled(BtnFormSubmit)`
   width: 100%;
-  height: 44px;
-  border-radius: 40px;
-  color: #000;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #f59256;
+  margin: 12px 0 40px 0;
+  color: ${theme.colors.black};
   background-color: transparent;
 `;
 
 const LinkToLogin = styled(NavLink)`
-  margin-left: 5px;
-  text-decoration-line: underline;
+  color: ${theme.colors.blueLinks};
+  text-decoration: underline;
 `;
 
-const StepOne = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-const StepTwo = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-`;
-
-export { ButtonBack, LinkToLogin, StepOne, StepTwo };
+export { ButtonBack, LinkToLogin };
