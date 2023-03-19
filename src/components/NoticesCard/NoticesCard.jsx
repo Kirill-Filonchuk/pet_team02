@@ -3,18 +3,19 @@ import { HiTrash } from 'react-icons/hi';
 import {
   Article,
   BtnWrapper,
-  Button,
   Favorite,
   Image,
   ImageWrapper,
   Label,
   Meta,
+  NoticeCardButton,
   Table,
   Td,
   Title,
   Tr,
 } from './NoticesCard.styled';
 import { useState } from 'react';
+import { Button } from 'components/UIKit/Button/Button.styled';
 
 const NoticesCard = ({
   id,
@@ -61,11 +62,11 @@ const NoticesCard = ({
         </Table>
 
         <BtnWrapper>
-          <Button type="button">Learn more</Button>
+          <NoticeCardButton type="button">Learn more</NoticeCardButton>
           {isMine && (
-            <Button type="button" isDelete>
+            <NoticeCardButton type="button" isDelete>
               Delete <HiTrash size={18} />
-            </Button>
+            </NoticeCardButton>
           )}
         </BtnWrapper>
       </Meta>
