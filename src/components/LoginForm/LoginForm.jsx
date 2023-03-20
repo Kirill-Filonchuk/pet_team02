@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { logIn } from 'redux/auth/operations';
 import { Formik } from 'formik';
 import { validationLogin, InputError } from 'components/FormValidation';
@@ -21,7 +21,7 @@ import {
 } from './LoginForm.styled';
 
 const LoginForm = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -39,7 +39,11 @@ const LoginForm = () => {
         email: email,
         password: password,
       })
-    );
+    ).then(res=>{
+      if(res.payload.status==="success") {
+        navigate('/user', { replace: true })
+      }
+    });
     console.log(values);
     actions.resetForm();
   };

@@ -10,7 +10,7 @@ const Title = styled.h2`
   text-align: center;
   color: ${theme.colors.black};
   font-family: ${theme.fonts.manrope};
-  font-size: ${theme.fontSizes[4] + `px`};
+  font-size: ${theme.fontSizes[5] + `px`};
   line-height: ${theme.lineHeights[4]};
   font-weight: ${theme.fontWeights.bold};
   letter-spacing: 0.04em;
@@ -59,7 +59,7 @@ const BtnFormSubmit = styled.button`
   height: 44px;
   border-radius: ${theme.radii.normal};
   margin-top: 16px;
-  font-size: ${theme.fontSizes[3] + `px`};
+  font-size: ${theme.fontSizes[4] + `px`};
   line-height: ${theme.lineHeights[2]};
   margin-bottom: 40px;
   color: ${theme.colors.white};
