@@ -35,13 +35,16 @@ const validationRegisterStepOne = yup.object().shape({
     .max(32, 'Please enter 32 characters or less')
     .min(7, 'Enter 7 or more characters')
     .required('Password field is required'),
-  confirm_password: yup.string().when('password', {
-    is: val => (val && val.length > 0 ? true : false),
-    then: () =>
-      yup
-        .string()
-        .oneOf([yup.ref('password')], ' Please confirm your password'),
-  }),
+  confirmPassword: yup
+    .string()
+    .when('password', {
+      is: val => (val && val.length > 0 ? true : false),
+      then: () =>
+        yup
+          .string()
+          .oneOf([yup.ref('password')], ' Please confirm your password')
+          .required('Confirm field is required'),
+    }),
 });
 
 const validationRegisterStepTwo = yup.object().shape({
@@ -49,17 +52,20 @@ const validationRegisterStepTwo = yup.object().shape({
     .string()
     .required('Name field is required')
     .matches(nameValid, 'Name field can contain any letters'),
-  location: yup
+  city: yup
     .string()
     .matches(
       locationValid,
       'Location field must contain two words separated by a comma'
-    )
-    .required('Location field is required'),
+    ),
+  // .required('Location field is required'),
   phone: yup
     .string()
-    .matches(phoneValid, 'The phone number must be in the format +380123456789')
-    .required('Phone number field is required'),
+    .matches(
+      phoneValid,
+      'The phone number must be in the format +380123456789'
+    ),
+  // .required('Phone number field is required'),
 });
 
 const InputError = ({ name }) => {
