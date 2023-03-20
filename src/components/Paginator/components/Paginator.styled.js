@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { theme } from 'theme';
 
 export const PagList = styled('ul')`
   width: 100%;
@@ -10,6 +11,11 @@ export const PagList = styled('ul')`
 export const PagItem = styled('li')`
   width: 40px;
   height: 40px;
+
+  ${theme.mq.tablet} {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 export const PagButton = styled('button')`
