@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpet_team02=self.webpackChunkpet_team02||[]).push([[680],{680:function(e,n,t){t.r(n);var i,h=t(168),a=t(6444),o=t(3329),p=a.ZP.h1(i||(i=(0,h.Z)(["\n  width: 280px;\n  height: 88px;\n  font-size: 32px;\n  font-weight: 700;\n  line-height: 3, 14;\n  margin-bottom: 29px;\n"])));n.default=function(){return(0,o.jsx)("div",{children:(0,o.jsx)(p,{children:"Take good care of your small pets"})})}}}]);
+//# sourceMappingURL=680.c54401c6.chunk.js.map
