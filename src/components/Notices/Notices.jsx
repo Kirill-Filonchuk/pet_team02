@@ -9,10 +9,13 @@ import {
   NoticesWrapper,
 } from './Notices.styled';
 import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ROUTES } from 'router';
 import PageTitle from 'components/UIKit/PageTitle';
 import useAuth from 'hooks/useAuth/useAuth';
+import Notify from 'components/Notify';
+import { useNotifyPosition } from 'hooks/useNotifyPosition';
+import { useViewportResize } from 'hooks/useViewportResize';
 // import { useDispatch } from 'react-redux';
 // import { logOut } from 'redux/auth/operations';
 
@@ -45,19 +48,52 @@ const Notices = () => {
     }
   }, [pathname, navigate]);
 
+  //TEST FOR NOTIFICATIONS
+  const [isNotifyOpen, setIsNotifyOpen] = useState(false);
+  // const btnRef = useRef();
+  // const [position, setPosition] = useState();
+
+  // useEffect(() => {
+  //   const { bottom, left, width } = btnRef.current.getBoundingClientRect();
+
+  //   const x = left + width;
+  //   const y = bottom;
+
+  //   setPosition({ x, y });
+  // }, []);
+
+  const { buttonRef, position } = useNotifyPosition();
+  // useViewportResize();
+  //TEST FOR NOTIFICATIONS
+
   return (
     <NoticesWrapper>
       <NoticeSection>
         <Container>
-          {/* <button
+          <button
+            ref={buttonRef}
             type="button"
             style={{ fontSize: '40px', cursor: 'pointer' }}
+            // onClick={() => {
+            //   dispatch(logOut());
+            // }}
             onClick={() => {
-              dispatch(logOut());
+              setIsNotifyOpen(true);
             }}
           >
             Log Out
-          </button> */}
+          </button>
+          {isNotifyOpen && (
+            <Notify
+              position={position}
+              onClose={() => {
+                setIsNotifyOpen(false);
+              }}
+            >
+              NOTIFY!
+            </Notify>
+          )}
+
           <PageTitle>Find your favorite pet</PageTitle>
 
           <NoticesSearch />
