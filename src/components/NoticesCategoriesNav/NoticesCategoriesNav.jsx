@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Item,
   List,
@@ -20,3 +21,12 @@ const NoticesCategoriesNav = ({ links }) => {
 };
 
 export default NoticesCategoriesNav;
+
+NoticesCategoriesNav.propTypes = {
+  links: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      to: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
