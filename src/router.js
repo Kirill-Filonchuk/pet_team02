@@ -1,6 +1,6 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
 import UserPage from 'components/UserPage';
-import NoticesPage from 'pages/NoticesPage';
+// import NoticesPage from 'pages/NoticesPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 // import HomePage from './pages/HomePage/HomePage';
@@ -9,8 +9,10 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 // import RegisterPage from './pages/RegisterPage/RegisterPage';
 // import LoginPage from './pages/LoginPage/LoginPage';
 import { lazy } from 'react';
+import PrivateRoute from 'components/PrivateRoute';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const OurFriendsPage = lazy(() =>
   import('./pages/OurFriendsPage/OurFriendsPage')
@@ -56,8 +58,24 @@ const routes = [
             element: <NoticesCategoriesList />,
           },
           { path: ROUTES.NOTICES_FOR_FREE, element: <NoticesCategoriesList /> },
-          { path: ROUTES.NOTICES_FAVORITE, element: <NoticesCategoriesList /> },
-          { path: ROUTES.NOTICES_OWN, element: <NoticesCategoriesList /> },
+          {
+            path: ROUTES.NOTICES_FAVORITE,
+            element: (
+              <PrivateRoute
+                redirectTo={ROUTES.LOGIN}
+                component={NoticesCategoriesList}
+              />
+            ),
+          },
+          {
+            path: ROUTES.NOTICES_OWN,
+            element: (
+              <PrivateRoute
+                redirectTo={ROUTES.LOGIN}
+                component={NoticesCategoriesList}
+              />
+            ),
+          },
         ],
       },
       {
@@ -74,7 +92,7 @@ const routes = [
       },
       {
         path: ROUTES.USER,
-        element: <UserPage/>,
+        element: <UserPage />,
       },
     ],
   },
