@@ -6,7 +6,7 @@ const initialState = {
     email: null,
     password: null,
     name: null,
-    location: null,
+    city: null,
     phone: null,
   },
   token: null,
