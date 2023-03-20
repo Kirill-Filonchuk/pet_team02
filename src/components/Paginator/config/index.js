@@ -1,0 +1,19 @@
+import {
+  CURRENT_PAGE_BTN,
+  LAST_PAGE_BTN,
+  LEFT_DOTS_BTN,
+  NEXT_BTN,
+  PAGE_BTN,
+  PREV_BTN,
+  RIGHT_DOTS_BTN,
+} from "./configBtns";
+
+export {
+  CURRENT_PAGE_BTN,
+  LAST_PAGE_BTN,
+  LEFT_DOTS_BTN,
+  NEXT_BTN,
+  PAGE_BTN,
+  PREV_BTN,
+  RIGHT_DOTS_BTN,
+};

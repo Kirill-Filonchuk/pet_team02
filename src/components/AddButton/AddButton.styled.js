@@ -20,7 +20,7 @@ export const AddButtonStyled = styled('button')`
       hasMobileStyles &&
       css`
         position: fixed;
-        bottom: 20%;
+        bottom: 200px;
         right: 20px;
         transform: translateY(+50%);
         z-index: 999;

@@ -25,8 +25,8 @@ export const Button = styled('button')`
   border-radius: ${p => p.theme.radii.normal};
 
   transition-property: color, background-color;
-  transition-duration: ${p => p.theme.transitions.durations.default}
-  transition-timing-function: ${p => p.theme.transitions.functions.default}
+  transition-duration: ${p => p.theme.transitions.durations.default};
+  transition-timing-function: ${p => p.theme.transitions.functions.default};
 
   &:hover {
     background-color: ${p => p.theme.colors.accent};
