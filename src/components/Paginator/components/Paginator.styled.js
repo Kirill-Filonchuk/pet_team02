@@ -63,4 +63,8 @@ export const PagButton = styled('button')`
     background-color: ${p =>
       p.type === 'current' ? p.theme.colors.accent : 'rgba(245, 146, 86, 0.2)'};
   }
+
+  ${theme.mq.mobileOnly} {
+    font-size: 13px;
+  }
 `;
