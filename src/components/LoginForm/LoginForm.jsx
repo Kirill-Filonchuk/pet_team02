@@ -39,12 +39,11 @@ const LoginForm = () => {
         email: email,
         password: password,
       })
-    ).then(res=>{
-      if(res.payload.status==="success") {
-        navigate('/user', { replace: true })
+    ).then(res => {
+      if (res.payload.status === 'success') {
+        navigate('/user', { replace: true });
       }
     });
-    console.log(values);
     actions.resetForm();
   };
   return (

@@ -4,14 +4,16 @@ import { Error } from './FormValidation.styled';
 const emailValid =
   /^[^-._]{1}[A-Za-z0-9._-]{1,}@[^-._]{1}[A-Za-z0-9.-]{0,}\.[A-Za-z]{2,4}$/;
 const nameValid = /^[^\s][a-zA-zа-яіїєА-ЯІЇЄ .'-]*$/;
-const passwordValid = /^[^ ]{7,32}$/;
+const passwordValid = /^[^ ]+$/;
 const phoneValid = /^[+]{1}[0-9]{12}$/;
-const locationValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ]+$/;
+const locationValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ .'-]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ .'-]+$/;
 const validationLogin = yup.object().shape({
   email: yup
     .string()
     .required('Email field is required')
-    .matches(emailValid, "Email must contain '@', example: user@mail.com ")
+    .matches(emailValid, "Email must contain '@', example: user@mail.com")
+    .max(70, 'Maximum 70 characters')
+    .min(10, "Minimum 10 characters")
     .email(),
   password: yup
     .string()
@@ -24,7 +26,9 @@ const validationRegisterStepOne = yup.object().shape({
   email: yup
     .string()
     .required('Email field is required')
-    .matches(emailValid, "Email must contain '@', example: user@mail.com ")
+    .matches(emailValid, "Email must contain '@', example: user@mail.com")
+    .max(70, 'Maximum 70 characters')
+    .min(10, "Minimum 10 characters")
     .email(),
   password: yup
     .string()
@@ -46,13 +50,17 @@ const validationRegisterStepTwo = yup.object().shape({
   name: yup
     .string()
     .required('Name field is required')
-    .matches(nameValid, 'Name field can contain any letters'),
+    .matches(nameValid, 'Name field can contain any letters')
+    .max(24, "Max 24 characters")
+    .min(1, "Min 1 character"),
   city: yup
     .string()
     .matches(
       locationValid,
       'Location field must contain two words separated by a comma'
-    ),
+    )
+    .min(5, "Min 5 characters")
+    .max(35, "Max 35 characters"),
   phone: yup
     .string()
     .matches(

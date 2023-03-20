@@ -49,7 +49,6 @@ const RegisterForm = () => {
         }
       });
     }
-    console.log(values);
     actions.resetForm();
   };
 
