@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ROUTES } from 'router';
 import PageTitle from 'components/UIKit/PageTitle';
-import useAuth from 'hooks/useAuth/useAuth';
+// import useAuth from 'hooks/useAuth/useAuth';
 // import SampleAddButton from 'components/AddButton/SampleAddButton';
 
 const Notices = () => {
