@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   AddButtonStyled,
   AddButtonText,
@@ -6,11 +7,7 @@ import {
   PlusIcon,
 } from './AddButton.styled';
 
-const AddNoticeButton = ({
-  label,
-  onClick = null,
-  hasMobileStyles = false,
-}) => {
+const AddButton = ({ label, onClick = null, hasMobileStyles = false }) => {
   return (
     <AddButtonStyled
       className="addButtonWrapper"
@@ -38,4 +35,10 @@ const AddNoticeButton = ({
   );
 };
 
-export default AddNoticeButton;
+export default AddButton;
+
+AddButton.propTypes = {
+  label: PropTypes.string,
+  onClick: PropTypes.func,
+  hasMobileStyles: PropTypes.bool,
+};

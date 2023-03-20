@@ -7,11 +7,11 @@ import {
   NoticeSection,
   NoticesToolBar,
   NoticesWrapper,
-  Title,
 } from './Notices.styled';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ROUTES } from 'router';
+import PageTitle from 'components/UIKit/PageTitle';
 // import SampleAddButton from 'components/AddButton/SampleAddButton';
 
 const Notices = () => {
@@ -37,7 +37,7 @@ const Notices = () => {
       <NoticeSection>
         <Container>
           {/* <SampleAddButton /> */}
-          <Title>Find your favorite pet</Title>
+          <PageTitle>Find your favorite pet</PageTitle>
 
           <NoticesSearch />
 

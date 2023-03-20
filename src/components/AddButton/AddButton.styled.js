@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { BsPlusLg } from 'react-icons/bs';
+import { theme } from 'theme';
 
 export const AddButtonStyled = styled('button')`
   cursor: pointer;
@@ -14,7 +15,7 @@ export const AddButtonStyled = styled('button')`
 
   background-color: transparent;
 
-  @media screen and (max-width: calc(768px - 0.02px)) {
+  ${theme.mq.mobileOnly} {
     ${({ hasMobileStyles }) =>
       hasMobileStyles &&
       css`
@@ -44,10 +45,10 @@ export const IconWrapper = styled('div')`
   width: 44px;
   height: 44px;
 
-  background-color: #f59256;
-  border-radius: 50%;
+  background-color: ${p => p.theme.colors.accent};
+  border-radius: ${p => p.theme.radii.round};
 
-  @media screen and (max-width: calc(768px - 0.02px)) {
+  ${theme.mq.mobileOnly} {
     ${({ hasMobileStyles }) =>
       hasMobileStyles &&
       css`
@@ -56,14 +57,23 @@ export const IconWrapper = styled('div')`
         height: 32px;
       `}
   }
+
+  ${theme.mq.tablet} {
+    transition-property: background-color;
+    transition-duration: ${p => p.theme.transitions.durations.default};
+    transition-timing-function: ${p => p.theme.transitions.functions.default};
+    &:hover {
+      background-color: ${p => p.theme.colors.accentActive};
+    }
+  }
 `;
 
 export const IconContainer = styled('div')`
   width: 24px;
   height: 24px;
-  color: #ffffff;
+  color: ${p => p.theme.colors.white};
 
-  @media screen and (max-width: calc(768px - 0.02px)) {
+  ${theme.mq.mobileOnly} {
     ${({ hasMobileStyles }) =>
       hasMobileStyles &&
       css`
@@ -80,19 +90,19 @@ export const PlusIcon = styled(BsPlusLg)`
 `;
 
 export const AddButtonText = styled('span')`
-  font-family: 'Manrope';
-  font-weight: 500;
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.medium};
   font-size: 20px;
   line-height: 1.35;
-  color: #111111;
+  color: ${p => p.theme.colors.black};
 
-  @media screen and (max-width: calc(768px - 0.02px)) {
+  ${theme.mq.mobileOnly} {
     ${({ hasMobileStyles }) =>
       hasMobileStyles &&
       css`
         font-size: 12px;
         line-height: 1.333;
-        color: #ffffff;
+        color: ${p => p.theme.colors.white};
       `}
   }
 `;

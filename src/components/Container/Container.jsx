@@ -1,6 +1,11 @@
+import PropTypes from 'prop-types';
 import { StyledTempContainer } from './Container.styled';
 
-const TempContainer = ({ children }) => {
+const Container = ({ children }) => {
   return <StyledTempContainer>{children}</StyledTempContainer>;
 };
-export default TempContainer;
+export default Container;
+
+Container.propTypes = {
+  children: PropTypes.node,
+};

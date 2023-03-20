@@ -1,4 +1,5 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
+import UserPage from 'components/UserPage';
 import NoticesPage from 'pages/NoticesPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
@@ -76,8 +77,16 @@ const routes = [
       },
       {
         path: ROUTES.USER,
+<<<<<<< HEAD
         element: <UserData />,
+=======
+<<<<<<< HEAD
+        // element: <UserData />,
+>>>>>>> main
         // element: <PetsData />,
+=======
+        element: <UserPage/>,
+>>>>>>> 8ba8be1dbbc813b77d1a7b5c496a565503e5ee74
       },
     ],
   },
