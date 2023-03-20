@@ -26,9 +26,10 @@ export const PagButton = styled('button')`
   align-items: center;
   justify-content: center;
 
-  font-size: 13px;
+  font-size: 16px;
 
-  border-radius: 5px;
+  border-radius: 10px;
+
   border: none;
   background-color: transparent;
 
@@ -36,13 +37,15 @@ export const PagButton = styled('button')`
     switch (type) {
       case 'arrow':
         return css`
-          border: 1px solid rgba(0, 0, 0, 0.2);
+          border: 2px solid ${p => p.theme.colors.accent};
         `;
 
       case 'current':
         return css`
           flex-shrink: 0;
-          border: 1px solid rgba(0, 0, 0, 0.2);
+          /* border: 2px solid ${p => p.theme.colors.accent}; */
+          background-color: ${p => p.theme.colors.accent};
+          color: ${p => p.theme.colors.white};
         `;
 
       default:
@@ -56,6 +59,8 @@ export const PagButton = styled('button')`
   transition-timing-function: ${p => p.theme.transitions.functions.default};
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.02);
+    /* background-color: rgba(0, 0, 0, 0.02); */
+    background-color: ${p =>
+      p.type === 'current' ? p.theme.colors.accent : 'rgba(245, 146, 86, 0.2)'};
   }
 `;

@@ -14,7 +14,7 @@ const NoticesCategoriesList = () => {
 
   const [pets, setPets] = useState([]);
   const [title, setTitle] = useState();
-  const { isMobile } = useWindowSize();
+  const { isDesktop } = useWindowSize();
 
   //Temporary useEffect -> mockAPI
   useEffect(() => {
@@ -52,7 +52,7 @@ const NoticesCategoriesList = () => {
               console.log(page);
               setPage(page);
             }}
-            nearbyQtyPages={isMobile ? 1 : 2}
+            nearbyQtyPages={isDesktop ? 2 : 1}
             perPage={8}
             // shouldScrollUp
           />
