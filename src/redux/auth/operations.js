@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-axios.defaults.baseURL = 'https://tiny-hare-cowboy-hat.cyclic.app/';
-// axios.defaults.baseURL = 'http://localhost:3003'
+import { BASE_URL } from 'components/Services/AxiosConfig';
+axios.defaults.baseURL = BASE_URL;
 //! add JWT
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -15,7 +14,7 @@ const clearAuthHeader = () => {
 
 //? REGISTRATION
 const register = createAsyncThunk(
-  'users/register',
+  'auth/signup',
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('/api/auth/signup', credentials);
