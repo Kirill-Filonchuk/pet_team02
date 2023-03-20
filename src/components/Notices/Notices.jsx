@@ -12,17 +12,19 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ROUTES } from 'router';
 import PageTitle from 'components/UIKit/PageTitle';
-// import useAuth from 'hooks/useAuth/useAuth';
-// import SampleAddButton from 'components/AddButton/SampleAddButton';
+import useAuth from 'hooks/useAuth/useAuth';
+// import { useDispatch } from 'react-redux';
+// import { logOut } from 'redux/auth/operations';
 
 const Notices = () => {
+  //TEMP CODE FOR FUN!!!!
+  // const dispatch = useDispatch();
+  //TEMP CODE FOR FUN!!!!
+
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  //Temporary comented hook
-  // const { isLoggedIn } = useAuth();
-
-  const isLoggedIn = true;
+  const { isLoggedIn } = useAuth();
 
   const noticesNavLinks = [
     { title: 'sell', to: ROUTES.NOTICES_SELL },
@@ -47,7 +49,15 @@ const Notices = () => {
     <NoticesWrapper>
       <NoticeSection>
         <Container>
-          {/* <SampleAddButton /> */}
+          {/* <button
+            type="button"
+            style={{ fontSize: '40px', cursor: 'pointer' }}
+            onClick={() => {
+              dispatch(logOut());
+            }}
+          >
+            Log Out
+          </button> */}
           <PageTitle>Find your favorite pet</PageTitle>
 
           <NoticesSearch />

@@ -1,13 +1,9 @@
 import PropTypes from 'prop-types';
-// import useAuth from 'hooks/useAuth/useAuth';
+import useAuth from 'hooks/useAuth/useAuth';
 import { Navigate } from 'react-router';
 
 const RestrictedRoute = ({ redirectTo, component: Component }) => {
-  //temporary commented
-  // const { isLoggedIn } = useAuth();
-
-  //temporary variable for testing. Has to be deleted before production
-  const isLoggedIn = true;
+  const { isLoggedIn } = useAuth();
 
   return isLoggedIn ? <Navigate to={redirectTo} /> : <Component />;
 };
