@@ -1,6 +1,6 @@
 import { useState } from 'react';
-//import { useDispatch } from 'react-redux';
-// import { register } from 'redux/auth/operations';
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/operations';
 import {
   validationRegisterStepOne,
   validationRegisterStepTwo,
@@ -28,9 +28,21 @@ const RegisterForm = () => {
     location: '',
     phone: '',
   };
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
+    const {email, password, confirm_password, name, location, phone} = values;
+    if(password===confirm_password) {
+      dispatch(
+        register({
+          email: email,
+          password: password,
+          name: name,
+          location: location,
+          phone: phone
+        })
+      )
+    }
     console.log(values);
     actions.resetForm();
   };

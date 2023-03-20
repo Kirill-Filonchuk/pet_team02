@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://pet-support-api.onrender.com';
+axios.defaults.baseURL = 'https://tiny-hare-cowboy-hat.cyclic.app/';
+// axios.defaults.baseURL = 'http://localhost:3003'
 //! add JWT
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -40,7 +41,7 @@ const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 //? LOGOUT
 const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/api/auth/login');
+    await axios.post('/api/auth/logout');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

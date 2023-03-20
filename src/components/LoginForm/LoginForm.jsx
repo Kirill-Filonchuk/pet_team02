@@ -1,7 +1,7 @@
 import { useState } from 'react';
-// import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
-// import { logIn } from "redux/auth/operations";
+import { logIn } from 'redux/auth/operations';
 import { Formik } from 'formik';
 import { validationLogin, InputError } from 'components/FormValidation';
 
@@ -17,11 +17,12 @@ import {
   IconShow,
   BtnFormSubmit,
   TextLink,
+  LinkToRegister,
 } from './LoginForm.styled';
 
 const LoginForm = () => {
   // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const initialValues = {
@@ -32,6 +33,13 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
   const handleSubmit = (values, actions) => {
+    const { email, password } = values;
+    dispatch(
+      logIn({
+        email: email,
+        password: password,
+      })
+    );
     console.log(values);
     actions.resetForm();
   };
@@ -72,9 +80,8 @@ const LoginForm = () => {
           )}
         </Formik>
         <TextLink>
-          <span>Don't have an account?</span>
-          {/* <LinkToRegister to="/register">Register</LinkToRegister> */}
-          <span> Register</span>
+          <span>Don't have an account? </span>
+          <LinkToRegister to="/register">Register</LinkToRegister>
         </TextLink>
       </Wrapper>
     </Container>
