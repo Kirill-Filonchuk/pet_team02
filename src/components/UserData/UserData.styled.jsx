@@ -1,23 +1,25 @@
 import styled from 'styled-components';
-import { ReactComponent as EditIcon } from './camera-icon.svg';
+import { ReactComponent as EditIcon } from '../../images/camera-icon.svg';
+import { theme } from 'theme';
 
 export const UserTitle = styled.h2`
   margin-bottom: 18px;
-  font-size: 20px;
-  font-family: Manrope;
-  line-height: 27px;
+  font-size: ${p => p.theme.fontSizes[3]}px;
+  font-family: ${p => p.theme.fonts.manrope};
+  line-height: ${p => p.theme.lineHeights[2]};
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
-  color: #000000;
-  font-weight: 500;
+  color: ${p => p.theme.colors.text};
+  font-weight: ${p => p.theme.fontWeights.medium};
 
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     margin-bottom: 40px;
-    font-size: 28px;
-    line-height: 38px;
+    font-family: ${p => p.theme.fonts.manrope};
+    line-height: ${p => p.theme.lineHeights[3]};
+    color: ${p => p.theme.colors.black};
   }
-  @media (min-width: 1280px) {
+  ${theme.mq.desktop} {
     margin-bottom: 24px;
   }
 `;
@@ -25,12 +27,12 @@ export const UserTitle = styled.h2`
 export const Wrapper = styled.div`
   /* width: 280px; */
   padding: 20px 12px 20px 16px;
-  background: #ffffff;
+  background: ${p => p.theme.colors.white};
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 20px;
+  border-radius: ${p => p.theme.radii.small};
   margin-bottom: 40px;
 
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     position: relative;
     /* left: -32px; */
     display: flex;
@@ -42,7 +44,7 @@ export const Wrapper = styled.div`
     margin-bottom: 20px;
   }
 
-  @media (min-width: 1280px) {
+  ${theme.mq.desktop} {
     position: relative;
     left: 0;
     flex-direction: column;
@@ -57,24 +59,24 @@ export const ImageContainer = styled.div`
   align-items: center;
 
   margin-bottom: 36px;
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     margin-bottom: auto;
   }
-  @media (min-width: 1280px) {
+  /* ${theme.mq.desktop}  {
     flex-direction: row;
     align-items: flex-end;
-  }
+  } */
 `;
 
 export const ImageWrapper = styled.div`
   width: 233px;
   height: 233px;
-  border-radius: 50%;
+  border-radius: ${p => p.theme.radii.round};
   margin-bottom: 12px;
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
 
   overflow: hidden;
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     margin-bottom: auto;
   }
 `;
@@ -88,10 +90,10 @@ export const StyledImage = styled.img`
 export const InputWrapper = styled.div`
   position: relative;
   margin-left: auto;
-  @media (min-width: 1280px) {
+  /* ${theme.mq.desktop}  {
     margin-left: 0;
     left: -5%;
-  }
+  } */
 `;
 
 export const InputFile = styled.input`
@@ -106,9 +108,10 @@ export const InputFile = styled.input`
   cursor: pointer;
 
   &:hover + button,
-  focus + button {
-    color: #f59256;
+  &:focus + button {
+    color: ${p => p.theme.colors.accent};
   }
+
   &::-webkit-file-upload-button {
     cursor: pointer;
   }
@@ -124,17 +127,11 @@ export const EditImageBtn = styled.button`
   margin-right: 12px;
   background-color: transparent;
   border: none;
-  /* transition: color 250ms linear, transform 250ms linear; */
+  transition: color 250ms linear, transform 250ms linear; */
 
-  transition: color 250ms linear, transform 250ms linear;
-  &:hover,
-  :focus {
-    color: #f59256;
-    transform: scale(1.1);
-  }
-  */ @media (min-width: 1280px) {
-    /* align-items:start;  */
-  }
+   /* ${theme.mq.desktop} {
+    align-items:start;  
+  } */
 `;
 
 export const EditImageIcon = styled(EditIcon)`
@@ -142,10 +139,17 @@ export const EditImageIcon = styled(EditIcon)`
   height: 20px;
 
   margin-right: 4px;
+
+  /* transition: rotate 250ms linear;
+
+  &:hover,
+  &:focus {
+    transform: rotate(360deg);
+  } */
 `;
 
 export const UserItemWrapper = styled.div`
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     margin-top: 16px;
     display: flex;
     flex-direction: column;
@@ -160,11 +164,11 @@ export const LogoutBtn = styled.button`
   align-items: center;
   border: none;
   margin-left: auto;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes[1]}px;
+  line-height: ${p => p.theme.lineHeights[4]};
   letter-spacing: 0.04em;
-  color: rgba(17, 17, 17, 0.6);
+  color: ${p => p.theme.colors.grey};
   background-color: transparent;
   cursor: pointer;
   transition: color 250ms linear, transform 250ms linear;
@@ -173,12 +177,12 @@ export const LogoutBtn = styled.button`
     color: #f59256;
     transform: scale(1.1);
   }
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     align-self: start;
     margin-top: 33px;
     margin-left: 0;
   }
-  @media (min-width: 1280px) {
+  ${theme.mq.desktop} {
     margin-top: 24px;
   }
 `;

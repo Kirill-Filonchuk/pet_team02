@@ -9,6 +9,9 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 // import LoginPage from './pages/LoginPage/LoginPage';
 import { lazy } from 'react';
 
+import UserData from 'components/UserData/UserData';
+// import PetsData from 'components/PetsData/PetsData.jsx';
+
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const OurFriendsPage = lazy(() =>
@@ -73,7 +76,7 @@ const routes = [
       },
       {
         path: ROUTES.USER,
-        // element: <UserData />,
+        element: <UserData />,
         // element: <PetsData />,
       },
     ],

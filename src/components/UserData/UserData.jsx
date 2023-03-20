@@ -1,11 +1,11 @@
-// import { toast } from 'react-toastify';
 // import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 
 import UserDataItem from '../UserDataItem/UserDataItem';
-import noAvatar from './no-image.jpeg';
-import logoutIcon from './logout-icon.png';
-// import Avatar from './Ellipse 45.png';
+import noAvatar from '../../images/no-image.jpeg';
+import logoutIcon from '../../images/logout-icon.png';
 
 import {
   UserTitle,
@@ -22,7 +22,7 @@ import {
   UserItemWrapper,
 } from './UserData.styled.jsx';
 // import { useDispatch, useSelector } from 'react-redux';
-// import { logout, updateUser } from 'redux/auth/authOperations';
+// import { logOut, refreshUser } from 'redux/auth/authOperations';
 // import { selectAccessToken } from 'redux/auth/authSelectors';
 
 const imageExtensions = [
@@ -40,7 +40,7 @@ export default function UserData() {
   // export default function UserData({user}) {
   // const dispatch = useDispatch();
   const [isDisabledBtn, setIsDisabledBtn] = useState(false);
-  const [avatarError, setAvatarError] = useState(null);
+  // const [avatarError, setAvatarError] = useState(null);
   const user = {
     email: 'mail.comm',
     name: 'Artur',
@@ -63,15 +63,19 @@ export default function UserData() {
   const handleFileChange = async e => {
     const fileExtension = e.target.value.split('.')[1];
     if (!imageExtensions.includes(fileExtension)) {
-      setAvatarError('Avatar should be an image');
+      // setAvatarError('Avatar should be an image');
+      toast.error(
+        'Avatar should be an image: png, jpg, jpeg, gif, jfif, pjpeg, pjp, webp',
+        { autoClose: 5000 }
+      );
       return;
     }
-    setAvatarError(null);
+    // setAvatarError(null);
     const imgFile = e.target.files[0];
 
     if (imgFile) {
       // const value = { avatar: imgFile };
-      // await dispatch(updateUser({ value, token }));
+      // await dispatch(refreshUser({ value, token }));
     }
   };
 
@@ -79,6 +83,7 @@ export default function UserData() {
     <>
       <UserTitle>My information:</UserTitle>
       <Wrapper>
+        <ToastContainer />
         <ImageContainer>
           <ImageWrapper>
             <StyledImage
@@ -87,7 +92,14 @@ export default function UserData() {
             />
           </ImageWrapper>
 
-          {avatarError ? (
+          <InputWrapper>
+            <InputFile type="file" onChange={handleFileChange} />
+            <EditImageBtn>
+              <EditImageIcon />
+              <span>Edit photo</span>
+            </EditImageBtn>
+          </InputWrapper>
+          {/* {avatarError ? (
             <div
               style={{
                 color: 'red',
@@ -98,15 +110,7 @@ export default function UserData() {
             >
               {avatarError}
             </div>
-          ) : null}
-
-          <InputWrapper>
-            <InputFile type="file" onChange={handleFileChange} />
-            <EditImageBtn>
-              <EditImageIcon />
-              <span>Edit photo</span>
-            </EditImageBtn>
-          </InputWrapper>
+          ) : null} */}
         </ImageContainer>
         <UserItemWrapper>
           <UserDataItem
@@ -118,7 +122,7 @@ export default function UserData() {
               if (value.name === name) {
                 return;
               }
-              // await dispatch(updateUser({ value, token }));
+              // await dispatch(refreshUser({ value, token }));
             }}
           ></UserDataItem>
           <UserDataItem
@@ -130,7 +134,7 @@ export default function UserData() {
               if (value.email === email) {
                 return;
               }
-              // await dispatch(updateUser({ value, token }));
+              // await dispatch(refreshUser({ value, token }));
             }}
           ></UserDataItem>
           <UserDataItem
@@ -145,7 +149,7 @@ export default function UserData() {
               if (value.birthDate === birthday) {
                 return;
               }
-              // await dispatch(updateUser({ value, token }));
+              // await dispatch(refreshUser({ value, token }));
             }}
           ></UserDataItem>
           <UserDataItem
@@ -157,7 +161,7 @@ export default function UserData() {
               if (value.phone === phone) {
                 return;
               }
-              // await dispatch(updateUser({ value, token }));
+              // await dispatch(refreshUser({ value, token }));
             }}
           ></UserDataItem>
           <UserDataItem
@@ -169,11 +173,11 @@ export default function UserData() {
               if (value.location === city) {
                 return;
               }
-              // await dispatch(updateUser({ value, token }));
+              // await dispatch(refreshUser({ value, token }));
             }}
           ></UserDataItem>
           <LogoutBtn
-          // onClick={async () => await dispatch(logout())}
+          // onClick={async () => await dispatch(logOut())}
           >
             <LogoutIcon alt="logout user" src={logoutIcon} /> Log Out
           </LogoutBtn>

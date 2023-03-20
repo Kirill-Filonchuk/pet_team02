@@ -3,6 +3,7 @@ import { Form, Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { parse, isDate } from 'date-fns';
 // import { toast } from 'react-toastify';
+
 import {
   BtnImage,
   BtnImageDis,
@@ -175,7 +176,7 @@ export default function UserDataItem({
                     marginRight: 'auto',
                   }}
                 >
-                  {/* {toast.error(msg, { autoClose: 5000 })} */}
+                  {/* {toast.error(msg, { autoClose: 3000 })} */}
                   {msg}
                 </div>
               )}

@@ -4,10 +4,11 @@ import { register, logIn, logOut, refreshUser } from './operations';
 const initialState = {
   user: {
     email: null,
-    password: null,
+    avatar: null,
     name: null,
     location: null,
     phone: null,
+    birthDate: null,
   },
   token: null,
   isLoggedIn: false,

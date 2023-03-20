@@ -1,8 +1,9 @@
 import { Field } from 'formik';
 import styled from 'styled-components';
-import { ReactComponent as Logo } from './edit-icon.svg';
-import { ReactComponent as LogoDis } from './edit-icon-dis.svg';
-import { ReactComponent as LogoDone } from './done-icon.svg';
+import { ReactComponent as Logo } from '../../images/edit-icon.svg';
+import { ReactComponent as LogoDis } from '../../images/edit-icon-dis.svg';
+import { ReactComponent as LogoDone } from '../../images/done-icon.svg';
+import { theme } from 'theme';
 
 export const Wrapper = styled.div`
   /* position: relative; */
@@ -10,43 +11,45 @@ export const Wrapper = styled.div`
   align-items: center;
   height: 24px;
   margin-bottom: 8px;
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     width: auto;
     margin-bottom: 15px;
   }
-  @media (min-width: 1280px) {
+  ${theme.mq.desktop} {
     width: 100%;
   }
 `;
 
 export const FieldText = styled.p`
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-family: ${p => p.theme.fonts.manrope};
   width: 56px;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: ${p => p.theme.fontSizes[0]}px;
+  line-height: 1.33;
   display: flex;
   letter-spacing: 0.04em;
-  color: #111111;
-  @media (min-width: 768px) {
+  color: ${p => p.theme.colors.black};
+  ${theme.mq.tablet} {
     width: 83px;
-    font-size: 18px;
-    line-height: 25px;
+    font-size: ${p => p.theme.fontSizes[2]}px;
+    line-height: 1.39;
   }
 `;
 
 export const StyledValue = styled.p`
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-family: ${p => p.theme.fonts.manrope};
+  font-size: ${p => p.theme.fontSizes[0]}px;
+  line-height: 1.33;
   letter-spacing: 0.04em;
   margin-left: 19px;
-  color: #111111;
+  color: ${p => p.theme.colors.black};
   /* position: relative; */
 
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     margin-left: 26px;
-    font-size: 18px;
-    line-height: 25px;
+    font-size: ${p => p.theme.fontSizes[2]}px;
+    line-height: 1.39;
     width: 250px;
   }
 `;
@@ -56,13 +59,13 @@ export const StyledInput = styled(Field)`
   width: 160px;
   height: 24px;
   padding: 4px 18px;
-  color: #111111;
-  background: #fdf7f2;
+  color: ${p => p.theme.colors.black};
+  background: ${p => p.theme.colors.background};
   border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
+  border-radius: ${p => p.theme.radii.normal};
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: ${p => p.theme.fontSizes[0]}px;
+  line-height: 1.33;
   outline: none;
   letter-spacing: 0.04em;
   /* position: relative; */
@@ -71,10 +74,10 @@ export const StyledInput = styled(Field)`
   :focus {
     outline: 1px solid rgba(245, 146, 86, 0.5);
   }
-  @media (min-width: 768px) {
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 25px;
+  ${theme.mq.tablet} {
+    font-weight: ${p => p.theme.fontWeights.normal};
+    font-size: ${p => p.theme.fontSizes[2]}px;
+    line-height: 1.39;
     margin-left: 13px;
     width: 216px;
     height: 32px;
@@ -87,14 +90,14 @@ export const StyledBtn = styled.button`
   justify-content: center;
   align-items: center;
   border: none;
-  border-radius: 50%;
-  background-color: #fdf7f2;
+  border-radius: ${p => p.theme.radii.round};
+  background-color: ${p => p.theme.colors.background};
   margin-left: auto;
   width: 20px;
   height: 20px;
   cursor: pointer;
   padding: 0;
-  color: #f59256;
+  color: ${p => p.theme.colors.accent};
   transition: background-color 250ms linear, border 250ms linear;
   &:hover,
   :focus {
@@ -106,7 +109,7 @@ export const StyledBtn = styled.button`
   :focus svg {
     transform: ${({ isDisabled }) => (isDisabled ? '' : 'scale(1.1)')};
   }
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     width: 32px;
     height: 32px;
   }
@@ -116,7 +119,7 @@ export const BtnImage = styled(Logo)`
   width: 12.5px;
   height: 12.5px;
   transition: transform 250ms linear;
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     width: 18px;
     height: 18px;
   }
@@ -126,7 +129,7 @@ export const BtnImageDis = styled(LogoDis)`
   width: 12.5px;
   height: 12.5px;
 
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     width: 18px;
     height: 18px;
   }
@@ -136,7 +139,7 @@ export const BtnImageDone = styled(LogoDone)`
   width: 12.5px;
   height: 12.5px;
   fill: #f59256;
-  @media (min-width: 768px) {
+  ${theme.mq.tablet} {
     width: 18px;
     height: 18px;
   }
