@@ -31,7 +31,7 @@ export const FieldText = styled.p`
   color: ${p => p.theme.colors.black};
   ${theme.mq.tablet} {
     width: 83px;
-    font-size: ${p => p.theme.fontSizes[2]}px;
+    font-size: ${p => p.theme.fontSizes[3]}px;
     line-height: 1.39;
   }
 `;
@@ -48,7 +48,7 @@ export const StyledValue = styled.p`
 
   ${theme.mq.tablet} {
     margin-left: 26px;
-    font-size: ${p => p.theme.fontSizes[2]}px;
+    font-size: ${p => p.theme.fontSizes[3]}px;
     line-height: 1.39;
     width: 250px;
   }
@@ -76,7 +76,7 @@ export const StyledInput = styled(Field)`
   }
   ${theme.mq.tablet} {
     font-weight: ${p => p.theme.fontWeights.normal};
-    font-size: ${p => p.theme.fontSizes[2]}px;
+    font-size: ${p => p.theme.fontSizes[3]}px;
     line-height: 1.39;
     margin-left: 13px;
     width: 216px;

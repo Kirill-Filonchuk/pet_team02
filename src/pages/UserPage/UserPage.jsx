@@ -1,17 +1,15 @@
 // import Container from 'components/Container/Container';
 import UserData from 'components/UserData/UserData';
 import PetsData from 'components/PetsData/PetsData';
-// import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { useEffect } from 'react';
 import { UserContainer, UserWrapper, PetsWrapper } from './UserPage.styled';
-// import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors';
-
-// import { getUser } from 'redux/auth/authOperations';
+import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors';
 
 const UserPage = () => {
   // const dispatch = useDispatch();
-  // const isLogin = useSelector(selectIsLoggedIn);
-  // const user = useSelector(selectUser);
+  const isLogin = useSelector(selectIsLoggedIn);
+  const user = useSelector(selectUser);
 
   // useEffect(() => {
   //   if (!user) {
@@ -26,17 +24,16 @@ const UserPage = () => {
 
   return (
     <section>
-      {/* {user && isLogin && ( */}
-      <UserContainer>
-        <UserWrapper>
-          {/* <UserData user={user} /> */}
-          <UserData />
-        </UserWrapper>
-        <PetsWrapper>
-          <PetsData />
-        </PetsWrapper>
-      </UserContainer>
-      {/* )} */}
+      {user && isLogin && (
+        <UserContainer>
+          <UserWrapper>
+            <UserData user={user} />
+          </UserWrapper>
+          <PetsWrapper>
+            <PetsData />
+          </PetsWrapper>
+        </UserContainer>
+      )}
     </section>
   );
 };

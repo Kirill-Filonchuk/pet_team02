@@ -106,13 +106,13 @@ export default function UserDataItem({
       validateOnChange={false}
       onSubmit={values => {
         if (Object.keys(values)[0] === 'birthday') {
-          setUser({ birthDate: parseDateToISO(values.birthday) });
+          setUser({ birthday: parseDateToISO(values.birthday) });
           setIsEdit(false);
           setIsDisabledBtn(false);
           return;
         }
         if (Object.keys(values)[0] === 'city') {
-          setUser({ location: values.city });
+          setUser({ city: values.city });
           setIsEdit(false);
           setIsDisabledBtn(false);
           return;

@@ -47,21 +47,54 @@ const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
+//? UPDATE USER
+const updateUser = createAsyncThunk(
+  '/auth/update',
+  async ({ value }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+    try {
+      setAuthHeader(persistedToken);
+      const config = {
+        headers: {
+          Accept: '*/*',
+          Authorization: `Bearer ${persistedToken}`,
+          'Content-Type': 'application/json,multipart/form-data',
+        },
+      };
+
+      const response = await axios.patch('/api/auth/update', value, config);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 //? REFRESH USER
-const refreshUser = createAsyncThunk('/api/auth/refresh', async (_, thunkAPI) => {
+const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+  // Reading the token from the state via getState()
   const state = thunkAPI.getState();
   const persistedToken = state.auth.token;
 
   if (persistedToken === null) {
+    // If there is no token, exit without performing any request
     return thunkAPI.rejectWithValue('Unable to fetch user');
   }
+
   try {
+    // If there is a token, add it to the HTTP header and perform the request
     setAuthHeader(persistedToken);
-    const response = await axios.get('/api/auth/update');
-    return response.data;
+    const res = await axios.get('/users/current');
+    return res.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-export { register, logIn, logOut, refreshUser };
+export { register, logIn, logOut, refreshUser, updateUser };

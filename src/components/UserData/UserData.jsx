@@ -1,4 +1,5 @@
 // import { ToastContainer, toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
@@ -21,9 +22,8 @@ import {
   LogoutIcon,
   UserItemWrapper,
 } from './UserData.styled.jsx';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { logOut, refreshUser } from 'redux/auth/authOperations';
-// import { selectAccessToken } from 'redux/auth/authSelectors';
+import { useDispatch } from 'react-redux';
+import { logOut, updateUser } from '../../redux/auth/operations';
 
 const imageExtensions = [
   'png',
@@ -36,46 +36,26 @@ const imageExtensions = [
   'webp',
 ];
 
-export default function UserData() {
-  // export default function UserData({user}) {
-  // const dispatch = useDispatch();
+export default function UserData({ user }) {
+  const dispatch = useDispatch();
   const [isDisabledBtn, setIsDisabledBtn] = useState(false);
-  // const [avatarError, setAvatarError] = useState(null);
-  const user = {
-    email: 'mail.comm',
-    name: 'Artur',
-    birthDate: null,
-    phone: '099-99-999999',
-    location: 'Kharkov, Kharkovskaya',
-    avatar: null,
-  };
-  // const token = useSelector("selectAccessToken");
-
-  const {
-    email,
-    name,
-    birthDate: birthday,
-    phone,
-    location: city,
-    avatar,
-  } = user;
+  const { email, name, birthday, phone, city, avatarURL } = user;
 
   const handleFileChange = async e => {
     const fileExtension = e.target.value.split('.')[1];
     if (!imageExtensions.includes(fileExtension)) {
-      // setAvatarError('Avatar should be an image');
       toast.error(
         'Avatar should be an image: png, jpg, jpeg, gif, jfif, pjpeg, pjp, webp',
         { autoClose: 5000 }
       );
       return;
     }
-    // setAvatarError(null);
+
     const imgFile = e.target.files[0];
 
     if (imgFile) {
-      // const value = { avatar: imgFile };
-      // await dispatch(refreshUser({ value, token }));
+      const value = { avatarURL: imgFile };
+      await dispatch(updateUser({ value }));
     }
   };
 
@@ -88,7 +68,13 @@ export default function UserData() {
           <ImageWrapper>
             <StyledImage
               alt="user-photo"
-              src={avatar === null ? noAvatar : avatar}
+              src={
+                avatarURL === null ||
+                avatarURL === undefined ||
+                avatarURL === ''
+                  ? noAvatar
+                  : avatarURL
+              }
             />
           </ImageWrapper>
 
@@ -122,7 +108,7 @@ export default function UserData() {
               if (value.name === name) {
                 return;
               }
-              // await dispatch(refreshUser({ value, token }));
+              await dispatch(updateUser({ value }));
             }}
           ></UserDataItem>
           <UserDataItem
@@ -134,7 +120,7 @@ export default function UserData() {
               if (value.email === email) {
                 return;
               }
-              // await dispatch(refreshUser({ value, token }));
+              await dispatch(updateUser({ value }));
             }}
           ></UserDataItem>
           <UserDataItem
@@ -143,13 +129,15 @@ export default function UserData() {
             field="birthday"
             initValue={{
               birthday:
-                birthday === null ? '00.00.0000' : getBirthdayString(birthday),
+                birthday === null || birthday === '00.00.0000'
+                  ? '00.00.0000'
+                  : getBirthdayString(birthday),
             }}
             setUser={async value => {
-              if (value.birthDate === birthday) {
+              if (value.birthday === birthday) {
                 return;
               }
-              // await dispatch(refreshUser({ value, token }));
+              await dispatch(updateUser({ value }));
             }}
           ></UserDataItem>
           <UserDataItem
@@ -161,7 +149,7 @@ export default function UserData() {
               if (value.phone === phone) {
                 return;
               }
-              // await dispatch(refreshUser({ value, token }));
+              await dispatch(updateUser({ value }));
             }}
           ></UserDataItem>
           <UserDataItem
@@ -170,15 +158,13 @@ export default function UserData() {
             field="city"
             initValue={{ city }}
             setUser={async value => {
-              if (value.location === city) {
+              if (value.city === city) {
                 return;
               }
-              // await dispatch(refreshUser({ value, token }));
+              await dispatch(updateUser({ value }));
             }}
           ></UserDataItem>
-          <LogoutBtn
-          // onClick={async () => await dispatch(logOut())}
-          >
+          <LogoutBtn onClick={async () => await dispatch(logOut())}>
             <LogoutIcon alt="logout user" src={logoutIcon} /> Log Out
           </LogoutBtn>
         </UserItemWrapper>
@@ -196,3 +182,15 @@ function getBirthdayString(birthday) {
     month < 10 ? `0${month}` : month
   }.${date.getFullYear()}`;
 }
+
+UserData.propTypes = {
+  userData: PropTypes.arrayOf(
+    PropTypes.exact({
+      name: PropTypes.string.isRequired,
+      city: PropTypes.string,
+      birthday: PropTypes.string,
+      email: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
+    })
+  ),
+};

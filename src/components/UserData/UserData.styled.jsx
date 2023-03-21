@@ -4,7 +4,7 @@ import { theme } from 'theme';
 
 export const UserTitle = styled.h2`
   margin-bottom: 18px;
-  font-size: ${p => p.theme.fontSizes[3]}px;
+  font-size: ${p => p.theme.fontSizes[4]}px;
   font-family: ${p => p.theme.fonts.manrope};
   line-height: ${p => p.theme.lineHeights[2]};
   display: flex;
@@ -167,7 +167,7 @@ export const LogoutBtn = styled.button`
   border: none;
   margin-left: auto;
   font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes[1]}px;
+  font-size: ${p => p.theme.fontSizes[2]}px;
   line-height: ${p => p.theme.lineHeights[4]};
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.grey};

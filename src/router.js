@@ -1,5 +1,4 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
-import UserPage from 'components/UserPage';
 // import NoticesPage from 'pages/NoticesPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
@@ -19,6 +18,7 @@ const OurFriendsPage = lazy(() =>
 );
 const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
+const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
 
 export const ROUTES = {
   HOME: '/',
@@ -92,7 +92,9 @@ const routes = [
       },
       {
         path: ROUTES.USER,
-        element: <UserPage />,
+        element: (
+          <PrivateRoute redirectTo={ROUTES.LOGIN} component={UserPage} />
+        ),
       },
     ],
   },
