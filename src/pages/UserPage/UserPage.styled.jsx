@@ -1,6 +1,22 @@
 import styled from 'styled-components';
 import { theme } from 'theme';
 
+export const MainContainer = styled.div`
+  width: 320px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  ${theme.mq.tablet} {
+    width: 768px;
+    padding: 0 32px;
+  }
+
+  @${theme.mq.desktop} {
+    width: 1300px;
+    padding: 0 16px;
+  }
+`;
+
 export const UserContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,13 +46,14 @@ export const UserWrapper = styled.div`
 `;
 
 export const PetsWrapper = styled.div`
+  padding: 0 32px;
   position: relative;
   width: 100%;
   ${theme.mq.tablet} {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0;
+    padding: 0 32px;
   }
   ${theme.mq.desktop} {
     display: block;

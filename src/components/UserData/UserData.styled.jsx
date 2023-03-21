@@ -15,12 +15,14 @@ export const UserTitle = styled.h2`
 
   ${theme.mq.tablet} {
     margin-bottom: 40px;
+    margin-left: 32px;
     font-family: ${p => p.theme.fonts.manrope};
     line-height: ${p => p.theme.lineHeights[3]};
     color: ${p => p.theme.colors.black};
   }
   ${theme.mq.desktop} {
     margin-bottom: 24px;
+    margin-left: 17px;
   }
 `;
 

@@ -1,5 +1,4 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
-import UserPage from 'components/UserPage';
 import NoticesPage from 'pages/NoticesPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
@@ -8,13 +7,12 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 // import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
 // import RegisterPage from './pages/RegisterPage/RegisterPage';
 // import LoginPage from './pages/LoginPage/LoginPage';
+// import UserPage from './pages/UserPage/UserPage.jsx';
 import { lazy } from 'react';
-
-import UserData from 'components/UserData/UserData';
-// import PetsData from 'components/PetsData/PetsData.jsx';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
+const UserPage = lazy(() => import('./pages/UserPage/UserPage.jsx'));
 const OurFriendsPage = lazy(() =>
   import('./pages/OurFriendsPage/OurFriendsPage')
 );
@@ -77,16 +75,7 @@ const routes = [
       },
       {
         path: ROUTES.USER,
-<<<<<<< HEAD
-        element: <UserData />,
-=======
-<<<<<<< HEAD
-        // element: <UserData />,
->>>>>>> main
-        // element: <PetsData />,
-=======
-        element: <UserPage/>,
->>>>>>> 8ba8be1dbbc813b77d1a7b5c496a565503e5ee74
+        element: <UserPage />,
       },
     ],
   },

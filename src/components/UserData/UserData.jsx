@@ -41,14 +41,14 @@ export default function UserData() {
   // const dispatch = useDispatch();
   const [isDisabledBtn, setIsDisabledBtn] = useState(false);
   // const [avatarError, setAvatarError] = useState(null);
-  // const user = {
-  //   email: 'mail.comm',
-  //   name: 'Artur',
-  //   birthDate: null,
-  //   phone: '099-99-999999',
-  //   location: 'Kharkov, Kharkovskaya',
-  //   avatar: null,
-  // };
+  const user = {
+    email: 'mail.comm',
+    name: 'Artur',
+    birthDate: null,
+    phone: '099-99-999999',
+    location: 'Kharkov, Kharkovskaya',
+    avatar: null,
+  };
   // const token = useSelector("selectAccessToken");
 
   const {
