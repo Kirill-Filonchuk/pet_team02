@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const HeaderStyle = styled.header`
+  /* position: fixed; */
   display: flex;
   align-items: center;
   width: 100%;
@@ -96,6 +97,37 @@ export const ListMenu = styled.nav`
 `;
 
 export const Link = styled(NavLink)`
+  position: relative;
+  &::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: ${p => p.theme.colors.accent};
+    transform: scaleX(0);
+    transition: all 0.45s;
+  }
+  &:hover::after {
+    transform: scaleX(1);
+  }
+
+  &.active:first-child {
+    color: ${p => p.theme.colors.black};
+    text-decoration-line: none;
+  }
+  &.active {
+    font-weight: ${p => p.theme.fontWeights.bold};
+    color: ${p => p.theme.colors.accent};
+    /* text-decoration-line: underline; */
+  }
+  &:hover {
+    font-weight: ${p => p.theme.fontWeights.bold};
+    color: ${p => p.theme.colors.accent};
+    text-decoration-line: none;
+    transform: scale(1.3);
+  }
   ${p => p.theme.mq.mob} {
     display: flex;
     text-align: center;
@@ -111,23 +143,6 @@ export const Link = styled(NavLink)`
     transition-property: transform;
     transition-duration: 500ms;
   }
-
-  &.active:first-child {
-    color: ${p => p.theme.colors.black};
-    text-decoration-line: none;
-  }
-  &.active {
-    font-weight: ${p => p.theme.fontWeights.bold};
-    color: ${p => p.theme.colors.accent};
-    text-decoration-line: underline;
-  }
-  &:hover {
-    font-weight: ${p => p.theme.fontWeights.bold};
-    color: ${p => p.theme.colors.accent};
-    text-decoration-line: none;
-    transform: scale(1.3);
-  }
-
   ${p => p.theme.mq.desktop} {
     display: hidden;
   }

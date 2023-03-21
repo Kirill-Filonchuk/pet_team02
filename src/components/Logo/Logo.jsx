@@ -16,6 +16,7 @@ export const Logo = () => {
 };
 
 const LogoStyle = styled.p`
+  display: inline-block;
   font-family: ${p => p.theme.fonts.poppins};
   font-size: ${p => p.theme.fontSizes[6]}px;
   font-style: normal;
@@ -23,8 +24,12 @@ const LogoStyle = styled.p`
   line-height: 42px;
   letter-spacing: 0.07em;
 
-  /* transition-property: transform;
-  transition-duration: 500ms; */
+  transition-property: transform;
+  transition-duration: 500ms;
+  &:hover {
+    transform: scale(1.5);
+  }
+
   ${p => p.theme.mq.tablet} {
     font-size: ${p => p.theme.fontSizes[7]}px;
     line-height: 48px;
