@@ -20,7 +20,8 @@ const Notices = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const { isLoggedIn } = useAuth();
+  // const { isLoggedIn } = useAuth();
+  const isLoggedIn = !true;
 
   const noticesNavLinks = [
     { title: 'sell', to: ROUTES.NOTICES_SELL },
@@ -68,7 +69,12 @@ const Notices = () => {
 
           <NoticesToolBar>
             <NoticesCategoriesNav links={noticesNavLinks} />
-            <AddNoticeButton />
+            <AddNoticeButton
+              onClick={() => {
+                console.log('You can add new pet');
+              }}
+              isLoggedIn={isLoggedIn}
+            />
           </NoticesToolBar>
         </Container>
       </NoticeSection>

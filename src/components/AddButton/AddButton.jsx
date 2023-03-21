@@ -10,9 +10,18 @@ import {
   PlusIcon,
 } from './AddButton.styled';
 
-const AddButton = ({ label, onClick = null, hasMobileStyles = false }) => {
+const AddButton = ({
+  label,
+  onClick = null,
+  hasMobileStyles = false,
+  isLoggedIn,
+}) => {
   const [isNotifyOpen, setIsnotifyOpen] = useState();
   const { buttonRef, position } = useNotifyPosition();
+
+  const onClickHandler = () => {
+    isLoggedIn ? onClick() : setIsnotifyOpen(true);
+  };
 
   return (
     <>
@@ -21,9 +30,7 @@ const AddButton = ({ label, onClick = null, hasMobileStyles = false }) => {
         type="button"
         className="addButtonWrapper"
         hasMobileStyles={hasMobileStyles}
-        onClick={() => {
-          setIsnotifyOpen(true);
-        }}
+        onClick={onClickHandler}
       >
         <IconWrapper
           onClick={onClick}
