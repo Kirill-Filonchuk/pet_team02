@@ -9,9 +9,9 @@ import {
 } from 'components/FormValidation';
 import { MultiStepForm, FormStep } from './MultiForm';
 import { BiShow, BiHide } from 'react-icons/bi';
+import Container from 'components/Container';
 
 import {
-  Wrapper,
   Title,
   Label,
   Input,
@@ -61,7 +61,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <Wrapper>
+    <Container>
       <Title>Registration</Title>
       <MultiStepForm initialValues={initialValues} onSubmit={handleSubmit}>
         <FormStep
@@ -140,7 +140,7 @@ const RegisterForm = () => {
           </Label>
         </FormStep>
       </MultiStepForm>
-    </Wrapper>
+    </Container>
   );
 };
 

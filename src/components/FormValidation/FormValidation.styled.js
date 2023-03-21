@@ -6,7 +6,7 @@ const Error = styled.div`
   width: 100%;
   text-align: center;
   left: 50%;
-  top: 45px;
+  top: 46px;
   transform: translateX(-50%);
   font-size: 10px;
   color: red;

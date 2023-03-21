@@ -19,16 +19,12 @@ const Title = styled.h2`
   }
 `;
 const Wrapper = styled.div`
-  padding: 0 20px;
   ${theme.mq.tablet} {
     padding: 60px 80px;
     margin: 150px 80px 0 80px;
     border-radius: ${theme.radii.normal};
     background-color: ${theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  }
-  ${theme.mq.desktop} {
-    margin: 140px 330px 0 330px;
   }
 `;
 
@@ -56,9 +52,18 @@ const Input = styled(Field)`
   font-weight: ${theme.fontWeights.normal};
   color: ${theme.colors.grey};
   border-radius: ${theme.radii.normal};
+  outline: none;
+  &:invalid {
+    box-shadow: 0 0 4px red;
+  }
+  &:focus,
+  &:active {
+    border: ${theme.borders.medium} ${theme.colors.borderActive}
+  }
   ${theme.mq.tablet}{
     height: 52px;
     font-size: ${theme.fontSizes[2]+'px'};
+    font-size: ${theme.fontSizes[1]+'px'};
     line-height: ${theme.lineHeights[4]};
     padding: 0 22px;
   }
@@ -89,7 +94,6 @@ const IconShow = styled.span`
     height: 35px;
   }
   }
-  
 `;
 
 const BtnFormSubmit = styled.button`

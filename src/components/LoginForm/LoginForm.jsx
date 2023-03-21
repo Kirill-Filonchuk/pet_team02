@@ -5,7 +5,7 @@ import { logIn } from 'redux/auth/operations';
 import { Formik } from 'formik';
 import { validationLogin, InputError } from 'components/FormValidation';
 
-import Container from '../ContainerForm';
+import Container from '../Container';
 import { BiShow, BiHide } from 'react-icons/bi';
 
 import {
@@ -63,6 +63,7 @@ const LoginForm = () => {
                   type="text"
                   placeholder="Email"
                   autoComplete="off"
+                  pattern='^[^-._]{1}[A-Za-z0-9._-]{1,}@[^-._]{1}[A-Za-z0-9.-]{0,}\.[A-Za-z]{2,4}$'
                 />
                 <InputError name="email" />
               </Label>
@@ -74,7 +75,7 @@ const LoginForm = () => {
                   autoComplete="off"
                 />
                 <IconShow onClick={togglePassword}>
-                  {showPassword ? <BiHide size={24} /> : <BiShow size={24} />}
+                  {showPassword ? <BiHide /> : <BiShow />}
                 </IconShow>
                 <InputError name="password" />
               </Label>

@@ -18,6 +18,7 @@ export const theme = {
     text: '#000000',
     textNews: '#111321',
     white: '#FFFFFF',
+    invalidRed: '#CC5533'
   },
 
   fonts: {
