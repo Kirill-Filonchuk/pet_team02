@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { register } from 'redux/auth/operations';
 import {
   validationRegisterStepOne,
@@ -29,21 +30,25 @@ const RegisterForm = () => {
     phone: '',
   };
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (values, actions) => {
-    const {email, password, confirmPassword, name, city, phone} = values;
-    if(password===confirmPassword) {
+    const { email, password, confirmPassword, name, city, phone } = values;
+    if (password === confirmPassword) {
       dispatch(
         register({
           email: email,
           password: password,
           name: name,
           city: city,
-          phone: phone
+          phone: phone,
         })
-      )
+      ).then(res => {
+        if (res.payload.status === 'success') {
+          navigate('/user', { replace: true });
+        }
+      });
     }
-    console.log(values);
     actions.resetForm();
   };
 
