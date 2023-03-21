@@ -1,20 +1,20 @@
+import PropTypes from 'prop-types';
 import HeartIcon from './HeartIcon';
 import { HiTrash } from 'react-icons/hi';
 import {
   Article,
   BtnWrapper,
-  Button,
   Favorite,
   Image,
   ImageWrapper,
   Label,
   Meta,
-  Table,
-  Td,
+  NoticeCardButton,
   Title,
-  Tr,
 } from './NoticesCard.styled';
 import { useState } from 'react';
+import OptionsTable from './OptionsTable';
+import { trimText } from 'utils/trimText';
 
 const NoticesCard = ({
   id,
@@ -25,8 +25,8 @@ const NoticesCard = ({
   place,
   age,
   price,
-  isMine,
-  isFavorite,
+  isMine = false,
+  isFavorite = false,
 }) => {
   const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
 
@@ -37,35 +37,22 @@ const NoticesCard = ({
       </ImageWrapper>
 
       <Meta>
-        <Title>{title}</Title>
-        <Table>
-          <tbody>
-            <Tr>
-              <Td>Breed:</Td>
-              <Td>{breed}</Td>
-            </Tr>
-            <Tr>
-              <Td>Place:</Td>
-              <Td>{place}</Td>
-            </Tr>
-            <Tr>
-              <Td>Age:</Td>
-              <Td>{age}</Td>
-            </Tr>
-
-            <Tr hasPrice={price} isPrice>
-              <Td>Price:</Td>
-              <Td>${price}</Td>
-            </Tr>
-          </tbody>
-        </Table>
+        <Title>{trimText(title, 13)}</Title>
+        <OptionsTable
+          options={[
+            { key: 'Breed', value: trimText(breed, 13) },
+            { key: 'Place', value: trimText(place, 13) },
+            { key: 'Age', value: age },
+            { key: 'Price', value: price, isPrice: true },
+          ]}
+        />
 
         <BtnWrapper>
-          <Button type="button">Learn more</Button>
+          <NoticeCardButton type="button">Learn more</NoticeCardButton>
           {isMine && (
-            <Button type="button" isDelete>
+            <NoticeCardButton type="button" isDelete>
               Delete <HiTrash size={18} />
-            </Button>
+            </NoticeCardButton>
           )}
         </BtnWrapper>
       </Meta>
@@ -84,3 +71,16 @@ const NoticesCard = ({
 };
 
 export default NoticesCard;
+
+NoticesCard.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  img: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  place: PropTypes.string.isRequired,
+  age: PropTypes.string.isRequired,
+  price: PropTypes.string,
+  isMine: PropTypes.bool,
+  isFavorite: PropTypes.bool,
+};

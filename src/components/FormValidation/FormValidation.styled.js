@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from '../../theme';
 
 const Error = styled.div`
   position: absolute;
@@ -9,6 +10,14 @@ const Error = styled.div`
   transform: translateX(-50%);
   font-size: 10px;
   color: red;
+  ${theme.mq.tablet} {
+    font-size: ${theme.fontSizes[1]+"px"};
+    top: 62px;
+  }
+  ${theme.mq.desktop} {
+    top: 60px;
+    font-size: ${theme.fontSizes[2]+"px"};
+  }
 `;
 
 export { Error };

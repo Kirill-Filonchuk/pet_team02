@@ -1,16 +1,15 @@
 import styled, { css } from 'styled-components';
+import { Button } from 'components/UIKit/Button/Button.styled';
 
 export const Article = styled('article')`
   position: relative;
-  background-color: #ffffff;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  background-color: ${p => p.theme.colors.white};
+  border-bottom-left-radius: ${p => p.theme.radii.small};
+  border-bottom-right-radius: ${p => p.theme.radii.small};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 `;
 
-export const ImageWrapper = styled('div')`
-  /* width: 100%; */
-`;
+export const ImageWrapper = styled('div')``;
 
 export const Image = styled('img')`
   display: block;
@@ -23,27 +22,26 @@ export const Meta = styled('div')`
   padding: 20px 20px 12px;
 `;
 
-export const Title = styled('h1')`
+export const Title = styled('h2')`
   margin: 0;
   margin-bottom: 20px;
 
-  font-family: 'Manrope';
-  font-weight: 700;
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.bold};
   font-size: 28px;
   line-height: 1.357;
   letter-spacing: -0.01em;
-  color: #111111;
+  color: ${p => p.theme.colors.black};
 `;
 
 export const Table = styled('table')`
   margin-bottom: 20px;
 
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.medium};
   font-size: 16px;
   line-height: 1.375;
-  color: #111111;
+  color: ${p => p.theme.colors.black};
 `;
 
 export const Tr = styled('tr')`
@@ -79,41 +77,14 @@ export const BtnWrapper = styled('div')`
   row-gap: 12px;
 `;
 
-export const Button = styled('button')`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  column-gap: 12px;
-  margin: 0;
-  padding: 0;
-  background-color: transparent;
-
-  padding: 6px 0;
-  width: 100%;
-
-  font-family: 'Manrope';
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.375;
-
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.04em;
-
-  color: #f59256;
-
-  background: #ffffff;
-  border: 2px solid ${({ isDelete }) => (isDelete ? '#FF6101' : '#f59256')};
-  border-radius: 40px;
-
-  transition-property: color, background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+export const NoticeCardButton = styled(Button)`
+  border: 2px solid
+    ${p => (p.isDelete ? p.theme.colors.accentActive : p.theme.colors.accent)};
 
   &:hover {
-    background-color: ${({ isDelete }) => (isDelete ? '#FF6101' : '#f59256')};
-    color: #ffffff;
+    background-color: ${p =>
+      p.isDelete ? p.theme.colors.accentActive : p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
   }
 `;
 

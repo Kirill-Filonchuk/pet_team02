@@ -9,16 +9,14 @@ import {
   ListMenu,
   HeaderContainer,
   AuthNavigate,
+  LogoStyle,
+  LinkAuth,
+  AuthNavigateTablet,
+  LinkAuthTablet,
 } from './Header.style';
-// import TempContainer from '../TempContainer/TempContainer';
-
 import { HiMenu } from 'react-icons/hi';
 import { GrClose } from 'react-icons/gr';
-// import styled from 'styled-components';
-// import { NavLink } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
-import { AuthNav } from '../Navigation/AuthNav';
-// import { useState } from 'react';
 
 export const Header = () => {
   //   const [nav, setNav] = useState(false);
@@ -34,6 +32,10 @@ export const Header = () => {
         <MenuDesctop>
           <Logo />
           <Nav />
+          <AuthNavigateTablet style={{ marginBottom: 20 }}>
+            <LinkAuthTablet to="/login">Login</LinkAuthTablet>
+            <LinkAuth to="/register">Registation</LinkAuth>
+          </AuthNavigateTablet>
         </MenuDesctop>
         <MenuBtn onClick={toggle}>
           {isOpen ? <GrClose size={30} /> : <HiMenu size={30} />}
@@ -41,13 +43,26 @@ export const Header = () => {
         {isOpen && (
           <Burger>
             <ListMenu>
-              <Logo />
-              <Link to="/news">News</Link>
-              <Link to="/friends">Friends</Link>
-              <Link to="/notices">Find pet</Link>
-              <AuthNavigate>
-                <AuthNav />
+              <AuthNavigate style={{ marginBottom: 20 }}>
+                <LinkAuth to="/login" onClick={toggle}>
+                  Login
+                </LinkAuth>
+                <LinkAuth to="/register" onClick={toggle}>
+                  Registation
+                </LinkAuth>
               </AuthNavigate>
+              <LogoStyle onClick={toggle}>
+                <Logo />
+              </LogoStyle>
+              <Link to="/news" onClick={toggle}>
+                News
+              </Link>
+              <Link to="/friends" onClick={toggle}>
+                Friends
+              </Link>
+              <Link to="/notices" onClick={toggle}>
+                Find pet
+              </Link>
             </ListMenu>
           </Burger>
         )}

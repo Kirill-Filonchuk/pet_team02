@@ -1,7 +1,7 @@
 import { useState } from 'react';
-// import { useDispatch } from "react-redux";
-// import { useNavigate } from 'react-router-dom';
-// import { logIn } from "redux/auth/operations";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logIn } from 'redux/auth/operations';
 import { Formik } from 'formik';
 import { validationLogin, InputError } from 'components/FormValidation';
 
@@ -17,11 +17,12 @@ import {
   IconShow,
   BtnFormSubmit,
   TextLink,
+  LinkToRegister,
 } from './LoginForm.styled';
 
 const LoginForm = () => {
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const initialValues = {
@@ -32,7 +33,17 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    const { email, password } = values;
+    dispatch(
+      logIn({
+        email: email,
+        password: password,
+      })
+    ).then(res => {
+      if (res.payload.status === 'success') {
+        navigate('/user', { replace: true });
+      }
+    });
     actions.resetForm();
   };
   return (
@@ -72,9 +83,8 @@ const LoginForm = () => {
           )}
         </Formik>
         <TextLink>
-          <span>Don't have an account?</span>
-          {/* <LinkToRegister to="/register">Register</LinkToRegister> */}
-          <span> Register</span>
+          <span>Don't have an account? </span>
+          <LinkToRegister to="/register">Register</LinkToRegister>
         </TextLink>
       </Wrapper>
     </Container>

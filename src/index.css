@@ -4,9 +4,11 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    'Manrope', 'Inter', 'Poppins', 'Montserrat', sans-serif;
+    'Manrope', 'Inter', 'Poppins', 'Montserrat', sans-serif; */
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #111111;
@@ -43,6 +45,4 @@ img {
   height: auto;
 }
 
-* {
-  box-sizing: border-box;
-}
+    

@@ -1,19 +1,17 @@
-import {
-  AddButton,
-  AddButtonText,
-  IconWrapper,
-  PlusIcon,
-} from './AddNoticeButton.styled';
+import PropTypes from 'prop-types';
+import AddButton from 'components/AddButton';
+import { Wrapper } from './AddNoticeButton.styled';
 
-const AddNoticeButton = () => {
+const AddNoticeButton = ({ onClick }) => {
   return (
-    <AddButton>
-      <IconWrapper>
-        <PlusIcon />
-      </IconWrapper>
-      <AddButtonText>Add pet</AddButtonText>
-    </AddButton>
+    <Wrapper>
+      <AddButton label="Add pet" hasMobileStyles onClick={onClick} />
+    </Wrapper>
   );
 };
 
 export default AddNoticeButton;
+
+AddNoticeButton.propTypes = {
+  onClick: PropTypes.func,
+};

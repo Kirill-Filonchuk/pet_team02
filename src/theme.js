@@ -27,7 +27,7 @@ export const theme = {
     montserrat: "'Montserrat', sans-serif",
   },
 
-  fontSizes: [12, 16, 18, 20, 24, 28, 32, 36, 48],
+  fontSizes: [12, 14, 16, 18, 20, 24, 28, 32, 36, 48],
 
   fontWeights: {
     normal: 400,
@@ -63,5 +63,14 @@ export const theme = {
     tablet: `@media screen and (min-width: ${breakpoints.tab}px)`,
     notDesktop: `@media screen and (max-width: ${breakpoints.desk - 0.02}px)`,
     desktop: `@media screen and (min-width: ${breakpoints.desk}px)`,
+  },
+
+  transitions: {
+    durations: {
+      default: '250ms',
+    },
+    functions: {
+      default: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    },
   },
 };

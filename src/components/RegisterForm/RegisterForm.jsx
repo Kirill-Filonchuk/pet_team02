@@ -1,6 +1,7 @@
 import { useState } from 'react';
-//import { useDispatch } from 'react-redux';
-// import { register } from 'redux/auth/operations';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { register } from 'redux/auth/operations';
 import {
   validationRegisterStepOne,
   validationRegisterStepTwo,
@@ -23,15 +24,31 @@ const RegisterForm = () => {
   const initialValues = {
     email: '',
     password: '',
-    confirm_password: '',
+    confirmPassword: '',
     name: '',
-    location: '',
+    city: '',
     phone: '',
   };
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    const { email, password, confirmPassword, name, city, phone } = values;
+    if (password === confirmPassword) {
+      dispatch(
+        register({
+          email: email,
+          password: password,
+          name: name,
+          city: city,
+          phone: phone,
+        })
+      ).then(res => {
+        if (res.payload.status === 'success') {
+          navigate('/user', { replace: true });
+        }
+      });
+    }
     actions.resetForm();
   };
 
@@ -75,7 +92,7 @@ const RegisterForm = () => {
           <Label>
             <Input
               type={showConfirmPassword ? 'text' : 'password'}
-              name="confirm_password"
+              name="confirmPassword"
               placeholder="Confirm Password"
               autoComplete="off"
             />
@@ -86,7 +103,7 @@ const RegisterForm = () => {
                 <BiShow size={24} />
               )}
             </IconShow>
-            <InputError name="confirm_password" />
+            <InputError name="confirmPassword" />
           </Label>
         </FormStep>
 
@@ -106,11 +123,11 @@ const RegisterForm = () => {
           <Label>
             <Input
               type="text"
-              name="location"
+              name="city"
               placeholder="City, region"
               autoComplete="off"
             />
-            <InputError name="location" />
+            <InputError name="city" />
           </Label>
           <Label>
             <Input
