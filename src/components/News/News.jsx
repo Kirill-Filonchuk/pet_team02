@@ -1,17 +1,17 @@
 import NewsList from '../NewsList';
 import { useState } from 'react';
-import { Title } from './News.styled';
-import TempContainer from 'components/TempContainer';
+import Container from 'components/Container';
 import InputNewsFindPet from '../NewsSearch';
+import PageTitle from 'components/UIKit/PageTitle';
 const News = () => {
   const [searchWord, setSearchWord] = useState('');
 
   return (
-    <TempContainer>
-      <Title>News</Title>
+    <Container>
+      <PageTitle>News</PageTitle>
       <InputNewsFindPet setSearchWord={setSearchWord} />
       <NewsList searchWord={searchWord} />
-    </TempContainer>
+    </Container>
   );
 };
 
