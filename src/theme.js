@@ -27,7 +27,7 @@ export const theme = {
     montserrat: "'Montserrat', sans-serif",
   },
 
-  fontSizes: [12, 16, 18, 20, 24, 28, 32, 36, 48],
+  fontSizes: [12, 14, 16, 18, 20, 24, 28, 32, 36, 48],
 
   fontWeights: {
     normal: 400,
