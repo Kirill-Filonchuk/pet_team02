@@ -10,6 +10,7 @@ import {
 const AddButton = ({ label, onClick = null, hasMobileStyles = false }) => {
   return (
     <AddButtonStyled
+      type="button"
       className="addButtonWrapper"
       hasMobileStyles={hasMobileStyles}
     >

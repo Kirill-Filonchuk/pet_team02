@@ -22,7 +22,7 @@ export const Meta = styled('div')`
   padding: 20px 20px 12px;
 `;
 
-export const Title = styled('h1')`
+export const Title = styled('h2')`
   margin: 0;
   margin-bottom: 20px;
 
