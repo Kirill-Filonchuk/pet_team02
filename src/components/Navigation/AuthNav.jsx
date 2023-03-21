@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const AuthNav = () => {
   return (
     <nav style={{ display: 'flex' }}>
-      <Link to="/login" style={{ marginRight: 20, textDecoration: 'none' }}>
+      <Link to="/login" style={{ textDecoration: 'none' }}>
         Login
       </Link>
       <Link to="/register" style={{ textDecoration: 'none' }}>
@@ -29,6 +29,7 @@ const Link = styled(NavLink)`
     color: #f59256;
     border-radius: 4px;
   }
+
   @media screen and (min-width: 1280px) {
     &&:nth-last-child(2) {
       margin-left: 274px;
