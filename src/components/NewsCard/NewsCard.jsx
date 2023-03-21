@@ -26,7 +26,7 @@ const NewsCard = ({ title, url, description, date }) => {
   };
   const formatDate = dateStr => {
     if (!dateStr) {
-      return '--/--/----';
+      return '----/----/--------';
     }
     const date = new Date(dateStr);
     const day = date.getDate().toString().padStart(2, '0');
