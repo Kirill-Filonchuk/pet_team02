@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import HeartIcon from './HeartIcon';
-import { HiTrash } from 'react-icons/hi';
 import {
   Article,
   BtnWrapper,
@@ -15,8 +14,6 @@ import {
 import { useState } from 'react';
 import OptionsTable from './OptionsTable';
 import { trimText } from 'utils/trimText';
-import { useNotifyPosition } from 'hooks/useNotifyPosition';
-import Notify from 'components/Notify';
 import NoticeDeleteButton from './NoticeDeleteButton';
 
 const NoticesCard = ({
@@ -54,7 +51,7 @@ const NoticesCard = ({
           <BtnWrapper>
             <NoticeCardButton type="button">Learn more</NoticeCardButton>
 
-            {isMine && <NoticeDeleteButton />}
+            {isMine && <NoticeDeleteButton id={id} />}
           </BtnWrapper>
         </Meta>
 

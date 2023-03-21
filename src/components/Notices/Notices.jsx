@@ -4,7 +4,7 @@ import NoticesSearch from '../NoticesSearch';
 import Container from '../Container';
 import PageTitle from 'components/UIKit/PageTitle';
 import useAuth from 'hooks/useAuth/useAuth';
-import Notify from 'components/Notify';
+// import Notify from 'components/Notify';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {
   NoticeSection,
@@ -12,10 +12,9 @@ import {
   NoticesWrapper,
 } from './Notices.styled';
 import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ROUTES } from 'router';
-
-import { useNotifyPosition } from 'hooks/useNotifyPosition';
+// import { useNotifyPosition } from 'hooks/useNotifyPosition';
 
 const Notices = () => {
   const { pathname } = useLocation();
@@ -43,8 +42,8 @@ const Notices = () => {
   }, [pathname, navigate]);
 
   //TEST FOR NOTIFICATIONS
-  const [isNotifyOpen, setIsNotifyOpen] = useState(false);
-  const { buttonRef, position } = useNotifyPosition();
+  // const [isNotifyOpen, setIsNotifyOpen] = useState(false);
+  // const { buttonRef, position } = useNotifyPosition();
 
   //TEST FOR NOTIFICATIONS
 
@@ -52,7 +51,7 @@ const Notices = () => {
     <NoticesWrapper>
       <NoticeSection>
         <Container>
-          <button
+          {/* <button
             ref={buttonRef}
             type="button"
             style={{ fontSize: '40px', cursor: 'pointer' }}
@@ -61,21 +60,7 @@ const Notices = () => {
             }}
           >
             BTN
-          </button>
-          {isNotifyOpen && (
-            <Notify
-              position={position}
-              onClose={() => {
-                setIsNotifyOpen(false);
-              }}
-            >
-              {/* <p>{JSON.stringify(position)}</p> */}
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
-                exercitationem cupiditate eos reprehenderit pariatur consequatur
-              </p>
-            </Notify>
-          )}
+          </button> */}
 
           <PageTitle>Find your favorite pet</PageTitle>
 

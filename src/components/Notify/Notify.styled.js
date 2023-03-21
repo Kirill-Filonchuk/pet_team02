@@ -1,48 +1,6 @@
 import styled from 'styled-components';
 import { theme } from 'theme';
 
-// export const Card = styled('div')`
-//   padding: 40px 20px 20px 20px;
-
-//   position: absolute;
-
-//   left: ${p => p.loc.x}px;
-//   top: ${p => p.loc.y}px;
-//   transform: translate(
-//     ${p => (p.loc.hor === 'right' ? '-100%' : 0)},
-//     ${p => (p.loc.ver === 'bottom' ? '-100%' : 0)}
-//   );
-
-//   background-color: ${p => p.theme.colors.white};
-//   border: 2px solid ${p => p.theme.colors.accent};
-//   /* border-radius: ${p => p.theme.radii.small}; */
-//   border-top-left-radius: ${({ loc }) =>
-//     loc.hor === 'left' && loc.ver === 'top' ? 0 : '20px'};
-
-//   border-top-right-radius: ${({ loc }) =>
-//     loc.hor === 'right' && loc.ver === 'top' ? 0 : '20px'};
-
-//   border-bottom-left-radius: ${({ loc }) =>
-//     loc.hor === 'left' && loc.ver === 'bottom' ? 0 : '20px'};
-
-//   border-bottom-right-radius: ${({ loc }) =>
-//     loc.hor === 'right' && loc.ver === 'bottom' ? 0 : '20px'};
-
-//   min-height: 150px;
-//   min-width: 200px;
-//   max-width: 450px;
-
-//   ${theme.mq.mobileOnly} {
-//     padding: 40px 16px 16px 20px;
-//     width: 280px;
-
-//     top: 0;
-//     left: 50%;
-//     transform: translate(-50%, 0);
-//     border-radius: ${p => p.theme.radii.small};
-//   }
-// `;
-
 export const Card = styled('div').attrs(
   p =>
     p.freqProps && {
@@ -58,27 +16,8 @@ export const Card = styled('div').attrs(
 
   position: absolute;
 
-  /* left: ${p => p.loc.x}px;
-  top: ${p => p.loc.y}px;
-  transform: translate(
-    ${p => (p.loc.hor === 'right' ? '-100%' : 0)},
-    ${p => (p.loc.ver === 'bottom' ? '-100%' : 0)}
-  ); */
-
   background-color: ${p => p.theme.colors.white};
   border: 2px solid ${p => p.theme.colors.accent};
-
-  /* border-top-left-radius: ${({ loc }) =>
-    loc.hor === 'left' && loc.ver === 'top' ? 0 : '20px'};
-
-  border-top-right-radius: ${({ loc }) =>
-    loc.hor === 'right' && loc.ver === 'top' ? 0 : '20px'};
-
-  border-bottom-left-radius: ${({ loc }) =>
-    loc.hor === 'left' && loc.ver === 'bottom' ? 0 : '20px'};
-
-  border-bottom-right-radius: ${({ loc }) =>
-    loc.hor === 'right' && loc.ver === 'bottom' ? 0 : '20px'}; */
 
   min-height: 150px;
   min-width: 200px;
@@ -88,9 +27,9 @@ export const Card = styled('div').attrs(
     padding: 40px 16px 16px 20px;
     width: 280px;
 
-    top: 0;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -30%);
     border-radius: ${p => p.theme.radii.small};
   }
 `;
