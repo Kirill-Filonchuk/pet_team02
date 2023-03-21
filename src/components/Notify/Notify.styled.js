@@ -43,14 +43,17 @@ import { theme } from 'theme';
 //   }
 // `;
 
-export const Card = styled('div').attrs(p => ({
-  style: {
-    left: p.freqProps.left,
-    top: p.freqProps.top,
-    transform: `translate(${p.freqProps.transformX}, ${p.freqProps.transformY})`,
-    borderRadius: `${p.freqProps.borderTL} ${p.freqProps.borderTR} ${p.freqProps.borderBR} ${p.freqProps.borderBL}`,
-  },
-}))`
+export const Card = styled('div').attrs(
+  p =>
+    p.freqProps && {
+      style: {
+        left: p.freqProps.left,
+        top: p.freqProps.top,
+        transform: `translate(${p.freqProps.transformX}, ${p.freqProps.transformY})`,
+        borderRadius: `${p.freqProps.borderTL} ${p.freqProps.borderTR} ${p.freqProps.borderBR} ${p.freqProps.borderBL}`,
+      },
+    }
+)`
   padding: 40px 20px 20px 20px;
 
   position: absolute;

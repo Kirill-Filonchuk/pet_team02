@@ -1,6 +1,7 @@
 import Backdrop from 'components/UIKit/Backdrop';
 import { useModal } from 'hooks/useModal';
 import { useViewportResize } from 'hooks/useViewportResize';
+import { useWindowSize } from 'hooks/useWindowSize';
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { createPortal } from 'react-dom';
@@ -10,6 +11,8 @@ import { Card, Wrapper } from './Notify.styled';
 const modalRoot = document.querySelector('#modal-root');
 
 const Notify = ({ onClose, position: parentPosition, children }) => {
+  const { isMobile } = useWindowSize();
+
   // Close Modal hook
   const { onBackdropClick } = useModal(onClose);
 
@@ -69,7 +72,7 @@ const Notify = ({ onClose, position: parentPosition, children }) => {
     }`,
   };
 
-  console.log(frequentStyles);
+  // console.log(frequentStyles);
   //PARENT POSITION
 
   // console.log(cardPosition);
@@ -77,7 +80,11 @@ const Notify = ({ onClose, position: parentPosition, children }) => {
   return createPortal(
     <Backdrop onClick={onBackdropClick}>
       {/* <ArrowIcon /> */}
-      <Card ref={cardRef} freqProps={frequentStyles} loc={parentLocation}>
+      <Card
+        ref={cardRef}
+        freqProps={!isMobile && frequentStyles}
+        loc={parentLocation}
+      >
         <Wrapper>{children}</Wrapper>
       </Card>
     </Backdrop>,
