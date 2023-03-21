@@ -15,6 +15,9 @@ import {
 import { useState } from 'react';
 import OptionsTable from './OptionsTable';
 import { trimText } from 'utils/trimText';
+import { useNotifyPosition } from 'hooks/useNotifyPosition';
+import Notify from 'components/Notify';
+import NoticeDeleteButton from './NoticeDeleteButton';
 
 const NoticesCard = ({
   id,
@@ -31,42 +34,41 @@ const NoticesCard = ({
   const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
 
   return (
-    <Article>
-      <ImageWrapper>
-        <Image src={img} alt="title" />
-      </ImageWrapper>
+    <>
+      <Article>
+        <ImageWrapper>
+          <Image src={img} alt="title" />
+        </ImageWrapper>
 
-      <Meta>
-        <Title>{trimText(title, 13)}</Title>
-        <OptionsTable
-          options={[
-            { key: 'Breed', value: trimText(breed, 13) },
-            { key: 'Place', value: trimText(place, 13) },
-            { key: 'Age', value: age },
-            { key: 'Price', value: price, isPrice: true },
-          ]}
-        />
+        <Meta>
+          <Title>{trimText(title, 13)}</Title>
+          <OptionsTable
+            options={[
+              { key: 'Breed', value: trimText(breed, 13) },
+              { key: 'Place', value: trimText(place, 13) },
+              { key: 'Age', value: age },
+              { key: 'Price', value: price, isPrice: true },
+            ]}
+          />
 
-        <BtnWrapper>
-          <NoticeCardButton type="button">Learn more</NoticeCardButton>
-          {isMine && (
-            <NoticeCardButton type="button" isDelete>
-              Delete <HiTrash size={18} />
-            </NoticeCardButton>
-          )}
-        </BtnWrapper>
-      </Meta>
+          <BtnWrapper>
+            <NoticeCardButton type="button">Learn more</NoticeCardButton>
 
-      <Label>{label}</Label>
+            {isMine && <NoticeDeleteButton />}
+          </BtnWrapper>
+        </Meta>
 
-      <Favorite
-        onClick={() => {
-          setIsFavoriteCard(!isFavoriteCard);
-        }}
-      >
-        <HeartIcon isFavorite={isFavoriteCard} />
-      </Favorite>
-    </Article>
+        <Label>{label}</Label>
+
+        <Favorite
+          onClick={() => {
+            setIsFavoriteCard(!isFavoriteCard);
+          }}
+        >
+          <HeartIcon isFavorite={isFavoriteCard} />
+        </Favorite>
+      </Article>
+    </>
   );
 };
 

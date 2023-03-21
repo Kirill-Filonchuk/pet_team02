@@ -44,6 +44,32 @@ const Notify = ({ onClose, position: parentPosition, children }) => {
     ver: parentCenter.y <= window.innerHeight / 2 ? 'top' : 'bottom',
   };
 
+  const frequentStyles = {
+    left: `${parentLocation.x}px`,
+    top: `${parentLocation.y}px`,
+    transformX: `${parentLocation.hor === 'right' ? '-100%' : 0}`,
+    transformY: `${parentLocation.ver === 'bottom' ? '-100%' : 0}`,
+    borderTL: `${
+      parentLocation.ver === 'top' && parentLocation.hor === 'left' ? 0 : '20px'
+    }`,
+    borderTR: `${
+      parentLocation.ver === 'top' && parentLocation.hor === 'right'
+        ? 0
+        : '20px'
+    }`,
+    borderBR: `${
+      parentLocation.ver === 'bottom' && parentLocation.hor === 'right'
+        ? 0
+        : '20px'
+    }`,
+    borderBL: `${
+      parentLocation.ver === 'bottom' && parentLocation.hor === 'left'
+        ? 0
+        : '20px'
+    }`,
+  };
+
+  console.log(frequentStyles);
   //PARENT POSITION
 
   // console.log(cardPosition);
@@ -51,7 +77,7 @@ const Notify = ({ onClose, position: parentPosition, children }) => {
   return createPortal(
     <Backdrop onClick={onBackdropClick}>
       {/* <ArrowIcon /> */}
-      <Card ref={cardRef} loc={parentLocation}>
+      <Card ref={cardRef} freqProps={frequentStyles} loc={parentLocation}>
         <Wrapper>{children}</Wrapper>
       </Card>
     </Backdrop>,

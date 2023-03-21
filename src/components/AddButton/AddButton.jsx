@@ -1,5 +1,7 @@
+import Notify from 'components/Notify';
+import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import PropTypes from 'prop-types';
-import { forwardRef } from 'react';
+import { useState } from 'react';
 import {
   AddButtonStyled,
   AddButtonText,
@@ -8,37 +10,54 @@ import {
   PlusIcon,
 } from './AddButton.styled';
 
-const AddButton = forwardRef((props, ref) => {
-  const { label, onClick = null, hasMobileStyles = false } = props;
+const AddButton = ({ label, onClick = null, hasMobileStyles = false }) => {
+  const [isNotifyOpen, setIsnotifyOpen] = useState();
+  const { buttonRef, position } = useNotifyPosition();
 
   return (
-    <AddButtonStyled
-      ref={ref}
-      type="button"
-      className="addButtonWrapper"
-      hasMobileStyles={hasMobileStyles}
-    >
-      <IconWrapper
-        onClick={onClick}
-        className="addButtonIconWrapper"
+    <>
+      <AddButtonStyled
+        ref={buttonRef}
+        type="button"
+        className="addButtonWrapper"
         hasMobileStyles={hasMobileStyles}
+        onClick={() => {
+          setIsnotifyOpen(true);
+        }}
       >
-        <IconContainer
-          className="addButtonIconContainer"
+        <IconWrapper
+          onClick={onClick}
+          className="addButtonIconWrapper"
           hasMobileStyles={hasMobileStyles}
         >
-          <PlusIcon />
-        </IconContainer>
-      </IconWrapper>
-      <AddButtonText
-        className="addButtonText"
-        hasMobileStyles={hasMobileStyles}
-      >
-        {label}
-      </AddButtonText>
-    </AddButtonStyled>
+          <IconContainer
+            className="addButtonIconContainer"
+            hasMobileStyles={hasMobileStyles}
+          >
+            <PlusIcon />
+          </IconContainer>
+        </IconWrapper>
+        <AddButtonText
+          className="addButtonText"
+          hasMobileStyles={hasMobileStyles}
+        >
+          {label}
+        </AddButtonText>
+      </AddButtonStyled>
+
+      {isNotifyOpen && (
+        <Notify
+          position={position}
+          onClose={() => {
+            setIsnotifyOpen(false);
+          }}
+        >
+          <p>Please login </p>
+        </Notify>
+      )}
+    </>
   );
-});
+};
 
 export default AddButton;
 

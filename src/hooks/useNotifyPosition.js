@@ -6,11 +6,12 @@ export const useNotifyPosition = () => {
   const [position, setPosition] = useState();
 
   const viewportSize = useViewportResize();
+  const scrollValue = window.scrollY;
 
   useEffect(() => {
     const elementPosition = buttonRef.current.getBoundingClientRect();
     setPosition(elementPosition);
-  }, [viewportSize]);
+  }, [viewportSize, scrollValue]);
 
   return { buttonRef, position };
 };

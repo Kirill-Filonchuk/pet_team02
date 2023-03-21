@@ -1,56 +1,85 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { theme } from 'theme';
 
-export const Card = styled('div')`
+// export const Card = styled('div')`
+//   padding: 40px 20px 20px 20px;
+
+//   position: absolute;
+
+//   left: ${p => p.loc.x}px;
+//   top: ${p => p.loc.y}px;
+//   transform: translate(
+//     ${p => (p.loc.hor === 'right' ? '-100%' : 0)},
+//     ${p => (p.loc.ver === 'bottom' ? '-100%' : 0)}
+//   );
+
+//   background-color: ${p => p.theme.colors.white};
+//   border: 2px solid ${p => p.theme.colors.accent};
+//   /* border-radius: ${p => p.theme.radii.small}; */
+//   border-top-left-radius: ${({ loc }) =>
+//     loc.hor === 'left' && loc.ver === 'top' ? 0 : '20px'};
+
+//   border-top-right-radius: ${({ loc }) =>
+//     loc.hor === 'right' && loc.ver === 'top' ? 0 : '20px'};
+
+//   border-bottom-left-radius: ${({ loc }) =>
+//     loc.hor === 'left' && loc.ver === 'bottom' ? 0 : '20px'};
+
+//   border-bottom-right-radius: ${({ loc }) =>
+//     loc.hor === 'right' && loc.ver === 'bottom' ? 0 : '20px'};
+
+//   min-height: 150px;
+//   min-width: 200px;
+//   max-width: 450px;
+
+//   ${theme.mq.mobileOnly} {
+//     padding: 40px 16px 16px 20px;
+//     width: 280px;
+
+//     top: 0;
+//     left: 50%;
+//     transform: translate(-50%, 0);
+//     border-radius: ${p => p.theme.radii.small};
+//   }
+// `;
+
+export const Card = styled('div').attrs(p => ({
+  style: {
+    left: p.freqProps.left,
+    top: p.freqProps.top,
+    transform: `translate(${p.freqProps.transformX}, ${p.freqProps.transformY})`,
+    borderRadius: `${p.freqProps.borderTL} ${p.freqProps.borderTR} ${p.freqProps.borderBR} ${p.freqProps.borderBL}`,
+  },
+}))`
   padding: 40px 20px 20px 20px;
 
   position: absolute;
 
-  left: ${p => p.loc.x}px;
+  /* left: ${p => p.loc.x}px;
   top: ${p => p.loc.y}px;
   transform: translate(
     ${p => (p.loc.hor === 'right' ? '-100%' : 0)},
     ${p => (p.loc.ver === 'bottom' ? '-100%' : 0)}
-  );
-
-  /* ${({ loc }) => {
-    // if (loc.hor === 'left') {
-    //   return css`
-    //     left: ${p => p.loc.x}px;
-    //   `;
-    // }
-
-    if (loc.hor === 'right') {
-      return css`
-        left: ${p => p.loc.x}px;
-        transform: translateX(-100%);
-      `;
-    }
-
-    // if (loc.ver === 'top') {
-    //   return css`
-    //     top: ${p => p.loc.y}px;
-    //   `;
-    // }
-
-    if (loc.ver === 'bottom') {
-      return css`
-        top: ${p => p.loc.y}px;
-        transform: translateY(-100%);
-      `;
-    }
-  }} */
-
-  /* top: ${p => p.loc.y}px;
-  left: ${p => p.loc.x}px; */
+  ); */
 
   background-color: ${p => p.theme.colors.white};
   border: 2px solid ${p => p.theme.colors.accent};
-  border-radius: ${p => p.theme.radii.small};
-  border-top-left-radius: 0;
 
+  /* border-top-left-radius: ${({ loc }) =>
+    loc.hor === 'left' && loc.ver === 'top' ? 0 : '20px'};
+
+  border-top-right-radius: ${({ loc }) =>
+    loc.hor === 'right' && loc.ver === 'top' ? 0 : '20px'};
+
+  border-bottom-left-radius: ${({ loc }) =>
+    loc.hor === 'left' && loc.ver === 'bottom' ? 0 : '20px'};
+
+  border-bottom-right-radius: ${({ loc }) =>
+    loc.hor === 'right' && loc.ver === 'bottom' ? 0 : '20px'}; */
+
+  min-height: 150px;
+  min-width: 200px;
   max-width: 450px;
-  /* max-height: 100%; */
 
   ${theme.mq.mobileOnly} {
     padding: 40px 16px 16px 20px;
@@ -64,7 +93,6 @@ export const Card = styled('div')`
 `;
 
 export const Wrapper = styled('div')`
-  /* width: 100%; */
   height: 100%;
   font-size: 20px;
   line-height: 1.375;
