@@ -1,7 +1,8 @@
+import News from '../../components/News';
 const NewsPage = () => {
   return (
     <div>
-      <h1>NEWS</h1>
+      <News />
     </div>
   );
 };
