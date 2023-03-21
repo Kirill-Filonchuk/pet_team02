@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 import {
   AddButtonStyled,
   AddButtonText,
@@ -7,9 +8,12 @@ import {
   PlusIcon,
 } from './AddButton.styled';
 
-const AddButton = ({ label, onClick = null, hasMobileStyles = false }) => {
+const AddButton = forwardRef((props, ref) => {
+  const { label, onClick = null, hasMobileStyles = false } = props;
+
   return (
     <AddButtonStyled
+      ref={ref}
       type="button"
       className="addButtonWrapper"
       hasMobileStyles={hasMobileStyles}
@@ -34,7 +38,7 @@ const AddButton = ({ label, onClick = null, hasMobileStyles = false }) => {
       </AddButtonText>
     </AddButtonStyled>
   );
-};
+});
 
 export default AddButton;
 

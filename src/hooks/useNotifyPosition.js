@@ -8,12 +8,8 @@ export const useNotifyPosition = () => {
   const viewportSize = useViewportResize();
 
   useEffect(() => {
-    const { bottom, left, width } = buttonRef.current.getBoundingClientRect();
-
-    const x = left + width;
-    const y = bottom;
-
-    setPosition({ x, y });
+    const elementPosition = buttonRef.current.getBoundingClientRect();
+    setPosition(elementPosition);
   }, [viewportSize]);
 
   return { buttonRef, position };

@@ -16,6 +16,7 @@ import useAuth from 'hooks/useAuth/useAuth';
 import Notify from 'components/Notify';
 import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import { useViewportResize } from 'hooks/useViewportResize';
+import { useRef } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { logOut } from 'redux/auth/operations';
 
@@ -50,19 +51,14 @@ const Notices = () => {
 
   //TEST FOR NOTIFICATIONS
   const [isNotifyOpen, setIsNotifyOpen] = useState(false);
-  // const btnRef = useRef();
-  // const [position, setPosition] = useState();
-
-  // useEffect(() => {
-  //   const { bottom, left, width } = btnRef.current.getBoundingClientRect();
-
-  //   const x = left + width;
-  //   const y = bottom;
-
-  //   setPosition({ x, y });
-  // }, []);
+  const [isNotify2Open, setIsNotify2Open] = useState(false);
 
   const { buttonRef, position } = useNotifyPosition();
+  const { buttonRef: addBtnRef, position: addBtnRefPosition } =
+    useNotifyPosition();
+
+  // const addBtnRef = useRef();
+  console.log(addBtnRef);
   // useViewportResize();
   //TEST FOR NOTIFICATIONS
 
@@ -90,7 +86,11 @@ const Notices = () => {
                 setIsNotifyOpen(false);
               }}
             >
-              NOTIFY!
+              {/* <p>{JSON.stringify(position)}</p> */}
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+                exercitationem cupiditate eos reprehenderit pariatur consequatur
+              </p>
             </Notify>
           )}
 
@@ -100,7 +100,27 @@ const Notices = () => {
 
           <NoticesToolBar>
             <NoticesCategoriesNav links={noticesNavLinks} />
-            <AddNoticeButton />
+            <AddNoticeButton
+              ref={addBtnRef}
+              onClick={() => {
+                setIsNotify2Open(true);
+              }}
+            />
+            {isNotify2Open && (
+              <Notify
+                position={addBtnRefPosition}
+                onClose={() => {
+                  setIsNotify2Open(false);
+                }}
+              >
+                {/* <p>{JSON.stringify(position)}</p> */}
+                <p>
+                  222Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Illo exercitationem cupiditate eos reprehenderit pariatur
+                  consequatur
+                </p>
+              </Notify>
+            )}
           </NoticesToolBar>
         </Container>
       </NoticeSection>
