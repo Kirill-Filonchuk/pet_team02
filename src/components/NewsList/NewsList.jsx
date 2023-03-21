@@ -8,14 +8,13 @@ import NewsCard from 'components/NewsCard';
 const NewsList = ({ searchWord }) => {
   const [news, setNews] = useState([]);
   const [searchNews, setSearchNews] = useState([]);
-  // const [notFound, setNotFound] = useState('');
 
   useEffect(() => {
     const getNews = async () => {
       const response = await axios.get(
         'https://tiny-hare-cowboy-hat.cyclic.app/api/news'
       );
-      // console.log('response', response);
+      // console.log('response===', response);
       const data = response.data.result;
       data.sort(function (a, b) {
         const dateA = a.date ? new Date(a.date) : new Date(0);
@@ -38,7 +37,6 @@ const NewsList = ({ searchWord }) => {
   }, []);
 
   useEffect(() => {
-    // setNotFound('');
     const searchTitleNews = news.filter(item =>
       item.title.includes(searchWord)
     );
@@ -56,17 +54,10 @@ const NewsList = ({ searchWord }) => {
       searchDescriptionNews.length === 0 &&
       searchWord
     ) {
-      alert('AAAAAAA');
-      // return setNotFound('Not found');
+      alert('No news were found for your request');
     }
   }, [news, searchWord]);
-  // if (notFound) {
-  //   return (
-  //     <>
-  //       <p>Not found</p>
-  //     </>
-  //   );
-  // }
+
   if (searchNews.length > 0) {
     return (
       <List>

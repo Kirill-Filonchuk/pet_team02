@@ -19,10 +19,6 @@ const InputNewsFindPet = ({ setSearchWord }) => {
     e.preventDefault();
     let query = e.target.elements.search.value;
     setSearchWord(query);
-    // e.target.elements.search.value = '';
-    // setQuery('');
-    // setSearchWord('');
-    // console.log(query);
   };
 
   const onClearHandler = () => {

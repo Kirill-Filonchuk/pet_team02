@@ -7,6 +7,7 @@ import {
   DateText,
   Link,
 } from './NewsCard.styled';
+
 const NewsCard = ({ title, url, description, date }) => {
   const descriptionCounter = description => {
     const lengthDescription = 213;
@@ -16,6 +17,7 @@ const NewsCard = ({ title, url, description, date }) => {
     }
     return description;
   };
+
   const titleCounter = title => {
     const lengthTitle = 42;
     if (title.length > lengthTitle) {
@@ -24,6 +26,7 @@ const NewsCard = ({ title, url, description, date }) => {
     }
     return title;
   };
+
   const formatDate = dateStr => {
     if (!dateStr) {
       return '----/----/--------';
@@ -49,6 +52,7 @@ const NewsCard = ({ title, url, description, date }) => {
     </>
   );
 };
+
 NewsCard.propTypes = {
   title: propTypes.string.isRequired,
   url: propTypes.string.isRequired,
