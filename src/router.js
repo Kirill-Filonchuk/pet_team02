@@ -1,5 +1,6 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
-import NoticesPage from 'pages/NoticesPage';
+import UserPage from 'components/UserPage';
+// import NoticesPage from 'pages/NoticesPage';
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 // import HomePage from './pages/HomePage/HomePage';
@@ -7,12 +8,12 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 // import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
 // import RegisterPage from './pages/RegisterPage/RegisterPage';
 // import LoginPage from './pages/LoginPage/LoginPage';
-// import UserPage from './pages/UserPage/UserPage.jsx';
 import { lazy } from 'react';
+import PrivateRoute from 'components/PrivateRoute';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
-const UserPage = lazy(() => import('./pages/UserPage/UserPage.jsx'));
 const OurFriendsPage = lazy(() =>
   import('./pages/OurFriendsPage/OurFriendsPage')
 );
@@ -57,8 +58,24 @@ const routes = [
             element: <NoticesCategoriesList />,
           },
           { path: ROUTES.NOTICES_FOR_FREE, element: <NoticesCategoriesList /> },
-          { path: ROUTES.NOTICES_FAVORITE, element: <NoticesCategoriesList /> },
-          { path: ROUTES.NOTICES_OWN, element: <NoticesCategoriesList /> },
+          {
+            path: ROUTES.NOTICES_FAVORITE,
+            element: (
+              <PrivateRoute
+                redirectTo={ROUTES.LOGIN}
+                component={NoticesCategoriesList}
+              />
+            ),
+          },
+          {
+            path: ROUTES.NOTICES_OWN,
+            element: (
+              <PrivateRoute
+                redirectTo={ROUTES.LOGIN}
+                component={NoticesCategoriesList}
+              />
+            ),
+          },
         ],
       },
       {
