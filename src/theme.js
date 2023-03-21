@@ -18,7 +18,8 @@ export const theme = {
     text: '#000000',
     textNews: '#111321',
     white: '#FFFFFF',
-    invalidRed: '#CC5533'
+    validInput: '#179625',
+    greyHover: 'rgba(17, 17, 17, 0.7)',
   },
 
   fonts: {

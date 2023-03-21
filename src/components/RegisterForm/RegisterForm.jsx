@@ -9,13 +9,15 @@ import {
 } from 'components/FormValidation';
 import { MultiStepForm, FormStep } from './MultiForm';
 import { BiShow, BiHide } from 'react-icons/bi';
-import Container from 'components/Container';
+
 
 import {
   Title,
   Label,
   Input,
   IconShow,
+  Wrapper,
+  FormContainer
 } from 'components/LoginForm/LoginForm.styled';
 
 const RegisterForm = () => {
@@ -61,8 +63,9 @@ const RegisterForm = () => {
   };
 
   return (
-    <Container>
-      <Title>Registration</Title>
+    <FormContainer>
+      <Wrapper>
+        <Title>Registration</Title>
       <MultiStepForm initialValues={initialValues} onSubmit={handleSubmit}>
         <FormStep
           stepName="UserMain"
@@ -140,7 +143,9 @@ const RegisterForm = () => {
           </Label>
         </FormStep>
       </MultiStepForm>
-    </Container>
+      </Wrapper>
+      
+    </FormContainer>
   );
 };
 
