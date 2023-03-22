@@ -55,6 +55,7 @@ export default function UserData({ user }) {
 
     if (imgFile) {
       const value = { avatarURL: imgFile };
+      console.log('3awli');
       await dispatch(updateUser({ value }));
     }
   };
