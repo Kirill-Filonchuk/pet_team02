@@ -1,4 +1,3 @@
-// margin-bottom: 60px;
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { CgCloseO } from 'react-icons/cg';
 import styled from 'styled-components';
