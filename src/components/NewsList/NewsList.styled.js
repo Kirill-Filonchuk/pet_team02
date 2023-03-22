@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'theme';
 
 export const List = styled('ul')`
   list-style: none;
@@ -6,14 +7,11 @@ export const List = styled('ul')`
   padding: 0;
   width: 100%;
 
-  @media screen and (min-width: 768px) {
+  ${theme.mq.tablet} {
     display: flex;
     flex-wrap: wrap;
     column-gap: 32px;
     row-gap: 32px;
-  }
-
-  @media screen and (min-width: 1280px) {
   }
 `;
 
@@ -25,12 +23,12 @@ export const Item = styled('li')`
     margin-bottom: 0;
   }
 
-  @media screen and (min-width: 768px) {
+  ${theme.mq.tablet} {
     margin-bottom: 28px;
     flex-basis: calc((100% - 32px) / 2);
   }
 
-  @media screen and (min-width: 1280px) {
+  ${theme.mq.desktop} {
     flex-basis: calc((100% - 64px) / 3);
   }
 `;
