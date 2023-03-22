@@ -40,8 +40,8 @@ export const Header = () => {
         {isOpen && (
           <Burger>
             <ListMenu>
-              <LogoStyle>
-                <Logo onClick={toggle} />
+              <LogoStyle onClick={toggle}>
+                <Logo />
               </LogoStyle>
 
               <AuthNavigate style={{ marginBottom: 20 }}>

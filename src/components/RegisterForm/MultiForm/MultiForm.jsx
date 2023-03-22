@@ -46,7 +46,6 @@ const MultiStepForm = ({ children, initialValues, onSubmit }) => {
         {formik => (
           <FormAuth onSubmit={formik.handleSubmit}>
             {step}
-
             <FormNavigation
               isLastStep={isLastStep}
               hasPrevious={stepNumber > 0}

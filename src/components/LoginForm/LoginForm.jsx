@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { logIn } from 'redux/auth/operations';
 import { Formik } from 'formik';
 import { validationLogin, InputError } from 'components/FormValidation';
-
-import Container from '../ContainerForm';
 import { BiShow, BiHide } from 'react-icons/bi';
 
 import {
@@ -18,11 +16,13 @@ import {
   BtnFormSubmit,
   TextLink,
   LinkToRegister,
+  FormContainer,
 } from './LoginForm.styled';
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const initialValues = {
@@ -47,7 +47,7 @@ const LoginForm = () => {
     actions.resetForm();
   };
   return (
-    <Container>
+    <FormContainer>
       <Wrapper>
         <Title>Login</Title>
         <Formik
@@ -55,7 +55,7 @@ const LoginForm = () => {
           validationSchema={validationLogin}
           onSubmit={handleSubmit}
         >
-          {() => (
+          {({ errors }) => (
             <FormAuth>
               <Label>
                 <Input
@@ -74,11 +74,16 @@ const LoginForm = () => {
                   autoComplete="off"
                 />
                 <IconShow onClick={togglePassword}>
-                  {showPassword ? <BiHide size={24} /> : <BiShow size={24} />}
+                  {showPassword ? <BiHide /> : <BiShow />}
                 </IconShow>
                 <InputError name="password" />
               </Label>
-              <BtnFormSubmit type="submit">Login</BtnFormSubmit>
+              <BtnFormSubmit
+                disabled={errors.email || errors.password}
+                type="submit"
+              >
+                Login
+              </BtnFormSubmit>
             </FormAuth>
           )}
         </Formik>
@@ -87,7 +92,7 @@ const LoginForm = () => {
           <LinkToRegister to="/register">Register</LinkToRegister>
         </TextLink>
       </Wrapper>
-    </Container>
+    </FormContainer>
   );
 };
 
