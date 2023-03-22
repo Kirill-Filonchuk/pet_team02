@@ -24,7 +24,8 @@ const Notices = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const { isLoggedIn } = useAuth();
+  // const { isLoggedIn } = useAuth();
+  const isLoggedIn = true;
 
   const noticesNavLinks = [
     { title: 'sell', to: ROUTES.NOTICES_SELL },
