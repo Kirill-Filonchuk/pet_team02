@@ -8,7 +8,8 @@ import bg_tablet from '../../images/authForm/bg_tablet_vector.svg';
 import bg_desktop from '../../images/authForm/bg_desktop_vector.svg';
 
 const Section = styled.section`
-position: fixed;
+position: absolute;
+z-index: -1;
 display: flex;
 align-items: center;
 left: 0; 
@@ -18,7 +19,7 @@ height: 100%;
 background-image: url(${bg_mobile});
 background-repeat: no-repeat;
 background-size: contain;
-overflow-y: scroll;
+overflow-y: hidden;
 background-position: bottom;
 ${theme.mq.tablet} {
   background-image: url(${bg_tablet});
