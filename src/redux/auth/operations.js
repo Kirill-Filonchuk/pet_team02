@@ -38,7 +38,7 @@ const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 });
 
 //? LOGOUT
-const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+const logOut = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/api/auth/logout');
     clearAuthHeader();
@@ -49,11 +49,11 @@ const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 
 //? UPDATE USER
 const updateUser = createAsyncThunk(
-  '/auth/update',
+  '/auth/updateUser',
   async ({ value }, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log('value------>', value);
+
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
@@ -90,8 +90,8 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   try {
     // If there is a token, add it to the HTTP header and perform the request
     setAuthHeader(persistedToken);
-    const res = await axios.get('/users/current');
-    return res.data;
+    const response = await axios.patch('/api/user-pets');
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

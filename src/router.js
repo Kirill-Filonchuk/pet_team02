@@ -9,6 +9,7 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 // import LoginPage from './pages/LoginPage/LoginPage';
 import { lazy } from 'react';
 import PrivateRoute from 'components/PrivateRoute';
+import RestrictedRoute from 'components/RestrictedRoute';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const NoticesPage = lazy(() => import('./pages/NoticesPage/NoticesPage'));
@@ -84,11 +85,21 @@ const routes = [
       },
       {
         path: ROUTES.REGISTER,
-        element: <RegisterPage />,
+        element: (
+          <RestrictedRoute
+          redirectTo={ROUTES.USER}
+          component={RegisterPage}
+          />
+        ),
       },
       {
         path: ROUTES.LOGIN,
-        element: <LoginPage />,
+        element: (
+          <RestrictedRoute
+          redirectTo={ROUTES.USER}
+          component={LoginPage}
+          />
+        ),
       },
       {
         path: ROUTES.USER,
