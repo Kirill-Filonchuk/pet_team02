@@ -15,14 +15,8 @@ import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors';
 
 const UserPage = () => {
   const isLogin = useSelector(selectIsLoggedIn);
-  console.log('isLogin-------->', isLogin);
-
   const user = useSelector(selectUser);
-  console.log('user---------->', user);
-
   const { isRefreshing } = useAuth();
-  console.log('isRefreshing------------->', isRefreshing);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
