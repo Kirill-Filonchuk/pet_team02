@@ -4,7 +4,6 @@ import NoticesSearch from '../NoticesSearch';
 import Container from '../Container';
 import PageTitle from 'components/UIKit/PageTitle';
 // import useAuth from 'hooks/useAuth/useAuth';
-// import Notify from 'components/Notify';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {
   NoticeSection,
@@ -14,15 +13,13 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ROUTES } from 'router';
-// import { useNotifyPosition } from 'hooks/useNotifyPosition';
 
 const Notices = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   // const { isLoggedIn } = useAuth();
-
-  const isLoggedIn = true;
+  const isLoggedIn = !true;
 
   const noticesNavLinks = [
     { title: 'sell', to: ROUTES.NOTICES_SELL },

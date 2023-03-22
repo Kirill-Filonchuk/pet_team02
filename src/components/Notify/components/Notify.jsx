@@ -1,4 +1,4 @@
-import Backdrop from 'components/UIKit/Backdrop';
+import Backdrop from 'components/Notify/components/Backdrop';
 import { useModal } from 'hooks/useModal';
 import { useWindowSize } from 'hooks/useWindowSize';
 import { createPortal } from 'react-dom';
