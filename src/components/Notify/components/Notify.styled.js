@@ -6,6 +6,7 @@ export const Card = styled('div').attrs(
   p =>
     p.freqProps && {
       style: {
+        transformOrigin: `top ${p.freqProps.top} left ${p.freqProps.left}`,
         left: p.freqProps.left,
         top: p.freqProps.top,
         transform: `translate(${p.freqProps.transformX}, ${p.freqProps.transformY})`,
@@ -32,6 +33,20 @@ export const Card = styled('div').attrs(
     left: 50%;
     transform: translate(-50%, -30%);
     border-radius: ${p => p.theme.radii.small};
+  }
+
+  animation-name: appearance-animation;
+  animation-duration: 800ms;
+  animation-timing-function: ${p => p.theme.transitions.functions.default};
+
+  @keyframes appearance-animation {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
   }
 `;
 

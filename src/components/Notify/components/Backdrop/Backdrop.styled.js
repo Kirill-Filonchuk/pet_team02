@@ -20,4 +20,18 @@ export const StyledBackdrop = styled('div')`
   /* border: 1px solid rgba(245, 146, 86, 0.03); */
 
   /* background-color: transparent; */
+
+  animation-name: appearance-animation;
+  animation-duration: ${p => p.theme.transitions.durations.default};
+  animation-timing-function: ${p => p.theme.transitions.functions.default};
+
+  @keyframes appearance-animation {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 `;
