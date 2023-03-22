@@ -3,31 +3,42 @@ import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import { theme } from '../../theme';
 
-const FormContainer = styled.div`
-  margin: 0 auto;
-  width: 100%;
-  height: 100vh;
+import bg_mobile from '../../images/authForm/bg_mobile_vector.svg';
+import bg_tablet from '../../images/authForm/bg_tablet_vector.svg';
+import bg_desktop from '../../images/authForm/bg_desktop_vector.svg';
 
-  padding-right: 20px;
-  padding-left: 20px;
+const Section = styled.section`
+position: fixed;
+display: flex;
+align-items: center;
+left: 0; 
+right: 0;
+top: 0;
+height: 100%;
+background-image: url(${bg_mobile});
+background-repeat: no-repeat;
+background-size: contain;
+overflow-y: scroll;
+background-position: bottom;
+${theme.mq.tablet} {
+  background-image: url(${bg_tablet});
+}
+${theme.mq.desktop} {
+  background-image: url(${bg_desktop});
+}
+`
 
-  ${theme.mq.mobileOnly} {
-    max-width: 320px;
-  }
-
+const Wrapper = styled.div`
   ${theme.mq.tablet} {
-    width: 768px;
-    margin-top: 170px;
-    padding-right: 80px;
-    padding-left: 80px;
+    margin: 0 auto;
+    padding: 60px 80px;
+    margin: 0 48px;
+    border-radius: ${theme.radii.normal};
+    background-color: ${theme.colors.white};
+    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   }
-
   ${theme.mq.desktop} {
-    margin-top: 90px;
-    height: auto;
-    width: 1280px;
-    padding-right: 330px;
-    padding-left: 330px;
+    margin: 0 315px;
   }
 `;
 
@@ -45,14 +56,8 @@ const Title = styled.h2`
     line-height: ${theme.lineHeights[3]};
     font-weight: ${theme.fontWeights.medium};
   }
-`;
-const Wrapper = styled.div`
-  ${theme.mq.tablet} {
-    margin: 0 auto;
-    padding: 60px 80px;
-    border-radius: ${theme.radii.normal};
-    background-color: ${theme.colors.white};
-    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  ${theme.mq.desktop} {
+    font-size: ${theme.fontSizes[8]+'px'};
   }
 `;
 
@@ -82,9 +87,6 @@ const Input = styled(Field)`
   border-radius: ${theme.radii.normal};
   outline: none;
   transition: ${theme.transitions.durations.default} ${theme.transitions.functions.default};
-  /* &:valid {
-    border: ${theme.borders.normal} ${theme.colors.validInput}
-  } */
   ${theme.mq.tablet} {
     height: 52px;
     font-size: ${theme.fontSizes[2] + 'px'};
@@ -144,13 +146,15 @@ const BtnFormSubmit = styled.button`
   background-color: ${theme.colors.accent};
   transition: ${theme.transitions.durations.default} ${theme.transitions.functions.default};
   cursor: pointer;
-  &:disabled {
-    background-color: ${theme.colors.grey};
-    border: none;
-    cursor: default;
+
+  &:active {
+    transform: scale(1.01);
   }
   ${theme.mq.tablet} {
     margin-top: 0;
+  }
+  ${theme.mq.desktop} {
+    height: 48px;
   }
 `;
 
@@ -170,7 +174,7 @@ const LinkToRegister = styled(Link)`
   text-decoration: underline;
 `;
 export {
-  Wrapper,
+  Section,
   Title,
   FormAuth,
   Label,
@@ -179,5 +183,5 @@ export {
   BtnFormSubmit,
   TextLink,
   LinkToRegister,
-  FormContainer,
+  Wrapper
 };

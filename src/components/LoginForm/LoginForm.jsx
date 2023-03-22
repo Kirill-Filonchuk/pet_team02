@@ -5,9 +5,9 @@ import { logIn } from 'redux/auth/operations';
 import { Formik } from 'formik';
 import { validationLogin, InputError } from 'components/FormValidation';
 import { BiShow, BiHide } from 'react-icons/bi';
-
+import Container from 'components/Container';
 import {
-  Wrapper,
+  Section,
   Title,
   FormAuth,
   Label,
@@ -16,7 +16,7 @@ import {
   BtnFormSubmit,
   TextLink,
   LinkToRegister,
-  FormContainer,
+  Wrapper
 } from './LoginForm.styled';
 
 const LoginForm = () => {
@@ -47,15 +47,16 @@ const LoginForm = () => {
     actions.resetForm();
   };
   return (
-    <FormContainer>
-      <Wrapper>
-        <Title>Login</Title>
+    <Section>
+      <Container>
+        <Wrapper>
+          <Title>Login</Title>
         <Formik
           initialValues={initialValues}
           validationSchema={validationLogin}
           onSubmit={handleSubmit}
         >
-          {({ errors }) => (
+          {() => (
             <FormAuth>
               <Label>
                 <Input
@@ -79,7 +80,6 @@ const LoginForm = () => {
                 <InputError name="password" />
               </Label>
               <BtnFormSubmit
-                disabled={errors.email || errors.password}
                 type="submit"
               >
                 Login
@@ -91,8 +91,12 @@ const LoginForm = () => {
           <span>Don't have an account? </span>
           <LinkToRegister to="/register">Register</LinkToRegister>
         </TextLink>
-      </Wrapper>
-    </FormContainer>
+        </Wrapper>
+              
+    </Container>
+    </Section>
+      
+    
   );
 };
 
