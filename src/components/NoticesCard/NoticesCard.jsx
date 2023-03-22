@@ -15,6 +15,8 @@ import { useState } from 'react';
 import OptionsTable from './OptionsTable';
 import { trimText } from 'utils/trimText';
 import NoticeDeleteButton from './NoticeDeleteButton';
+import { useEffect } from 'react';
+import NoticeFavoriteButton from './NoticeFavoriteButton';
 
 const NoticesCard = ({
   id,
@@ -27,8 +29,17 @@ const NoticesCard = ({
   price,
   isMine = false,
   isFavorite = false,
+  isLoggedIn,
 }) => {
   const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
+
+  useEffect(() => {
+    console.log(`card id ${id} favorite: ${isFavoriteCard}`);
+  }, [isFavoriteCard, id]);
+
+  const onFavoriteClickHandler = () => {
+    isLoggedIn ? setIsFavoriteCard(!isFavoriteCard) : setIsnotifyOpen(true);
+  };
 
   return (
     <>
@@ -57,13 +68,17 @@ const NoticesCard = ({
 
         <Label>{label}</Label>
 
-        <Favorite
+        <NoticeFavoriteButton
+          isFavorite={isFavoriteCard}
+          onClick={onFavoriteClickHandler}
+        />
+        {/* <Favorite
           onClick={() => {
             setIsFavoriteCard(!isFavoriteCard);
           }}
         >
           <HeartIcon isFavorite={isFavoriteCard} />
-        </Favorite>
+        </Favorite> */}
       </Article>
     </>
   );
@@ -82,4 +97,5 @@ NoticesCard.propTypes = {
   price: PropTypes.string,
   isMine: PropTypes.bool,
   isFavorite: PropTypes.bool,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
