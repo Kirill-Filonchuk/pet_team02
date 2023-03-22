@@ -3,7 +3,7 @@ import { useModal } from 'hooks/useModal';
 import { useWindowSize } from 'hooks/useWindowSize';
 import { createPortal } from 'react-dom';
 import { positionCalculation } from '../utils/positionCalculation';
-import { Card, Wrapper } from './Notify.styled';
+import { Card, CloseButton, CloseIcon, Wrapper } from './Notify.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -17,6 +17,9 @@ const Notify = ({ onClose, position, children }) => {
     <Backdrop onClick={onBackdropClick}>
       <Card freqProps={!isMobile && frequentStyles}>
         <Wrapper>{children}</Wrapper>
+        <CloseButton onClick={onClose}>
+          <CloseIcon />
+        </CloseButton>
       </Card>
     </Backdrop>,
     modalRoot

@@ -19,6 +19,7 @@ const AddButton = ({
   const [isNotifyOpen, setIsnotifyOpen] = useState();
   const { buttonRef, position } = useNotifyPosition();
 
+  console.log(isLoggedIn);
   const onClickHandler = () => {
     isLoggedIn ? onClick() : setIsnotifyOpen(true);
   };

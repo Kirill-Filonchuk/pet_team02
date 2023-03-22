@@ -1,3 +1,4 @@
+import { GrFormClose } from 'react-icons/gr';
 import styled from 'styled-components';
 import { theme } from 'theme';
 
@@ -42,4 +43,25 @@ export const Wrapper = styled('div')`
   ${theme.mq.mobileOnly} {
     font-size: 16px;
   }
+`;
+
+export const CloseButton = styled('button')`
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+
+  /* padding: 10px; */
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  width: 30px;
+  height: 30px;
+`;
+
+export const CloseIcon = styled(GrFormClose)`
+  width: 100%;
+  height: 100%;
 `;

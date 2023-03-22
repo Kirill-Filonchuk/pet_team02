@@ -42,27 +42,10 @@ const Notices = () => {
     }
   }, [pathname, navigate]);
 
-  //TEST FOR NOTIFICATIONS
-  // const [isNotifyOpen, setIsNotifyOpen] = useState(false);
-  // const { buttonRef, position } = useNotifyPosition();
-
-  //TEST FOR NOTIFICATIONS
-
   return (
     <NoticesWrapper>
       <NoticeSection>
         <Container>
-          {/* <button
-            ref={buttonRef}
-            type="button"
-            style={{ fontSize: '40px', cursor: 'pointer' }}
-            onClick={() => {
-              setIsNotifyOpen(true);
-            }}
-          >
-            BTN
-          </button> */}
-
           <PageTitle>Find your favorite pet</PageTitle>
 
           <NoticesSearch />
