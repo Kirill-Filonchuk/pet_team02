@@ -34,7 +34,6 @@ export const Link = styled(NavLink)`
   text-align: center;
   text-decoration: none;
   margin-right: 80px;
-
   color: black;
   font-family: ${p => p.theme.fonts.manrope};
   font-size: ${p => p.theme.fontSizes[4]}px;
@@ -42,7 +41,7 @@ export const Link = styled(NavLink)`
   font-style: normal;
   line-height: 27px;
   letter-spacing: 0.04em;
-  transition-property: color;
+  transition-property: color, transform;
   transition-duration: ${p => p.theme.transitions.durations.default};
   &:last-child {
     margin-right: 0;
@@ -52,5 +51,6 @@ export const Link = styled(NavLink)`
   }
   &:hover {
     color: ${p => p.theme.colors.accent};
+    transform: scale(1.1);
   }
 `;
