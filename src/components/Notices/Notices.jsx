@@ -3,7 +3,7 @@ import NoticesCategoriesNav from '../NoticesCategoriesNav';
 import NoticesSearch from '../NoticesSearch';
 import Container from '../Container';
 import PageTitle from 'components/UIKit/PageTitle';
-import useAuth from 'hooks/useAuth/useAuth';
+// import useAuth from 'hooks/useAuth/useAuth';
 // import Notify from 'components/Notify';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {
@@ -21,7 +21,8 @@ const Notices = () => {
   const navigate = useNavigate();
 
   // const { isLoggedIn } = useAuth();
-  const isLoggedIn = !true;
+
+  const isLoggedIn = true;
 
   const noticesNavLinks = [
     { title: 'sell', to: ROUTES.NOTICES_SELL },
