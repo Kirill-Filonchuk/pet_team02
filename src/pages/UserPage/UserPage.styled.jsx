@@ -59,3 +59,7 @@ export const PetsWrapper = styled.div`
     display: block;
   }
 `;
+
+export const LoaderUser = styled.div`
+  margin: auto;
+`;

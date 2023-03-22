@@ -1,8 +1,8 @@
 import { Field } from 'formik';
 import styled from 'styled-components';
-import { ReactComponent as Logo } from '../../images/edit-icon.svg';
-import { ReactComponent as LogoDis } from '../../images/edit-icon-dis.svg';
-import { ReactComponent as LogoDone } from '../../images/done-icon.svg';
+import { ReactComponent as Logo } from '../../images/userData/edit-icon.svg';
+import { ReactComponent as LogoDis } from '../../images/userData/edit-icon-dis.svg';
+import { ReactComponent as LogoDone } from '../../images/userData/done-icon.svg';
 import { theme } from 'theme';
 
 export const Wrapper = styled.div`

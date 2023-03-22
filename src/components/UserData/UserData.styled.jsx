@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as EditIcon } from '../../images/camera-icon.svg';
+import { ReactComponent as EditIcon } from '../../images/userData/camera-icon.svg';
 import { theme } from 'theme';
 
 export const UserTitle = styled.h2`

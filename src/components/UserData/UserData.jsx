@@ -5,8 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 
 import UserDataItem from '../UserDataItem/UserDataItem';
-import noAvatar from '../../images/no-image.jpeg';
-import logoutIcon from '../../images/logout-icon.png';
+import noAvatar from '../../images/userData/no-image.jpeg';
+import logoutIcon from '../../images/userData/logout-icon.png';
 
 import {
   UserTitle,
