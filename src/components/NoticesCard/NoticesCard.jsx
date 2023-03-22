@@ -14,8 +14,8 @@ import {
 } from './NoticesCard.styled';
 import { useState } from 'react';
 import { trimText } from 'utils/trimText';
-import { useEffect } from 'react';
-import { useNotifyPosition } from 'hooks/useNotifyPosition';
+// import { useEffect } from 'react';
+// import { useNotifyPosition } from 'hooks/useNotifyPosition';
 
 const NoticesCard = ({
   id,

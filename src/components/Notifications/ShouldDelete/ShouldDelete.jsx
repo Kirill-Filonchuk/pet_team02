@@ -4,7 +4,6 @@ import {
   ButtonList,
   NoButton,
   ShouldDeleteWrapper,
-  StyledButton,
   YesButton,
 } from './ShouldDelete.styled';
 
