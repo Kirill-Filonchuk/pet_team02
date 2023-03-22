@@ -1,3 +1,4 @@
+import ShouldLogin from 'components/Notifications/ShouldLogin';
 import Notify from 'components/Notify';
 import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import PropTypes from 'prop-types';
@@ -58,7 +59,7 @@ const AddButton = ({
             setIsnotifyOpen(false);
           }}
         >
-          <p>Please login </p>
+          <ShouldLogin />
         </Notify>
       )}
     </>

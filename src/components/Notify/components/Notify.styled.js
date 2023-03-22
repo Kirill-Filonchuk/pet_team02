@@ -21,7 +21,7 @@ export const Card = styled('div').attrs(
   border: 2px solid ${p => p.theme.colors.accent};
 
   min-height: 150px;
-  min-width: 200px;
+  min-width: 280px;
   max-width: 450px;
 
   ${theme.mq.mobileOnly} {
@@ -32,16 +32,6 @@ export const Card = styled('div').attrs(
     left: 50%;
     transform: translate(-50%, -30%);
     border-radius: ${p => p.theme.radii.small};
-  }
-`;
-
-export const Wrapper = styled('div')`
-  height: 100%;
-  font-size: 20px;
-  line-height: 1.375;
-
-  ${theme.mq.mobileOnly} {
-    font-size: 16px;
   }
 `;
 
