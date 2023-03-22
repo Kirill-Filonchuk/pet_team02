@@ -9,6 +9,10 @@ export const ShouldLoginWrapper = styled(Wrapper)`
   ${theme.mq.mobileOnly} {
     width: 100%;
   }
+
+  ${theme.mq.tabletOnly} {
+    width: 300px;
+  }
 `;
 
 export const LinksList = styled('ul')`

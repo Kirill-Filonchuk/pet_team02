@@ -8,6 +8,10 @@ export const ShouldDeleteWrapper = styled(Wrapper)`
   ${theme.mq.mobileOnly} {
     width: 100%;
   }
+
+  ${theme.mq.tabletOnly} {
+    width: 300px;
+  }
 `;
 
 export const ButtonList = styled('ul')`
