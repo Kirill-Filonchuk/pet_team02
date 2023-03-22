@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'theme';
 
 export const GradientContainer = styled('div')`
   margin-bottom: 4px;
@@ -7,39 +8,36 @@ export const GradientContainer = styled('div')`
   width: 200px;
   border-radius: 40px;
 
-  @media screen and (min-width: 768px) {
+  ${theme.mq.tablet} {
     height: 8px;
     width: 280px;
   }
 
-  @media screen and (min-width: 1280px) {
+  ${theme.mq.desktop} {
     width: 340px;
   }
 `;
 
 export const Title = styled('h2')`
-  font-family: 'Manrope';
-  font-weight: 700;
+  font-family: ${theme.fonts.manrope};
+  font-weight: ${theme.fontWeights.bold};
   font-size: 24px;
+  line-height: 1.37;
   margin-bottom: 16px;
-  line-height: 32.78px;
 `;
 
 export const Description = styled('p')`
-  font-family: 'Manrope';
-  font-weight: 400;
+  font-family: ${theme.fonts.manrope};
+  font-weight: ${theme.fontWeights.normal};
   font-size: 16px;
-  line-height: 21.86px;
+  line-height: 1.37;
 
-  color: #111321;
+  color: ${theme.colors.textNews};
 
   margin-bottom: 20px;
 
-  @media screen and (min-width: 768px) {
+  ${theme.mq.tablet} {
     margin-bottom: 40px;
-  }
-
-  @media screen and (min-width: 1280px) {
   }
 `;
 
@@ -49,19 +47,19 @@ export const FooterContainer = styled('div')`
 `;
 
 export const DateText = styled('p')`
-  font-family: 'Manrope';
-  font-weight: 400;
+  font-family: ${theme.fonts.manrope};
+  font-weight: ${theme.fontWeights.normal};
   font-size: 16px;
-  line-height: 21.86px;
-  color: rgba(17, 17, 17, 0.6);
+  line-height: 1.37;
+  color: ${theme.colors.grey};
 `;
 
 export const Link = styled('a')`
-  font-family: 'Manrope';
-  font-weight: 500;
+  font-family: ${theme.fonts.manrope};
+  font-weight: ${theme.fontWeights.medium};
   font-size: 16px;
-  line-height: 21.86px;
+  line-height: 1.37;
 
   text-decoration: underline;
-  color: #f59256;
+  color: ${theme.colors.accent};
 `;

@@ -5,7 +5,7 @@ import axios from 'axios';
 // import newsData from './newsData.js';
 import NewsCard from 'components/NewsCard';
 
-const NewsList = ({ searchWord }) => {
+const NewsList = ({ notify, searchWord }) => {
   const [news, setNews] = useState([]);
   const [searchNews, setSearchNews] = useState([]);
 
@@ -54,9 +54,9 @@ const NewsList = ({ searchWord }) => {
       searchDescriptionNews.length === 0 &&
       searchWord
     ) {
-      alert('No news were found for your request');
+      notify('No news were found for your request');
     }
-  }, [news, searchWord]);
+  }, [notify, news, searchWord]);
 
   if (searchNews.length > 0) {
     return (
@@ -89,6 +89,7 @@ const NewsList = ({ searchWord }) => {
 
 NewsList.propTypes = {
   searchWord: propTypes.string.isRequired,
+  notify: propTypes.func.isRequired,
 };
 
 export default NewsList;

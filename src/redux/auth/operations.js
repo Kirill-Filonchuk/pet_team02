@@ -38,30 +38,63 @@ const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 });
 
 //? LOGOUT
-const logOut = createAsyncThunk('/api/auth/logout', async (_, thunkAPI) => {
+const logOut = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/api/auth/logout');
+    await axios.get('/api/auth/logout');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
+//? UPDATE USER
+const updateUser = createAsyncThunk(
+  '/auth/updateUser',
+  async ({ value }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+    try {
+      setAuthHeader(persistedToken);
+      const config = {
+        headers: {
+          Accept: '*/*',
+          Authorization: `Bearer ${persistedToken}`,
+          'Content-Type': 'application/json,multipart/form-data',
+        },
+      };
+
+      const response = await axios.patch('/api/auth/update', value, config);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 //? REFRESH USER
-const refreshUser = createAsyncThunk('/api/auth/refresh', async (_, thunkAPI) => {
+const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+  // Reading the token from the state via getState()
   const state = thunkAPI.getState();
   const persistedToken = state.auth.token;
 
   if (persistedToken === null) {
+    // If there is no token, exit without performing any request
     return thunkAPI.rejectWithValue('Unable to fetch user');
   }
+
   try {
+    // If there is a token, add it to the HTTP header and perform the request
     setAuthHeader(persistedToken);
-    const response = await axios.patch('/api/auth/update');
+    const response = await axios.patch('/api/user-pets');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-export { register, logIn, logOut, refreshUser };
+export { register, logIn, logOut, refreshUser, updateUser };
