@@ -10,10 +10,3 @@ export const Wrapper = styled('div')`
     font-size: 18px;
   }
 `;
-
-export const ShouldLoginWrapper = styled(Wrapper)`
-  width: 400px;
-
-  ${theme.mq.mobileOnly} {
-    width: 100%;
-`;

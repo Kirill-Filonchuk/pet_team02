@@ -1,3 +1,4 @@
+import ShouldDelete from 'components/Notifications/ShouldDelete';
 import Notify from 'components/Notify';
 import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import { useState } from 'react';
@@ -7,6 +8,10 @@ import { NoticeCardButton } from './NoticesCard.styled';
 const NoticeDeleteButton = ({ id }) => {
   const [isNotifyOpen, setIsNotifyOpen] = useState(false);
   const { buttonRef, position } = useNotifyPosition();
+
+  const onDeleteNotice = () => {
+    console.log('notice deleted');
+  };
 
   return (
     <>
@@ -28,7 +33,12 @@ const NoticeDeleteButton = ({ id }) => {
             setIsNotifyOpen(false);
           }}
         >
-          <p>Are you sure?</p>
+          <ShouldDelete
+            onClose={() => {
+              setIsNotifyOpen(false);
+            }}
+            onDelete={onDeleteNotice}
+          />
         </Notify>
       )}
     </>
