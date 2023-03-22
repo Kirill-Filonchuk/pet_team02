@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import HeartIcon from './HeartIcon';
+import NoticeDeleteButton from './NoticeDeleteButton';
+import OptionsTable from './OptionsTable';
+import NoticeFavoriteButton from './NoticeFavoriteButton';
 import {
   Article,
   BtnWrapper,
-  Favorite,
   Image,
   ImageWrapper,
   Label,
@@ -12,11 +13,9 @@ import {
   Title,
 } from './NoticesCard.styled';
 import { useState } from 'react';
-import OptionsTable from './OptionsTable';
 import { trimText } from 'utils/trimText';
-import NoticeDeleteButton from './NoticeDeleteButton';
 import { useEffect } from 'react';
-import NoticeFavoriteButton from './NoticeFavoriteButton';
+import { useNotifyPosition } from 'hooks/useNotifyPosition';
 
 const NoticesCard = ({
   id,
@@ -33,12 +32,15 @@ const NoticesCard = ({
 }) => {
   const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
 
-  useEffect(() => {
-    console.log(`card id ${id} favorite: ${isFavoriteCard}`);
-  }, [isFavoriteCard, id]);
+  // useEffect(() => {
+  //   console.log(`card id ${id} favorite: ${isFavoriteCard}`);
+  //   //here should be code for update favorite
+  // }, [isFavoriteCard, id]);
 
   const onFavoriteClickHandler = () => {
-    isLoggedIn ? setIsFavoriteCard(!isFavoriteCard) : setIsnotifyOpen(true);
+    //here should be code for update favorite/ After resolve positive response
+    console.log(`card id ${id} favorite: ${isFavoriteCard}`);
+    setIsFavoriteCard(!isFavoriteCard);
   };
 
   return (
@@ -71,6 +73,7 @@ const NoticesCard = ({
         <NoticeFavoriteButton
           isFavorite={isFavoriteCard}
           onClick={onFavoriteClickHandler}
+          isLoggedIn={isLoggedIn}
         />
         {/* <Favorite
           onClick={() => {

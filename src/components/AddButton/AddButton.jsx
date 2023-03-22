@@ -17,11 +17,11 @@ const AddButton = ({
   hasMobileStyles = false,
   isLoggedIn,
 }) => {
-  const [isNotifyOpen, setIsnotifyOpen] = useState();
+  const [isNotifyOpen, setIsNotifyOpen] = useState();
   const { buttonRef, position } = useNotifyPosition();
 
   const onClickHandler = () => {
-    isLoggedIn ? onClick() : setIsnotifyOpen(true);
+    isLoggedIn ? onClick() : setIsNotifyOpen(true);
   };
 
   return (
@@ -56,7 +56,7 @@ const AddButton = ({
         <Notify
           position={position}
           onClose={() => {
-            setIsnotifyOpen(false);
+            setIsNotifyOpen(false);
           }}
         >
           <ShouldLogin />

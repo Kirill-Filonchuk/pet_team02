@@ -18,7 +18,7 @@ const NoticesCategoriesList = () => {
   const { isDesktop } = useWindowSize();
 
   // const { isLoggedIn } = useAuth();
-  const isLoggedIn = true;
+  const isLoggedIn = !true;
 
   //Temporary useEffect -> mockAPI
   useEffect(() => {
