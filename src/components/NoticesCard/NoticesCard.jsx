@@ -14,40 +14,58 @@ import {
 } from './NoticesCard.styled';
 import { useState } from 'react';
 import { trimText } from 'utils/trimText';
-// import { useEffect } from 'react';
 // import { useNotifyPosition } from 'hooks/useNotifyPosition';
+import defaultImage from 'assets/images/pets-default-image.jpg';
+// import { useEffect } from 'react';
+// import axios from 'axios';
+
+const NO_INFO = '-';
 
 const NoticesCard = ({
-  id,
-  img,
-  label,
+  _id,
+  petAvatarURL,
+  label = '',
   title,
-  breed,
-  place,
-  age,
-  price,
+  breed = NO_INFO,
+  place = NO_INFO,
+  age = NO_INFO,
+  price = '',
   isMine = false,
   isFavorite = false,
   isLoggedIn,
 }) => {
   const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
-
-  // useEffect(() => {
-  //   console.log(`card id ${id} favorite: ${isFavoriteCard}`);
-  //   //here should be code for update favorite
-  // }, [isFavoriteCard, id]);
+  // const [avatar, setAvatar] = useState(defaultImage);
 
   const onFavoriteClickHandler = () => {
     //here should be code for update favorite/ After resolve positive response
-    console.log(`card id ${id} favorite: ${isFavoriteCard}`);
+    console.log(`card id ${_id} favorite: ${isFavoriteCard}`);
     setIsFavoriteCard(!isFavoriteCard);
   };
+
+  //TEMP --- --  EVERY TIME DOWNLOAD IMAGE
+  // useEffect(() => {
+  //   async function checkAvatarImage() {
+  //     if (petAvatarURL) {
+  //       // console.log(petAvatarURL);
+  //       const res = await axios.get(petAvatarURL);
+  //       // console.log(res.status);
+  //       if (res.status === 200) {
+  //         setAvatar(petAvatarURL);
+  //       }
+  //     }
+  //   }
+
+  //   checkAvatarImage();
+  // });
+  //TEMP --- --  EVERY TIME DOWNLOAD IMAGE
 
   return (
     <>
       <Article>
         <ImageWrapper>
-          <Image src={img} alt="title" />
+          {/* <Image src={avatar} alt="title" /> */}
+          <Image src={petAvatarURL || defaultImage} alt="title" />
         </ImageWrapper>
 
         <Meta>
@@ -64,7 +82,7 @@ const NoticesCard = ({
           <BtnWrapper>
             <NoticeCardButton type="button">Learn more</NoticeCardButton>
 
-            {isMine && <NoticeDeleteButton id={id} />}
+            {isMine && <NoticeDeleteButton id={_id} />}
           </BtnWrapper>
         </Meta>
 
@@ -75,13 +93,6 @@ const NoticesCard = ({
           onClick={onFavoriteClickHandler}
           isLoggedIn={isLoggedIn}
         />
-        {/* <Favorite
-          onClick={() => {
-            setIsFavoriteCard(!isFavoriteCard);
-          }}
-        >
-          <HeartIcon isFavorite={isFavoriteCard} />
-        </Favorite> */}
       </Article>
     </>
   );
@@ -90,13 +101,13 @@ const NoticesCard = ({
 export default NoticesCard;
 
 NoticesCard.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  img: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  _id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  petAvatarURL: PropTypes.string,
+  label: PropTypes.string,
   title: PropTypes.string.isRequired,
-  breed: PropTypes.string.isRequired,
-  place: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired,
+  breed: PropTypes.string,
+  place: PropTypes.string,
+  age: PropTypes.string,
   price: PropTypes.string,
   isMine: PropTypes.bool,
   isFavorite: PropTypes.bool,

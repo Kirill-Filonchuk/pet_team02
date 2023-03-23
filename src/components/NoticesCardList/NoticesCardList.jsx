@@ -6,7 +6,7 @@ const NoticesCardList = ({ list, label, isLoggedIn }) => {
   return (
     <List>
       {list.map(item => (
-        <Item key={item.id}>
+        <Item key={item._id}>
           <NoticesCard {...item} label={label} isLoggedIn={isLoggedIn} />
         </Item>
       ))}

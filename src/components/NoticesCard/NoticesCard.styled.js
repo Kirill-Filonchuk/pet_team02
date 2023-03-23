@@ -52,10 +52,11 @@ export const Tr = styled('tr')`
       opacity: 0;
     `}
 
-  & > td:first-child {
+  & > td:first-child, & > td:last-child {
     padding-bottom: 8px;
   }
-  &:last-child > td:first-child {
+  &:last-child > td:first-child,
+  &:last-child > td:last-child {
     padding-bottom: 0;
   }
 `;
