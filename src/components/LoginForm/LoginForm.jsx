@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logIn } from 'redux/auth/operations';
 import { Formik } from 'formik';
+import { ToastContainer, Slide } from 'react-toastify';
+import { logIn } from 'redux/auth/operations';
+import useAuth from '../../hooks/useAuth/useAuth';
 import { validationLogin, InputError } from 'components/FormValidation';
+import { notifyError } from 'components/Helpers/Toastify';
+import Spinner from 'components/Helpers/Spinner';
 import { BiShow, BiHide } from 'react-icons/bi';
+
 import Container from 'components/Container';
-import { ThreeDots } from 'react-loader-spinner';
-import { LoaderUser } from 'components/PetsData/PetsData.styled';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import {
   Section,
   Title,
@@ -22,7 +23,6 @@ import {
   LinkToRegister,
   Wrapper,
 } from './LoginForm.styled';
-import useAuth from '../../hooks/useAuth/useAuth';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -34,6 +34,7 @@ const LoginForm = () => {
     email: '',
     password: '',
   };
+
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
@@ -45,23 +46,23 @@ const LoginForm = () => {
         password: password,
       })
     ).then(res => {
-      if (res.payload === 'success') {
+      if (res.payload.code === 200) {
         navigate('/user', { replace: true });
+        actions.resetForm();
       }
       if (res.payload === 'Request failed with status code 409') {
-        toast.error(
-          'Request failed with status code 409',
-          { autoClose: 5000 }
-        );
+        notifyError('User not found');
+      }
+      if (res.payload === 'Request failed with status code 401') {
+        notifyError('Invalid email or password');
       }
     });
-    actions.resetForm();
   };
   return (
     <Section>
       <Container>
         <Wrapper>
-          <ToastContainer/>
+          <ToastContainer transition={Slide} />
           <Title>Login</Title>
           <Formik
             initialValues={initialValues}
@@ -92,15 +93,7 @@ const LoginForm = () => {
                   <InputError name="password" />
                 </Label>
                 {isRefreshing ? (
-                  <LoaderUser>
-                    <ThreeDots styles={{margin: '0 auto'}}
-                    height="100"
-                    width="100"
-                    radius="9"
-                    color={'rgb(245, 146, 86)'}
-                  />
-                  </LoaderUser>
-                  
+                  <Spinner />
                 ) : (
                   <BtnFormSubmit type="submit">Login</BtnFormSubmit>
                 )}
