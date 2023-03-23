@@ -22,8 +22,7 @@ import Account from 'components/Account/Account';
 import AccountBurger from 'components/Account/AccountBurger';
 
 export const Header = () => {
-
-  const isLoggedin = useSelector(selectIsLoggedIn)
+  const isLoggedin = useSelector(selectIsLoggedIn);
   //   const [nav, setNav] = useState(false);
 
   const [isOpen, setOpen] = useState(false);
@@ -36,12 +35,14 @@ export const Header = () => {
       <HeaderContainer>
         <Logo />
         <Nav />
-        {isLoggedin ? <Account/> :
+        {isLoggedin ? (
+          <Account />
+        ) : (
           <AuthNavigateTablet>
             <LinkAuthTablet to="/login">Login</LinkAuthTablet>
             <LinkAuthTablet to="/register">Registation</LinkAuthTablet>
           </AuthNavigateTablet>
-        }
+        )}
         <MenuBtn onClick={toggle}>
           {isOpen ? <GrClose size={30} /> : <HiMenu size={40} />}
         </MenuBtn>
@@ -52,10 +53,13 @@ export const Header = () => {
                 <Logo />
               </LogoStyle>
 
-              {isLoggedin ? <AccountBurger /> : <AuthNavigate style={{ marginBottom: 20 }}>
+              {isLoggedin ? (
+                <AccountBurger />
+              ) : (
+                <AuthNavigate style={{ marginBottom: 20 }} />
+              )}
 
-             // <AuthNavigate style={{ marginBottom: 20 }}>
-
+              <AuthNavigate style={{ marginBottom: 20 }}>
                 <LinkAuth to="/login" onClick={toggle}>
                   Login
                 </LinkAuth>
@@ -64,7 +68,7 @@ export const Header = () => {
                 </LinkAuth>
               </AuthNavigate>
 
-              }
+              {/* } */}
 
               <Link to="/news" onClick={toggle}>
                 News
