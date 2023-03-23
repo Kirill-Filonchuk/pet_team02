@@ -1,4 +1,3 @@
-import axios from 'axios';
 import NoticesCardList from '../NoticesCardList';
 import Container from '../Container';
 import { useEffect, useState } from 'react';
@@ -29,7 +28,8 @@ const NoticesCategoriesList = () => {
     setLabel(label);
   }, [noticesNavLinks, currentLocationPath]);
 
-  const { data, error, isLoading, isFetching } = useGetNoticesQuery({
+  //isLoading, error!!!!
+  const { data } = useGetNoticesQuery({
     category,
   });
 
