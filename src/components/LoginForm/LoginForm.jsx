@@ -8,6 +8,8 @@ import { BiShow, BiHide } from 'react-icons/bi';
 import Container from 'components/Container';
 import { ThreeDots } from 'react-loader-spinner';
 import { LoaderUser } from 'components/PetsData/PetsData.styled';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Section,
   Title,
@@ -43,8 +45,14 @@ const LoginForm = () => {
         password: password,
       })
     ).then(res => {
-      if (res.payload.status === 'success') {
+      if (res.payload === 'success') {
         navigate('/user', { replace: true });
+      }
+      if (res.payload === 'Request failed with status code 409') {
+        toast.error(
+          'Request failed with status code 409',
+          { autoClose: 5000 }
+        );
       }
     });
     actions.resetForm();
@@ -53,6 +61,7 @@ const LoginForm = () => {
     <Section>
       <Container>
         <Wrapper>
+          <ToastContainer/>
           <Title>Login</Title>
           <Formik
             initialValues={initialValues}
