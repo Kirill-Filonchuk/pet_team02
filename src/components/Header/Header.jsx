@@ -18,12 +18,10 @@ import { GrClose } from 'react-icons/gr';
 import { Logo } from '../Logo/Logo';
 
 export const Header = () => {
-  //   const [nav, setNav] = useState(false);
   const [isOpen, setOpen] = useState(false);
   const toggle = () => {
     setOpen(!isOpen);
   };
-  //   const showMenu = () => setNav(!nav);
 
   return (
     <HeaderStyle>
@@ -43,7 +41,6 @@ export const Header = () => {
               <LogoStyle onClick={toggle}>
                 <Logo />
               </LogoStyle>
-
               <AuthNavigate style={{ marginBottom: 20 }}>
                 <LinkAuth to="/login" onClick={toggle}>
                   Login
@@ -52,7 +49,6 @@ export const Header = () => {
                   Registation
                 </LinkAuth>
               </AuthNavigate>
-
               <Link to="/news" onClick={toggle}>
                 News
               </Link>
