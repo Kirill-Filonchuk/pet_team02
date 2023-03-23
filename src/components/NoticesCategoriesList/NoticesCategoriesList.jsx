@@ -7,46 +7,57 @@ import { useLocation } from 'react-router-dom';
 import Paginator from 'components/Paginator';
 import { PaginatorWrapper } from './NoticesCategoriesList.styled';
 import { useWindowSize } from 'hooks/useWindowSize';
-// import useAuth from 'hooks/useAuth/useAuth';
+import { useGetNoticesQuery } from 'redux/notices/noticesApi';
+import useAuth from 'hooks/useAuth/useAuth';
 
 const NoticesCategoriesList = () => {
   const noticesNavLinks = useOutletContext();
   const { pathname: currentLocationPath } = useLocation();
 
-  const [pets, setPets] = useState([]);
-  const [title, setTitle] = useState();
+  // const [pets, setPets] = useState([]);
+  const [label, setLabel] = useState();
+  const [page, setPage] = useState(1);
+
   const { isDesktop } = useWindowSize();
-
-  // const { isLoggedIn } = useAuth();
-  const isLoggedIn = !true;
-
-  //Temporary useEffect -> mockAPI
-  useEffect(() => {
-    const getPets = async () => {
-      const response = await axios.get(
-        'https://641493898dade07073c3d8df.mockapi.io/api/pets/pets-list'
-      );
-      // console.log(response.data);
-      setPets(response.data);
-    };
-
-    getPets();
-  }, []);
+  const { isLoggedIn } = useAuth();
+  // const isLoggedIn = !true;
 
   useEffect(() => {
-    const { title } = noticesNavLinks.find(
+    const { label } = noticesNavLinks.find(
       ({ to }) => to === currentLocationPath
     );
-    setTitle(title);
+    setLabel(label);
   }, [noticesNavLinks, currentLocationPath]);
 
-  //test fake pagintation
-  const [page, setPage] = useState(1);
+  const { data, error, isLoading, isFetching } = useGetNoticesQuery({
+    category: 'sell',
+  });
+
+  if (!data) {
+    return;
+  }
+
+  const { result: pets } = data;
+
+  console.log(pets);
+
+  // Temporary useEffect -> mockAPI
+  // useEffect(() => {
+  //   const getPets = async () => {
+  //     const response = await axios.get(
+  //       'https://641493898dade07073c3d8df.mockapi.io/api/pets/pets-list'
+  //     );
+  //     // console.log(response.data);
+  //     setPets(response.data);
+  //   };
+
+  //   getPets();
+  // }, []);
 
   return (
     <section>
       <Container>
-        <NoticesCardList label={title} list={pets} isLoggedIn={isLoggedIn} />
+        <NoticesCardList label={label} list={pets} isLoggedIn={isLoggedIn} />
 
         <PaginatorWrapper>
           <Paginator
