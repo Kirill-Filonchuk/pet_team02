@@ -19,7 +19,8 @@ import { Logo } from '../Logo/Logo';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import Account from 'components/Account/Account';
-import AccountBurger from 'components/Account/AccountBurger';
+import { ReactComponent as AccountIcon } from '../../images/home/svg/account.svg'
+
 
 export const Header = () => {
   const isLoggedin = useSelector(selectIsLoggedIn);
@@ -54,11 +55,10 @@ export const Header = () => {
               </LogoStyle>
 
               {isLoggedin ? (
-                <AccountBurger />
+                <LinkAuth to="/user" onClick={toggle} style={{ display: 'flex'}}>
+                 <AccountIcon/> Account
+                </LinkAuth>
               ) : (
-                <AuthNavigate style={{ marginBottom: 20 }} />
-              )}
-
               <AuthNavigate style={{ marginBottom: 20 }}>
                 <LinkAuth to="/login" onClick={toggle}>
                   Login
@@ -67,8 +67,7 @@ export const Header = () => {
                   Registation
                 </LinkAuth>
               </AuthNavigate>
-
-              {/* } */}
+              )}
 
               <Link to="/news" onClick={toggle}>
                 News
