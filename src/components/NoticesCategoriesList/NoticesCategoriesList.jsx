@@ -11,26 +11,26 @@ import { useGetNoticesQuery } from 'redux/notices/noticesApi';
 import useAuth from 'hooks/useAuth/useAuth';
 
 const NoticesCategoriesList = () => {
+  const { isLoggedIn } = useAuth();
+  const { isDesktop } = useWindowSize();
+
   const noticesNavLinks = useOutletContext();
   const { pathname: currentLocationPath } = useLocation();
 
-  // const [pets, setPets] = useState([]);
   const [label, setLabel] = useState();
   const [page, setPage] = useState(1);
-
-  const { isDesktop } = useWindowSize();
-  const { isLoggedIn } = useAuth();
-  // const isLoggedIn = !true;
+  const [category, setCategory] = useState(1);
 
   useEffect(() => {
-    const { label } = noticesNavLinks.find(
+    const { label, category } = noticesNavLinks.find(
       ({ to }) => to === currentLocationPath
     );
+    setCategory(category);
     setLabel(label);
   }, [noticesNavLinks, currentLocationPath]);
 
   const { data, error, isLoading, isFetching } = useGetNoticesQuery({
-    category: 'sell',
+    category,
   });
 
   if (!data) {

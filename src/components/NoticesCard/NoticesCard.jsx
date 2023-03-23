@@ -14,11 +14,10 @@ import {
 } from './NoticesCard.styled';
 import { useState } from 'react';
 import { trimText } from 'utils/trimText';
-// import { useEffect } from 'react';
 // import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import defaultImage from 'assets/images/pets-default-image.jpg';
-import { useEffect } from 'react';
-import axios from 'axios';
+// import { useEffect } from 'react';
+// import axios from 'axios';
 
 const NO_INFO = '-';
 
@@ -30,7 +29,7 @@ const NoticesCard = ({
   breed = NO_INFO,
   place = NO_INFO,
   age = NO_INFO,
-  price,
+  price = '',
   isMine = false,
   isFavorite = false,
   isLoggedIn,

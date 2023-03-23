@@ -22,16 +22,18 @@ const Notices = () => {
   // const isLoggedIn = !true;
 
   const noticesNavLinks = [
-    { title: 'sell', label: 'Sell', to: ROUTES.NOTICES_SELL },
+    { title: 'sell', label: 'Sell', to: ROUTES.NOTICES_SELL, category: 'sell' },
     {
       title: 'lost-found',
       label: 'Lost / found',
       to: ROUTES.NOTICES_LOST_FOUND,
+      category: 'lost-found',
     },
     {
       title: 'in good hands',
       label: 'In good hands',
       to: ROUTES.NOTICES_FOR_FREE,
+      category: 'for-free',
     },
   ];
 
@@ -41,8 +43,14 @@ const Notices = () => {
         title: 'favorite ads',
         label: 'Favorite ads',
         to: ROUTES.NOTICES_FAVORITE,
+        category: 'favorite',
       },
-      { title: 'my ads', label: 'My ads', to: ROUTES.NOTICES_OWN }
+      {
+        title: 'my ads',
+        label: 'My ads',
+        to: ROUTES.NOTICES_OWN,
+        category: 'own',
+      }
     );
   }
 
