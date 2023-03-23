@@ -9,14 +9,24 @@ import {
   NoticesWrapper,
 } from './Notices.styled';
 import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ROUTES } from 'router';
 import PageTitle from 'components/UIKit/PageTitle';
+// <<<<<<< Updated upstream
 // import useAuth from 'hooks/useAuth/useAuth';
+// =======
+// import useAuth from 'hooks/useAuth/useAuth';
+import ModalAddPet from 'components/AddPet/ModalAddPet';
+// >>>>>>> Stashed changes
 // import { useDispatch } from 'react-redux';
 // import { logOut } from 'redux/auth/operations';
 
 const Notices = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const togleModal = () => {
+    setShowModal(!showModal);
+  };
   //TEMP CODE FOR FUN!!!!
   // const dispatch = useDispatch();
   //TEMP CODE FOR FUN!!!!
@@ -65,12 +75,13 @@ const Notices = () => {
 
           <NoticesToolBar>
             <NoticesCategoriesNav links={noticesNavLinks} />
-            <AddNoticeButton />
+            <AddNoticeButton onClick={togleModal} />
           </NoticesToolBar>
         </Container>
       </NoticeSection>
 
       <Outlet context={noticesNavLinks} />
+      {showModal && <ModalAddPet onClose={togleModal} />}
     </NoticesWrapper>
   );
 };
