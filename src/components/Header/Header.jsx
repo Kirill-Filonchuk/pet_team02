@@ -22,13 +22,14 @@ import Account from 'components/Account/Account';
 import AccountBurger from 'components/Account/AccountBurger';
 
 export const Header = () => {
+
   const isLoggedin = useSelector(selectIsLoggedIn)
   //   const [nav, setNav] = useState(false);
+
   const [isOpen, setOpen] = useState(false);
   const toggle = () => {
     setOpen(!isOpen);
   };
-  //   const showMenu = () => setNav(!nav);
 
   return (
     <HeaderStyle>
@@ -50,7 +51,11 @@ export const Header = () => {
               <LogoStyle onClick={toggle}>
                 <Logo />
               </LogoStyle>
+
               {isLoggedin ? <AccountBurger /> : <AuthNavigate style={{ marginBottom: 20 }}>
+
+             // <AuthNavigate style={{ marginBottom: 20 }}>
+
                 <LinkAuth to="/login" onClick={toggle}>
                   Login
                 </LinkAuth>
@@ -58,6 +63,7 @@ export const Header = () => {
                   Registation
                 </LinkAuth>
               </AuthNavigate>
+
               }
 
               <Link to="/news" onClick={toggle}>

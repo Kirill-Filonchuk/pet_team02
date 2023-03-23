@@ -27,7 +27,7 @@ const LogoStyle = styled.p`
   transition-property: transform;
   transition-duration: 500ms;
   &:hover {
-    transform: scale(1.5);
+    transform: scale(1.3);
   }
 
   ${p => p.theme.mq.tablet} {
@@ -35,7 +35,6 @@ const LogoStyle = styled.p`
     line-height: 48px;
   }
   ${p => p.theme.mq.desktop} {
-    /* margin-right: 80px; */
     font-size: ${p => p.theme.fontSizes[7]}px;
     line-height: 48px;
   }

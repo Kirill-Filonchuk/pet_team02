@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import HeartIcon from './HeartIcon';
-import { HiTrash } from 'react-icons/hi';
+import NoticeDeleteButton from './NoticeDeleteButton';
+import OptionsTable from './OptionsTable';
+import NoticeFavoriteButton from './NoticeFavoriteButton';
 import {
   Article,
   BtnWrapper,
-  Favorite,
   Image,
   ImageWrapper,
   Label,
@@ -13,8 +13,9 @@ import {
   Title,
 } from './NoticesCard.styled';
 import { useState } from 'react';
-import OptionsTable from './OptionsTable';
 import { trimText } from 'utils/trimText';
+// import { useEffect } from 'react';
+// import { useNotifyPosition } from 'hooks/useNotifyPosition';
 
 const NoticesCard = ({
   id,
@@ -27,46 +28,62 @@ const NoticesCard = ({
   price,
   isMine = false,
   isFavorite = false,
+  isLoggedIn,
 }) => {
   const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
 
+  // useEffect(() => {
+  //   console.log(`card id ${id} favorite: ${isFavoriteCard}`);
+  //   //here should be code for update favorite
+  // }, [isFavoriteCard, id]);
+
+  const onFavoriteClickHandler = () => {
+    //here should be code for update favorite/ After resolve positive response
+    console.log(`card id ${id} favorite: ${isFavoriteCard}`);
+    setIsFavoriteCard(!isFavoriteCard);
+  };
+
   return (
-    <Article>
-      <ImageWrapper>
-        <Image src={img} alt="title" />
-      </ImageWrapper>
+    <>
+      <Article>
+        <ImageWrapper>
+          <Image src={img} alt="title" />
+        </ImageWrapper>
 
-      <Meta>
-        <Title>{trimText(title, 13)}</Title>
-        <OptionsTable
-          options={[
-            { key: 'Breed', value: trimText(breed, 13) },
-            { key: 'Place', value: trimText(place, 13) },
-            { key: 'Age', value: age },
-            { key: 'Price', value: price, isPrice: true },
-          ]}
+        <Meta>
+          <Title>{trimText(title, 13)}</Title>
+          <OptionsTable
+            options={[
+              { key: 'Breed', value: trimText(breed, 13) },
+              { key: 'Place', value: trimText(place, 13) },
+              { key: 'Age', value: age },
+              { key: 'Price', value: price, isPrice: true },
+            ]}
+          />
+
+          <BtnWrapper>
+            <NoticeCardButton type="button">Learn more</NoticeCardButton>
+
+            {isMine && <NoticeDeleteButton id={id} />}
+          </BtnWrapper>
+        </Meta>
+
+        <Label>{label}</Label>
+
+        <NoticeFavoriteButton
+          isFavorite={isFavoriteCard}
+          onClick={onFavoriteClickHandler}
+          isLoggedIn={isLoggedIn}
         />
-
-        <BtnWrapper>
-          <NoticeCardButton type="button">Learn more</NoticeCardButton>
-          {isMine && (
-            <NoticeCardButton type="button" isDelete>
-              Delete <HiTrash size={18} />
-            </NoticeCardButton>
-          )}
-        </BtnWrapper>
-      </Meta>
-
-      <Label>{label}</Label>
-
-      <Favorite
-        onClick={() => {
-          setIsFavoriteCard(!isFavoriteCard);
-        }}
-      >
-        <HeartIcon isFavorite={isFavoriteCard} />
-      </Favorite>
-    </Article>
+        {/* <Favorite
+          onClick={() => {
+            setIsFavoriteCard(!isFavoriteCard);
+          }}
+        >
+          <HeartIcon isFavorite={isFavoriteCard} />
+        </Favorite> */}
+      </Article>
+    </>
   );
 };
 
@@ -83,4 +100,5 @@ NoticesCard.propTypes = {
   price: PropTypes.string,
   isMine: PropTypes.bool,
   isFavorite: PropTypes.bool,
+  isLoggedIn: PropTypes.bool.isRequired,
 };

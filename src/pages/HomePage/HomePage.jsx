@@ -20,6 +20,7 @@ const HeroTitle = styled.h1`
 
 `;
 
+
 const Hero = styled.div`
 width: 100%;
    height: 480px;
@@ -29,18 +30,25 @@ background-position: 20px bottom, -86px 51px;
 `
 
 // const Image = styled.div`
+
+// const Image = styled.section`
+//   position: absolute;
+//   z-index: -1;
+//   display: flex;
+//   align-items: center;
+//   left: 0;
+//   right: 0;
+//   top: 0;
+//   height: 100%;
+
 //   ${p => p.theme.mq.mob} {
-//     /* height: 65vh; */
-//     height: 100vh;
-//     background: url(${DogMob}) center bottom fixed,
-//       url(${VolnaMob2}) -100px bottom fixed,
-//       url(${VolnaMob1}) -100px bottom fixed;
-//     min-height: 65vh;
+//     background: url(${DogMob}), url(${VolnaMob2}), url(${VolnaMob1});
 //     background-repeat: no-repeat;
-//     object-fit: cover;
-//     background-size: 280px, 620px, 620px;
-//     background-position-y: 160%, 110%, 110%;
-//     /* z-index: 1; */
+//     object-fit: contain;
+//     overflow-y: hidden, hidden, hidden;
+//     background-position: bottom;
+//     background-position-y: 170%, 120%, 120%;
+
 //   }
 //   ${p => p.theme.mq.mob} {
 //   }
