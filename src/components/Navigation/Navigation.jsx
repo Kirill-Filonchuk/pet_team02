@@ -1,39 +1,51 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-// import { Logo } from '../Logo/Logo';
-// import { AuthNav } from './AuthNav';
 
 export const Nav = () => {
   return (
-    <>
+    <nav>
       <Menu>
-        <Link to="/news">News</Link>
-        <Link to="/notices">Find pet</Link>
-        <Link to="/friends">Our friends</Link>
-        {/* <AuthNav /> */}
+        <Wrapp>
+          <Link to="/news">News</Link>
+        </Wrapp>
+        <Wrapp>
+          <Link to="/notices">Find pet</Link>
+        </Wrapp>
+        <Wrapp>
+          <Link to="/friends">Our friends</Link>
+        </Wrapp>
       </Menu>
-    </>
+    </nav>
   );
 };
 
-export const Menu = styled.nav`
+export const Menu = styled.ul`
   ${p => p.theme.mq.desktop} {
     display: flex;
-    justify-content: center;
-    /* flex-direction: row; */
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
+    text-decoration: none;
   }
   ${p => p.theme.mq.notDesktop} {
     display: none;
   }
 `;
-
+export const Wrapp = styled.li`
+  ${p => p.theme.mq.desktop} {
+    text-align: center;
+    margin-right: 80px;
+    padding-top: 10px;
+    padding-bottom: 11px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+`;
 export const Link = styled(NavLink)`
-  display: inline-block;
+  display: block;
   text-align: center;
   text-decoration: none;
-  margin-right: 80px;
   color: black;
   font-family: ${p => p.theme.fonts.manrope};
   font-size: ${p => p.theme.fontSizes[4]}px;
@@ -43,9 +55,7 @@ export const Link = styled(NavLink)`
   letter-spacing: 0.04em;
   transition-property: color, transform;
   transition-duration: ${p => p.theme.transitions.durations.default};
-  &:last-child {
-    margin-right: 0;
-  }
+
   &.active {
     color: #f59256;
   }
