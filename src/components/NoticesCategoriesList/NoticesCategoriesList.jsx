@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import Paginator from 'components/Paginator';
 import { PaginatorWrapper } from './NoticesCategoriesList.styled';
 import { useWindowSize } from 'hooks/useWindowSize';
+// import useAuth from 'hooks/useAuth/useAuth';
 
 const NoticesCategoriesList = () => {
   const noticesNavLinks = useOutletContext();
@@ -15,6 +16,9 @@ const NoticesCategoriesList = () => {
   const [pets, setPets] = useState([]);
   const [title, setTitle] = useState();
   const { isDesktop } = useWindowSize();
+
+  // const { isLoggedIn } = useAuth();
+  const isLoggedIn = !true;
 
   //Temporary useEffect -> mockAPI
   useEffect(() => {
@@ -42,7 +46,7 @@ const NoticesCategoriesList = () => {
   return (
     <section>
       <Container>
-        <NoticesCardList label={title} list={pets} />
+        <NoticesCardList label={title} list={pets} isLoggedIn={isLoggedIn} />
 
         <PaginatorWrapper>
           <Paginator
