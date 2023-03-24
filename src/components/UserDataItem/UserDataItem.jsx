@@ -168,12 +168,15 @@ export default function UserDataItem({
                 <div
                   style={{
                     color: 'red',
-                    fontSize: '.7rem',
+                    fontSize: '.6rem',
+                    position: 'relative',
                     // position: 'absolute',
-                    // left: '13%',
-                    // top: '85%',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
+                    left: '25%',
+                    top: '75%',
+                    maxWidth: '80%',
+                    marginBottom: '4px',
+                    // marginLeft: 'auto',
+                    // marginRight: 'auto',
                   }}
                 >
                   {/* {toast.error(msg, { autoClose: 3000 })} */}

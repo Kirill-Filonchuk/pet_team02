@@ -29,6 +29,7 @@ export const FieldText = styled.p`
   display: flex;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.black};
+
   ${theme.mq.tablet} {
     width: 83px;
     font-size: ${p => p.theme.fontSizes[3]}px;
@@ -45,6 +46,9 @@ export const StyledValue = styled.p`
   margin-left: 19px;
   color: ${p => p.theme.colors.black};
   /* position: relative; */
+
+  /* display: flex;
+  flex-wrap: wrap; */
 
   ${theme.mq.tablet} {
     margin-left: 26px;

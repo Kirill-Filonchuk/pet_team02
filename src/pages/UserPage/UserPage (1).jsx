@@ -1,10 +1,9 @@
 import { ThreeDots } from 'react-loader-spinner';
-import { MainContainer } from './UserPage.styled';
 import UserData from 'components/UserData/UserData';
 import PetsData from 'components/PetsData/PetsData';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import useAuth from '../../hooks/useAuth/useAuth';
+import { useAuth } from '../../hooks/useAuth/useAuth';
 import { refreshUser } from '../../redux/auth/operations';
 import {
   UserContainer,
@@ -25,6 +24,7 @@ const UserPage = () => {
       dispatch(refreshUser());
     }
   }, [dispatch, user]);
+  // }, [dispatch, user]);
 
   return (
     <section>
@@ -38,22 +38,23 @@ const UserPage = () => {
           />
         </LoaderUser>
       ) : (
-        user &&
-        isLogin && (
+        {
+        
+          user && isLogin && (
           <>
-            <MainContainer>
-              <UserContainer>
-                <UserWrapper>
-                  <UserData user={user} />
-                </UserWrapper>
-                <PetsWrapper>
-                  <PetsData />
-                </PetsWrapper>
-              </UserContainer>
-            </MainContainer>
-          </>
-        )
-      )}
+          <UserContainer>
+            <UserWrapper>
+              <UserData user={user} />
+            </UserWrapper>
+            <PetsWrapper>
+              <PetsData />
+            </PetsWrapper>
+            </UserContainer>
+            </>
+      })
+        
+      )
+      }
     </section>
   );
 };

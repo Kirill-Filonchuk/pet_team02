@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as EditIcon } from '../../images/userData/camera-icon.svg';
 import { theme } from 'theme';
+import { RiCloseCircleLine } from 'react-icons/ri';
 
 export const UserTitle = styled.h2`
   margin-bottom: 18px;
@@ -61,6 +62,7 @@ export const ImageContainer = styled.div`
   align-items: center;
 
   margin-bottom: 36px;
+
   ${theme.mq.tablet} {
     margin-bottom: auto;
   }
@@ -77,9 +79,29 @@ export const ImageWrapper = styled.div`
   margin-bottom: 12px;
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
 
-  overflow: hidden;
+  /* overflow: hidden; */
+  position: relative;
+
   ${theme.mq.tablet} {
     margin-bottom: auto;
+  }
+`;
+
+export const CloseBtnWrapper = styled.div`
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  bottom: 9%;
+  right: 4%;
+`;
+export const CloseCircleLine = styled(RiCloseCircleLine)`
+  width: 100%;
+  height: 100%;
+  color: ${p => p.theme.colors.accent};
+  transition: transform 250ms linear;
+  &:hover,
+  :focus {
+    transform: scale(1.2);
   }
 `;
 
@@ -87,6 +109,7 @@ export const StyledImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
+  border-radius: ${p => p.theme.radii.round};
 `;
 
 export const InputWrapper = styled.div`
@@ -122,7 +145,7 @@ export const InputFile = styled.input`
 export const EditImageBtn = styled.button`
   display: flex;
   align-items: center;
-  color: #111111;
+  color: ${p => p.theme.colors.black};
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
