@@ -1,6 +1,5 @@
 import { Item, List } from './OurFriendsList.styled';
 import { useEffect, useState } from 'react';
-// import propTypes from 'prop-types';
 import axios from 'axios';
 import OurFriendsCard from 'components/OurFriendsCard';
 
@@ -14,7 +13,7 @@ const OurFriendsList = () => {
       );
       //   console.log('response===', response);
       const data = response.data.result;
-      console.log('data===', data);
+      // console.log('data===', data);
       setFriends(data);
     };
     getOurFriends();
@@ -30,10 +29,5 @@ const OurFriendsList = () => {
     </List>
   );
 };
-
-// NewsList.propTypes = {
-//   searchWord: propTypes.string.isRequired,
-//   notify: propTypes.func.isRequired,
-// };
 
 export default OurFriendsList;
