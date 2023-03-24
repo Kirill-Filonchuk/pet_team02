@@ -19,6 +19,9 @@ export const Item = styled('li')`
   width: 100%;
   margin-bottom: 40px;
 
+  background-color: ${theme.colors.white};
+  border-radius: 20px;
+
   &:last-child {
     margin-bottom: 0;
   }
