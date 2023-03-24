@@ -15,7 +15,7 @@ const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
   async ({ url, method, data, params }) => {
     try {
-      console.log(api.defaults.headers.common.Authorization);
+      // console.log(api.defaults.headers.common.Authorization);
       const result = await api({ url: baseUrl + url, method, data, params });
       return { data: result.data };
     } catch (axiosError) {
