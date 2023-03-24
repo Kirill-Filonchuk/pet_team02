@@ -17,17 +17,22 @@ export const List = styled('ul')`
 
 export const Item = styled('li')`
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 12px;
 
   background-color: ${theme.colors.white};
   border-radius: 20px;
+  padding: 12px 5px 12px;
+
+  box-shadow: 7px 4px 14px 0px #31150412;
 
   &:last-child {
     margin-bottom: 0;
   }
 
   ${theme.mq.tablet} {
-    margin-bottom: 28px;
+    margin-bottom: 0;
+    padding: 16px 5px 16px;
+    border-radius: 40px;
     flex-basis: calc((100% - 32px) / 2);
   }
 
