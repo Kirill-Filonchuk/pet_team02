@@ -4,16 +4,16 @@ import { theme } from 'theme';
 export const MainContainer = styled.div`
   width: 320px;
   margin: 0 auto;
-  padding: 0 20px;
-
+  /* padding: 0 20px; */
   ${theme.mq.tablet} {
     width: 768px;
-    padding: 0 32px;
+    /* padding: 0 32px; */
+    margin: 0;
   }
 
   @${theme.mq.desktop} {
-    width: 1300px;
-    padding: 0 16px;
+    width: 1280px;
+    /* padding: 0 16px; */
   }
 `;
 
