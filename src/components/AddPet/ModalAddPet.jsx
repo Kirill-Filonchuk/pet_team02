@@ -38,10 +38,10 @@ export default function ModalAddPet({ onClose }) {
         <div className={styles.modal}>
           <div className={styles.modalHeder}>
             <h2 className={styles.heading}>Add pet</h2>
-            <h3 style={{ color: 'black' }}>
+            <p className={styles.titleForm}>
               Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit
               amet, consectetur
-            </h3>
+            </p>
           </div>
           <button className={styles.closeBtn} onClick={onClose}>
             <RiCloseLine style={{ marginBottom: '-3px' }} />
