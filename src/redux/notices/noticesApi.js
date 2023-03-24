@@ -1,12 +1,20 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { api, BASE_URL } from 'Services/AxiosConfig';
 
-export const API_CATEGORIES_ROUTES = {
-  SELL: 'sell',
-  LOST_FOUND: 'lost-found',
-  FOR_FREE: 'for-free',
-  FAVORITE: 'favorite',
-  OWN: 'own',
+// export const API_CATEGORIES_ROUTES = {
+//   SELL: 'sell',
+//   LOST_FOUND: 'lost-found',
+//   FOR_FREE: 'for-free',
+//   FAVORITE: 'favorite',
+//   OWN: 'own',
+// };
+
+export const NOTICES_API_ENDPOINTS = {
+  SELL: '/categories/sell',
+  LOST_FOUND: '/categories/lost-found',
+  IN_GOOD_HANDS: '/categories/in-good-hands',
+  FAVORITES: '/favorites',
+  OWN: '/',
 };
 
 //Need to export asxios instance "api"
@@ -20,6 +28,7 @@ const axiosBaseQuery =
       return { data: result.data };
     } catch (axiosError) {
       let err = axiosError;
+      // console.log(err);
       return {
         error: {
           status: err.response?.status,
@@ -71,33 +80,33 @@ export const noticesApi = createApi({
       }),
     }),
 
+    // addNotice: builder.mutation({
+    //   query: body => ({
+    //     url: '/notice',
+    //     method: 'POST',
+    //     body,
+    //   }),
+    // }),
+
     addNotice: builder.mutation({
-      query: body => ({
-        url: '/',
-        method: 'POST',
-        body,
-      }),
+      query: body => {
+        // console.log('body', body);
+
+        const test = {
+          url: '/notice',
+          method: 'POST',
+          body,
+        };
+        console.log(test);
+
+        return test;
+        // return {
+        //   url: '/notice',
+        //   method: 'POST',
+        //   body,
+        // };
+      },
     }),
-
-    // getUserFavoriteNotices: builder.query({
-    //   query: ({ userId, search, page }) => ({
-    //     url: `/${userId}/favorites`,
-    //     params: {
-    //       search,
-    //       page,
-    //     },
-    //   }),
-    // }),
-
-    // getUserOwnNotices: builder.query({
-    //   query: ({ userId, search, page }) => ({
-    //     url: `/${userId}`,
-    //     params: {
-    //       search,
-    //       page,
-    //     },
-    //   }),
-    // }),
 
     updateNoticeFavoriteStatus: builder.mutation({
       query: ({ id, ...patch }) => ({

@@ -43,23 +43,6 @@ const NoticesCard = ({
     setIsFavoriteCard(!isFavoriteCard);
   };
 
-  //TEMP --- --  EVERY TIME DOWNLOAD IMAGE
-  // useEffect(() => {
-  //   async function checkAvatarImage() {
-  //     if (petAvatarURL) {
-  //       // console.log(petAvatarURL);
-  //       const res = await axios.get(petAvatarURL);
-  //       // console.log(res.status);
-  //       if (res.status === 200) {
-  //         setAvatar(petAvatarURL);
-  //       }
-  //     }
-  //   }
-
-  //   checkAvatarImage();
-  // });
-  //TEMP --- --  EVERY TIME DOWNLOAD IMAGE
-
   return (
     <>
       <Article>
