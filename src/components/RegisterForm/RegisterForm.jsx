@@ -7,9 +7,11 @@ import {
   validationRegisterStepTwo,
   InputError,
 } from 'components/FormValidation';
-import { MultiStepForm, FormStep } from './MultiForm';
 import { BiShow, BiHide } from 'react-icons/bi';
+import { ToastContainer, Slide } from 'react-toastify';
+import { notifyError } from 'components/Helpers/Toastify/Toastify';
 
+import { MultiStepForm, FormStep } from './MultiForm';
 import Container from 'components/Container';
 import {
   Title,
@@ -46,12 +48,16 @@ const RegisterForm = () => {
           phone: phone,
         })
       ).then(res => {
-        if (res.payload.status === 'success') {
+        console.log(res);
+        if (res.payload.code === 201) {
           navigate('/user', { replace: true });
+          actions.resetForm();
+        }
+        if (res.payload === 'Request failed with status code 409') {
+          notifyError(`User with email ${email} already exist`);
         }
       });
     }
-    actions.resetForm();
   };
 
   const togglePassword = () => {
@@ -66,6 +72,7 @@ const RegisterForm = () => {
     <Section>
       <Container>
         <Wrapper>
+          <ToastContainer transition={Slide} />
           <Title>Registration</Title>
           <MultiStepForm initialValues={initialValues} onSubmit={handleSubmit}>
             <FormStep

@@ -16,24 +16,34 @@ import {
 import { HiMenu } from 'react-icons/hi';
 import { GrClose } from 'react-icons/gr';
 import { Logo } from '../Logo/Logo';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import Account from 'components/Account/Account';
+import { ReactComponent as AccountIcon } from '../../images/home/svg/account.svg'
+
 
 export const Header = () => {
+  const isLoggedin = useSelector(selectIsLoggedIn);
   //   const [nav, setNav] = useState(false);
+
   const [isOpen, setOpen] = useState(false);
   const toggle = () => {
     setOpen(!isOpen);
   };
-  //   const showMenu = () => setNav(!nav);
 
   return (
     <HeaderStyle>
       <HeaderContainer>
         <Logo />
         <Nav />
-        <AuthNavigateTablet>
-          <LinkAuthTablet to="/login">Login</LinkAuthTablet>
-          <LinkAuthTablet to="/register">Registation</LinkAuthTablet>
-        </AuthNavigateTablet>
+        {isLoggedin ? (
+          <Account />
+        ) : (
+          <AuthNavigateTablet>
+            <LinkAuthTablet to="/login">Login</LinkAuthTablet>
+            <LinkAuthTablet to="/register">Registation</LinkAuthTablet>
+          </AuthNavigateTablet>
+        )}
         <MenuBtn onClick={toggle}>
           {isOpen ? <GrClose size={30} /> : <HiMenu size={40} />}
         </MenuBtn>
@@ -44,6 +54,11 @@ export const Header = () => {
                 <Logo />
               </LogoStyle>
 
+              {isLoggedin ? (
+                <LinkAuth to="/user" onClick={toggle} style={{ display: 'flex'}}>
+                 <AccountIcon/> Account
+                </LinkAuth>
+              ) : (
               <AuthNavigate style={{ marginBottom: 20 }}>
                 <LinkAuth to="/login" onClick={toggle}>
                   Login
@@ -52,6 +67,7 @@ export const Header = () => {
                   Registation
                 </LinkAuth>
               </AuthNavigate>
+              )}
 
               <Link to="/news" onClick={toggle}>
                 News

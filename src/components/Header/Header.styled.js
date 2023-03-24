@@ -10,7 +10,7 @@ export const HeaderStyle = styled.header`
 export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   height: 42px;
   margin: 0 auto;
@@ -192,6 +192,7 @@ export const AuthNavigateTablet = styled.div`
   }
   ${p => p.theme.mq.desktop} {
     padding-top: 20px;
+    margin-left: auto;
   }
 `;
 export const LinkAuthTablet = styled(NavLink)`
@@ -224,7 +225,6 @@ export const LinkAuthTablet = styled(NavLink)`
   ${p => p.theme.mq.desktop} {
     &:first-child {
       margin-right: 20px;
-      margin-left: 354px;
     }
   }
 `;

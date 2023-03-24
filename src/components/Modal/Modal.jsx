@@ -8,6 +8,14 @@ const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ children, isOpen, onClose }) => {
   useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
     const closeByEsc = e => {
       if (e.code !== 'Escape') {
         return;
@@ -27,15 +35,15 @@ const Modal = ({ children, isOpen, onClose }) => {
     enter: { opacity: 1 },
     leave: { opacity: 1 },
     config: {
-      duration: 250,
+      duration: 350,
     },
   });
 
   const springs = useSpring({
     opacity: isOpen ? 1 : 0,
-    transform: isOpen ? 'translateY(0%)' : 'translateY(-100%)',
+    transform: 'translate(-50%, -50%)',
     config: {
-      duration: 250,
+      duration: 350,
     },
   });
 
