@@ -36,7 +36,7 @@ export const HeaderContainer = styled.div`
 
   ${p => p.theme.mq.desktop} {
     /* justify-content: space-between; */
-    min-width: 1280px;
+    max-width: 1280px;
     padding-right: 16px;
     padding-left: 16px;
     margin: 0 auto;
