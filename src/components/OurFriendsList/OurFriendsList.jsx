@@ -2,7 +2,7 @@ import { Item, List } from './OurFriendsList.styled';
 import { useEffect, useState } from 'react';
 // import propTypes from 'prop-types';
 import axios from 'axios';
-// import NewsCard from 'components/NewsCard';
+import OurFriendsCard from 'components/OurFriendsCard';
 
 const OurFriendsList = () => {
   const [friends, setFriends] = useState([]);
@@ -24,8 +24,7 @@ const OurFriendsList = () => {
     <List>
       {friends.map(item => (
         <Item key={item._id}>
-          {/* <NewsCard {...item} /> */}
-          <p>{item.title}</p>
+          <OurFriendsCard {...item} />
         </Item>
       ))}
     </List>
