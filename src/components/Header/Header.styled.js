@@ -2,57 +2,39 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const HeaderStyle = styled.header`
-  /* position: fixed; */
-  display: flex;
-  align-items: center;
-  width: 100%;
-`;
-export const HeaderContainer = styled.div`
-  display: flex;
+padding: 16px 20px;
+    display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  height: 42px;
-  margin: 0 auto;
-  /* margin-left: auto;
-  margin-right: auto; */
-  background-color: ${p => p.theme.colors.background};
-  min-width: 320px;
-  padding-top: 16px;
-  /* padding-bottom: 16px; */
-  padding-left: 20px;
-  padding-right: 20px;
+  ${p => p.theme.mq.tablet} {
+    padding: 24px 32px;
+      }
+`;
+export const Block = styled.div`
+  display: flex;
+  width: 100wv;
+
+  
 
   ${p => p.theme.mq.tablet} {
-    /* justify-content: space-between; */
     align-items: center;
-    min-width: 768px;
     height: 48px;
-    padding-top: 24px;
-    /* padding-bottom: 24px; */
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-
-  ${p => p.theme.mq.desktop} {
-    /* justify-content: space-between; */
-    max-width: 1280px;
-    padding-right: 16px;
-    padding-left: 16px;
-    margin: 0 auto;
-    height: 48px;
+ 
   }
 `;
 
 export const MenuBtn = styled.button`
   display: flex;
+justify-content: center;
+
   cursor: pointer;
   z-index: 11;
   background-color: transparent;
   border: ${p => p.theme.borders.none};
   transition-property: transform;
   transition-duration: 500ms;
-
+  padding: 0;
+ 
   &:hover {
     color: ${p => p.theme.colors.accent};
     text-decoration-line: none;
@@ -69,30 +51,27 @@ export const MenuBtn = styled.button`
 export const Burger = styled.div`
   display: flex;
   align-content: center;
+
 `;
 
 export const ListMenu = styled.nav`
-  ${p => p.theme.mq.mob} {
     display: flex;
     flex-direction: column;
     align-content: center;
     align-items: center;
-    justify-content: center;
-    position: fixed;
-    left: 0;
+    position: absolute;
     right: 0;
-    bottom: 0;
     width: 100%;
     height: 100%;
-    padding: 16px 20px;
-
-    /* pointer-events: none; */
     background-color: #fdf7f2;
     z-index: 10;
-  }
 
+  ${p => p.theme.mq.tablet} {
+    height: 100hv;
+
+  }
   ${p => p.theme.mq.desktop} {
-    display: none;
+      display: none;
   }
 `;
 
@@ -144,7 +123,9 @@ export const Link = styled(NavLink)`
     transition-duration: 500ms;
   }
   ${p => p.theme.mq.desktop} {
-    display: hidden;
+    margin-top: 0;
+    margin-right: 80px;
+    
   }
 `;
 export const LinkAuth = styled(NavLink)`
@@ -179,6 +160,8 @@ export const LinkAuth = styled(NavLink)`
 
 export const AuthNavigate = styled.div`
   display: flex;
+padding-top: 5px;
+
 
   ${p => p.theme.mq.tabletOnly} {
     display: none;
@@ -186,12 +169,12 @@ export const AuthNavigate = styled.div`
 `;
 
 export const AuthNavigateTablet = styled.div`
-  display: flex;
-  ${p => p.theme.mq.mobileOnly} {
     display: none;
+  ${p => p.theme.mq.tablet} {
+    display: flex;
   }
   ${p => p.theme.mq.desktop} {
-    padding-top: 20px;
+    // padding-top: 20px;
     margin-left: auto;
   }
 `;
@@ -233,3 +216,12 @@ export const LogoStyle = styled.div`
   top: 2%;
   left: 10%;
 `;
+
+export const NavigateList = styled.div`
+display: none;
+
+${p => p.theme.mq.desktop} {
+  display: flex;
+}
+
+`

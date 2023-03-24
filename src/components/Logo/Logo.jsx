@@ -28,10 +28,9 @@ export const drop = keyframes`
     opacity: 0;
   }
 
- 
-`;
-const LogoStyle = styled.p`
-  position: relative;
+
+const LogoStyle = styled.a`
+
   display: inline-block;
   font-family: ${p => p.theme.fonts.poppins};
   font-size: ${p => p.theme.fontSizes[6]}px;
@@ -39,7 +38,11 @@ const LogoStyle = styled.p`
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 42px;
   letter-spacing: 0.07em;
-  transition: all 0.3s ease;
+
+  z-index: 10;
+
+
+
   transition-property: transform;
   transition-duration: 900ms;
 
@@ -74,7 +77,7 @@ const Link = styled(NavLink)`
     margin-right: 158px;
   }
   ${p => p.theme.mq.tablet} {
-    margin-right: 246px;
+    // margin-right: 100px;
   }
   ${p => p.theme.mq.desktop} {
     margin-right: 80px;
