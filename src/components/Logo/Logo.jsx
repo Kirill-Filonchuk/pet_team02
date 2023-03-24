@@ -15,7 +15,7 @@ export const Logo = () => {
   );
 };
 
-const LogoStyle = styled.p`
+const LogoStyle = styled.a`
   display: inline-block;
   font-family: ${p => p.theme.fonts.poppins};
   font-size: ${p => p.theme.fontSizes[6]}px;
@@ -23,6 +23,8 @@ const LogoStyle = styled.p`
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 42px;
   letter-spacing: 0.07em;
+  z-index: 10;
+
 
   transition-property: transform;
   transition-duration: 500ms;
@@ -47,7 +49,7 @@ const Link = styled(NavLink)`
     margin-right: 158px;
   }
   ${p => p.theme.mq.tablet} {
-    margin-right: 246px;
+    // margin-right: 100px;
   }
   ${p => p.theme.mq.desktop} {
     margin-right: 80px;

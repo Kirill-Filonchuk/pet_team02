@@ -16,7 +16,10 @@ padding: 8px 37px;
     text-decoration: none;
     color: ${theme.colors.white};
     display: flex;
-    align-items: center;
+    ${theme.mq.tablet} {
+        display: none;
+
+}
     `
 
 
@@ -48,10 +51,3 @@ padding: 8px 37px;
 }
 `
 
-// ${theme.mq.tablet} {
-
-// }
-
-// ${theme.mq.desktop} {
-    
-// }
