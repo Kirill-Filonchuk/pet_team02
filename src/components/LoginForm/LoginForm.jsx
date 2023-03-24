@@ -45,7 +45,8 @@ const LoginForm = () => {
         email: email,
         password: password,
       })
-    ).then(res => {
+    ).then((res) => {
+      console.log(res)
       if (res.payload.code === 200) {
         navigate('/user', { replace: true });
         actions.resetForm();

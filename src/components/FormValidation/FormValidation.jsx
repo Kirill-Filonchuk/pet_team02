@@ -1,12 +1,13 @@
 import * as yup from 'yup';
 import { ErrorMessage } from 'formik';
 import { Error } from './FormValidation.styled';
-const emailValid =
-  /^[^-._]{1}[A-Za-z0-9._-]{1,}@[^-._]{1}[A-Za-z0-9.-]{0,}\.[A-Za-z]{2,4}$/;
-const nameValid = /^[^\s][a-zA-zа-яіїєА-ЯІЇЄ .'-]*$/;
-const passwordValid = /^[^ ]+$/;
-const phoneValid = /^[+]{1}[0-9]{12}$/;
-const locationValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ .'-]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ .'-]+$/;
+
+const emailValid = /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
+const passwordValid =/(?!\s)^[^ ]{7,32}$/;
+const nameValid = /^[a-zA-zа-яіїєА-ЯІЇЄ ,.'-]+$/;
+const phoneValid = /^\+380\d{9}$/;
+const locationValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ]+$/;
+
 const validationLogin = yup.object().shape({
   email: yup
     .string()
