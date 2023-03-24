@@ -7,17 +7,18 @@ const TempAddPet = () => {
   useEffect(() => {
     async function addPet() {
       try {
-        await addNotice({
-          title: 'Title Che',
-          name: 'Ant',
-          birthday: '13.07.1983',
-          breed: 'human',
-          place: 'Irpin',
-          sex: 'male',
-          category: 'sell',
-          //   price: '150$',
-          // comments: 'String whith 8 symbol min',
-        });
+        // await addNotice({
+        //   title: 'Title Che',
+        //   name: 'Ant',
+        //   birthday: '13.07.1983',
+        //   breed: 'human',
+        //   place: 'Irpin',
+        //   sex: 'male',
+        //   category: 'sell',
+        //   //   price: '150$',
+        //   // comments: 'String whith 8 symbol min',
+        // });
+        await addNotice();
       } catch (error) {
         console.log(error);
       }
