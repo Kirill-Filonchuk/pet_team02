@@ -2,10 +2,10 @@ import { ThreeDots } from 'react-loader-spinner';
 import { MainContainer } from './UserPage.styled';
 import UserData from 'components/UserData/UserData';
 import PetsData from 'components/PetsData/PetsData';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 import useAuth from '../../hooks/useAuth/useAuth';
-import { refreshUser } from '../../redux/auth/operations';
+
 import {
   UserContainer,
   UserWrapper,
@@ -18,13 +18,6 @@ const UserPage = () => {
   const isLogin = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
   const { isRefreshing } = useAuth();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!user) {
-      dispatch(refreshUser());
-    }
-  }, [dispatch, user]);
 
   return (
     <section>

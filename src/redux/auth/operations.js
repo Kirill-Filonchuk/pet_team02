@@ -1,15 +1,14 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { BASE_URL } from 'components/Services/AxiosConfig';
-axios.defaults.baseURL = BASE_URL;
+import { api } from 'Services/AxiosConfig';
+
 //! add JWT
 const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  api.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 //! remove JWT
 const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
+  api.defaults.headers.common.Authorization = '';
 };
 
 //? REGISTRATION
@@ -17,7 +16,7 @@ const register = createAsyncThunk(
   'auth/signup',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post('/api/auth/signup', credentials);
+      const response = await api.post('/api/auth/signup', credentials);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -29,7 +28,7 @@ const register = createAsyncThunk(
 //? LOGIN
 const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
-    const response = await axios.post('/api/auth/login', credentials);
+    const response = await api.post('/api/auth/login', credentials);
     setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
@@ -40,7 +39,7 @@ const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
 //? LOGOUT
 const logOut = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.get('/api/auth/logout');
+    await api.get('/api/auth/logout');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -67,7 +66,7 @@ const updateUser = createAsyncThunk(
         },
       };
 
-      const response = await axios.patch('/api/auth/update', value, config);
+      const response = await api.patch('/api/auth/update', value, config);
 
       return response.data;
     } catch (error) {
@@ -88,7 +87,7 @@ const deleteUsersAvatar = createAsyncThunk(
     }
     try {
       setAuthHeader(persistedToken);
-      const response = await axios.get('/api/auth/deleteAvatar');
+      const response = await api.get('/api/auth/deleteAvatar');
 
       console.log(response.data);
       return response.data;
@@ -112,7 +111,7 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   try {
     // If there is a token, add it to the HTTP header and perform the request
     setAuthHeader(persistedToken);
-    const response = await axios.get('/api/user-pets');
+    const response = await api.get('/api/user-pets');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
