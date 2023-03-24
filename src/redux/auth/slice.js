@@ -20,6 +20,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  isSubmitting: false,
   error: null,
 };
 
@@ -33,12 +34,14 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.isSubmitting = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.result;
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.isSubmitting = false;
       })
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };
@@ -63,9 +66,11 @@ const authSlice = createSlice({
       })
       .addCase(register.pending, state => {
         state.isRefreshing = true;
+        state.isSubmitting = true;
       })
       .addCase(logIn.pending, state => {
         state.isRefreshing = true;
+        state.isSubmitting = true;
       })
       .addCase(logOut.pending, state => {
         state.isRefreshing = true;
@@ -82,10 +87,12 @@ const authSlice = createSlice({
       .addCase(register.rejected, (state, payload) => {
         state.error = payload.error;
         state.isRefreshing = false;
+        state.isSubmitting = false;
       })
       .addCase(logIn.rejected, (state, payload) => {
         state.error = payload.error;
         state.isRefreshing = false;
+        state.isSubmitting = false;
       })
       .addCase(logOut.rejected, (state, payload) => {
         state.error = payload.error;

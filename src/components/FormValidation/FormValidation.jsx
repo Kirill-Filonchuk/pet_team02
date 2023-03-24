@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import { ErrorMessage } from 'formik';
-import { Error } from './FormValidation.styled';
+import { Error, Correct } from './FormValidation.styled';
 
 const emailValid = /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
 const passwordValid =/(?!\s)^[^ ]{7,32}$/;
@@ -80,9 +80,18 @@ const InputError = ({ name }) => {
     </Error>
   );
 };
+
+const InputCorrect = ({message}) => {
+  return (
+    <Correct>
+      <p style={{ margin: 0 }}>{message}</p>
+    </Correct>
+  );
+}
 export {
   validationLogin,
   InputError,
+  InputCorrect,
   validationRegisterStepOne,
   validationRegisterStepTwo,
 };
