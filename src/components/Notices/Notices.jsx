@@ -21,19 +21,25 @@ const Notices = () => {
   const { isLoggedIn } = useAuth();
   // const isLoggedIn = !true;
 
+  //HARD CODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -- MUST BE CHANGED!!!!!
   const noticesNavLinks = [
-    { title: 'sell', label: 'Sell', to: ROUTES.NOTICES_SELL, category: 'sell' },
+    {
+      title: 'sell',
+      label: 'Sell',
+      to: ROUTES.NOTICES_SELL,
+      endpoint: '/categories/sell',
+    },
     {
       title: 'lost-found',
       label: 'Lost / found',
       to: ROUTES.NOTICES_LOST_FOUND,
-      category: 'lost-found',
+      endpoint: '/categories/lost-found',
     },
     {
       title: 'in good hands',
       label: 'In good hands',
       to: ROUTES.NOTICES_FOR_FREE,
-      category: 'for-free',
+      endpoint: '/categories/for-free',
     },
   ];
 
@@ -43,13 +49,13 @@ const Notices = () => {
         title: 'favorite ads',
         label: 'Favorite ads',
         to: ROUTES.NOTICES_FAVORITE,
-        category: 'favorite',
+        endpoint: `/favorites`,
       },
       {
         title: 'my ads',
         label: 'My ads',
         to: ROUTES.NOTICES_OWN,
-        category: 'own',
+        endpoint: '/',
       }
     );
   }

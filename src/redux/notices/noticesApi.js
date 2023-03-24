@@ -35,12 +35,24 @@ export const noticesApi = createApi({
     baseUrl: `${BASE_URL}api/notices`,
   }),
   endpoints: builder => ({
+    // getNotices: builder.query({
+    //   query: ({ category, search, page, limit }) => ({
+    //     url: `/categories/${category}`,
+    //     params: {
+    //       search,
+    //       page,
+    //       limit,
+    //     },
+    //   }),
+    // }),
+
     getNotices: builder.query({
-      query: ({ category, search, page }) => ({
-        url: `/categories/${category}`,
+      query: ({ endpoint, search, page, limit }) => ({
+        url: `${endpoint}`,
         params: {
           search,
           page,
+          limit,
         },
       }),
     }),
@@ -66,25 +78,25 @@ export const noticesApi = createApi({
       }),
     }),
 
-    getUserOwnNotices: builder.query({
-      query: ({ userId, search, page }) => ({
-        url: `/${userId}`,
-        params: {
-          search,
-          page,
-        },
-      }),
-    }),
+    // getUserFavoriteNotices: builder.query({
+    //   query: ({ userId, search, page }) => ({
+    //     url: `/${userId}/favorites`,
+    //     params: {
+    //       search,
+    //       page,
+    //     },
+    //   }),
+    // }),
 
-    getUserFavoriteNotices: builder.query({
-      query: ({ userId, search, page }) => ({
-        url: `/${userId}/favorites`,
-        params: {
-          search,
-          page,
-        },
-      }),
-    }),
+    // getUserOwnNotices: builder.query({
+    //   query: ({ userId, search, page }) => ({
+    //     url: `/${userId}`,
+    //     params: {
+    //       search,
+    //       page,
+    //     },
+    //   }),
+    // }),
 
     updateNoticeFavoriteStatus: builder.mutation({
       query: ({ id, ...patch }) => ({

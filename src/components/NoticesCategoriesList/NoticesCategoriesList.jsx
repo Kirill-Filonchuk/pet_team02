@@ -18,20 +18,23 @@ const NoticesCategoriesList = () => {
 
   const [label, setLabel] = useState();
   const [page, setPage] = useState(1);
-  const [category, setCategory] = useState(1);
+  const [endpoint, setEndpoint] = useState();
 
   useEffect(() => {
-    const { label, category } = noticesNavLinks.find(
+    const { label, endpoint } = noticesNavLinks.find(
       ({ to }) => to === currentLocationPath
     );
-    setCategory(category);
+    setEndpoint(endpoint);
     setLabel(label);
   }, [noticesNavLinks, currentLocationPath]);
 
   //isLoading, error!!!!
-  const { data } = useGetNoticesQuery({
-    category,
-  });
+  const { data } = useGetNoticesQuery(
+    {
+      endpoint,
+    },
+    { skip: endpoint ? false : true }
+  );
 
   if (!data) {
     return;
@@ -40,19 +43,6 @@ const NoticesCategoriesList = () => {
   const { result: pets } = data;
 
   console.log(pets);
-
-  // Temporary useEffect -> mockAPI
-  // useEffect(() => {
-  //   const getPets = async () => {
-  //     const response = await axios.get(
-  //       'https://641493898dade07073c3d8df.mockapi.io/api/pets/pets-list'
-  //     );
-  //     // console.log(response.data);
-  //     setPets(response.data);
-  //   };
-
-  //   getPets();
-  // }, []);
 
   return (
     <section>
