@@ -7,17 +7,19 @@ import {
   validationRegisterStepTwo,
   InputError,
 } from 'components/FormValidation';
-import { MultiStepForm, FormStep } from './MultiForm';
 import { BiShow, BiHide } from 'react-icons/bi';
+import { ToastContainer, Slide } from 'react-toastify';
+import { notifyError } from 'components/Helpers/Toastify/Toastify';
 
-
+import { MultiStepForm, FormStep } from './MultiForm';
+import Container from 'components/Container';
 import {
   Title,
   Label,
   Input,
   IconShow,
+  Section,
   Wrapper,
-  FormContainer
 } from 'components/LoginForm/LoginForm.styled';
 
 const RegisterForm = () => {
@@ -46,12 +48,16 @@ const RegisterForm = () => {
           phone: phone,
         })
       ).then(res => {
-        if (res.payload.status === 'success') {
+        console.log(res);
+        if (res.payload.code === 201) {
           navigate('/user', { replace: true });
+          actions.resetForm();
+        }
+        if (res.payload === 'Request failed with status code 409') {
+          notifyError(`User with email ${email} already exist`);
         }
       });
     }
-    actions.resetForm();
   };
 
   const togglePassword = () => {
@@ -63,89 +69,91 @@ const RegisterForm = () => {
   };
 
   return (
-    <FormContainer>
-      <Wrapper>
-        <Title>Registration</Title>
-      <MultiStepForm initialValues={initialValues} onSubmit={handleSubmit}>
-        <FormStep
-          stepName="UserMain"
-          validationSchema={validationRegisterStepOne}
-        >
-          <Label>
-            <Input
-              autoComplete="off"
-              type="text"
-              name="email"
-              placeholder="Email"
-            />
-            <InputError name="email" />
-          </Label>
-          <Label>
-            <Input
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="Password"
-              autoComplete="off"
-            />
-            <IconShow onClick={togglePassword}>
-              {showPassword ? <BiHide size={24} /> : <BiShow size={24} />}
-            </IconShow>
-            <InputError name="password" />
-          </Label>
-          <Label>
-            <Input
-              type={showConfirmPassword ? 'text' : 'password'}
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              autoComplete="off"
-            />
-            <IconShow onClick={toggleConfirmPassword}>
-              {showConfirmPassword ? (
-                <BiHide size={24} />
-              ) : (
-                <BiShow size={24} />
-              )}
-            </IconShow>
-            <InputError name="confirmPassword" />
-          </Label>
-        </FormStep>
+    <Section>
+      <Container>
+        <Wrapper>
+          <ToastContainer transition={Slide} />
+          <Title>Registration</Title>
+          <MultiStepForm initialValues={initialValues} onSubmit={handleSubmit}>
+            <FormStep
+              stepName="UserMain"
+              validationSchema={validationRegisterStepOne}
+            >
+              <Label>
+                <Input
+                  autoComplete="off"
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                />
+                <InputError name="email" />
+              </Label>
+              <Label>
+                <Input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Password"
+                  autoComplete="off"
+                />
+                <IconShow onClick={togglePassword}>
+                  {showPassword ? <BiHide size={24} /> : <BiShow size={24} />}
+                </IconShow>
+                <InputError name="password" />
+              </Label>
+              <Label>
+                <Input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  autoComplete="off"
+                />
+                <IconShow onClick={toggleConfirmPassword}>
+                  {showConfirmPassword ? (
+                    <BiHide size={24} />
+                  ) : (
+                    <BiShow size={24} />
+                  )}
+                </IconShow>
+                <InputError name="confirmPassword" />
+              </Label>
+            </FormStep>
 
-        <FormStep
-          stepName="UserLocation"
-          validationSchema={validationRegisterStepTwo}
-        >
-          <Label>
-            <Input
-              type="text"
-              name="name"
-              placeholder="Name"
-              autoComplete="off"
-            />
-            <InputError name="name" />
-          </Label>
-          <Label>
-            <Input
-              type="text"
-              name="city"
-              placeholder="City, region"
-              autoComplete="off"
-            />
-            <InputError name="city" />
-          </Label>
-          <Label>
-            <Input
-              type="text"
-              name="phone"
-              placeholder="Mobile phone"
-              autoComplete="off"
-            />
-            <InputError name="phone" />
-          </Label>
-        </FormStep>
-      </MultiStepForm>
-      </Wrapper>
-      
-    </FormContainer>
+            <FormStep
+              stepName="UserLocation"
+              validationSchema={validationRegisterStepTwo}
+            >
+              <Label>
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  autoComplete="off"
+                />
+                <InputError name="name" />
+              </Label>
+              <Label>
+                <Input
+                  type="text"
+                  name="city"
+                  placeholder="City, region"
+                  autoComplete="off"
+                />
+                <InputError name="city" />
+              </Label>
+              <Label>
+                <Input
+                  type="text"
+                  name="phone"
+                  placeholder="Mobile phone"
+                  autoComplete="off"
+                />
+                <InputError name="phone" />
+              </Label>
+            </FormStep>
+          </MultiStepForm>
+        </Wrapper>
+      </Container>
+    </Section>
   );
 };
 

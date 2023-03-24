@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { createApi } from '@reduxjs/toolkit/query/react';
+import { api, BASE_URL } from 'Services/AxiosConfig';
 
 export const API_CATEGORIES_ROUTES = {
   SELL: 'sell',
@@ -15,7 +15,7 @@ const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
   async ({ url, method, data, params }) => {
     try {
-      const result = await axios({ url: baseUrl + url, method, data, params });
+      const result = await api({ url: baseUrl + url, method, data, params });
       return { data: result.data };
     } catch (axiosError) {
       let err = axiosError;
@@ -32,7 +32,7 @@ export const noticesApi = createApi({
   reducerPath: 'noticesApi',
 
   baseQuery: axiosBaseQuery({
-    baseUrl: 'https://pet-support-api.onrender.com/api/notices',
+    baseUrl: `${BASE_URL}api/notices`,
   }),
   endpoints: builder => ({
     getNotices: builder.query({

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import NoticesCardList from '../NoticesCardList';
 import Container from '../Container';
 import { useEffect, useState } from 'react';
@@ -7,42 +6,58 @@ import { useLocation } from 'react-router-dom';
 import Paginator from 'components/Paginator';
 import { PaginatorWrapper } from './NoticesCategoriesList.styled';
 import { useWindowSize } from 'hooks/useWindowSize';
+import { useGetNoticesQuery } from 'redux/notices/noticesApi';
+import useAuth from 'hooks/useAuth/useAuth';
 
 const NoticesCategoriesList = () => {
+  const { isLoggedIn } = useAuth();
+  const { isDesktop } = useWindowSize();
+
   const noticesNavLinks = useOutletContext();
   const { pathname: currentLocationPath } = useLocation();
 
-  const [pets, setPets] = useState([]);
-  const [title, setTitle] = useState();
-  const { isDesktop } = useWindowSize();
-
-  //Temporary useEffect -> mockAPI
-  useEffect(() => {
-    const getPets = async () => {
-      const response = await axios.get(
-        'https://641493898dade07073c3d8df.mockapi.io/api/pets/pets-list'
-      );
-      // console.log(response.data);
-      setPets(response.data);
-    };
-
-    getPets();
-  }, []);
+  const [label, setLabel] = useState();
+  const [page, setPage] = useState(1);
+  const [category, setCategory] = useState(1);
 
   useEffect(() => {
-    const { title } = noticesNavLinks.find(
+    const { label, category } = noticesNavLinks.find(
       ({ to }) => to === currentLocationPath
     );
-    setTitle(title);
+    setCategory(category);
+    setLabel(label);
   }, [noticesNavLinks, currentLocationPath]);
 
-  //test fake pagintation
-  const [page, setPage] = useState(1);
+  //isLoading, error!!!!
+  const { data } = useGetNoticesQuery({
+    category,
+  });
+
+  if (!data) {
+    return;
+  }
+
+  const { result: pets } = data;
+
+  console.log(pets);
+
+  // Temporary useEffect -> mockAPI
+  // useEffect(() => {
+  //   const getPets = async () => {
+  //     const response = await axios.get(
+  //       'https://641493898dade07073c3d8df.mockapi.io/api/pets/pets-list'
+  //     );
+  //     // console.log(response.data);
+  //     setPets(response.data);
+  //   };
+
+  //   getPets();
+  // }, []);
 
   return (
     <section>
       <Container>
-        <NoticesCardList label={title} list={pets} />
+        <NoticesCardList label={label} list={pets} isLoggedIn={isLoggedIn} />
 
         <PaginatorWrapper>
           <Paginator
