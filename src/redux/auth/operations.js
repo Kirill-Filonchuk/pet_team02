@@ -1,7 +1,6 @@
-// import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api } from 'components/Services/AxiosConfig';
-// axios.defaults.baseURL = BASE_URL;
+import { api } from 'Services/AxiosConfig';
+
 //! add JWT
 const setAuthHeader = token => {
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -76,6 +75,28 @@ const updateUser = createAsyncThunk(
   }
 );
 
+//? DELETE USERS AVATAR
+const deleteUsersAvatar = createAsyncThunk(
+  '/auth/updateUser/deleteUsersAvatar',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+    try {
+      setAuthHeader(persistedToken);
+      const response = await api.get('/api/auth/deleteAvatar');
+
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 //? REFRESH USER
 const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   // Reading the token from the state via getState()
@@ -90,11 +111,11 @@ const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   try {
     // If there is a token, add it to the HTTP header and perform the request
     setAuthHeader(persistedToken);
-    const response = await api.patch('/api/user-pets');
+    const response = await api.get('/api/user-pets');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-export { register, logIn, logOut, refreshUser, updateUser };
+export { register, logIn, logOut, refreshUser, updateUser, deleteUsersAvatar };

@@ -1,5 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { api, BASE_URL } from 'components/Services/AxiosConfig';
+import { api, BASE_URL } from 'Services/AxiosConfig';
 
 export const API_CATEGORIES_ROUTES = {
   SELL: 'sell',
