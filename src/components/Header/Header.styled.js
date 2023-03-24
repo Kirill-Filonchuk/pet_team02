@@ -21,7 +21,6 @@ export const Block = styled.div`
     height: 48px;
  
   }
-
 `;
 
 export const MenuBtn = styled.button`

@@ -1,4 +1,5 @@
 // import { ToastContainer, toast } from 'react-toastify';
+
 import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,9 +22,15 @@ import {
   LogoutBtn,
   LogoutIcon,
   UserItemWrapper,
+  CloseBtnWrapper,
+  CloseCircleLine,
 } from './UserData.styled.jsx';
 import { useDispatch } from 'react-redux';
-import { logOut, updateUser } from '../../redux/auth/operations';
+import {
+  logOut,
+  updateUser,
+  deleteUsersAvatar,
+} from '../../redux/auth/operations';
 
 const imageExtensions = [
   'png',
@@ -42,7 +49,9 @@ export default function UserData({ user }) {
   const { email, name, birthday, phone, city, avatarURL } = user;
 
   const handleFileChange = async e => {
-    const fileExtension = e.target.value.split('.')[1];
+    const splitToFindExtension = e.target.value.split('.');
+    const fileExtension = splitToFindExtension[splitToFindExtension.length - 1];
+
     if (!imageExtensions.includes(fileExtension)) {
       toast.error(
         'Avatar should be an image: png, jpg, jpeg, gif, jfif, pjpeg, pjp, webp',
@@ -55,7 +64,6 @@ export default function UserData({ user }) {
 
     if (imgFile) {
       const value = { avatarURL: imgFile };
-      console.log('3awli');
       await dispatch(updateUser({ value }));
     }
   };
@@ -77,6 +85,15 @@ export default function UserData({ user }) {
                   : avatarURL
               }
             />
+            {avatarURL && (
+              <CloseBtnWrapper
+                onClick={async () => {
+                  await dispatch(deleteUsersAvatar());
+                }}
+              >
+                <CloseCircleLine />
+              </CloseBtnWrapper>
+            )}
           </ImageWrapper>
 
           <InputWrapper>
@@ -99,6 +116,7 @@ export default function UserData({ user }) {
             </div>
           ) : null} */}
         </ImageContainer>
+
         <UserItemWrapper>
           <UserDataItem
             setIsDisabledBtn={setIsDisabledBtn}
