@@ -2,10 +2,15 @@ import PropTypes from 'prop-types';
 import AddButton from 'components/AddButton';
 import { Wrapper } from './AddNoticeButton.styled';
 
-const AddNoticeButton = ({ onClick }) => {
+const AddNoticeButton = ({ onClick, isLoggedIn }) => {
   return (
     <Wrapper>
-      <AddButton label="Add pet" hasMobileStyles onClick={onClick} />
+      <AddButton
+        isLoggedIn={isLoggedIn}
+        label="Add pet"
+        hasMobileStyles
+        onClick={onClick}
+      />
     </Wrapper>
   );
 };

@@ -23,7 +23,7 @@ export const AddButtonStyled = styled('button')`
         bottom: 200px;
         right: 20px;
         transform: translateY(+50%);
-        z-index: 999;
+        z-index: 1;
         width: 80px;
         height: 80px;
 

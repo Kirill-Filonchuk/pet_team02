@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
-import { FormAuth } from 'components/LoginForm/LoginForm.styled';
 import FormNavigation from '../NavigationForm';
+
+import { FormAuth } from 'components/LoginForm/LoginForm.styled';
 
 const MultiStepForm = ({ children, initialValues, onSubmit }) => {
   const [stepNumber, setStepNumber] = useState(0);
