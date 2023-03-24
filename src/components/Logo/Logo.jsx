@@ -27,10 +27,9 @@ export const drop = keyframes`
     transform: translateY(60px) ;
     opacity: 0;
   }
-
+`;
 
 const LogoStyle = styled.a`
-
   display: inline-block;
   font-family: ${p => p.theme.fonts.poppins};
   font-size: ${p => p.theme.fontSizes[6]}px;
@@ -40,8 +39,6 @@ const LogoStyle = styled.a`
   letter-spacing: 0.07em;
 
   z-index: 10;
-
-
 
   transition-property: transform;
   transition-duration: 900ms;
