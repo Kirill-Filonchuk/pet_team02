@@ -11,6 +11,5 @@ export const OurFriendsWrapper = styled('div')`
 
   ${theme.mq.desktop} {
     padding-top: 70px;
-    padding-bottom: 200px;
   }
 `;
