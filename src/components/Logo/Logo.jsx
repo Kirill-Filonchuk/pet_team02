@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Logo = () => {
@@ -6,16 +6,32 @@ export const Logo = () => {
     <>
       <Link to="/">
         <LogoStyle>
-          <span>pe</span>
+          <span>p</span>
+          <span>e</span>
           <span style={{ color: '#F59256' }}>t</span>
-          <span>ly</span>
+          <span>l</span>
+          <span>y</span>
         </LogoStyle>
       </Link>
     </>
   );
 };
+export const drop = keyframes`
+ 0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(30px) ;
+  }
+100% {
+    transform: translateY(60px) ;
+    opacity: 0;
+  }
 
+ 
+`;
 const LogoStyle = styled.p`
+  position: relative;
   display: inline-block;
   font-family: ${p => p.theme.fonts.poppins};
   font-size: ${p => p.theme.fontSizes[6]}px;
@@ -23,13 +39,23 @@ const LogoStyle = styled.p`
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 42px;
   letter-spacing: 0.07em;
-
+  transition: all 0.3s ease;
   transition-property: transform;
-  transition-duration: 500ms;
-  &:hover {
-    transform: scale(1.3);
-  }
+  transition-duration: 900ms;
 
+  &:hover {
+    transform: scale(1.1);
+    &::after {
+      content: 't';
+      color: ${p => p.theme.colors.accent};
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: bold;
+      animation: ${drop} 0.5s linear forwards;
+    }
+  }
   ${p => p.theme.mq.tablet} {
     font-size: ${p => p.theme.fontSizes[7]}px;
     line-height: 48px;
@@ -41,6 +67,7 @@ const LogoStyle = styled.p`
 `;
 
 const Link = styled(NavLink)`
+  display: inline-block;
   text-decoration: none;
   color: black;
   ${p => p.theme.mq.mob} {
