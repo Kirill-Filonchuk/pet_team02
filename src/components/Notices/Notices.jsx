@@ -30,7 +30,7 @@ const Notices = () => {
   //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!!
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const { buttonRef, position } = useNotifyPosition();
-  const [addNotice, { isLoading }] = useAddNoticeMutation();
+  const [addNotice] = useAddNoticeMutation();
 
   const onClickAddPetTemp = async () => {
     try {

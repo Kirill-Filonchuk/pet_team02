@@ -10,7 +10,7 @@ const NoticeDeleteButton = ({ id }) => {
   const [isNotifyOpen, setIsNotifyOpen] = useState(false);
   const { buttonRef, position } = useNotifyPosition();
 
-  const [deleteNotice, { error, isLoading }] = useDeleteNoticeMutation();
+  const [deleteNotice] = useDeleteNoticeMutation();
 
   const onDeleteNotice = async () => {
     console.log('notice deleted');

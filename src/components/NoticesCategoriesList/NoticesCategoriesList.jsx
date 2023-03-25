@@ -13,7 +13,6 @@ import {
 } from 'redux/notices/noticesApi';
 import useAuth from 'hooks/useAuth/useAuth';
 import NoticesPaginatedList from 'components/NoticesPaginatedList';
-import { refreshUser } from 'redux/auth/operations';
 
 const ITEMS_PER_PAGE = 8;
 
@@ -27,8 +26,7 @@ const NoticesCategoriesList = () => {
 
   const { isLoggedIn } = useAuth();
 
-  const [updateFavoriteStatus, { isLoading }] =
-    useUpdateNoticeFavoriteStatusMutation();
+  const [updateFavoriteStatus] = useUpdateNoticeFavoriteStatusMutation();
 
   useEffect(() => {
     const { label, endpoint } = noticesNavLinks.find(
@@ -47,10 +45,14 @@ const NoticesCategoriesList = () => {
     { skip: endpoint ? false : true }
   );
 
-  const { data: favoritesData } = useGetFavoritesQuery();
+  const { data: favoritesData } = useGetFavoritesQuery(null, {
+    skip: !isLoggedIn,
+  });
   const favorites = favoritesData?.result.map(({ _id }) => _id);
 
-  const { data: ownsData } = useGetOwnNoticesQuery();
+  const { data: ownsData } = useGetOwnNoticesQuery(null, {
+    skip: !isLoggedIn,
+  });
   const owns = ownsData?.result.map(({ _id }) => _id);
 
   const onFavoriteClickHandler = async id => {

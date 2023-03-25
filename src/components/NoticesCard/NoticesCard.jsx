@@ -16,8 +16,6 @@ import {
 import { useEffect, useState } from 'react';
 import { trimText } from 'utils/trimText';
 import defaultImage from 'assets/images/pets-default-image.jpg';
-import { useUpdateNoticeFavoriteStatusMutation } from 'redux/notices/noticesApi';
-import { refreshUser } from 'redux/auth/operations';
 
 const NO_INFO = '-';
 
