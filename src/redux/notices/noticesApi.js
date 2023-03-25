@@ -44,18 +44,10 @@ export const noticesApi = createApi({
   baseQuery: axiosBaseQuery({
     baseUrl: `${BASE_URL}api/notices`,
   }),
-  endpoints: builder => ({
-    // getNotices: builder.query({
-    //   query: ({ category, search, page, limit }) => ({
-    //     url: `/categories/${category}`,
-    //     params: {
-    //       search,
-    //       page,
-    //       limit,
-    //     },
-    //   }),
-    // }),
 
+  tagTypes: ['Notice'],
+
+  endpoints: builder => ({
     getNotices: builder.query({
       query: ({ endpoint, search, page, limit }) => ({
         url: `${endpoint}`,
@@ -65,6 +57,8 @@ export const noticesApi = createApi({
           limit,
         },
       }),
+
+      providesTags: ['Notice'],
     }),
 
     getNotice: builder.query({
@@ -78,6 +72,7 @@ export const noticesApi = createApi({
         url: `/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Notice'],
     }),
 
     addNotice: builder.mutation({
@@ -86,45 +81,8 @@ export const noticesApi = createApi({
         method: 'POST',
         data,
       }),
+      invalidatesTags: ['Notice'],
     }),
-
-    // addNotice: builder.mutation({
-    //   query: () => ({
-    //     url: '/notice',
-    //     method: 'POST',
-    //     data: {
-    //       title: 'Test1',
-    //       name: 'Ant',
-    //       birthday: '13.07.1983',
-    //       breed: 'human',
-    //       place: 'Irpin',
-    //       sex: 'male',
-    //       category: 'sell',
-    //       //   price: '150$',
-    //       // comments: 'String whith 8 symbol min',
-    //     },
-    //   }),
-    // }),
-
-    // addNotice: builder.mutation({
-    //   query: body => {
-    //     // console.log('body', body);
-
-    //     const test = {
-    //       url: '/notice',
-    //       method: 'POST',
-    //       body,
-    //     };
-    //     console.log(test);
-
-    //     return test;
-    //     // return {
-    //     //   url: '/notice',
-    //     //   method: 'POST',
-    //     //   body,
-    //     // };
-    //   },
-    // }),
 
     updateNoticeFavoriteStatus: builder.mutation({
       query: ({ id, ...patch }) => ({
@@ -132,6 +90,7 @@ export const noticesApi = createApi({
         method: 'PATCH',
         body: patch,
       }),
+      invalidatesTags: ['Notice'],
     }),
   }),
 });
