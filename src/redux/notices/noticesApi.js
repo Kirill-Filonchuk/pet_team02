@@ -80,31 +80,31 @@ export const noticesApi = createApi({
       }),
     }),
 
-    // addNotice: builder.mutation({
-    //   query: body => ({
-    //     url: '/notice',
-    //     method: 'POST',
-    //     body,
-    //   }),
-    // }),
-
     addNotice: builder.mutation({
-      query: () => ({
+      query: data => ({
         url: '/notice',
         method: 'POST',
-        data: {
-          title: 'Title Che111112222',
-          name: 'Ant',
-          birthday: '13.07.1983',
-          breed: 'human',
-          place: 'Irpin',
-          sex: 'male',
-          category: 'sell',
-          //   price: '150$',
-          // comments: 'String whith 8 symbol min',
-        },
+        data,
       }),
     }),
+
+    // addNotice: builder.mutation({
+    //   query: () => ({
+    //     url: '/notice',
+    //     method: 'POST',
+    //     data: {
+    //       title: 'Test1',
+    //       name: 'Ant',
+    //       birthday: '13.07.1983',
+    //       breed: 'human',
+    //       place: 'Irpin',
+    //       sex: 'male',
+    //       category: 'sell',
+    //       //   price: '150$',
+    //       // comments: 'String whith 8 symbol min',
+    //     },
+    //   }),
+    // }),
 
     // addNotice: builder.mutation({
     //   query: body => {

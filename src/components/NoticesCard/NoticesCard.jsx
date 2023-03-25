@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import NoticeDeleteButton from './NoticeDeleteButton';
 import OptionsTable from './OptionsTable';
 import NoticeFavoriteButton from './NoticeFavoriteButton';
+// import ModalNotice from '../ModalNotice';
 import {
   Article,
   BtnWrapper,
@@ -12,7 +13,7 @@ import {
   NoticeCardButton,
   Title,
 } from './NoticesCard.styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { trimText } from 'utils/trimText';
 // import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import defaultImage from 'assets/images/pets-default-image.jpg';
@@ -35,7 +36,15 @@ const NoticesCard = ({
   isLoggedIn,
 }) => {
   const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
-  // const [avatar, setAvatar] = useState(defaultImage);
+  const [openModal, setOpenModal] = useState(false);
+
+  useEffect(() => {
+    if (openModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [openModal]);
 
   const onFavoriteClickHandler = () => {
     //here should be code for update favorite/ After resolve positive response
@@ -47,7 +56,6 @@ const NoticesCard = ({
     <>
       <Article>
         <ImageWrapper>
-          {/* <Image src={avatar} alt="title" /> */}
           <Image src={petAvatarURL || defaultImage} alt="title" />
         </ImageWrapper>
 
@@ -63,7 +71,12 @@ const NoticesCard = ({
           />
 
           <BtnWrapper>
-            <NoticeCardButton type="button">Learn more</NoticeCardButton>
+            <NoticeCardButton
+              type="button"
+              onClick={() => setOpenModal(!openModal)}
+            >
+              Learn more
+            </NoticeCardButton>
 
             {isMine && <NoticeDeleteButton id={_id} />}
           </BtnWrapper>
@@ -77,6 +90,14 @@ const NoticesCard = ({
           isLoggedIn={isLoggedIn}
         />
       </Article>
+      {/* 
+      {openModal && (
+        <ModalNotice
+          onClose={() => setOpenModal(false)}
+          isOpen={openModal}
+          id={_id}
+        />
+      )} */}
     </>
   );
 };
