@@ -10,7 +10,11 @@ const CommonModal = ({ children, onClose }) => {
     <Backdrop onClick={onBackdropClick}>
       <ModalContainer>
         {children}
-        <CloseButton>
+        <CloseButton
+          onClick={() => {
+            onClose();
+          }}
+        >
           <IoMdClose size={20} />
         </CloseButton>
       </ModalContainer>
