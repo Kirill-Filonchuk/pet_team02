@@ -21,6 +21,7 @@ import { useState } from 'react';
 // import TempAddPet from 'components/TempAddPet/TempAddPet';
 import Notify from 'components/Notify';
 import { useNotifyPosition } from 'hooks/useNotifyPosition';
+import AddPet from 'components/AddPet';
 
 const Notices = () => {
   const { pathname } = useLocation();
@@ -28,6 +29,7 @@ const Notices = () => {
   const { isLoggedIn } = useAuth();
 
   //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!!
+  const [isAddPet, setIsAddPet] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const { buttonRef, position } = useNotifyPosition();
   const [addNotice] = useAddNoticeMutation();
@@ -105,7 +107,7 @@ const Notices = () => {
             ref={buttonRef}
             onClick={() => {
               // console.log('You can add new pet');
-              setIsAddModalOpen(true);
+              setIsAddPet(true);
             }}
           >
             BTN TEMP
@@ -127,12 +129,20 @@ const Notices = () => {
         </Container>
       </NoticeSection>
 
-      {/*  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!! */}
       {isAddModalOpen && (
+        <AddPet
+          onClose={() => {
+            setIsAddModalOpen(false);
+          }}
+        />
+      )}
+
+      {/*  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!! */}
+      {isAddPet && (
         <Notify
           position={position}
           onClose={() => {
-            setIsAddModalOpen(false);
+            setIsAddPet(false);
           }}
         >
           <button onClick={onClickAddPetTemp}>TEMP ADD BUTTON</button>

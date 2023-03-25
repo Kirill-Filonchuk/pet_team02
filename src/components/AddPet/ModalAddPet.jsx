@@ -1,39 +1,41 @@
+// import Modal from 'components/Modal';
+import CommonModal from 'components/UIKit/CommonModal';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import styles from './ModalAddPet.module.css';
-import { RiCloseLine } from 'react-icons/ri';
-import ContentAddPet from './ContentAddPet/ContentAddPet.jsx';
+// import styles from './ModalAddPet.module.css';
+// import { RiCloseLine } from 'react-icons/ri';
+// import ContentAddPet from './ContentAddPet/ContentAddPet.jsx';
 // import styled from 'styled-components';
 
 const modalRoot = document.querySelector('#modal-root');
 
 export default function ModalAddPet({ onClose }) {
-  useEffect(() => {
-    console.log('Mount');
-    window.addEventListener('keydown', hendleKeyDown);
-    return () => {
-      console.log('unmount');
-      window.removeEventListener('keydown', hendleKeyDown);
-    };
-  });
+  // useEffect(() => {
+  //   console.log('Mount');
+  //   window.addEventListener('keydown', hendleKeyDown);
+  //   return () => {
+  //     console.log('unmount');
+  //     window.removeEventListener('keydown', hendleKeyDown);
+  //   };
+  // });
 
-  const hendleKeyDown = e => {
-    if (e.code === 'Escape') {
-      console.log('Turn On Escape');
-      onClose();
-    }
-  };
+  // const hendleKeyDown = e => {
+  //   if (e.code === 'Escape') {
+  //     console.log('Turn On Escape');
+  //     onClose();
+  //   }
+  // };
 
-  const hendleClickBackdrope = e => {
-    if (e.target === e.currentTarget) {
-      console.log('click backgrope');
-      onClose();
-    }
-  };
+  // const hendleClickBackdrope = e => {
+  //   if (e.target === e.currentTarget) {
+  //     console.log('click backgrope');
+  //     onClose();
+  //   }
+  // };
 
   return createPortal(
     <>
-      <div className={styles.darkBG} onClick={hendleClickBackdrope} />
+      {/* <div className={styles.darkBG} onClick={hendleClickBackdrope} />
       <div className={styles.centered}>
         <div className={styles.modal}>
           <div className={styles.modalHeder}>
@@ -48,7 +50,34 @@ export default function ModalAddPet({ onClose }) {
           </button>
           <ContentAddPet setShowModal={onClose} />
         </div>
-      </div>
+      </div> */}
+      <CommonModal onClose={onClose}>
+        <div>
+          sdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjf
+          sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf
+          sdjsdjkfskdfjlsdkjf
+        </div>
+        <div>
+          sdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjf
+          sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf
+          sdjsdjkfskdfjlsdkjf
+        </div>
+        <div>
+          sdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjf
+          sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf
+          sdjsdjkfskdfjlsdkjf
+        </div>
+        <div>
+          sdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjf
+          sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf
+          sdjsdjkfskdfjlsdkjf
+        </div>
+        <div>
+          sdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjf
+          sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf
+          sdjsdjkfskdfjlsdkjf
+        </div>
+      </CommonModal>
     </>,
     modalRoot
   );

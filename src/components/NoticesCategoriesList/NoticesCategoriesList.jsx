@@ -76,7 +76,7 @@ const NoticesCategoriesList = () => {
       ? updatedPetList(data.result, favorites, owns)
       : data?.result;
 
-  console.log(pets);
+  // console.log(pets);
 
   // console.log('render');
 
