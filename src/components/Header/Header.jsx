@@ -8,7 +8,6 @@ import {
   ListMenu,
   HeaderContainer,
   AuthNavigate,
-  LogoStyle,
   LinkAuth,
   AuthNavigateTablet,
   LinkAuthTablet,
@@ -19,8 +18,7 @@ import { Logo } from '../Logo/Logo';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import Account from 'components/Account/Account';
-import { ReactComponent as AccountIcon } from '../../images/home/svg/account.svg'
-
+import { ReactComponent as AccountIcon } from '../../images/home/svg/account.svg';
 
 export const Header = () => {
   const isLoggedin = useSelector(selectIsLoggedIn);
@@ -35,6 +33,7 @@ export const Header = () => {
     <HeaderStyle>
       <HeaderContainer>
         <Logo />
+
         <Nav />
         {isLoggedin ? (
           <Account />
@@ -50,23 +49,23 @@ export const Header = () => {
         {isOpen && (
           <Burger>
             <ListMenu>
-              <LogoStyle onClick={toggle}>
-                <Logo />
-              </LogoStyle>
-
               {isLoggedin ? (
-                <LinkAuth to="/user" onClick={toggle} style={{ display: 'flex'}}>
-                 <AccountIcon/> Account
+                <LinkAuth
+                  to="/user"
+                  onClick={toggle}
+                  style={{ display: 'flex' }}
+                >
+                  <AccountIcon /> Account
                 </LinkAuth>
               ) : (
-              <AuthNavigate style={{ marginBottom: 20 }}>
-                <LinkAuth to="/login" onClick={toggle}>
-                  Login
-                </LinkAuth>
-                <LinkAuth to="/register" onClick={toggle}>
-                  Registation
-                </LinkAuth>
-              </AuthNavigate>
+                <AuthNavigate style={{ marginBottom: 20 }}>
+                  <LinkAuth to="/login" onClick={toggle}>
+                    Login
+                  </LinkAuth>
+                  <LinkAuth to="/register" onClick={toggle}>
+                    Registation
+                  </LinkAuth>
+                </AuthNavigate>
               )}
 
               <Link to="/news" onClick={toggle}>

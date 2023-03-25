@@ -3,17 +3,15 @@ import { NavLink } from 'react-router-dom';
 
 export const Logo = () => {
   return (
-    <>
-      <Link to="/">
-        <LogoStyle>
-          <span>p</span>
-          <span>e</span>
-          <span style={{ color: '#F59256' }}>t</span>
-          <span>l</span>
-          <span>y</span>
-        </LogoStyle>
-      </Link>
-    </>
+    <Link to="/">
+      <LogoStyle>
+        <span>p</span>
+        <span>e</span>
+        <span style={{ color: '#F59256' }}>t</span>
+        <span>l</span>
+        <span>y</span>
+      </LogoStyle>
+    </Link>
   );
 };
 export const drop = keyframes`
@@ -29,7 +27,7 @@ export const drop = keyframes`
   }
 `;
 
-const LogoStyle = styled.p`
+export const LogoStyle = styled.p`
   display: inline-block;
   font-family: ${p => p.theme.fonts.poppins};
   font-size: ${p => p.theme.fontSizes[6]}px;
@@ -38,7 +36,7 @@ const LogoStyle = styled.p`
   line-height: 42px;
   letter-spacing: 0.07em;
 
-  z-index: 10;
+  /* z-index: 11; */
 
   transition-property: transform;
   transition-duration: 900ms;
@@ -70,6 +68,7 @@ const Link = styled(NavLink)`
   display: inline-block;
   text-decoration: none;
   color: black;
+  z-index: 11;
   ${p => p.theme.mq.mob} {
     margin-right: 158px;
   }

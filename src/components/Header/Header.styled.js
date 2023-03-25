@@ -228,8 +228,3 @@ export const LinkAuthTablet = styled(NavLink)`
     }
   }
 `;
-export const LogoStyle = styled.div`
-  position: absolute;
-  top: 2%;
-  left: 10%;
-`;
