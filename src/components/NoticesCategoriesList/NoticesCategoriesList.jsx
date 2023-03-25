@@ -5,22 +5,29 @@ import { useOutletContext } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 // import Paginator from 'components/Paginator';
 // import { useWindowSize } from 'hooks/useWindowSize';
-import { useGetNoticesQuery } from 'redux/notices/noticesApi';
+import {
+  useGetFavoritesQuery,
+  useGetNoticesQuery,
+  useUpdateNoticeFavoriteStatusMutation,
+} from 'redux/notices/noticesApi';
 import useAuth from 'hooks/useAuth/useAuth';
 import NoticesPaginatedList from 'components/NoticesPaginatedList';
+import { refreshUser } from 'redux/auth/operations';
 
 const ITEMS_PER_PAGE = 8;
 
 const NoticesCategoriesList = () => {
-  const { isLoggedIn } = useAuth();
-  // const { isDesktop } = useWindowSize();
-
   const noticesNavLinks = useOutletContext();
   const { pathname: currentLocationPath } = useLocation();
 
   const [label, setLabel] = useState();
   const [page, setPage] = useState(1);
   const [endpoint, setEndpoint] = useState();
+
+  const { isLoggedIn } = useAuth();
+
+  const [updateFavoriteStatus, { isLoading }] =
+    useUpdateNoticeFavoriteStatusMutation();
 
   useEffect(() => {
     const { label, endpoint } = noticesNavLinks.find(
@@ -30,8 +37,7 @@ const NoticesCategoriesList = () => {
     setLabel(label);
   }, [noticesNavLinks, currentLocationPath]);
 
-  //isLoading, error!!!!
-  const { data } = useGetNoticesQuery(
+  const { data, error } = useGetNoticesQuery(
     {
       endpoint,
       page: page,
@@ -40,45 +46,60 @@ const NoticesCategoriesList = () => {
     { skip: endpoint ? false : true }
   );
 
-  if (!data) {
-    return;
-  }
+  const { data: favoritesData, error: favoritesError } = useGetFavoritesQuery();
+  const favorites = favoritesData?.result.map(({ _id }) => _id);
+  console.log(favorites);
 
-  const { result: pets } = data;
+  const onFavoriteClickHandler = async id => {
+    try {
+      await updateFavoriteStatus(id);
+      // const response = await updateFavoriteStatus(id);
+      // if (response.data.result) {
+      //   console.log(response);
+      //   // refreshUser();
+      //   // console.log(user.favorite);
+      // }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  console.log(data);
+  const updatedPetList = (list, favorites) => {
+    return list?.map(item => ({
+      ...item,
+      isFavorite: favorites.includes(item._id),
+    }));
+  };
+
+  const pets =
+    isLoggedIn && favorites && favorites.length > 0
+      ? updatedPetList(data?.result, favorites)
+      : data?.result;
+
+  // console.log(pets);
+
+  // console.log('render');
 
   return (
     <section>
       <Container>
-        <NoticesPaginatedList
-          label={label}
-          list={pets}
-          isLoggedIn={isLoggedIn}
-          totalItems={43}
-          currentPage={page}
-          onPageClick={page => {
-            console.log(page);
-            setPage(page);
-          }}
-          perPage={ITEMS_PER_PAGE}
-        />
-
-        {/* <NoticesCardList label={label} list={pets} isLoggedIn={isLoggedIn} />
-
-        <PaginatorWrapper>
-          <Paginator
+        {error ? (
+          <div>Sorry! Something went wrong</div>
+        ) : (
+          <NoticesPaginatedList
+            label={label}
+            list={pets}
+            isLoggedIn={isLoggedIn}
+            onFavoriteClick={onFavoriteClickHandler}
             totalItems={43}
             currentPage={page}
             onPageClick={page => {
               console.log(page);
               setPage(page);
             }}
-            nearbyQtyPages={isDesktop ? 2 : 1}
             perPage={ITEMS_PER_PAGE}
-            // shouldScrollUp
           />
-        </PaginatorWrapper> */}
+        )}
       </Container>
     </section>
   );

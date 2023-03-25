@@ -11,23 +11,31 @@ const NoticesPaginatedList = ({
   currentPage,
   onPageClick,
   perPage,
+  onFavoriteClick,
 }) => {
   const { isDesktop } = useWindowSize();
   return (
-    <>
-      <NoticesCardList label={label} list={list} isLoggedIn={isLoggedIn} />
-
-      <PaginatorWrapper>
-        <Paginator
-          totalItems={totalItems}
-          currentPage={currentPage}
-          onPageClick={onPageClick}
-          nearbyQtyPages={isDesktop ? 2 : 1}
-          perPage={perPage}
-          // shouldScrollUp
+    list && (
+      <>
+        <NoticesCardList
+          label={label}
+          list={list}
+          isLoggedIn={isLoggedIn}
+          onFavoriteClick={onFavoriteClick}
         />
-      </PaginatorWrapper>
-    </>
+
+        <PaginatorWrapper>
+          <Paginator
+            totalItems={totalItems}
+            currentPage={currentPage}
+            onPageClick={onPageClick}
+            nearbyQtyPages={isDesktop ? 2 : 1}
+            perPage={perPage}
+            // shouldScrollUp
+          />
+        </PaginatorWrapper>
+      </>
+    )
   );
 };
 

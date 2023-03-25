@@ -45,7 +45,7 @@ export const noticesApi = createApi({
     baseUrl: `${BASE_URL}api/notices`,
   }),
 
-  tagTypes: ['Notice'],
+  tagTypes: ['Notice', 'Favorite'],
 
   endpoints: builder => ({
     getNotices: builder.query({
@@ -84,13 +84,20 @@ export const noticesApi = createApi({
       invalidatesTags: ['Notice'],
     }),
 
-    updateNoticeFavoriteStatus: builder.mutation({
-      query: ({ id, ...patch }) => ({
-        url: `/${id}/favorite`,
-        method: 'PATCH',
-        body: patch,
+    getFavorites: builder.query({
+      query: () => ({
+        url: `/favorites`,
       }),
-      invalidatesTags: ['Notice'],
+
+      providesTags: ['Favorite'],
+    }),
+
+    updateNoticeFavoriteStatus: builder.mutation({
+      query: id => ({
+        url: `/${id}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: ['Notice', 'Favorite'],
     }),
   }),
 });
@@ -100,6 +107,8 @@ export const {
   useGetNoticeQuery,
   useDeleteNoticeMutation,
   useAddNoticeMutation,
-  useGetUserOwnNoticesQuery,
-  useGetUserFavoriteNoticesQuery,
+  // useGetUserOwnNoticesQuery,
+  // useGetUserFavoriteNoticesQuery,
+  useGetFavoritesQuery,
+  useUpdateNoticeFavoriteStatusMutation,
 } = noticesApi;

@@ -25,6 +25,7 @@ import { useNotifyPosition } from 'hooks/useNotifyPosition';
 const Notices = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
 
   //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!!
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -50,10 +51,8 @@ const Notices = () => {
   };
   //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!!
 
-  const { isLoggedIn } = useAuth();
   // const isLoggedIn = !true;
 
-  //HARD CODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -- MUST BE CHANGED!!!!!
   const noticesNavLinks = [
     {
       title: 'sell',

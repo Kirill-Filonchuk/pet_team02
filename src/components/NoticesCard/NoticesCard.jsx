@@ -16,6 +16,8 @@ import {
 import { useEffect, useState } from 'react';
 import { trimText } from 'utils/trimText';
 import defaultImage from 'assets/images/pets-default-image.jpg';
+import { useUpdateNoticeFavoriteStatusMutation } from 'redux/notices/noticesApi';
+import { refreshUser } from 'redux/auth/operations';
 
 const NO_INFO = '-';
 
@@ -31,9 +33,14 @@ const NoticesCard = ({
   isMine = false,
   isFavorite = false,
   isLoggedIn,
+  onFavoriteClick,
 }) => {
-  const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
+  // const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
+
   const [openModal, setOpenModal] = useState(false);
+
+  // const [updateFavoriteStatus, { isLoading }] =
+  //   useUpdateNoticeFavoriteStatusMutation();
 
   useEffect(() => {
     if (openModal) {
@@ -43,11 +50,22 @@ const NoticesCard = ({
     }
   }, [openModal]);
 
-  const onFavoriteClickHandler = () => {
-    //here should be code for update favorite/ After resolve positive response
-    console.log(`card id ${_id} favorite: ${isFavoriteCard}`);
-    setIsFavoriteCard(!isFavoriteCard);
-  };
+  // const onFavoriteClickHandler = async () => {
+  //   //here should be code for update favorite/ After resolve positive response
+  //   // console.log(`card id ${_id} favorite: ${isFavoriteCard}`);
+  //   // setIsFavoriteCard(!isFavoriteCard);
+  //   try {
+  //     const response = await updateFavoriteStatus(_id);
+  //     if (response.data.result) {
+  //       setIsFavoriteCard(!isFavoriteCard);
+  //       // refreshUser();
+  //     }
+
+  //     // setIsFavoriteCard()
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <>
@@ -82,8 +100,11 @@ const NoticesCard = ({
         <Label>{label}</Label>
 
         <NoticeFavoriteButton
-          isFavorite={isFavoriteCard}
-          onClick={onFavoriteClickHandler}
+          isFavorite={isFavorite}
+          // onClick={onFavoriteClickHandler}
+          onClick={() => {
+            onFavoriteClick(_id);
+          }}
           isLoggedIn={isLoggedIn}
         />
       </Article>

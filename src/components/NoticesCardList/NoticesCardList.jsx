@@ -2,12 +2,17 @@ import PropTypes from 'prop-types';
 import NoticesCard from '../NoticesCard';
 import { Item, List } from './NoticesCardList.styled';
 
-const NoticesCardList = ({ list, label, isLoggedIn }) => {
+const NoticesCardList = ({ list, label, isLoggedIn, onFavoriteClick }) => {
   return (
     <List>
       {list.map(item => (
         <Item key={item._id}>
-          <NoticesCard {...item} label={label} isLoggedIn={isLoggedIn} />
+          <NoticesCard
+            {...item}
+            label={label}
+            isLoggedIn={isLoggedIn}
+            onFavoriteClick={onFavoriteClick}
+          />
         </Item>
       ))}
     </List>
