@@ -29,7 +29,7 @@ export const drop = keyframes`
   }
 `;
 
-const LogoStyle = styled.a`
+const LogoStyle = styled.p`
   display: inline-block;
   font-family: ${p => p.theme.fonts.poppins};
   font-size: ${p => p.theme.fontSizes[6]}px;

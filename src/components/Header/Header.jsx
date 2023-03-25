@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { Nav } from '../Navigation/Navigation';
 import {
   HeaderStyle,
   MenuBtn,
   Link,
   Burger,
   ListMenu,
-  Block,
+  HeaderContainer,
   AuthNavigate,
+  LogoStyle,
   LinkAuth,
   AuthNavigateTablet,
   LinkAuthTablet,
@@ -18,71 +20,68 @@ import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import Account from 'components/Account/Account';
 import { ReactComponent as AccountIcon } from '../../images/home/svg/account.svg'
-import { ButtonBurger } from 'components/Account/Account.styled';
-import { PageList } from './PageList';
 
 
 export const Header = () => {
   const isLoggedin = useSelector(selectIsLoggedIn);
+  //   const [nav, setNav] = useState(false);
 
   const [isOpen, setOpen] = useState(false);
   const toggle = () => {
     setOpen(!isOpen);
   };
 
-  const close = () => {
-    setOpen(false)
-  }
-
-  return (<>
+  return (
     <HeaderStyle>
-      <Logo />
-        <PageList/>
-      <Block>
+      <HeaderContainer>
+        <Logo />
+        <Nav />
         {isLoggedin ? (
           <Account />
         ) : (
           <AuthNavigateTablet>
-            <LinkAuthTablet to="/login" onClick={close}>Login</LinkAuthTablet>
-            <LinkAuthTablet to="/register" onClick={close}>Registation</LinkAuthTablet>
+            <LinkAuthTablet to="/login">Login</LinkAuthTablet>
+            <LinkAuthTablet to="/register">Registation</LinkAuthTablet>
           </AuthNavigateTablet>
         )}
-
         <MenuBtn onClick={toggle}>
-          {isOpen ? <GrClose size={30} /> : <HiMenu style={{ padding: 0 }} size={30} />}
+          {isOpen ? <GrClose size={30} /> : <HiMenu size={40} />}
         </MenuBtn>
-      </Block>
-    </HeaderStyle>
-    {isOpen && (
-      <Burger>
-        <ListMenu>
-          {isLoggedin ? (
-            <ButtonBurger to="/user" onClick={close} >
-              <AccountIcon style={{ marginRight: 12 }} /> Account
-            </ButtonBurger>
-          ) : (
-            <AuthNavigate style={{ marginBottom: 20 }}>
-              <LinkAuth to="/login" onClick={toggle}>
-                Login
-              </LinkAuth>
-              <LinkAuth to="/register" onClick={toggle}>
-                Registation
-              </LinkAuth>
-            </AuthNavigate>
-          )}
+        {isOpen && (
+          <Burger>
+            <ListMenu>
+              <LogoStyle onClick={toggle}>
+                <Logo />
+              </LogoStyle>
 
-          <Link to="/news" onClick={toggle}>
-            News
-          </Link>
-          <Link to="/notices" onClick={toggle}>
-            Find pet
-          </Link>
-          <Link to="/friends" onClick={toggle}>
-            Friends
-          </Link>
-        </ListMenu>
-      </Burger>
-    )}
-  </>
+              {isLoggedin ? (
+                <LinkAuth to="/user" onClick={toggle} style={{ display: 'flex'}}>
+                 <AccountIcon/> Account
+                </LinkAuth>
+              ) : (
+              <AuthNavigate style={{ marginBottom: 20 }}>
+                <LinkAuth to="/login" onClick={toggle}>
+                  Login
+                </LinkAuth>
+                <LinkAuth to="/register" onClick={toggle}>
+                  Registation
+                </LinkAuth>
+              </AuthNavigate>
+              )}
+
+              <Link to="/news" onClick={toggle}>
+                News
+              </Link>
+              <Link to="/notices" onClick={toggle}>
+                Find pet
+              </Link>
+              <Link to="/friends" onClick={toggle}>
+                Friends
+              </Link>
+            </ListMenu>
+          </Burger>
+        )}
+      </HeaderContainer>
+    </HeaderStyle>
   );
 };
