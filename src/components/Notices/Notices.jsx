@@ -35,13 +35,13 @@ const Notices = () => {
   const onClickAddPetTemp = async () => {
     try {
       await addNotice({
-        title: '10Title ANTON',
+        title: 'TEST-SELL 2',
         name: 'Ant',
         birthday: '13.07.1983',
         breed: 'human',
         place: 'Irpin',
         sex: 'male',
-        category: 'lost-found',
+        category: 'sell',
         //   price: '150$',
         // comments: 'String whith 8 symbol min',
       });

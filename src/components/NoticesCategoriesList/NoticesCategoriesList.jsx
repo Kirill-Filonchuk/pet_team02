@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 import {
   useGetFavoritesQuery,
   useGetNoticesQuery,
+  useGetOwnNoticesQuery,
   useUpdateNoticeFavoriteStatusMutation,
 } from 'redux/notices/noticesApi';
 import useAuth from 'hooks/useAuth/useAuth';
@@ -46,37 +47,34 @@ const NoticesCategoriesList = () => {
     { skip: endpoint ? false : true }
   );
 
-  const { data: favoritesData, error: favoritesError } = useGetFavoritesQuery();
+  const { data: favoritesData } = useGetFavoritesQuery();
   const favorites = favoritesData?.result.map(({ _id }) => _id);
-  console.log(favorites);
+
+  const { data: ownsData } = useGetOwnNoticesQuery();
+  const owns = ownsData?.result.map(({ _id }) => _id);
 
   const onFavoriteClickHandler = async id => {
     try {
       await updateFavoriteStatus(id);
-      // const response = await updateFavoriteStatus(id);
-      // if (response.data.result) {
-      //   console.log(response);
-      //   // refreshUser();
-      //   // console.log(user.favorite);
-      // }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const updatedPetList = (list, favorites) => {
+  const updatedPetList = (list, favorites, owns) => {
     return list?.map(item => ({
       ...item,
-      isFavorite: favorites.includes(item._id),
+      isFavorite: favorites?.includes(item._id) ? true : false,
+      isMine: owns?.includes(item._id) ? true : false,
     }));
   };
 
   const pets =
-    isLoggedIn && favorites && favorites.length > 0
-      ? updatedPetList(data?.result, favorites)
+    isLoggedIn && data
+      ? updatedPetList(data.result, favorites, owns)
       : data?.result;
 
-  // console.log(pets);
+  console.log(pets);
 
   // console.log('render');
 
