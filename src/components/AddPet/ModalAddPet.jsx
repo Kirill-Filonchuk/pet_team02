@@ -1,7 +1,23 @@
 // import Modal from 'components/Modal';
 import CommonModal from 'components/UIKit/CommonModal';
-import { useEffect } from 'react';
+
+// import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import {
+  AddPetWrapper,
+  CategoryItem,
+  CategoryLabel,
+  CategoryList,
+  CategoryRadio,
+  Description,
+  Form,
+  FormWrapper,
+  Input,
+  Label,
+  ModalButton,
+  Title,
+  ToolBar,
+} from './ModalAddPet.styled';
 // import styles from './ModalAddPet.module.css';
 // import { RiCloseLine } from 'react-icons/ri';
 // import ContentAddPet from './ContentAddPet/ContentAddPet.jsx';
@@ -52,31 +68,59 @@ export default function ModalAddPet({ onClose }) {
         </div>
       </div> */}
       <CommonModal onClose={onClose}>
-        <div>
-          sdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjf
-          sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf
-          sdjsdjkfskdfjlsdkjf
-        </div>
-        <div>
-          sdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjf
-          sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf
-          sdjsdjkfskdfjlsdkjf
-        </div>
-        <div>
-          sdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjf
-          sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf
-          sdjsdjkfskdfjlsdkjf
-        </div>
-        <div>
-          sdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjf
-          sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf
-          sdjsdjkfskdfjlsdkjf
-        </div>
-        <div>
-          sdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjfsdjsdjkfskdfjlsdkjf
-          sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf sdjsdjkfskdfjlsdkjf
-          sdjsdjkfskdfjlsdkjf
-        </div>
+        <AddPetWrapper>
+          <Title>Add pet</Title>
+          <Description>
+            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+            consectetur
+          </Description>
+
+          <CategoryList>
+            <CategoryItem>
+              <CategoryLabel htmlFor="lost_found">lost/found</CategoryLabel>
+              <CategoryRadio id="lost_found" type="radio" name="category" />
+            </CategoryItem>
+
+            <CategoryItem>
+              <CategoryLabel htmlFor="in_good_hands">
+                in good hands
+              </CategoryLabel>
+              <CategoryRadio id="in_good_hands" type="radio" name="category" />
+            </CategoryItem>
+
+            <CategoryItem>
+              <CategoryLabel htmlFor="sell_">sell</CategoryLabel>
+              <CategoryRadio id="sell_" type="radio" name="category" />
+            </CategoryItem>
+          </CategoryList>
+
+          <Form>
+            <Label>
+              Tittle of ad
+              <Input type="text" />
+            </Label>
+
+            <Label>
+              Name pet
+              <Input type="text" />
+            </Label>
+
+            <Label>
+              Date of birth
+              <Input type="text" />
+            </Label>
+
+            <Label>
+              Breed
+              <Input type="text" />
+            </Label>
+          </Form>
+
+          <ToolBar>
+            <ModalButton type="button">Cancel</ModalButton>
+            <ModalButton type="button">Next</ModalButton>
+          </ToolBar>
+        </AddPetWrapper>
       </CommonModal>
     </>,
     modalRoot
