@@ -88,6 +88,15 @@ const Input = styled(Field)`
   border-radius: ${theme.radii.normal};
   outline: none;
   transition: ${theme.transitions.durations.default} ${theme.transitions.functions.default};
+  &.default {
+  border: ${theme.borders.normal} ${theme.colors.borderActive};
+  }
+  &.success {
+    border-color: green;
+  }
+  &.error {
+    border-color: red
+  }
   ${theme.mq.tablet} {
     height: 52px;
     font-size: ${theme.fontSizes[2] + 'px'};
