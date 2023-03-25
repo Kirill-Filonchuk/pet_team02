@@ -5,7 +5,7 @@ import { ReactComponent as AccountIcon } from '../../images/home/svg/account.svg
 const Account = () => {
     return (
         <Button to='/user'>
-            <AccountIcon /> Account
+            <AccountIcon style={{ marginRight: 12 }} /> Account
         </Button>
     )
 }
