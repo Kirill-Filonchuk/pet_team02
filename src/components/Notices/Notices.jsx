@@ -13,27 +13,64 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ROUTES } from 'router';
+import {
+  NOTICES_API_ENDPOINTS,
+  useAddNoticeMutation,
+} from 'redux/notices/noticesApi';
+import { useState } from 'react';
+// import TempAddPet from 'components/TempAddPet/TempAddPet';
+import Notify from 'components/Notify';
+import { useNotifyPosition } from 'hooks/useNotifyPosition';
 
 const Notices = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-
   const { isLoggedIn } = useAuth();
+
+  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!!
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const { buttonRef, position } = useNotifyPosition();
+  const [addNotice] = useAddNoticeMutation();
+
+  const onClickAddPetTemp = async () => {
+    try {
+      await addNotice({
+        title: 'TEST-SELL 2',
+        name: 'Ant',
+        birthday: '13.07.1983',
+        breed: 'human',
+        place: 'Irpin',
+        sex: 'male',
+        category: 'sell',
+        //   price: '150$',
+        // comments: 'String whith 8 symbol min',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!!
+
   // const isLoggedIn = !true;
 
   const noticesNavLinks = [
-    { title: 'sell', label: 'Sell', to: ROUTES.NOTICES_SELL, category: 'sell' },
+    {
+      title: 'sell',
+      label: 'Sell',
+      to: ROUTES.NOTICES_SELL,
+      endpoint: NOTICES_API_ENDPOINTS.SELL,
+    },
     {
       title: 'lost-found',
       label: 'Lost / found',
       to: ROUTES.NOTICES_LOST_FOUND,
-      category: 'lost-found',
+      endpoint: NOTICES_API_ENDPOINTS.LOST_FOUND,
     },
     {
       title: 'in good hands',
       label: 'In good hands',
       to: ROUTES.NOTICES_FOR_FREE,
-      category: 'for-free',
+      endpoint: NOTICES_API_ENDPOINTS.IN_GOOD_HANDS,
     },
   ];
 
@@ -43,13 +80,13 @@ const Notices = () => {
         title: 'favorite ads',
         label: 'Favorite ads',
         to: ROUTES.NOTICES_FAVORITE,
-        category: 'favorite',
+        endpoint: NOTICES_API_ENDPOINTS.FAVORITES,
       },
       {
         title: 'my ads',
         label: 'My ads',
         to: ROUTES.NOTICES_OWN,
-        category: 'own',
+        endpoint: NOTICES_API_ENDPOINTS.OWN,
       }
     );
   }
@@ -64,6 +101,15 @@ const Notices = () => {
     <NoticesWrapper>
       <NoticeSection>
         <Container>
+          <button
+            ref={buttonRef}
+            onClick={() => {
+              // console.log('You can add new pet');
+              setIsAddModalOpen(true);
+            }}
+          >
+            BTN TEMP
+          </button>
           <PageTitle>Find your favorite pet</PageTitle>
 
           <NoticesSearch />
@@ -72,13 +118,27 @@ const Notices = () => {
             <NoticesCategoriesNav links={noticesNavLinks} />
             <AddNoticeButton
               onClick={() => {
-                console.log('You can add new pet');
+                // console.log('You can add new pet');
+                setIsAddModalOpen(true);
               }}
               isLoggedIn={isLoggedIn}
             />
           </NoticesToolBar>
         </Container>
       </NoticeSection>
+
+      {/*  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!! */}
+      {isAddModalOpen && (
+        <Notify
+          position={position}
+          onClose={() => {
+            setIsAddModalOpen(false);
+          }}
+        >
+          <button onClick={onClickAddPetTemp}>TEMP ADD BUTTON</button>
+        </Notify>
+      )}
+      {/*  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!! */}
 
       <Outlet context={noticesNavLinks} />
     </NoticesWrapper>
