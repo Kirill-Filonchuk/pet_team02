@@ -20,7 +20,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
-  isSubmitting: false,
+  isPending: false,
   error: null,
 };
 
@@ -34,14 +34,14 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-        state.isSubmitting = false;
+        state.isPending = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.result;
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-        state.isSubmitting = false;
+        state.isPending = false;
       })
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };
@@ -65,12 +65,10 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(register.pending, state => {
-        state.isRefreshing = true;
-        state.isSubmitting = true;
+        state.isPending = true;
       })
       .addCase(logIn.pending, state => {
-        state.isRefreshing = true;
-        state.isSubmitting = true;
+        state.isPending = true;
       })
       .addCase(logOut.pending, state => {
         state.isRefreshing = true;
@@ -87,12 +85,12 @@ const authSlice = createSlice({
       .addCase(register.rejected, (state, payload) => {
         state.error = payload.error;
         state.isRefreshing = false;
-        state.isSubmitting = false;
+        state.isPending = false;
       })
       .addCase(logIn.rejected, (state, payload) => {
         state.error = payload.error;
         state.isRefreshing = false;
-        state.isSubmitting = false;
+        state.isPending = false;
       })
       .addCase(logOut.rejected, (state, payload) => {
         state.error = payload.error;

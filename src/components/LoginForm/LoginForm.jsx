@@ -31,7 +31,7 @@ import {
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isSubmit } = useAuth();
+  const { isPending } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
   const initialValues = {
@@ -110,7 +110,7 @@ const LoginForm = () => {
                   )}
                   <InputError name="password" />
                 </Label>
-                {isSubmit ? (
+                {isPending ? (
                   <Spinner />
                 ) : (
                   <BtnFormSubmit type="submit">Login</BtnFormSubmit>
