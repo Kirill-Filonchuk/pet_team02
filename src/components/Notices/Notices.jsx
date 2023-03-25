@@ -13,15 +13,42 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ROUTES } from 'router';
-import { NOTICES_API_ENDPOINTS } from 'redux/notices/noticesApi';
+import {
+  NOTICES_API_ENDPOINTS,
+  useAddNoticeMutation,
+} from 'redux/notices/noticesApi';
 import { useState } from 'react';
-import TempAddPet from 'components/TempAddPet/TempAddPet';
+// import TempAddPet from 'components/TempAddPet/TempAddPet';
+import Notify from 'components/Notify';
+import { useNotifyPosition } from 'hooks/useNotifyPosition';
 
 const Notices = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
+  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!!
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const { buttonRef, position } = useNotifyPosition();
+  const [addNotice, { isLoading }] = useAddNoticeMutation();
+
+  const onClickAddPetTemp = async () => {
+    try {
+      await addNotice({
+        title: '7Title ANTON',
+        name: 'Ant',
+        birthday: '13.07.1983',
+        breed: 'human',
+        place: 'Irpin',
+        sex: 'male',
+        category: 'lost-found',
+        //   price: '150$',
+        // comments: 'String whith 8 symbol min',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!!
 
   const { isLoggedIn } = useAuth();
   // const isLoggedIn = !true;
@@ -75,6 +102,15 @@ const Notices = () => {
     <NoticesWrapper>
       <NoticeSection>
         <Container>
+          <button
+            ref={buttonRef}
+            onClick={() => {
+              // console.log('You can add new pet');
+              setIsAddModalOpen(true);
+            }}
+          >
+            BTN TEMP
+          </button>
           <PageTitle>Find your favorite pet</PageTitle>
 
           <NoticesSearch />
@@ -92,7 +128,18 @@ const Notices = () => {
         </Container>
       </NoticeSection>
 
-      {isAddModalOpen && <TempAddPet />}
+      {/*  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!! */}
+      {isAddModalOpen && (
+        <Notify
+          position={position}
+          onClose={() => {
+            setIsAddModalOpen(false);
+          }}
+        >
+          <button onClick={onClickAddPetTemp}>TEMP ADD BUTTON</button>
+        </Notify>
+      )}
+      {/*  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!! */}
 
       <Outlet context={noticesNavLinks} />
     </NoticesWrapper>

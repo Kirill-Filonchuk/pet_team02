@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import NoticeDeleteButton from './NoticeDeleteButton';
 import OptionsTable from './OptionsTable';
 import NoticeFavoriteButton from './NoticeFavoriteButton';
-// import ModalNotice from '../ModalNotice';
+import ModalNotice from '../ModalNotice';
 import {
   Article,
   BtnWrapper,
@@ -17,6 +17,8 @@ import { useEffect, useState } from 'react';
 import { trimText } from 'utils/trimText';
 // import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import defaultImage from 'assets/images/pets-default-image.jpg';
+import { useNotifyPosition } from 'hooks/useNotifyPosition';
+import Notify from 'components/Notify';
 // import { useEffect } from 'react';
 // import axios from 'axios';
 
@@ -37,6 +39,11 @@ const NoticesCard = ({
 }) => {
   const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
   const [openModal, setOpenModal] = useState(false);
+
+  // //TEMP ADD PET
+  // const [showNotify, setShowNotify] = useState(false);
+  // const { buttonRef, position } = useNotifyPosition();
+  // //TEMP ADD PET
 
   useEffect(() => {
     if (openModal) {
@@ -90,14 +97,22 @@ const NoticesCard = ({
           isLoggedIn={isLoggedIn}
         />
       </Article>
-      {/* 
+
+      {/* {showNotify && (
+        <Notify position={position} onClose={()=>{setShowNotify(false)}}>
+          <button ref={buttonRef} onClick={onClickAddPetTemp}>
+            TEMP ADD BUTTON
+          </button>
+        </Notify>
+      )} */}
+
       {openModal && (
         <ModalNotice
           onClose={() => setOpenModal(false)}
           isOpen={openModal}
           id={_id}
         />
-      )} */}
+      )}
     </>
   );
 };
