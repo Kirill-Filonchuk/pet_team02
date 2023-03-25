@@ -35,7 +35,7 @@ const Notices = () => {
   const onClickAddPetTemp = async () => {
     try {
       await addNotice({
-        title: 'TEST-SELL 2',
+        title: 'TEST-SELL 4',
         name: 'Ant',
         birthday: '13.07.1983',
         breed: 'human',
