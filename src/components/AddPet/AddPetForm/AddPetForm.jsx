@@ -2,8 +2,9 @@ import { useState } from 'react';
 import StepOne from '../StepOne';
 import StepTwo from '../StepTwo';
 
-export default function AddPetForm() {
+export default function AddPetForm(props) {
   const [data, setData] = useState({
+    category: '',
     titleAd: '',
     namePet: '',
     dateBirth: '',
@@ -39,11 +40,11 @@ export default function AddPetForm() {
   };
 
   const steps = [
-    <StepOne next={handleNextStep} data={data} />,
+    <StepOne next={handleNextStep} data={data} onClose={props.onClose} />,
     <StepTwo next={handleNextStep} prev={handlePrevStep} data={data} />,
   ];
 
   console.log('data', data);
 
-  return <div style={{ color: 'blueviolet' }}>{steps[currentStep]}</div>;
+  return <div>{steps[currentStep]}</div>;
 }

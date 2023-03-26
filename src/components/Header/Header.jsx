@@ -22,8 +22,6 @@ import { ReactComponent as AccountIcon } from '../../images/home/svg/account.svg
 
 export const Header = () => {
   const isLoggedin = useSelector(selectIsLoggedIn);
-  //   const [nav, setNav] = useState(false);
-
   const [isOpen, setOpen] = useState(false);
   const toggle = () => {
     setOpen(!isOpen);
@@ -50,13 +48,19 @@ export const Header = () => {
           <Burger>
             <ListMenu>
               {isLoggedin ? (
-                <LinkAuth
-                  to="/user"
-                  onClick={toggle}
-                  style={{ display: 'flex' }}
-                >
-                  <AccountIcon /> Account
-                </LinkAuth>
+                <AuthNavigate>
+                  <LinkAuth
+                    to="/user"
+                    onClick={toggle}
+                    style={{
+                      display: 'flex',
+                      backgroundColor: '#F59256',
+                      color: 'white',
+                    }}
+                  >
+                    <AccountIcon style={{ marginRight: 12 }} /> Account
+                  </LinkAuth>
+                </AuthNavigate>
               ) : (
                 <AuthNavigate style={{ marginBottom: 20 }}>
                   <LinkAuth to="/login" onClick={toggle}>
