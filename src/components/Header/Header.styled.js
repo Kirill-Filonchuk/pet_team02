@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-
 export const HeaderStyle = styled.header`
   /* position: fixed; */
   display: flex;
@@ -23,6 +22,7 @@ export const HeaderContainer = styled.div`
   /* padding-bottom: 16px; */
   padding-left: 20px;
   padding-right: 20px;
+  
   ${p => p.theme.mq.tablet} {
     /* justify-content: space-between; */
     align-items: center;
@@ -33,6 +33,7 @@ export const HeaderContainer = styled.div`
     padding-left: 32px;
     padding-right: 32px;
   }
+  
   ${p => p.theme.mq.desktop} {
     /* justify-content: space-between; */
     max-width: 1280px;
@@ -51,11 +52,13 @@ export const MenuBtn = styled.button`
   border: ${p => p.theme.borders.none};
   transition-property: transform;
   transition-duration: 500ms;
+  
   &:hover {
     color: ${p => p.theme.colors.accent};
     text-decoration-line: none;
     transform: scale(1.5);
   }
+  
   ${p => p.theme.mq.desktop} {
     display: none;
   }
@@ -82,10 +85,12 @@ export const ListMenu = styled.nav`
     width: 100%;
     height: 100%;
     padding: 16px 20px;
+    
     /* pointer-events: none; */
     background-color: #fdf7f2;
     z-index: 10;
   }
+  
   ${p => p.theme.mq.desktop} {
     display: none;
   }
@@ -107,6 +112,7 @@ export const Link = styled(NavLink)`
   &:hover::after {
     transform: scaleX(1);
   }
+  
   &.active:first-child {
     color: ${p => p.theme.colors.black};
     text-decoration-line: none;
@@ -161,6 +167,7 @@ export const LinkAuth = styled(NavLink)`
       margin-right: 12px;
     }
   }
+  
   &.active,
   &:hover {
     color: ${p => p.theme.colors.white};
@@ -187,6 +194,7 @@ export const AuthNavigateTablet = styled.div`
     margin-left: auto;
   }
 `;
+
 export const LinkAuthTablet = styled(NavLink)`
   padding: 8px 28px;
   border: 2px solid #f59256;
