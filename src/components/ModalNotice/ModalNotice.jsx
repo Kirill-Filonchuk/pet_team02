@@ -3,11 +3,12 @@ import { createPortal } from 'react-dom';
 import { useSpring, animated, useTransition } from '@react-spring/web';
 import PetLearnMore from './PetLearnMore';
 import { Overlay, ModalWrapper } from './ModalNotice.styled';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const ModalNotice = ({ isOpen, onClose, id }) => {
-
   useEffect(() => {
     const closeByEsc = e => {
       if (e.code !== 'Escape') {
@@ -45,12 +46,13 @@ const ModalNotice = ({ isOpen, onClose, id }) => {
       isOpen &&
       createPortal(
         <Overlay as={animated.div} style={styles} onClick={onClose}>
+          <ToastContainer />
           <ModalWrapper
             as={animated.div}
             style={springs}
             onClick={e => e.stopPropagation()}
           >
-                  <PetLearnMore onClose={onClose} id={id}></PetLearnMore>
+            <PetLearnMore onClose={onClose} id={id}></PetLearnMore>
           </ModalWrapper>
         </Overlay>,
         modalRoot

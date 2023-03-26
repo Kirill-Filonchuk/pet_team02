@@ -1,4 +1,9 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import { useGetNoticeQuery } from 'redux/notices/noticesApi';
+import useAuth from 'hooks/useAuth/useAuth';
 
 import {
   Wrapper,
@@ -22,16 +27,15 @@ import {
   HeartIconForBtn,
 } from './PetLearnMore.styled';
 
-// import OptionsTable from 'components/NoticesCard/OptionsTable';
 import { EscButton } from 'components/UIKit/EscButton/EscButton.styled';
 import { RxCross1 } from 'react-icons/rx';
-
-import { useGetNoticeQuery } from 'redux/notices/noticesApi';
 import defaultImage from 'assets/images/pets-default-image.jpg';
 
 const PetLearnMore = ({ onClose, id }) => {
   // change to the correct funtion
   const [isFavoritePet, setIsFavoritePet] = useState(false);
+
+  const { isLoggedIn } = useAuth();
 
   const { data } = useGetNoticeQuery(id);
   if (!data) return;
@@ -53,11 +57,24 @@ const PetLearnMore = ({ onClose, id }) => {
     comments,
   } = onePet;
 
-  //   const tel = !phone ? '-' : phone;
   const phoneNumber = `tel:${phone}`;
   const emailAddress = `mailto:${email}`;
 
   const showPrice = category === 'sell' ? true : false;
+
+  const hadleFavoriteBtnClick = () => {
+    if (isLoggedIn) {
+      setIsFavoritePet(!isFavoritePet);
+    } else {
+      toast.error('Please log in to use this functionality');
+    }
+  };
+
+  const hadleContactBtnClick = () => {
+    if (phone === null) {
+      toast.error('Please use the email for contact');
+    }
+  };
 
   return (
     <Wrapper>
@@ -107,9 +124,11 @@ const PetLearnMore = ({ onClose, id }) => {
               <>
                 <DescriptionContainer>
                   <PetKey>Phone:</PetKey>
-                  <PetOwnerContacts href={phoneNumber}>
-                    {phone}
-                  </PetOwnerContacts>
+                  <LinkWrapper>
+                    <PetOwnerContacts href={phoneNumber}>
+                      {phone}
+                    </PetOwnerContacts>
+                  </LinkWrapper>
                 </DescriptionContainer>
                 <DescriptionContainerEnd>
                   <PetKey>Price:</PetKey>
@@ -119,34 +138,32 @@ const PetLearnMore = ({ onClose, id }) => {
             ) : (
               <DescriptionContainerEnd>
                 <PetKey>Phone:</PetKey>
-                <PetOwnerContacts href={phoneNumber}>{phone}</PetOwnerContacts>
+                <LinkWrapper>
+                  <PetOwnerContacts href={phoneNumber}>
+                    {phone}
+                  </PetOwnerContacts>
+                </LinkWrapper>
               </DescriptionContainerEnd>
             )}
           </DescriptionWrapper>
         </PositionWrapper>
 
-        {/* <OptionsTable
-          options={[
-            { key: 'Name', value: name },
-            { key: 'Birthday', value: birthday },
-            { key: 'Breed', value: breed },
-            { key: 'Location', value: place },
-            { key: 'The sex', value: sex },
-            { key: 'Email', value: email },
-            { key: 'Phone', value: tel },
-            { key: 'Price', value: price, isPrice: true },
-          ]}
-        /> */}
         <PetComment>
           <PetCommentTitle>Coments:</PetCommentTitle>
           {comments}
         </PetComment>
 
         <BtnWrapper>
-          <ContactBtn to={phoneNumber}>Contact</ContactBtn>
+          {phone === null ? (
+            <ContactBtn onClick={hadleContactBtnClick}>Contact</ContactBtn>
+          ) : (
+            <Link to={phoneNumber}>
+              <ContactBtn>Contact</ContactBtn>
+            </Link>
+          )}
 
           <ToFavoriteBtn
-            onClick={() => setIsFavoritePet(!isFavoritePet)}
+            onClick={hadleFavoriteBtnClick}
             isFavorite={isFavoritePet}
           >
             {isFavoritePet ? 'Added to ' : 'Add to'}
