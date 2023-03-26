@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { Button } from 'components/UIKit/Button/Button.styled';
 import { Label } from 'components/NoticesCard/NoticesCard.styled';
 import { AiFillHeart } from 'react-icons/ai';
@@ -74,7 +73,9 @@ export const PetTitle = styled.h3`
 `;
 
 export const DescriptionWrapper = styled.div`
-  width: 308px;
+  ${p => p.theme.mq.tablet} {
+    width: 308px;
+  }
 `;
 
 export const DescriptionContainer = styled.div`
@@ -137,6 +138,7 @@ export const LinkWrapper = styled.div`
 
     &:hover {
       color: ${p => p.theme.colors.accent};
+      width: 183px;
     }
   }
 `;
@@ -177,42 +179,19 @@ export const PetCommentTitle = styled.span`
 
 export const BtnWrapper = styled.div`
   ${p => p.theme.mq.tablet} {
-    dislay: flex;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
     gap: 12px;
   }
 `;
 
-export const ContactBtn = styled(Link)`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  column-gap: 12px;
+export const ContactBtn = styled(Button)`
   margin-bottom: 12px;
-  padding: 0;
-  background-color: transparent;
 
-  padding: 6px 0;
-  width: ${({ width }) => (width ? width : '100%')};
-
-  font-family: ${p => p.theme.fonts.manrope};
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: 16px;
-  line-height: 1.375;
-  letter-spacing: 0.04em;
-  color: ${p => (p.color ? p.color : p.theme.colors.accent)};
-
-  background: ${p => p.theme.colors.white};
-  border: 2px solid ${p => p.theme.colors.accent};
-  border-radius: ${p => p.theme.radii.normal};
-
-  transition-property: color, background-color;
-  transition-duration: ${p => p.theme.transitions.durations.default};
-  transition-timing-function: ${p => p.theme.transitions.functions.default};
-
-  &:hover {
-    background-color: ${p => p.theme.colors.accent};
-    color: ${p => p.theme.colors.white};
+  ${p => p.theme.mq.tablet} {
+    width: 160px;
+    margin-bottom: 0px;
   }
 `;
 
@@ -229,6 +208,11 @@ export const ToFavoriteBtn = styled(Button)`
 
   &:hover > svg {
     fill: ${p => (p.isFavorite ? p.theme.colors.accent : p.theme.colors.white)};
+  }
+
+  ${p => p.theme.mq.tablet} {
+    width: 160px;
+    // padding: 9px 0;
   }
 `;
 
