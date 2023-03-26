@@ -202,7 +202,7 @@ export const ToFavoriteBtn = styled(Button)`
 
   &:hover {
     background-color: ${p =>
-      p.isFavorite ? p.theme.colors.white : p.theme.colors.accent};
+      p.isFavorite ? p.theme.colors.accent : p.theme.colors.white};
     color: ${p => p.theme.colors.black};
   }
 
@@ -212,7 +212,6 @@ export const ToFavoriteBtn = styled(Button)`
 
   ${p => p.theme.mq.tablet} {
     width: 160px;
-    // padding: 9px 0;
   }
 `;
 

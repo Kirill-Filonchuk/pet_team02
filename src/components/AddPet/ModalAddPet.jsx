@@ -1,29 +1,29 @@
 // import Modal from 'components/Modal';
 import CommonModal from 'components/UIKit/CommonModal';
-import { useState } from 'react';
-
+// import { useState } from 'react';
+import AddPetForm from './AddPetForm/AddPetForm';
 // import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import {
   AddPetWrapper,
-  BackButton,
-  CategoryItem,
-  CategoryLabel,
-  CategoryList,
-  CategoryRadio,
-  Description,
-  Fields,
-  Input,
-  Label,
-  NextButton,
-  SexItem,
-  SexLabel,
-  SexList,
-  SexRadio,
-  SexTitle,
-  SexWrapper,
-  Title,
-  ToolBar,
+  // BackButton,
+  // CategoryItem,
+  // CategoryLabel,
+  // CategoryList,
+  // CategoryRadio,
+  // Description,
+  // Fields,
+  // Input,
+  // Label,
+  // NextButton,
+  // SexItem,
+  // SexLabel,
+  // SexList,
+  // SexRadio,
+  // SexTitle,
+  // SexWrapper,
+  // Title,
+  // ToolBar,
 } from './ModalAddPet.styled';
 // import styles from './ModalAddPet.module.css';
 // import { RiCloseLine } from 'react-icons/ri';
@@ -57,35 +57,20 @@ export default function ModalAddPet({ onClose }) {
   // };
 
   //ANTON'S CODE------------------------------------
-  const [step, setStep] = useState(1);
-  const onAddPetSubmit = e => {
-    e.preventDefault();
-    // console.log(e.target.elements);
-  };
+  // const [step, setStep] = useState(1);
+  // const onAddPetSubmit = e => {
+  //   e.preventDefault();
+  //   // console.log(e.target.elements);
+  // };
   //ANTON'S CODE------------------------------------
 
   return createPortal(
     <>
-      {/* <div className={styles.darkBG} onClick={hendleClickBackdrope} />
-      <div className={styles.centered}>
-        <div className={styles.modal}>
-          <div className={styles.modalHeder}>
-            <h2 className={styles.heading}>Add pet</h2>
-            <p className={styles.titleForm}>
-              Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit
-              amet, consectetur
-            </p>
-          </div>
-          <button className={styles.closeBtn} onClick={onClose}>
-            <RiCloseLine style={{ marginBottom: '-3px' }} />
-          </button>
-          <ContentAddPet setShowModal={onClose} />
-        </div>
-      </div> */}
       <CommonModal onClose={onClose}>
-        <AddPetWrapper onSubmit={onAddPetSubmit}>
+        <AddPetWrapper>
+          <AddPetForm onClose={onClose} />
           {/* STEP -1 */}
-          {step === 1 && (
+          {/* {step === 1 && (
             <>
               <Title>Add pet</Title>
               <Description>
@@ -177,7 +162,7 @@ export default function ModalAddPet({ onClose }) {
                 </BackButton>
               </ToolBar>
             </>
-          )}
+          )} */}
 
           {/* =============================================================================== */}
           {/* =============================================================================== */}
@@ -185,7 +170,7 @@ export default function ModalAddPet({ onClose }) {
           {/* =============================================================================== */}
 
           {/* STEP -2 */}
-          {step === 2 && (
+          {/* {step === 2 && (
             <>
               <Title>Add pet</Title>
 
@@ -235,7 +220,7 @@ export default function ModalAddPet({ onClose }) {
                 </BackButton>
               </ToolBar>
             </>
-          )}
+          )} */}
         </AddPetWrapper>
       </CommonModal>
     </>,

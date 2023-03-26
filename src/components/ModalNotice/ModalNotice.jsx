@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
-const ModalNotice = ({ isOpen, onClose, id }) => {
+const ModalNotice = ({ isOpen, onClose, id, isFavorite }) => {
   useEffect(() => {
     const closeByEsc = e => {
       if (e.code !== 'Escape') {
@@ -52,7 +52,11 @@ const ModalNotice = ({ isOpen, onClose, id }) => {
             style={springs}
             onClick={e => e.stopPropagation()}
           >
-            <PetLearnMore onClose={onClose} id={id}></PetLearnMore>
+            <PetLearnMore
+              onClose={onClose}
+              id={id}
+              isFavorite={isFavorite}
+            ></PetLearnMore>
           </ModalWrapper>
         </Overlay>,
         modalRoot

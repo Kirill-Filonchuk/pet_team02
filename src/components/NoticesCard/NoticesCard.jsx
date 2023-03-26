@@ -112,6 +112,7 @@ const NoticesCard = ({
           onClose={() => setOpenModal(false)}
           isOpen={openModal}
           id={_id}
+          isFavorite={isFavorite}
         />
       )}
     </>
