@@ -1,9 +1,10 @@
-// import { ToastContainer, toast } from 'react-toastify';
-
-import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { RotatingLines } from 'react-loader-spinner';
+
+import PropTypes from 'prop-types';
 import { useState } from 'react';
+import useAuth from 'hooks/useAuth/useAuth';
 
 import UserDataItem from '../UserDataItem/UserDataItem';
 import noAvatar from '../../images/userData/no-image.jpeg';
@@ -24,6 +25,7 @@ import {
   UserItemWrapper,
   CloseBtnWrapper,
   CloseCircleLine,
+  RotatSpeinnerCont,
 } from './UserData.styled.jsx';
 import { useDispatch } from 'react-redux';
 import {
@@ -47,6 +49,7 @@ export default function UserData({ user }) {
   const dispatch = useDispatch();
   const [isDisabledBtn, setIsDisabledBtn] = useState(false);
   const { email, name, birthday, phone, city, avatarURL } = user;
+  const { isPending } = useAuth();
 
   const handleFileChange = async e => {
     const splitToFindExtension = e.target.value.split('.');
@@ -72,7 +75,7 @@ export default function UserData({ user }) {
     <>
       <UserTitle>My information:</UserTitle>
       <Wrapper>
-        <ToastContainer />
+        <ToastContainer position="top-right" autoClose={5000} theme="colored" />
         <ImageContainer>
           <ImageWrapper>
             <StyledImage
@@ -117,6 +120,17 @@ export default function UserData({ user }) {
           ) : null} */}
         </ImageContainer>
 
+        {isPending && (
+          <RotatSpeinnerCont>
+            <RotatingLines
+              strokeColor="#F59256"
+              strokeWidth="2"
+              animationDuration="0.75"
+              width="100%"
+              visible={true}
+            />
+          </RotatSpeinnerCont>
+        )}
         <UserItemWrapper>
           <UserDataItem
             setIsDisabledBtn={setIsDisabledBtn}

@@ -58,6 +58,7 @@ const authSlice = createSlice({
         state.user = action.payload.result;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.isPending = false;
       })
       .addCase(deleteUsersAvatar.fulfilled, (state, action) => {
         state.user = action.payload.result;
@@ -78,6 +79,7 @@ const authSlice = createSlice({
       })
       .addCase(updateUser.pending, state => {
         state.isRefreshing = true;
+        state.isPending = true;
       })
       .addCase(deleteUsersAvatar.pending, state => {
         state.isRefreshing = true;
@@ -101,6 +103,7 @@ const authSlice = createSlice({
       })
       .addCase(updateUser.rejected, state => {
         state.isRefreshing = false;
+        state.isPending = false;
       })
       .addCase(deleteUsersAvatar.rejected, state => {
         state.isRefreshing = false;
