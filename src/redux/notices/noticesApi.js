@@ -45,7 +45,7 @@ export const noticesApi = createApi({
     baseUrl: `${BASE_URL}api/notices`,
   }),
 
-  tagTypes: ['Notice', 'Favorite', 'Own'],
+  tagTypes: ['Notice', 'Favorite', 'Own', 'UserData'],
 
   endpoints: builder => ({
     getNotices: builder.query({
@@ -59,6 +59,13 @@ export const noticesApi = createApi({
       }),
 
       providesTags: ['Notice'],
+    }),
+
+    getUserData: builder.query({
+      query: () => ({
+        url: `/userdata`,
+      }),
+      providesTags: ['UserData'],
     }),
 
     getNotice: builder.query({
@@ -79,7 +86,7 @@ export const noticesApi = createApi({
         url: `/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Notice', 'Own'],
+      invalidatesTags: ['Notice', 'Own', 'UserData'],
     }),
 
     addNotice: builder.mutation({
@@ -88,7 +95,7 @@ export const noticesApi = createApi({
         method: 'POST',
         data,
       }),
-      invalidatesTags: ['Notice', 'Own'],
+      invalidatesTags: ['Notice', 'Own', 'UserData'],
     }),
 
     getFavorites: builder.query({
@@ -104,13 +111,14 @@ export const noticesApi = createApi({
         url: `/${id}`,
         method: 'PATCH',
       }),
-      invalidatesTags: ['Notice', 'Favorite'],
+      invalidatesTags: ['Notice', 'Favorite', 'UserData'],
     }),
   }),
 });
 
 export const {
   useGetNoticesQuery,
+  useGetUserDataQuery,
   useGetNoticeQuery,
   useGetOwnNoticesQuery,
   useDeleteNoticeMutation,

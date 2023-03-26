@@ -9,6 +9,7 @@ import {
   useGetFavoritesQuery,
   useGetNoticesQuery,
   useGetOwnNoticesQuery,
+  useGetUserDataQuery,
   useUpdateNoticeFavoriteStatusMutation,
 } from 'redux/notices/noticesApi';
 import useAuth from 'hooks/useAuth/useAuth';
@@ -78,16 +79,18 @@ const NoticesCategoriesList = () => {
   );
 
   // GET USER FAVORITE NOTICES
-  const { data: favoritesData } = useGetFavoritesQuery(null, {
-    skip: !isLoggedIn,
-  });
-  const favorites = favoritesData?.result.map(({ _id }) => _id);
-  console.log('favoritesData', favoritesData);
+  // const { data: favoritesData } = useGetFavoritesQuery(null, {
+  //   skip: !isLoggedIn,
+  // });
+  // const favorites = favoritesData?.result.map(({ _id }) => _id);
+
   //GET USER OWN NOTICES
-  const { data: ownsData } = useGetOwnNoticesQuery(null, {
-    skip: !isLoggedIn,
-  });
-  const owns = ownsData?.result.map(({ _id }) => _id);
+  // const { data: ownsData } = useGetOwnNoticesQuery(null, {
+  //   skip: !isLoggedIn,
+  // });
+  // const owns = ownsData?.result.map(({ _id }) => _id);
+
+  const { data: userData } = useGetUserDataQuery();
 
   //UPDATE FAVORITES HANDLER
   const onFavoriteClickHandler = async id => {
@@ -116,8 +119,12 @@ const NoticesCategoriesList = () => {
   //UPDATE PET LIST BEFORE RENDER
   const pets =
     isLoggedIn && data
-      ? updatedPetList(data.result, favorites, owns)
+      ? updatedPetList(data.result, userData.favorite, userData.own)
       : data?.result;
+  // const pets =
+  //   isLoggedIn && data
+  //     ? updatedPetList(data.result, favorites, owns)
+  //     : data?.result;
 
   //GET TOTAL ITEM FOR PAGINATION
   const petsTotalItem = data?.total;

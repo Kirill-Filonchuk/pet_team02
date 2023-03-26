@@ -22,6 +22,7 @@ import { useState } from 'react';
 import Notify from 'components/Notify';
 import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import AddPet from 'components/AddPet';
+import AddNoticeModal from 'components/AddNoticeModal/AddNoticeModal';
 
 const Notices = () => {
   const { pathname } = useLocation();
@@ -37,7 +38,7 @@ const Notices = () => {
   const onClickAddPetTemp = async () => {
     try {
       await addNotice({
-        title: 'TEST-SELL 4',
+        title: 'ANTON13-2',
         name: 'Ant',
         birthday: '13.07.1983',
         breed: 'human',
@@ -130,7 +131,12 @@ const Notices = () => {
       </NoticeSection>
 
       {isAddModalOpen && (
-        <AddPet
+        // <AddPet
+        // onClose={() => {
+        //   setIsAddModalOpen(false);
+        // }}
+        // />
+        <AddNoticeModal
           onClose={() => {
             setIsAddModalOpen(false);
           }}
