@@ -73,7 +73,6 @@ const LoginForm = () => {
             initialValues={initialValues}
             validationSchema={validationLogin}
             onSubmit={handleSubmit}
-            handleChange
           >
             {formik => (
               <FormAuth>
@@ -86,7 +85,7 @@ const LoginForm = () => {
                     autoComplete="off"
                   />
                   {!formik.errors.email && formik.values.email !== '' ? (
-                    <InputCorrect message="Email is correct"/>
+                    <InputCorrect name="Email is correct"/>
                   ) : (
                     null
                   )}
@@ -104,7 +103,7 @@ const LoginForm = () => {
                     {showPassword ? <BiHide /> : <BiShow />}
                   </IconShow>
                   {!formik.errors.password && formik.values.password !== '' ? (
-                    <InputCorrect message="Password is correct"/>
+                    <InputCorrect name="Password is correct"/>
                   ) : (
                     null
                   )}
@@ -113,7 +112,7 @@ const LoginForm = () => {
                 {isPending ? (
                   <Spinner />
                 ) : (
-                  <BtnFormSubmit type="submit">Login</BtnFormSubmit>
+                  <BtnFormSubmit disabled={formik.errors.email || formik.errors.password} type="submit">Login</BtnFormSubmit>
                 )}
               </FormAuth>
             )}

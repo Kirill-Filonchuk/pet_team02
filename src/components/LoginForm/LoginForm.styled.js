@@ -156,9 +156,18 @@ const BtnFormSubmit = styled.button`
   background-color: ${theme.colors.accent};
   transition: ${theme.transitions.durations.default} ${theme.transitions.functions.default};
   cursor: pointer;
+  
+  &:hover:not(:disabled), &:focus:not(:disabled) {
+    box-shadow: 0 0 20px ${theme.colors.accent}
+  }
 
-  &:active {
+  &:active &:not(:disabled) {
     transform: scale(1.01);
+  }
+  &:disabled {
+    background-color: ${theme.colors.borderActive};
+    border: none;
+    cursor: default;
   }
   ${theme.mq.tablet} {
     margin-top: 0;

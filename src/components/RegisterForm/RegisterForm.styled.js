@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-import { theme } from '../../../theme';
 import { BtnFormSubmit } from 'components/LoginForm/LoginForm.styled';
+import { NavLink } from 'react-router-dom';
+import { theme } from '../../../src/theme';
 
 const ButtonBack = styled(BtnFormSubmit)`
   width: 100%;

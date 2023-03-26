@@ -6,7 +6,10 @@ const emailValid = /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a
 const passwordValid =/(?!\s)^[^ ]{7,32}$/;
 const nameValid = /^[a-zA-zа-яіїєА-ЯІЇЄ ,.'-]+$/;
 const phoneValid = /^\+380\d{9}$/;
-const locationValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ]+$/;
+const locationValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+$/;
+
+// const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[^_.-]\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+// const namePattern = /^[a-zA-zа-яіїєА-ЯІЇЄ ,.'-][^\_]+$/;
 
 const validationLogin = yup.object().shape({
   email: yup
@@ -81,10 +84,10 @@ const InputError = ({ name }) => {
   );
 };
 
-const InputCorrect = ({message}) => {
+const InputCorrect = ({name}) => {
   return (
     <Correct>
-      <p style={{ margin: 0 }}>{message}</p>
+      <p style={{ margin: 0 }}>{name}</p>
     </Correct>
   );
 }
