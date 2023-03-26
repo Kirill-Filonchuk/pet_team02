@@ -14,13 +14,12 @@ const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  // return isRefreshing ? (
+  return <RouterProvider router={router} />;
+  // isRefreshing ? (
   //   <b>Refreshing user...</b>
   // ) : (
-  //   <RouterProvider router={router} />
-  // );
 
-  return <RouterProvider router={router} />;
+  // );
 };
 
 export default App;
