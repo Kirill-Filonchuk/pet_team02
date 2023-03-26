@@ -1,8 +1,20 @@
 import styled from 'styled-components';
-import { theme } from 'theme';
-import { Button } from 'components/UIKit/Button/Button.styled';
 import maleIcon from 'assets/images/male-icon.png';
 import femaleIcon from 'assets/images/female-icon.png';
+import { theme } from 'theme';
+import { Button } from 'components/UIKit/Button/Button.styled';
+import { RxPlus } from 'react-icons/rx';
+
+export const FieldLabel = styled('p')`
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: 18px;
+  line-height: 1.44;
+
+  ${theme.mq.tablet} {
+    font-size: 24px;
+    line-height: 1.08;
+  }
+`;
 
 export const AddPetWrapper = styled('div')`
   width: 280px;
@@ -28,9 +40,9 @@ export const Title = styled('h1')`
 
 export const Description = styled('p')`
   margin-bottom: 20px;
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.medium};
   font-size: 16px;
-  line-height: 27px;
+  line-height: 1.68;
   text-align: center;
   letter-spacing: -0.01em;
 
@@ -127,89 +139,89 @@ export const Input = styled('input')`
   }
 `;
 
-export const TextArea = styled('input')`
-  width: 100%;
-  padding: 11px 14px;
-  margin-top: 8px;
+// export const TextArea = styled('input')`
+//   width: 100%;
+//   padding: 11px 14px;
+//   margin-top: 8px;
 
-  min-height: 40px;
+//   min-height: 40px;
 
-  font-size: 14px;
-  color: rgba(17, 17, 17, 0.6);
+//   font-size: 14px;
+//   color: rgba(17, 17, 17, 0.6);
 
-  border-radius: ${p => p.theme.radii.normal};
-  border: 1px solid ${p => p.theme.colors.accent};
-  background-color: ${p => p.theme.colors.background};
+//   border-radius: ${p => p.theme.radii.normal};
+//   border: 1px solid ${p => p.theme.colors.accent};
+//   background-color: ${p => p.theme.colors.background};
 
-  ${theme.mq.tablet} {
-    min-height: 113px;
-    width: 448px;
+//   ${theme.mq.tablet} {
+//     min-height: 113px;
+//     width: 448px;
 
-    margin-top: 12px;
-    font-size: 16px;
-    line-height: 1.625;
-  }
+//     margin-top: 12px;
+//     font-size: 16px;
+//     line-height: 1.625;
+//   }
 
-  &:focus,
-  &:focus-visible {
-    outline: 1px solid ${p => p.theme.colors.accentActive};
-  }
-`;
+//   &:focus,
+//   &:focus-visible {
+//     outline: 1px solid ${p => p.theme.colors.accentActive};
+//   }
+// `;
 
-export const InputWrapper = styled.div`
-  display: flex;
-  margin-left: auto;
+// export const InputWrapper = styled.div`
+//   display: flex;
+//   margin-left: auto;
 
-  flex-direction: column;
+//   flex-direction: column;
 
-  cursor: pointer;
-  padding-top: 50px;
+//   cursor: pointer;
+//   padding-top: 50px;
 
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: 18px;
-  line-height: 1.44;
+//   font-weight: ${p => p.theme.fontWeights.medium};
+//   font-size: 18px;
+//   line-height: 1.44;
 
-  &::before {
-    content: '';
+//   &::before {
+//     content: '';
 
-    width: 40px;
-    height: 40px;
+//     width: 40px;
+//     height: 40px;
 
-    background-color: green;
-    /* background-image: ${p => p.theme.colors.background}; */
-    background-repeat: no-repeat;
-    background-position: center;
+//     background-color: green;
+//     /* background-image: ${p => p.theme.colors.background}; */
+//     background-repeat: no-repeat;
+//     background-position: center;
 
-    ${theme.mq.tablet} {
-      width: 54px;
-      height: 54px;
-    }
-  }
+//     ${theme.mq.tablet} {
+//       width: 54px;
+//       height: 54px;
+//     }
+//   }
 
-  ${theme.mq.tablet} {
-    padding-top: 76px;
-    font-size: 20px;
-    line-height: 1.3;
-  }
-`;
+//   ${theme.mq.tablet} {
+//     padding-top: 76px;
+//     font-size: 20px;
+//     line-height: 1.3;
+//   }
+// `;
 
-export const PetsFotoLabel = styled('label')`
-  display: block;
-  margin-bottom: 16px;
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: 18px;
-  line-height: 1.44;
+// export const PetsFotoLabel = styled('label')`
+//   display: block;
+//   margin-bottom: 16px;
+//   font-weight: ${p => p.theme.fontWeights.medium};
+//   font-size: 18px;
+//   line-height: 1.44;
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+//   &:last-child {
+//     margin-bottom: 0;
+//   }
 
-  ${theme.mq.tablet} {
-    margin-bottom: 28px;
-    font-size: 24px;
-    line-height: 1.08;
-  }
-`;
+//   ${theme.mq.tablet} {
+//     margin-bottom: 28px;
+//     font-size: 24px;
+//     line-height: 1.08;
+//   }
+// `;
 
 // export const InputPetsFoto = styled(Field)`
 //   margin-left: 0 auto;
@@ -266,17 +278,11 @@ export const BackButton = styled(ModalButton)`
 
 export const SexWrapper = styled('div')``;
 
-export const SexTitle = styled('p')`
+export const SexTitle = styled(FieldLabel)`
   margin-bottom: 16px;
-
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: 18px;
-  line-height: 1.44;
 
   ${theme.mq.tablet} {
     margin-bottom: 28px;
-    font-size: 24px;
-    line-height: 1.08;
   }
 `;
 
@@ -348,7 +354,97 @@ export const FieldsSecondStep = styled('div')`
   }
 `;
 
-export const UploadWrapper = styled('div')``;
-export const UploadDescription = styled('p')``;
-export const UploadLabel = styled('label')``;
+export const UploadWrapper = styled('div')`
+  margin-bottom: 20px;
+
+  ${theme.mq.tablet} {
+    margin-bottom: 28px;
+  }
+`;
+
+export const UploadDescription = styled(FieldLabel)`
+  margin-bottom: 8px;
+
+  ${theme.mq.tablet} {
+    margin-bottom: 12px;
+  }
+`;
+
+export const UploadLabel = styled('label')`
+  position: relative;
+  display: block;
+  cursor: pointer;
+
+  width: 116px;
+  height: 116px;
+
+  border-radius: 20px;
+  background-color: ${p => p.theme.colors.background};
+
+  ${theme.mq.tablet} {
+    width: 140px;
+    height: 140px;
+  }
+
+  color: rgba(17, 17, 17, 0.6);
+
+  transition-property: color;
+  transition-duration: ${p => p.theme.transitions.durations.default};
+  transition-timing-function: ${p => p.theme.transitions.functions.default};
+  &:hover {
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+
+export const UploadIconWrapper = styled('div')`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 71px;
+  height: 71px;
+`;
+
+export const UploadIcon = styled(RxPlus)`
+  width: 100%;
+  height: 100%;
+`;
+
 export const UploadInput = styled('input')``;
+
+export const CommentWrapper = styled('div')`
+  margin-bottom: 40px;
+`;
+
+export const CommentDecription = styled(FieldLabel)`
+  margin-bottom: 8px;
+
+  ${theme.mq.tablet} {
+    margin-bottom: 12px;
+  }
+`;
+
+export const CommentsField = styled('textarea')`
+  resize: none;
+  margin: 0;
+  padding: 11px 14px;
+
+  width: 100%;
+  height: 40px;
+
+  font-size: 14px;
+  color: rgba(27, 27, 27, 0.6);
+
+  border: 1px solid ${p => p.theme.colors.accent};
+  border-radius: ${p => p.theme.radii.normal};
+  background-color: ${p => p.theme.colors.background};
+
+  ${theme.mq.tablet} {
+    padding: 16px 18px;
+    height: 113px;
+    border-radius: ${p => p.theme.radii.small};
+    font-size: 16px;
+    line-height: 1.625;
+  }
+`;

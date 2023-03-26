@@ -8,6 +8,9 @@ import {
   CategoryLabel,
   CategoryList,
   CategoryRadio,
+  CommentDecription,
+  CommentsField,
+  CommentWrapper,
   Description,
   FieldsFirstStep,
   FieldsSecondStep,
@@ -23,6 +26,8 @@ import {
   Title,
   ToolBar,
   UploadDescription,
+  UploadIcon,
+  UploadIconWrapper,
   UploadInput,
   UploadLabel,
   UploadWrapper,
@@ -191,6 +196,9 @@ const AddNoticeModal = ({ onClose }) => {
               <UploadWrapper>
                 <UploadDescription>Load the pet’s image:</UploadDescription>
                 <UploadLabel>
+                  <UploadIconWrapper>
+                    <UploadIcon />
+                  </UploadIconWrapper>
                   <UploadInput
                     type="file"
                     name="avatar"
@@ -199,14 +207,16 @@ const AddNoticeModal = ({ onClose }) => {
                 </UploadLabel>
               </UploadWrapper>
 
+              <CommentWrapper>
+                <CommentDecription>Comments</CommentDecription>
+                <CommentsField
+                  placeholder="Type comment"
+                  name="comments"
+                ></CommentsField>
+              </CommentWrapper>
+
               <ToolBar>
-                <NextButton
-                  type="submit"
-                  form="add_pet_form"
-                  onClick={() => {
-                    onClose();
-                  }}
-                >
+                <NextButton type="submit" form="add_pet_form">
                   Done
                 </NextButton>
                 <BackButton
