@@ -88,6 +88,7 @@ export default function UserDataItem({
   setUser,
 }) {
   const [isEdit, setIsEdit] = useState(false);
+
   const addSchema = f => {
     switch (f) {
       case 'name':
@@ -166,6 +167,7 @@ export default function UserDataItem({
                 <BtnImageDis />
               </StyledBtn>
             )}
+
             {isEdit && (
               <StyledBtn type="submit" onClick={handleSubmit}>
                 <BtnImageDone />
@@ -198,8 +200,6 @@ export default function UserDataItem({
     </Formik>
   );
 }
-
-// export default UserDataItem;
 
 function parseDateToISO(str) {
   if (str === '00.00.0000') {

@@ -28,6 +28,7 @@ export const UserTitle = styled.h2`
 `;
 
 export const Wrapper = styled.div`
+  position: relative;
   min-width: 280px;
   /* width:100% */
   padding: 20px 12px 20px 12px;
@@ -222,4 +223,24 @@ export const LogoutIcon = styled.img`
   width: 20px;
   height: 20px;
   margin-right: 8px;
+`;
+
+export const RotatSpeinnerCont = styled.div`
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 45%;
+  top: 51%;
+
+  ${theme.mq.tablet} {
+    width: 45px;
+    height: 45px;
+
+    top: -2%;
+    left: 50%;
+  }
+  ${theme.mq.desktop} {
+    top: 45%;
+    left: 45%;
+  }
 `;
