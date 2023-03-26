@@ -38,13 +38,13 @@ const NewsList = ({ notify, searchWord }) => {
 
   useEffect(() => {
     const searchTitleNews = news.filter(item =>
-      item.title.includes(searchWord)
+      item.title.toLowerCase().includes(searchWord.toLowerCase())
     );
     if (searchTitleNews.length > 0) {
       return setSearchNews(searchTitleNews);
     }
     const searchDescriptionNews = news.filter(item =>
-      item.description.includes(searchWord)
+      item.description.toLowerCase().includes(searchWord.toLowerCase())
     );
     if (searchDescriptionNews.length > 0) {
       return setSearchNews(searchDescriptionNews);
