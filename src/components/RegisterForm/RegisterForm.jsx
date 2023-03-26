@@ -27,7 +27,7 @@ import {
   TextLink,
   FormAuth,
 } from 'components/LoginForm/LoginForm.styled';
-import { ButtonBack, LinkToLogin } from './RegisterForm.styled';
+import { ButtonBack, LinkToLogin, ButtonRegister } from './RegisterForm.styled';
 
 const initialValues = {
   email: '',
@@ -257,19 +257,20 @@ const RegisterForm = () => {
                       ) : null}
                       <InputError name="phone" />
                     </Label>
-
-                    <ButtonBack type="button" onClick={prevStep}>
-                      Back
-                    </ButtonBack>
                     {isPending ? (
                       <Spinner />
                     ) : (
-                      <BtnFormSubmit
-                        disabled={errors.name || errors.city || errors.phone}
-                        type="submit"
-                      >
-                        Register
-                      </BtnFormSubmit>
+                      <>
+                        <ButtonRegister
+                          disabled={errors.name || errors.city || errors.phone}
+                          type="submit"
+                        >
+                          Register
+                        </ButtonRegister>
+                        <ButtonBack type="button" onClick={prevStep}>
+                          Back
+                        </ButtonBack>
+                      </>
                     )}
                   </>
                 )}
