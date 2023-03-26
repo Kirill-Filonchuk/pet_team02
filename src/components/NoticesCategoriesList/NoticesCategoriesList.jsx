@@ -118,7 +118,7 @@ const NoticesCategoriesList = () => {
 
   //UPDATE PET LIST BEFORE RENDER
   const pets =
-    isLoggedIn && data
+    isLoggedIn && data && userData
       ? updatedPetList(data.result, userData.favorite, userData.own)
       : data?.result;
   // const pets =

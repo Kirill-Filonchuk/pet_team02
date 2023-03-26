@@ -9,7 +9,8 @@ import {
   CategoryList,
   CategoryRadio,
   Description,
-  Fields,
+  FieldsFirstStep,
+  FieldsSecondStep,
   Input,
   Label,
   NextButton,
@@ -21,6 +22,10 @@ import {
   SexWrapper,
   Title,
   ToolBar,
+  UploadDescription,
+  UploadInput,
+  UploadLabel,
+  UploadWrapper,
 } from './AddNoticeModal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
@@ -36,7 +41,6 @@ const AddNoticeModal = ({ onClose }) => {
     <>
       <CommonModal onClose={onClose}>
         <AddPetWrapper>
-          assds
           {/* STEP -1 */}
           {step === 1 && (
             <>
@@ -90,27 +94,31 @@ const AddNoticeModal = ({ onClose }) => {
                   <CategoryLabel htmlFor="sell_">sell</CategoryLabel>
                 </CategoryItem>
               </CategoryList>
-              <Fields>
+              <FieldsFirstStep>
                 <Label>
                   Tittle of ad
-                  <Input type="text" placeholder="Type name" />
+                  <Input type="text" placeholder="Type name" name="title" />
                 </Label>
 
                 <Label>
                   Name pet
-                  <Input type="text" placeholder="Type name pet" />
+                  <Input type="text" placeholder="Type name pet" name="name" />
                 </Label>
 
                 <Label>
                   Date of birth
-                  <Input type="text" placeholder="Type date of birth" />
+                  <Input
+                    type="text"
+                    placeholder="Type date of birth"
+                    name="birthday"
+                  />
                 </Label>
 
                 <Label>
                   Breed
-                  <Input type="text" placeholder="Type breed" />
+                  <Input type="text" placeholder="Type breed" name="breed" />
                 </Label>
-              </Fields>
+              </FieldsFirstStep>
               <ToolBar>
                 <NextButton
                   type="button"
@@ -147,7 +155,7 @@ const AddNoticeModal = ({ onClose }) => {
                     <SexRadio
                       id="sex_male"
                       type="radio"
-                      name="gender"
+                      name="sex"
                       value="male"
                       className="visually-hidden"
                     />
@@ -159,7 +167,7 @@ const AddNoticeModal = ({ onClose }) => {
                     <SexRadio
                       id="sex_female"
                       type="radio"
-                      name="gender"
+                      name="sex"
                       value="female"
                       className="visually-hidden"
                     />
@@ -167,6 +175,30 @@ const AddNoticeModal = ({ onClose }) => {
                   </SexItem>
                 </SexList>
               </SexWrapper>
+
+              <FieldsSecondStep>
+                <Label>
+                  Location:
+                  <Input type="text" placeholder="Type location" name="place" />
+                </Label>
+
+                <Label>
+                  Price:
+                  <Input type="text" placeholder="Type price" name="price" />
+                </Label>
+              </FieldsSecondStep>
+
+              <UploadWrapper>
+                <UploadDescription>Load the pet’s image:</UploadDescription>
+                <UploadLabel>
+                  <UploadInput
+                    type="file"
+                    name="avatar"
+                    className="visually-hidden"
+                  />
+                </UploadLabel>
+              </UploadWrapper>
+
               <ToolBar>
                 <NextButton
                   type="submit"

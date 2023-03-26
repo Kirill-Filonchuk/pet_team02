@@ -3,7 +3,6 @@ import { theme } from 'theme';
 import { Button } from 'components/UIKit/Button/Button.styled';
 import maleIcon from 'assets/images/male-icon.png';
 import femaleIcon from 'assets/images/female-icon.png';
-import { Field } from 'formik';
 
 export const AddPetWrapper = styled('div')`
   width: 280px;
@@ -82,7 +81,7 @@ export const CategoryRadio = styled('input')`
   }
 `;
 
-export const Fields = styled('div')`
+export const FieldsFirstStep = styled('div')`
   margin-bottom: 40px;
 `;
 
@@ -335,3 +334,21 @@ export const SexLabel = styled('label')`
     line-height: 1.3;
   }
 `;
+
+//----------------------------------------STEP 2------------------------------------
+//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
+
+export const FieldsSecondStep = styled('div')`
+  margin-bottom: 16px;
+
+  ${theme.mq.tablet} {
+    margin-bottom: 28px;
+  }
+`;
+
+export const UploadWrapper = styled('div')``;
+export const UploadDescription = styled('p')``;
+export const UploadLabel = styled('label')``;
+export const UploadInput = styled('input')``;
