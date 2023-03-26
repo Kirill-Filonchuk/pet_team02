@@ -1,6 +1,6 @@
 // import NoticesCardList from '../NoticesCardList';
 import Container from '../Container';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 // import Paginator from 'components/Paginator';
