@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+
 export const HeaderStyle = styled.header`
   /* position: fixed; */
   display: flex;
