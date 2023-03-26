@@ -25,6 +25,7 @@ const InputNewsFindPet = ({ setSearchWord }) => {
 
   const onClearHandler = () => {
     setQuery('');
+    setSearchWord('');
   };
 
   return (
