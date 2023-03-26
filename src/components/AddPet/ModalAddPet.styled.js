@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { theme } from 'theme';
 import { Button } from 'components/UIKit/Button/Button.styled';
+import maleIcon from 'assets/images/male-icon.png';
+import femaleIcon from 'assets/images/female-icon.png';
 
-export const AddPetWrapper = styled('div')`
+export const AddPetWrapper = styled('form')`
   width: 280px;
-  padding: 18px 40px;
+  padding: 40px 18px;
 
   ${theme.mq.tablet} {
     width: 608px;
@@ -12,24 +14,222 @@ export const AddPetWrapper = styled('div')`
   }
 `;
 
-export const Title = styled('h1')``;
+export const Title = styled('h1')`
+  margin-bottom: 20px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: 24px;
+  text-align: center;
 
-export const Description = styled('p')``;
+  ${theme.mq.tablet} {
+    font-weight: ${p => p.theme.fontWeights.semiBold};
+    font-size: 36px;
+  }
+`;
 
-export const CategoryList = styled('ul')``;
+export const Description = styled('p')`
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: -0.01em;
+
+  ${theme.mq.tablet} {
+    margin-bottom: 28px;
+    font-size: 20px;
+  }
+`;
+
+export const CategoryList = styled('ul')`
+  margin-bottom: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 12px;
+
+  ${theme.mq.tablet} {
+    margin-bottom: 28px;
+    column-gap: 12px;
+    row-gap: 16px;
+  }
+`;
 
 export const CategoryItem = styled('li')``;
 
-export const CategoryLabel = styled('label')``;
+export const CategoryLabel = styled('label')`
+  display: block;
+  cursor: pointer;
+  padding: 6px 26px;
 
-export const CategoryRadio = styled('input')``;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: 14px;
+  letter-spacing: 0.04em;
 
-export const Form = styled('form')``;
+  border: 2px solid ${p => p.theme.colors.accent};
+  border-radius: ${p => p.theme.radii.normal};
 
-export const Label = styled('label')``;
+  ${theme.mq.tablet} {
+    padding: 8px 26px;
+    font-size: 20px;
+  }
+`;
 
-export const Input = styled('input')``;
+export const CategoryRadio = styled('input')`
+  &:checked + label {
+    background-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
+  }
+`;
 
-export const ToolBar = styled('div')``;
+export const Fields = styled('div')`
+  margin-bottom: 40px;
+`;
 
-export const ModalButton = styled(Button)``;
+export const Label = styled('label')`
+  display: block;
+  margin-bottom: 16px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: 18px;
+  line-height: 1.44;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  ${theme.mq.tablet} {
+    margin-bottom: 28px;
+    font-size: 24px;
+    line-height: 1.08;
+  }
+`;
+
+export const Input = styled('input')`
+  width: 100%;
+  padding: 11px 14px;
+  margin-top: 8px;
+
+  font-size: 14px;
+  color: rgba(17, 17, 17, 0.6);
+
+  border-radius: ${p => p.theme.radii.normal};
+  border: 1px solid ${p => p.theme.colors.accent};
+  background-color: ${p => p.theme.colors.background};
+
+  ${theme.mq.tablet} {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 1.625;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 1px solid ${p => p.theme.colors.accentActive};
+  }
+`;
+
+export const ToolBar = styled('div')`
+  ${theme.mq.tablet} {
+    display: flex;
+    flex-direction: row-reverse;
+    column-gap: 20px;
+  }
+`;
+
+export const ModalButton = styled(Button)`
+  margin-bottom: 12px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: 16px;
+  letter-spacing: 0.04em;
+
+  ${theme.mq.tablet} {
+    margin-bottom: 0;
+    font-size: 20px;
+  }
+`;
+
+export const NextButton = styled(ModalButton)`
+  background-color: ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.white};
+
+  &:hover {
+    background-color: ${p => p.theme.colors.accentActive};
+  }
+`;
+
+export const BackButton = styled(ModalButton)`
+  color: ${p => p.theme.colors.black};
+`;
+
+export const SexWrapper = styled('div')``;
+
+export const SexTitle = styled('p')`
+  margin-bottom: 16px;
+
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: 18px;
+  line-height: 1.44;
+
+  ${theme.mq.tablet} {
+    margin-bottom: 28px;
+    font-size: 24px;
+    line-height: 1.08;
+  }
+`;
+
+export const SexList = styled('ul')`
+  margin-bottom: 32px;
+  display: flex;
+  column-gap: 40px;
+
+  ${theme.mq.tablet} {
+    margin-bottom: 40px;
+    column-gap: 80px;
+  }
+`;
+
+export const SexItem = styled('li')``;
+
+export const SexRadio = styled('input')`
+  &:checked + label {
+    color: ${p => p.theme.colors.accent};
+  }
+`;
+
+export const SexLabel = styled('label')`
+  position: relative;
+  display: block;
+  cursor: pointer;
+  padding-top: 50px;
+
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: 18px;
+  line-height: 1.44;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+
+    /* background-color: black; */
+    background-image: url(${p => (p.isMale ? maleIcon : femaleIcon)});
+    background-repeat: no-repeat;
+    background-position: center;
+
+    ${theme.mq.tablet} {
+      width: 54px;
+      height: 54px;
+    }
+  }
+
+  ${theme.mq.tablet} {
+    padding-top: 76px;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+`;

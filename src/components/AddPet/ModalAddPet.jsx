@@ -1,20 +1,29 @@
 // import Modal from 'components/Modal';
 import CommonModal from 'components/UIKit/CommonModal';
+import { useState } from 'react';
 
 // import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import {
   AddPetWrapper,
+  BackButton,
+  CancelButton,
   CategoryItem,
   CategoryLabel,
   CategoryList,
   CategoryRadio,
   Description,
+  Fields,
   Form,
-  FormWrapper,
   Input,
   Label,
-  ModalButton,
+  NextButton,
+  SexItem,
+  SexLabel,
+  SexList,
+  SexRadio,
+  SexTitle,
+  SexWrapper,
   Title,
   ToolBar,
 } from './ModalAddPet.styled';
@@ -49,6 +58,14 @@ export default function ModalAddPet({ onClose }) {
   //   }
   // };
 
+  //ANTON'S CODE------------------------------------
+  const [step, setStep] = useState(1);
+  const onAddPetSubmit = e => {
+    e.preventDefault();
+    // console.log(e.target.elements);
+  };
+  //ANTON'S CODE------------------------------------
+
   return createPortal(
     <>
       {/* <div className={styles.darkBG} onClick={hendleClickBackdrope} />
@@ -68,58 +85,159 @@ export default function ModalAddPet({ onClose }) {
         </div>
       </div> */}
       <CommonModal onClose={onClose}>
-        <AddPetWrapper>
-          <Title>Add pet</Title>
-          <Description>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-            consectetur
-          </Description>
+        <AddPetWrapper onSubmit={onAddPetSubmit}>
+          {/* STEP -1 */}
+          {step === 1 && (
+            <>
+              <Title>Add pet</Title>
+              <Description>
+                Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit
+                amet, consectetur
+              </Description>
+              <CategoryList>
+                <CategoryItem>
+                  <CategoryRadio
+                    id="lost_found"
+                    type="radio"
+                    name="category"
+                    className="visually-hidden"
+                    value="lost-found"
+                    onClick={e => {
+                      console.log(e.target.value);
+                    }}
+                  />
+                  <CategoryLabel htmlFor="lost_found">lost/found</CategoryLabel>
+                </CategoryItem>
 
-          <CategoryList>
-            <CategoryItem>
-              <CategoryLabel htmlFor="lost_found">lost/found</CategoryLabel>
-              <CategoryRadio id="lost_found" type="radio" name="category" />
-            </CategoryItem>
+                <CategoryItem>
+                  <CategoryRadio
+                    id="in_good_hands"
+                    type="radio"
+                    name="category"
+                    value="in-good-hands"
+                    onClick={e => {
+                      console.log(e.target.value);
+                    }}
+                    className="visually-hidden"
+                  />
+                  <CategoryLabel htmlFor="in_good_hands">
+                    in good hands
+                  </CategoryLabel>
+                </CategoryItem>
 
-            <CategoryItem>
-              <CategoryLabel htmlFor="in_good_hands">
-                in good hands
-              </CategoryLabel>
-              <CategoryRadio id="in_good_hands" type="radio" name="category" />
-            </CategoryItem>
+                <CategoryItem>
+                  <CategoryRadio
+                    id="sell_"
+                    type="radio"
+                    name="category"
+                    value="sell"
+                    onClick={e => {
+                      console.log(e.target.value);
+                    }}
+                    className="visually-hidden"
+                  />
+                  <CategoryLabel htmlFor="sell_">sell</CategoryLabel>
+                </CategoryItem>
+              </CategoryList>
+              <Fields>
+                <Label>
+                  Tittle of ad
+                  <Input type="text" placeholder="Type name" />
+                </Label>
 
-            <CategoryItem>
-              <CategoryLabel htmlFor="sell_">sell</CategoryLabel>
-              <CategoryRadio id="sell_" type="radio" name="category" />
-            </CategoryItem>
-          </CategoryList>
+                <Label>
+                  Name pet
+                  <Input type="text" placeholder="Type name pet" />
+                </Label>
 
-          <Form>
-            <Label>
-              Tittle of ad
-              <Input type="text" />
-            </Label>
+                <Label>
+                  Date of birth
+                  <Input type="text" placeholder="Type date of birth" />
+                </Label>
 
-            <Label>
-              Name pet
-              <Input type="text" />
-            </Label>
+                <Label>
+                  Breed
+                  <Input type="text" placeholder="Type breed" />
+                </Label>
+              </Fields>
+              <ToolBar>
+                <NextButton
+                  type="button"
+                  onClick={() => {
+                    setStep(2);
+                  }}
+                >
+                  Next
+                </NextButton>
+                <BackButton
+                  type="button"
+                  onClick={() => {
+                    onClose();
+                  }}
+                >
+                  Cancel
+                </BackButton>
+              </ToolBar>
+            </>
+          )}
 
-            <Label>
-              Date of birth
-              <Input type="text" />
-            </Label>
+          {/* =============================================================================== */}
+          {/* =============================================================================== */}
+          {/* =============================================================================== */}
+          {/* =============================================================================== */}
 
-            <Label>
-              Breed
-              <Input type="text" />
-            </Label>
-          </Form>
+          {/* STEP -2 */}
+          {step === 2 && (
+            <>
+              <Title>Add pet</Title>
 
-          <ToolBar>
-            <ModalButton type="button">Cancel</ModalButton>
-            <ModalButton type="button">Next</ModalButton>
-          </ToolBar>
+              <SexWrapper>
+                <SexTitle>The sex:</SexTitle>
+                <SexList>
+                  <SexItem>
+                    <SexRadio
+                      id="sex_male"
+                      type="radio"
+                      name="sex"
+                      value="male"
+                      className="visually-hidden"
+                    />
+                    <SexLabel htmlFor="sex_male" isMale>
+                      Male
+                    </SexLabel>
+                  </SexItem>
+                  <SexItem>
+                    <SexRadio
+                      id="sex_female"
+                      type="radio"
+                      name="sex"
+                      value="female"
+                      className="visually-hidden"
+                    />
+                    <SexLabel htmlFor="sex_female">Female</SexLabel>
+                  </SexItem>
+                </SexList>
+              </SexWrapper>
+              <ToolBar>
+                <NextButton
+                  type="submit"
+                  onClick={() => {
+                    onClose();
+                  }}
+                >
+                  Done
+                </NextButton>
+                <BackButton
+                  type="button"
+                  onClick={() => {
+                    setStep(1);
+                  }}
+                >
+                  Back
+                </BackButton>
+              </ToolBar>
+            </>
+          )}
         </AddPetWrapper>
       </CommonModal>
     </>,
