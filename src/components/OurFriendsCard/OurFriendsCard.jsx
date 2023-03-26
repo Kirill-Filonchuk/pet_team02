@@ -1,4 +1,5 @@
 import propTypes from 'prop-types';
+import ModalHours from './ModalHours';
 import {
   TitleContainer,
   TitleLink,
@@ -6,9 +7,11 @@ import {
   Image,
   ContactList,
   ContactItem,
-  Link,
+  ContactLink,
+  ContactText,
   Address,
 } from './OurFriendsCard.styled';
+import { useState, useEffect } from 'react';
 
 import defaultImage from 'assets/images/pets-default-image.jpg';
 
@@ -23,6 +26,29 @@ const OurFriendsCard = ({
   workDays,
 }) => {
   const dashDottedLine = '-----------------------------------';
+  const [openModal, setOpenModal] = useState(false);
+  const [targetModal, setTargetModal] = useState(null);
+  useEffect(() => {
+    // console.log('Mount');
+    window.addEventListener('click', onCloseModal);
+    return () => {
+      // console.log('unmount');
+      window.removeEventListener('click', onCloseModal);
+    };
+  });
+  const onOpenModal = e => {
+    setTargetModal(e.currentTarget);
+    setOpenModal(true);
+    // console.log('openModal');
+  };
+  const onCloseModal = e => {
+    if (e.target === targetModal) {
+      return;
+    }
+    // console.log('closeModal');
+    setOpenModal(false);
+  };
+
   // const titleCounter = title => {
   //   const lengthTitle = 23;
   //   if (title.length > lengthTitle) {
@@ -31,6 +57,28 @@ const OurFriendsCard = ({
   //   }
   //   return title;
   // };
+  // console.log('workDays===', workDays);
+  const days = workDays => {
+    let daysIsOpen = [];
+    if (workDays && workDays.length > 0) {
+      workDays.map(day => {
+        if (day.isOpen === true) {
+          daysIsOpen.push(day);
+        }
+        return workDays;
+      });
+      // ====formattedTime
+      let timeFrom = daysIsOpen[0].from;
+      let [hours, minutes] = timeFrom.split(':');
+      if (hours.startsWith('0')) {
+        hours = hours.substring(1);
+      }
+      let newTimeFrom = `${hours}:${minutes}`;
+      // ====
+      return `${newTimeFrom}-${daysIsOpen[0].to}`;
+    }
+    return null;
+  };
   const contactCounter = contact => {
     if (!contact) {
       return dashDottedLine;
@@ -53,30 +101,63 @@ const OurFriendsCard = ({
         <Image alt={title} src={imageUrl || defaultImage} />
         <ContactList>
           <ContactItem>
-            <Link>
-              Time:
-              <br />
-              8:00- 20:00
-            </Link>
+            {days(workDays) && (
+              <ContactLink onClick={onOpenModal}>
+                Time:
+                <br />
+                {days(workDays)}
+              </ContactLink>
+            )}
+            {!days(workDays) && (
+              <ContactText>
+                Time:
+                <br />
+                {dashDottedLine}
+              </ContactText>
+            )}
+            {openModal && <ModalHours workDays={workDays} />}
           </ContactItem>
           <ContactItem>
-            <Link href={addressUrl || '#'} target={addressUrl && '_blank'}>
-              Adress: <br />
-              {address && <Address>{contactCounter(address)}</Address>}
-              {!address && dashDottedLine}
-            </Link>
+            {address && (
+              <ContactLink href={addressUrl} target="_blank">
+                Adress: <br />
+                {address && <Address>{contactCounter(address)}</Address>}
+              </ContactLink>
+            )}
+            {!address && (
+              <ContactText>
+                Adress: <br />
+                {dashDottedLine}
+              </ContactText>
+            )}
           </ContactItem>
           <ContactItem>
-            <Link href={`mailto:${email || '#'}`}>
-              Email: <br />
-              {contactCounter(email)}
-            </Link>
+            {email && (
+              <ContactLink href={`mailto:${email}`}>
+                Email: <br />
+                {contactCounter(email)}
+              </ContactLink>
+            )}
+            {!email && (
+              <ContactText>
+                Email: <br />
+                {dashDottedLine}
+              </ContactText>
+            )}
           </ContactItem>
           <ContactItem>
-            <Link href={`tel::${phone || '#'}`}>
-              Phone: <br />
-              {contactCounter(phone)}
-            </Link>
+            {phone && (
+              <ContactLink href={`tel:${phone}`}>
+                Phone: <br />
+                {contactCounter(phone)}
+              </ContactLink>
+            )}
+            {!phone && (
+              <ContactText>
+                Phone: <br />
+                {dashDottedLine}
+              </ContactText>
+            )}
           </ContactItem>
         </ContactList>
       </FriendsContainer>
