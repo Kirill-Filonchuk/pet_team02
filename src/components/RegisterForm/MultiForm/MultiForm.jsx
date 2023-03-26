@@ -4,7 +4,7 @@ import FormNavigation from '../NavigationForm';
 
 import { FormAuth } from 'components/LoginForm/LoginForm.styled';
 
-const MultiStepForm = ({ children, initialValues, onSubmit }) => {
+const MultiStepForm = ({ children, initialValues, onSubmit, errors }) => {
   const [stepNumber, setStepNumber] = useState(0);
   const steps = React.Children.toArray(children);
 

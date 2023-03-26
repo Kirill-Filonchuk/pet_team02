@@ -20,7 +20,6 @@ import { selectIsLoggedIn } from 'redux/auth/selectors';
 import Account from 'components/Account/Account';
 import { ReactComponent as AccountIcon } from '../../images/home/svg/account.svg';
 
-
 export const Header = () => {
   const isLoggedin = useSelector(selectIsLoggedIn);
   //   const [nav, setNav] = useState(false);

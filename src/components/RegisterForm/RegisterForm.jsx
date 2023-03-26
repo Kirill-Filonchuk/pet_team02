@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { register } from 'redux/auth/operations';
+// import { Formik } from 'formik';
 import {
   validationRegisterStepOne,
   validationRegisterStepTwo,
@@ -75,17 +76,24 @@ const RegisterForm = () => {
           <ToastContainer transition={Slide} />
           <Title>Registration</Title>
           <MultiStepForm initialValues={initialValues} onSubmit={handleSubmit}>
+            
             <FormStep
               stepName="UserMain"
               validationSchema={validationRegisterStepOne}
             >
               <Label>
                 <Input
+                // className={}
                   autoComplete="off"
                   type="text"
                   name="email"
                   placeholder="Email"
                 />
+                {/* {!MultiStepForm.errors.email && MultiStepForm.values.email !== '' ? (
+                    <InputCorrect message="Email is correct"/>
+                  ) : (
+                    null
+                  )} */}
                 <InputError name="email" />
               </Label>
               <Label>

@@ -4,10 +4,10 @@ import { ButtonBack, LinkToLogin } from './NavigationForm.styled';
 import { BtnFormSubmit, TextLink } from 'components/LoginForm/LoginForm.styled';
 
 const FormNavigation = props => {
-  const { isRefreshing } = useAuth();
+  const { isPending } = useAuth();
   return (
     <>
-      {isRefreshing ? (
+      {isPending ? (
         <Spinner />
       ) : (
         <BtnFormSubmit
@@ -19,7 +19,7 @@ const FormNavigation = props => {
         </BtnFormSubmit>
       )}
 
-      {props.hasPrevious && !isRefreshing ? (
+      {props.hasPrevious && !isPending ? (
         <ButtonBack type="button" name="back" onClick={props.onBackClick}>
           Back
         </ButtonBack>
