@@ -13,6 +13,8 @@ import {
 } from 'redux/notices/noticesApi';
 import useAuth from 'hooks/useAuth/useAuth';
 import NoticesPaginatedList from 'components/NoticesPaginatedList';
+// import { useDispatch } from 'react-redux';
+// import { refreshUser } from 'redux/auth/operations';
 
 const ITEMS_PER_PAGE = 8;
 
@@ -23,8 +25,9 @@ const NoticesCategoriesList = () => {
   const [label, setLabel] = useState();
   const [page, setPage] = useState(1);
   const [endpoint, setEndpoint] = useState();
-
+  // const { isLoggedIn, user } = useAuth();
   const { isLoggedIn } = useAuth();
+  // const dispatch = useDispatch();
 
   const [updateFavoriteStatus] = useUpdateNoticeFavoriteStatusMutation();
 
@@ -58,6 +61,11 @@ const NoticesCategoriesList = () => {
   const onFavoriteClickHandler = async id => {
     try {
       await updateFavoriteStatus(id);
+      // const response = await updateFavoriteStatus(id);
+
+      // if (response.data.result) {
+      //   dispatch(refreshUser());
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -76,7 +84,12 @@ const NoticesCategoriesList = () => {
       ? updatedPetList(data.result, favorites, owns)
       : data?.result;
 
-  // console.log(pets);
+  // const pets =
+  //   isLoggedIn && data
+  //     ? updatedPetList(data.result, user.favorite, owns)
+  //     : data?.result;
+
+  console.log(data);
 
   // console.log('render');
 

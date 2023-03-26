@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { Navigate } from 'react-router';
 
 const PrivateRoute = ({ redirectTo, component: Component }) => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isRefreshing, isPending } = useAuth();
+
+  if (isRefreshing || isPending) {
+    return;
+  }
 
   return !isLoggedIn ? <Navigate to={redirectTo} /> : <Component />;
 };
