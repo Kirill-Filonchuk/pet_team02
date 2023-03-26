@@ -1,8 +1,7 @@
-// import { ToastContainer, toast } from 'react-toastify';
-
-import PropTypes from 'prop-types';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import UserDataItem from '../UserDataItem/UserDataItem';
@@ -72,7 +71,7 @@ export default function UserData({ user }) {
     <>
       <UserTitle>My information:</UserTitle>
       <Wrapper>
-        <ToastContainer />
+        <ToastContainer position="top-right" autoClose={5000} theme="colored" />
         <ImageContainer>
           <ImageWrapper>
             <StyledImage

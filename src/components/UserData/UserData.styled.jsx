@@ -28,8 +28,9 @@ export const UserTitle = styled.h2`
 `;
 
 export const Wrapper = styled.div`
-  /* width: 280px; */
-  padding: 20px 12px 20px 16px;
+  min-width: 280px;
+  /* width:100% */
+  padding: 20px 12px 20px 12px;
   background: ${p => p.theme.colors.white};
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: ${p => p.theme.radii.small};
@@ -65,11 +66,11 @@ export const ImageContainer = styled.div`
 
   ${theme.mq.tablet} {
     margin-bottom: auto;
+    margin-left: 52px;
   }
-  /* ${theme.mq.desktop}  {
-    flex-direction: row;
-    align-items: flex-end;
-  } */
+  ${theme.mq.desktop} {
+    margin-left: 0;
+  }
 `;
 
 export const ImageWrapper = styled.div`
@@ -149,7 +150,7 @@ export const EditImageBtn = styled.button`
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
-  margin-right: 12px;
+  /* margin-right: 12px; */
   background-color: transparent;
   border: none;
   transition: color 250ms linear, transform 250ms linear; */
@@ -174,11 +175,16 @@ export const EditImageIcon = styled(EditIcon)`
 `;
 
 export const UserItemWrapper = styled.div`
+  max-width: 248px;
+  width: 100%;
   ${theme.mq.tablet} {
     margin-top: 16px;
     display: flex;
     flex-direction: column;
     height: 100%;
+
+    max-width: 380px;
+    width: 100%;
   }
 `;
 
