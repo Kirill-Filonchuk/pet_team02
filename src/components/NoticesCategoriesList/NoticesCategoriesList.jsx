@@ -25,8 +25,6 @@ const NoticesCategoriesList = () => {
   const noticesNavLinks = useOutletContext();
   const { pathname: currentLocationPath } = useLocation();
 
-  const locationRef = useRef(null);
-
   const [label, setLabel] = useState();
   const [page, setPage] = useState(() => getFromStorage()?.page ?? 1);
   const [endpoint, setEndpoint] = useState();
@@ -36,26 +34,38 @@ const NoticesCategoriesList = () => {
   const [updateFavoriteStatus] = useUpdateNoticeFavoriteStatusMutation();
 
   useEffect(() => {
-    updateStorage({ page: page });
-
-    console.log('ref', locationRef.current);
-    console.log('currentLocationPath', currentLocationPath);
-
-    if (locationRef.current !== currentLocationPath) {
-      // updateStorage({ page: page });
-
-      setPage(1);
-      locationRef.current = currentLocationPath;
-    }
+    // updateStorage({ page: page });
+    // console.log('ref', locationRef.current);
+    // console.log('currentLocationPath', currentLocationPath);
+    // if (locationRef.current !== currentLocationPath) {
+    //   // updateStorage({ page: page });
+    //   setPage(1);
+    //   locationRef.current = currentLocationPath;
+    // }
   }, [page, updateStorage, currentLocationPath]);
 
   useEffect(() => {
-    const { label, endpoint } = noticesNavLinks.find(
+    const { label, endpoint, to } = noticesNavLinks.find(
       ({ to }) => to === currentLocationPath
     );
+
+    const storageRoute = getFromStorage()?.route;
+    if (storageRoute !== to) {
+      setPage(1);
+    }
+
+    updateStorage({ route: to, page: page });
+    // updateStorage({ route: to, page: storageRoute === to ? page : 1 });
+
     setEndpoint(endpoint);
     setLabel(label);
-  }, [noticesNavLinks, currentLocationPath]);
+  }, [
+    noticesNavLinks,
+    currentLocationPath,
+    updateStorage,
+    page,
+    getFromStorage,
+  ]);
 
   //GET NOTICES PER ENDPOINT (sell, lost-found, in-good-hands, favorites, own)
   const { data, error } = useGetNoticesQuery(
@@ -72,7 +82,7 @@ const NoticesCategoriesList = () => {
     skip: !isLoggedIn,
   });
   const favorites = favoritesData?.result.map(({ _id }) => _id);
-
+  console.log('favoritesData', favoritesData);
   //GET USER OWN NOTICES
   const { data: ownsData } = useGetOwnNoticesQuery(null, {
     skip: !isLoggedIn,
@@ -82,9 +92,10 @@ const NoticesCategoriesList = () => {
   //UPDATE FAVORITES HANDLER
   const onFavoriteClickHandler = async id => {
     try {
-      await updateFavoriteStatus(id);
-      // const response = await updateFavoriteStatus(id);
+      // await updateFavoriteStatus(id);
+      const response = await updateFavoriteStatus(id);
 
+      console.log(response);
       // if (response.data.result) {
       //   dispatch(refreshUser());
       // }
@@ -116,7 +127,7 @@ const NoticesCategoriesList = () => {
   //     ? updatedPetList(data.result, user.favorite, owns)
   //     : data?.result;
 
-  console.log(data);
+  // console.log(pets);
 
   // console.log('render');
 
