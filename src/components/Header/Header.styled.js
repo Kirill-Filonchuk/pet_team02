@@ -10,23 +10,23 @@ export const HeaderStyle = styled.header`
 export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   height: 42px;
   margin: 0 auto;
   /* margin-left: auto;
   margin-right: auto; */
   background-color: ${p => p.theme.colors.background};
-  max-width: 320px;
+  width: 320px;
   padding-top: 16px;
   /* padding-bottom: 16px; */
   padding-left: 20px;
   padding-right: 20px;
 
   ${p => p.theme.mq.tablet} {
-    /* justify-content: space-between; */
+    justify-content: space-between;
     align-items: center;
-    max-width: 768px;
+    width: 768px;
     height: 48px;
     padding-top: 24px;
     /* padding-bottom: 24px; */
@@ -36,7 +36,7 @@ export const HeaderContainer = styled.div`
 
   ${p => p.theme.mq.desktop} {
     /* justify-content: space-between; */
-    max-width: 1280px;
+    width: 1280px;
     padding-right: 16px;
     padding-left: 16px;
     margin: 0 auto;
@@ -191,7 +191,7 @@ export const AuthNavigateTablet = styled.div`
     display: none;
   }
   ${p => p.theme.mq.desktop} {
-    padding-top: 20px;
+    /* padding-top: 20px; */
     margin-left: auto;
   }
 `;

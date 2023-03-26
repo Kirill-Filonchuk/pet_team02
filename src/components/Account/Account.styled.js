@@ -37,6 +37,7 @@ export const Button = styled(NavLink)`
   color: ${theme.colors.white};
   align-items: center;
   margin-right: 20px;
+  margin-left: auto;
 
   ${theme.mq.tablet} {
     display: flex;
