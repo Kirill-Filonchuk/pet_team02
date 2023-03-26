@@ -11,13 +11,17 @@ const Error = styled.div`
   font-size: 10px;
   color: red;
   ${theme.mq.tablet} {
-    font-size: ${theme.fontSizes[1]+"px"};
+    font-size: ${theme.fontSizes[1] + 'px'};
     top: 62px;
   }
   ${theme.mq.desktop} {
     top: 60px;
-    font-size: ${theme.fontSizes[2]+"px"};
+    font-size: ${theme.fontSizes[2] + 'px'};
   }
 `;
 
-export { Error };
+const Correct = styled(Error)`
+color: green;
+`;
+
+export { Error, Correct };
