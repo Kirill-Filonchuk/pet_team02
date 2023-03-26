@@ -3,7 +3,7 @@ import { theme } from 'theme';
 import { Button } from 'components/UIKit/Button/Button.styled';
 import maleIcon from 'assets/images/male-icon.png';
 import femaleIcon from 'assets/images/female-icon.png';
-import { Form, Field, ErrorMessage } from 'formik';
+import { Field } from 'formik';
 
 export const AddPetWrapper = styled('form')`
   width: 280px;
