@@ -40,7 +40,7 @@ export const LogoStyle = styled.p`
 
   transition-property: transform;
   transition-duration: 900ms;
-
+  
   &:hover {
     transform: scale(1.1);
     &::after {
