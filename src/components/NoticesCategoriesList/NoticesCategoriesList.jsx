@@ -1,6 +1,6 @@
 // import NoticesCardList from '../NoticesCardList';
 import Container from '../Container';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 // import Paginator from 'components/Paginator';
@@ -13,23 +13,41 @@ import {
 } from 'redux/notices/noticesApi';
 import useAuth from 'hooks/useAuth/useAuth';
 import NoticesPaginatedList from 'components/NoticesPaginatedList';
+import { useStorage } from 'hooks/useStorage';
 // import { useDispatch } from 'react-redux';
 // import { refreshUser } from 'redux/auth/operations';
 
 const ITEMS_PER_PAGE = 8;
 
 const NoticesCategoriesList = () => {
+  const { getFromStorage, updateStorage } = useStorage('query');
+
   const noticesNavLinks = useOutletContext();
   const { pathname: currentLocationPath } = useLocation();
 
+  const locationRef = useRef(null);
+
   const [label, setLabel] = useState();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(() => getFromStorage()?.page ?? 1);
   const [endpoint, setEndpoint] = useState();
-  // const { isLoggedIn, user } = useAuth();
   const { isLoggedIn } = useAuth();
   // const dispatch = useDispatch();
 
   const [updateFavoriteStatus] = useUpdateNoticeFavoriteStatusMutation();
+
+  useEffect(() => {
+    updateStorage({ page: page });
+
+    console.log('ref', locationRef.current);
+    console.log('currentLocationPath', currentLocationPath);
+
+    if (locationRef.current !== currentLocationPath) {
+      // updateStorage({ page: page });
+
+      setPage(1);
+      locationRef.current = currentLocationPath;
+    }
+  }, [page, updateStorage, currentLocationPath]);
 
   useEffect(() => {
     const { label, endpoint } = noticesNavLinks.find(
@@ -39,6 +57,7 @@ const NoticesCategoriesList = () => {
     setLabel(label);
   }, [noticesNavLinks, currentLocationPath]);
 
+  //GET NOTICES PER ENDPOINT (sell, lost-found, in-good-hands, favorites, own)
   const { data, error } = useGetNoticesQuery(
     {
       endpoint,
@@ -48,16 +67,19 @@ const NoticesCategoriesList = () => {
     { skip: endpoint ? false : true }
   );
 
+  // GET USER FAVORITE NOTICES
   const { data: favoritesData } = useGetFavoritesQuery(null, {
     skip: !isLoggedIn,
   });
   const favorites = favoritesData?.result.map(({ _id }) => _id);
 
+  //GET USER OWN NOTICES
   const { data: ownsData } = useGetOwnNoticesQuery(null, {
     skip: !isLoggedIn,
   });
   const owns = ownsData?.result.map(({ _id }) => _id);
 
+  //UPDATE FAVORITES HANDLER
   const onFavoriteClickHandler = async id => {
     try {
       await updateFavoriteStatus(id);
@@ -71,6 +93,7 @@ const NoticesCategoriesList = () => {
     }
   };
 
+  //FUNCTION SET isFavorite AND isMine TO PET LIST
   const updatedPetList = (list, favorites, owns) => {
     return list?.map(item => ({
       ...item,
@@ -79,10 +102,14 @@ const NoticesCategoriesList = () => {
     }));
   };
 
+  //UPDATE PET LIST BEFORE RENDER
   const pets =
     isLoggedIn && data
       ? updatedPetList(data.result, favorites, owns)
       : data?.result;
+
+  //GET TOTAL ITEM FOR PAGINATION
+  const petsTotalItem = data?.total;
 
   // const pets =
   //   isLoggedIn && data
@@ -104,10 +131,9 @@ const NoticesCategoriesList = () => {
             list={pets}
             isLoggedIn={isLoggedIn}
             onFavoriteClick={onFavoriteClickHandler}
-            totalItems={43}
+            totalItems={petsTotalItem}
             currentPage={page}
             onPageClick={page => {
-              console.log(page);
               setPage(page);
             }}
             perPage={ITEMS_PER_PAGE}

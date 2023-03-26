@@ -60,7 +60,7 @@ export default function ModalAddPet({ onClose }) {
   const [step, setStep] = useState(1);
   const onAddPetSubmit = e => {
     e.preventDefault();
-    // console.log(e.target.elements);
+    console.log(e.target.elements);
   };
   //ANTON'S CODE------------------------------------
 
@@ -83,7 +83,7 @@ export default function ModalAddPet({ onClose }) {
         </div>
       </div> */}
       <CommonModal onClose={onClose}>
-        <AddPetWrapper onSubmit={onAddPetSubmit}>
+        <AddPetWrapper id="add_pet_form" onSubmit={onAddPetSubmit}>
           {/* STEP -1 */}
           {step === 1 && (
             <>
@@ -219,6 +219,7 @@ export default function ModalAddPet({ onClose }) {
               <ToolBar>
                 <NextButton
                   type="submit"
+                  form="add_pet_form"
                   onClick={() => {
                     onClose();
                   }}
