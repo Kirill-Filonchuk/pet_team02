@@ -1,4 +1,11 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import {
+  useGetNoticeQuery,
+  useUpdateNoticeFavoriteStatusMutation,
+} from 'redux/notices/noticesApi';
+import useAuth from 'hooks/useAuth/useAuth';
 
 import {
   Wrapper,
@@ -22,20 +29,18 @@ import {
   HeartIconForBtn,
 } from './PetLearnMore.styled';
 
-// import OptionsTable from 'components/NoticesCard/OptionsTable';
 import { EscButton } from 'components/UIKit/EscButton/EscButton.styled';
 import { RxCross1 } from 'react-icons/rx';
+import defaultImage from '../../assets/images/pets-default-image.jpg';
+import Spinner from '../Helpers/Spinner';
 
-import { useGetNoticeQuery } from 'redux/notices/noticesApi';
-import defaultImage from 'assets/images/pets-default-image.jpg';
+const PetLearnMore = ({ onClose, id, isFavorite }) => {
+  const { isLoggedIn } = useAuth();
 
-const PetLearnMore = ({ onClose, id }) => {
-  // change to the correct funtion
-  const [isFavoritePet, setIsFavoritePet] = useState(false);
+  const [updateFavorite] = useUpdateNoticeFavoriteStatusMutation();
 
-  const { data } = useGetNoticeQuery(id);
+  const { data, isLoading, isSuccess } = useGetNoticeQuery(id);
   if (!data) return;
-
   const { result: onePet } = data;
 
   const {
@@ -53,108 +58,133 @@ const PetLearnMore = ({ onClose, id }) => {
     comments,
   } = onePet;
 
-  //   const tel = !phone ? '-' : phone;
   const phoneNumber = `tel:${phone}`;
   const emailAddress = `mailto:${email}`;
+  const isPhone = true;
 
   const showPrice = category === 'sell' ? true : false;
 
+  const hadleFavoriteBtnClick = async id => {
+    if (isLoggedIn) {
+      try {
+        await updateFavorite(id).unwrap();
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      toast.error('Please log in to use this functionality');
+    }
+  };
+
+  const hadleContactBtnClick = () => {
+    if (phone === null) {
+      toast.error('Please use the email for contact');
+    }
+  };
+
   return (
-    <Wrapper>
-      <EscButton type="button" onClick={onClose}>
-        <RxCross1 />
-      </EscButton>
-      <ModalNoticeCard>
-        <PositionWrapper>
-          <Mark>{category}</Mark>
-          <PetImage src={petAvatarURL} alt={title} />
+    <>
+      {isLoading && <Spinner />}
+      {isSuccess && (
+        <Wrapper>
+          <EscButton type="button" onClick={onClose}>
+            <RxCross1 />
+          </EscButton>
+          <ModalNoticeCard>
+            <PositionWrapper>
+              <Mark>{category}</Mark>
+              <PetImage src={petAvatarURL || defaultImage} alt={title} />
 
-          <DescriptionWrapper>
-            <PetTitle>{title}</PetTitle>
+              <DescriptionWrapper>
+                <PetTitle>{title}</PetTitle>
 
-            <DescriptionContainer>
-              <PetKey>Name:</PetKey>
-              <Value>{name}</Value>
-            </DescriptionContainer>
-
-            <DescriptionContainer>
-              <PetKey>Birthday:</PetKey>
-              <Value>{birthday}</Value>
-            </DescriptionContainer>
-
-            <DescriptionContainer>
-              <PetKey>Breed:</PetKey>
-              <Value>{breed}</Value>
-            </DescriptionContainer>
-
-            <DescriptionContainer>
-              <PetKey>Location:</PetKey>
-              <Value>{place}</Value>
-            </DescriptionContainer>
-
-            <DescriptionContainer>
-              <PetKey>The sex:</PetKey>
-              <Value>{sex}</Value>
-            </DescriptionContainer>
-
-            <DescriptionContainer>
-              <PetKey>Email:</PetKey>
-              <LinkWrapper>
-                <PetOwnerContacts href={emailAddress}>{email}</PetOwnerContacts>
-              </LinkWrapper>
-            </DescriptionContainer>
-            {showPrice ? (
-              <>
                 <DescriptionContainer>
-                  <PetKey>Phone:</PetKey>
-                  <PetOwnerContacts href={phoneNumber}>
-                    {phone}
-                  </PetOwnerContacts>
+                  <PetKey>Name:</PetKey>
+                  <Value>{name}</Value>
                 </DescriptionContainer>
-                <DescriptionContainerEnd>
-                  <PetKey>Price:</PetKey>
-                  <Value>{price}</Value>
-                </DescriptionContainerEnd>
-              </>
-            ) : (
-              <DescriptionContainerEnd>
-                <PetKey>Phone:</PetKey>
-                <PetOwnerContacts href={phoneNumber}>{phone}</PetOwnerContacts>
-              </DescriptionContainerEnd>
-            )}
-          </DescriptionWrapper>
-        </PositionWrapper>
 
-        {/* <OptionsTable
-          options={[
-            { key: 'Name', value: name },
-            { key: 'Birthday', value: birthday },
-            { key: 'Breed', value: breed },
-            { key: 'Location', value: place },
-            { key: 'The sex', value: sex },
-            { key: 'Email', value: email },
-            { key: 'Phone', value: tel },
-            { key: 'Price', value: price, isPrice: true },
-          ]}
-        /> */}
-        <PetComment>
-          <PetCommentTitle>Coments:</PetCommentTitle>
-          {comments}
-        </PetComment>
+                <DescriptionContainer>
+                  <PetKey>Birthday:</PetKey>
+                  <Value>{birthday}</Value>
+                </DescriptionContainer>
 
-        <BtnWrapper>
-          <ContactBtn to={phoneNumber}>Contact</ContactBtn>
+                <DescriptionContainer>
+                  <PetKey>Breed:</PetKey>
+                  <Value>{breed}</Value>
+                </DescriptionContainer>
 
-          <ToFavoriteBtn
-            onClick={() => setIsFavoritePet(!isFavoritePet)}
-            isFavorite={isFavoritePet}
-          >
-            {isFavoritePet ? 'Added to ' : 'Add to'}
-            <HeartIconForBtn favorite={isFavoritePet} />
-          </ToFavoriteBtn>
-        </BtnWrapper>
-      </ModalNoticeCard>
-    </Wrapper>
+                <DescriptionContainer>
+                  <PetKey>Location:</PetKey>
+                  <Value>{place}</Value>
+                </DescriptionContainer>
+
+                <DescriptionContainer>
+                  <PetKey>The sex:</PetKey>
+                  <Value>{sex}</Value>
+                </DescriptionContainer>
+
+                <DescriptionContainer>
+                  <PetKey>Email:</PetKey>
+                  <LinkWrapper>
+                    <PetOwnerContacts href={emailAddress}>
+                      {email}
+                    </PetOwnerContacts>
+                  </LinkWrapper>
+                </DescriptionContainer>
+                {showPrice ? (
+                  <>
+                    <DescriptionContainer>
+                      <PetKey>Phone:</PetKey>
+                      <LinkWrapper isPhone={isPhone}>
+                        <PetOwnerContacts href={phoneNumber}>
+                          {phone}
+                        </PetOwnerContacts>
+                      </LinkWrapper>
+                    </DescriptionContainer>
+                    <DescriptionContainerEnd>
+                      <PetKey>Price:</PetKey>
+                      <Value>{price}</Value>
+                    </DescriptionContainerEnd>
+                  </>
+                ) : (
+                  <DescriptionContainerEnd>
+                    <PetKey>Phone:</PetKey>
+                    <LinkWrapper isPhone={isPhone}>
+                      <PetOwnerContacts href={phoneNumber}>
+                        {phone}
+                      </PetOwnerContacts>
+                    </LinkWrapper>
+                  </DescriptionContainerEnd>
+                )}
+              </DescriptionWrapper>
+            </PositionWrapper>
+
+            <PetComment>
+              <PetCommentTitle>Coments:</PetCommentTitle>
+              {comments}
+            </PetComment>
+
+            <BtnWrapper>
+              {phone === null ? (
+                <ContactBtn onClick={hadleContactBtnClick}>Contact</ContactBtn>
+              ) : (
+                <Link to={phoneNumber}>
+                  <ContactBtn>Contact</ContactBtn>
+                </Link>
+              )}
+
+              <ToFavoriteBtn
+                onClick={() => hadleFavoriteBtnClick(id)}
+                isFavorite={isFavorite}
+              >
+                {isFavorite ? 'Added to ' : 'Add to'}
+                <HeartIconForBtn />
+              </ToFavoriteBtn>
+            </BtnWrapper>
+          </ModalNoticeCard>
+        </Wrapper>
+      )}
+    </>
   );
 };
 

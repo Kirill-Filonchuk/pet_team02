@@ -2,39 +2,57 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const HeaderStyle = styled.header`
-padding: 16px 20px;
-    display: flex;
-  align-items: center;
-  justify-content: space-between;
-  ${p => p.theme.mq.tablet} {
-    padding: 24px 32px;
-      }
-`;
-export const Block = styled.div`
+  /* position: fixed; */
   display: flex;
-  width: 100wv;
-
-  
+  align-items: center;
+  width: 100%;
+`;
+export const HeaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 42px;
+  margin: 0 auto;
+  /* margin-left: auto;
+  margin-right: auto; */
+  background-color: ${p => p.theme.colors.background};
+  width: 320px;
+  padding-top: 16px;
+  /* padding-bottom: 16px; */
+  padding-left: 20px;
+  padding-right: 20px;
 
   ${p => p.theme.mq.tablet} {
+    justify-content: space-between;
     align-items: center;
+    width: 768px;
     height: 48px;
- 
+    padding-top: 24px;
+    /* padding-bottom: 24px; */
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  ${p => p.theme.mq.desktop} {
+    /* justify-content: space-between; */
+    width: 1280px;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin: 0 auto;
+    height: 48px;
   }
 `;
 
 export const MenuBtn = styled.button`
   display: flex;
-justify-content: center;
-
   cursor: pointer;
   z-index: 11;
   background-color: transparent;
   border: ${p => p.theme.borders.none};
   transition-property: transform;
   transition-duration: 500ms;
-  padding: 0;
- 
+
   &:hover {
     color: ${p => p.theme.colors.accent};
     text-decoration-line: none;
@@ -51,27 +69,33 @@ justify-content: center;
 export const Burger = styled.div`
   display: flex;
   align-content: center;
-
 `;
 
 export const ListMenu = styled.nav`
+  ${p => p.theme.mq.mob} {
     display: flex;
     flex-direction: column;
     align-content: center;
     align-items: center;
-    position: absolute;
+    justify-content: center;
+    position: fixed;
+    left: 0;
     right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
+    padding: 16px 20px;
+
+    /* pointer-events: none; */
     background-color: #fdf7f2;
     z-index: 10;
-
+  }
   ${p => p.theme.mq.tablet} {
-    height: 100hv;
-
+    justify-content: flex-start;
+    padding-top: 88px;
   }
   ${p => p.theme.mq.desktop} {
-      display: none;
+    display: none;
   }
 `;
 
@@ -121,16 +145,21 @@ export const Link = styled(NavLink)`
     letter-spacing: 0.04em;
     transition-property: transform;
     transition-duration: 500ms;
+    &:nth-child(2) {
+      margin-top: 60px;
+    }
   }
+  ${p => p.theme.mq.tablet} {
+    margin-top: 60px;
+  }
+
   ${p => p.theme.mq.desktop} {
-    margin-top: 0;
-    margin-right: 80px;
-    
+    display: hidden;
   }
 `;
 export const LinkAuth = styled(NavLink)`
   ${p => p.theme.mq.mob} {
-    padding: 8px 28px;
+    padding: 6px 28px;
     border: 2px solid #f59256;
     border-radius: ${p => p.theme.radii.normal};
     background-color: ${p => p.theme.colors.white};
@@ -141,6 +170,7 @@ export const LinkAuth = styled(NavLink)`
     line-height: 19px;
     letter-spacing: 0.04em;
     text-decoration: none;
+    /* width: 35px; */
     color: ${p => p.theme.colors.black};
     transition-property: background-color, transform;
     transition-duration: 500ms;
@@ -148,7 +178,6 @@ export const LinkAuth = styled(NavLink)`
       margin-right: 12px;
     }
   }
-
   &.active,
   &:hover {
     color: ${p => p.theme.colors.white};
@@ -160,8 +189,6 @@ export const LinkAuth = styled(NavLink)`
 
 export const AuthNavigate = styled.div`
   display: flex;
-padding-top: 5px;
-
 
   ${p => p.theme.mq.tabletOnly} {
     display: none;
@@ -169,17 +196,18 @@ padding-top: 5px;
 `;
 
 export const AuthNavigateTablet = styled.div`
+  display: flex;
+
+  ${p => p.theme.mq.mobileOnly} {
     display: none;
-  ${p => p.theme.mq.tablet} {
-    display: flex;
   }
   ${p => p.theme.mq.desktop} {
-    // padding-top: 20px;
-    margin-left: auto;
+    /* padding-top: 20px; */
+    margin-left: 354px;
   }
 `;
 export const LinkAuthTablet = styled(NavLink)`
-  padding: 8px 28px;
+  padding: 6.5px 28px;
   border: 2px solid #f59256;
   border-radius: 40px;
   background-color: ${p => p.theme.colors.white};
@@ -196,9 +224,9 @@ export const LinkAuthTablet = styled(NavLink)`
   &:first-child {
     margin-right: 12px;
   }
-  &:last-child {
+  /* &:last-child {
     margin-right: 20px;
-  }
+  } */
   &.active,
   &:hover {
     color: ${p => p.theme.colors.white};
@@ -206,22 +234,34 @@ export const LinkAuthTablet = styled(NavLink)`
     text-decoration-line: none;
   }
   ${p => p.theme.mq.desktop} {
+    padding: 8px 28px;
     &:first-child {
       margin-right: 20px;
     }
   }
 `;
-export const LogoStyle = styled.div`
-  position: absolute;
-  top: 2%;
-  left: 10%;
-`;
-
-export const NavigateList = styled.div`
-display: none;
-
-${p => p.theme.mq.desktop} {
+export const LinkAuthAccaunt = styled(NavLink)`
   display: flex;
-}
-
-`
+  justify-content: center;
+  background-color: ${p => p.theme.colors.accent};
+  width: 164px;
+  padding: 6px 28px;
+  border: 2px solid #f59256;
+  border-radius: ${p => p.theme.radii.normal};
+  color: ${p => p.theme.colors.white};
+  font-size: ${p => p.theme.fontSizes[1]}px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-family: ${p => p.theme.fonts.manrope};
+  font-style: normal;
+  line-height: 19px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition-property: background-color, transform;
+  transition-duration: 500ms;
+  &:hover {
+    color: ${p => p.theme.colors.white};
+    background-color: ${p => p.theme.colors.accentActive};
+    text-decoration-line: none;
+    transform: scale(1.1);
+  }
+`;

@@ -1,24 +1,40 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { api, BASE_URL } from 'Services/AxiosConfig';
 
-export const API_CATEGORIES_ROUTES = {
-  SELL: 'sell',
-  LOST_FOUND: 'lost-found',
-  FOR_FREE: 'for-free',
-  FAVORITE: 'favorite',
-  OWN: 'own',
+// export const API_CATEGORIES_ROUTES = {
+//   SELL: 'sell',
+//   LOST_FOUND: 'lost-found',
+//   FOR_FREE: 'for-free',
+//   FAVORITE: 'favorite',
+//   OWN: 'own',
+// };
+
+export const NOTICES_API_ENDPOINTS = {
+  SELL: '/categories/sell',
+  LOST_FOUND: '/categories/lost-found',
+  IN_GOOD_HANDS: '/categories/in-good-hands',
+  FAVORITES: '/favorites',
+  OWN: '/',
 };
 
 //Need to export asxios instance "api"
 
 const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
-  async ({ url, method, data, params }) => {
+  async ({ url, method, data, params, headers }) => {
     try {
-      const result = await api({ url: baseUrl + url, method, data, params });
+      // console.log(api.defaults.headers.common.Authorization);
+      const result = await api({
+        url: baseUrl + url,
+        method,
+        data,
+        params,
+        headers,
+      });
       return { data: result.data };
     } catch (axiosError) {
       let err = axiosError;
+      // console.log(err);
       return {
         error: {
           status: err.response?.status,
@@ -34,15 +50,28 @@ export const noticesApi = createApi({
   baseQuery: axiosBaseQuery({
     baseUrl: `${BASE_URL}api/notices`,
   }),
+
+  tagTypes: ['Notice', 'Favorite', 'Own', 'UserData'],
+
   endpoints: builder => ({
     getNotices: builder.query({
-      query: ({ category, search, page }) => ({
-        url: `/categories/${category}`,
+      query: ({ endpoint, query, page, limit }) => ({
+        url: `${endpoint}`,
         params: {
-          search,
+          query,
           page,
+          limit,
         },
       }),
+
+      providesTags: ['Notice'],
+    }),
+
+    getUserData: builder.query({
+      query: () => ({
+        url: `/userdata`,
+      }),
+      providesTags: ['UserData'],
     }),
 
     getNotice: builder.query({
@@ -51,56 +80,60 @@ export const noticesApi = createApi({
       }),
     }),
 
+    getOwnNotices: builder.query({
+      query: () => ({
+        url: `/`,
+      }),
+      providesTags: ['Own'],
+    }),
+
     deleteNotice: builder.mutation({
       query: id => ({
         url: `/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Notice', 'Own', 'UserData'],
     }),
 
     addNotice: builder.mutation({
-      query: body => ({
-        url: '/',
+      query: data => ({
+        url: '/notice',
         method: 'POST',
-        body,
-      }),
-    }),
-
-    getUserOwnNotices: builder.query({
-      query: ({ userId, search, page }) => ({
-        url: `/${userId}`,
-        params: {
-          search,
-          page,
+        data,
+        headers: {
+          'Content-Type': 'application/json,multipart/form-data',
         },
       }),
+      invalidatesTags: ['Notice', 'Own', 'UserData'],
     }),
 
-    getUserFavoriteNotices: builder.query({
-      query: ({ userId, search, page }) => ({
-        url: `/${userId}/favorites`,
-        params: {
-          search,
-          page,
-        },
+    getFavorites: builder.query({
+      query: () => ({
+        url: `/favorites`,
       }),
+
+      providesTags: ['Favorite'],
     }),
 
     updateNoticeFavoriteStatus: builder.mutation({
-      query: ({ id, ...patch }) => ({
-        url: `/${id}/favorite`,
+      query: id => ({
+        url: `/${id}`,
         method: 'PATCH',
-        body: patch,
       }),
+      invalidatesTags: ['Notice', 'Favorite', 'UserData'],
     }),
   }),
 });
 
 export const {
   useGetNoticesQuery,
+  useGetUserDataQuery,
   useGetNoticeQuery,
+  useGetOwnNoticesQuery,
   useDeleteNoticeMutation,
   useAddNoticeMutation,
-  useGetUserOwnNoticesQuery,
-  useGetUserFavoriteNoticesQuery,
+  // useGetUserOwnNoticesQuery,
+  // useGetUserFavoriteNoticesQuery,
+  useGetFavoritesQuery,
+  useUpdateNoticeFavoriteStatusMutation,
 } = noticesApi;

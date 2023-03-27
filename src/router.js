@@ -86,19 +86,13 @@ const routes = [
       {
         path: ROUTES.REGISTER,
         element: (
-          <RestrictedRoute
-          redirectTo={ROUTES.USER}
-          component={RegisterPage}
-          />
+          <RestrictedRoute redirectTo={ROUTES.USER} component={RegisterPage} />
         ),
       },
       {
         path: ROUTES.LOGIN,
         element: (
-          <RestrictedRoute
-          redirectTo={ROUTES.USER}
-          component={LoginPage}
-          />
+          <RestrictedRoute redirectTo={ROUTES.USER} component={LoginPage} />
         ),
       },
       {

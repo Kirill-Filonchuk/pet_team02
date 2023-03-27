@@ -12,7 +12,9 @@ const InputNewsFindPet = ({ setSearchWord }) => {
   const [query, setQuery] = useState('');
 
   const onQueryChangeHandler = e => {
-    setQuery(e.target.value);
+    const query = e.target.value;
+    setQuery(query);
+    setSearchWord(query);
   };
 
   const onSubmitHandler = e => {
@@ -23,6 +25,7 @@ const InputNewsFindPet = ({ setSearchWord }) => {
 
   const onClearHandler = () => {
     setQuery('');
+    setSearchWord('');
   };
 
   return (

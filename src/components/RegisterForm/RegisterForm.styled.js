@@ -1,13 +1,19 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-import { theme } from '../../../theme';
 import { BtnFormSubmit } from 'components/LoginForm/LoginForm.styled';
+import { NavLink } from 'react-router-dom';
+import { theme } from '../../../src/theme';
 
 const ButtonBack = styled(BtnFormSubmit)`
   width: 100%;
-  margin: 12px 0 40px 0;
+  margin-top: 0;
+  margin-bottom: 40px;
   color: ${theme.colors.black};
   background-color: transparent;
+`;
+
+const ButtonRegister = styled(BtnFormSubmit)`
+  margin-top: 4px;
+  margin-bottom: 12px;
 `;
 
 const LinkToLogin = styled(NavLink)`
@@ -15,4 +21,4 @@ const LinkToLogin = styled(NavLink)`
   text-decoration: underline;
 `;
 
-export { ButtonBack, LinkToLogin };
+export { ButtonBack, LinkToLogin, ButtonRegister };

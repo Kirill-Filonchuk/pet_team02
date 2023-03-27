@@ -13,7 +13,8 @@ export const Wrapper = styled.div`
   margin-bottom: 8px;
   ${theme.mq.tablet} {
     width: auto;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
+    height: 32px;
   }
   ${theme.mq.desktop} {
     width: 100%;
@@ -43,26 +44,30 @@ export const StyledValue = styled.p`
   font-size: ${p => p.theme.fontSizes[0]}px;
   line-height: 1.33;
   letter-spacing: 0.04em;
-  margin-left: 19px;
   color: ${p => p.theme.colors.black};
-  /* position: relative; */
 
-  /* display: flex;
-  flex-wrap: wrap; */
+  word-break: break-all;
+  padding: 4px 0 4px 24px;
+  max-width: 160px;
+  width: 100%;
+  /* overflow: hidden;  */
 
   ${theme.mq.tablet} {
-    margin-left: 26px;
+    margin-left: 24px;
     font-size: ${p => p.theme.fontSizes[3]}px;
     line-height: 1.39;
-    width: 250px;
+    /* width: 250px; */
+    padding: 4px 0 4px 12px;
+    max-width: 216px;
+    width: 100%;
   }
 `;
 
 export const StyledInput = styled(Field)`
   margin-left: 0;
   width: 160px;
-  height: 24px;
-  padding: 4px 18px;
+  /* height: 24px; */
+  padding: 4px 2px 4px 16px;
   color: ${p => p.theme.colors.black};
   background: ${p => p.theme.colors.background};
   border: 1px solid rgba(245, 146, 86, 0.5);
@@ -74,6 +79,8 @@ export const StyledInput = styled(Field)`
   letter-spacing: 0.04em;
   /* position: relative; */
 
+  margin-left: 7.2px;
+
   &:hover,
   :focus {
     outline: 1px solid rgba(245, 146, 86, 0.5);
@@ -82,10 +89,12 @@ export const StyledInput = styled(Field)`
     font-weight: ${p => p.theme.fontWeights.normal};
     font-size: ${p => p.theme.fontSizes[3]}px;
     line-height: 1.39;
-    margin-left: 13px;
-    width: 216px;
-    height: 32px;
-    padding: 4px 12px;
+    margin-left: 23.2px;
+    max-width: 216px;
+    width: 100%;
+    /* width: 216px; */
+    /* height: 32px; */
+    padding: 4px 0 4px 12px;
   }
 `;
 

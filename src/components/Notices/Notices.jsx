@@ -4,6 +4,7 @@ import NoticesSearch from '../NoticesSearch';
 import Container from '../Container';
 import PageTitle from 'components/UIKit/PageTitle';
 import useAuth from 'hooks/useAuth/useAuth';
+import AddNoticeModal from 'components/AddNoticeModal/AddNoticeModal';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {
   NoticeSection,
@@ -13,27 +14,34 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ROUTES } from 'router';
+import { NOTICES_API_ENDPOINTS } from 'redux/notices/noticesApi';
+import { useState } from 'react';
 
 const Notices = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-
   const { isLoggedIn } = useAuth();
-  // const isLoggedIn = !true;
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [query, setQuery] = useState('');
 
   const noticesNavLinks = [
-    { title: 'sell', label: 'Sell', to: ROUTES.NOTICES_SELL, category: 'sell' },
+    {
+      title: 'sell',
+      label: 'Sell',
+      to: ROUTES.NOTICES_SELL,
+      endpoint: NOTICES_API_ENDPOINTS.SELL,
+    },
     {
       title: 'lost-found',
       label: 'Lost / found',
       to: ROUTES.NOTICES_LOST_FOUND,
-      category: 'lost-found',
+      endpoint: NOTICES_API_ENDPOINTS.LOST_FOUND,
     },
     {
       title: 'in good hands',
       label: 'In good hands',
       to: ROUTES.NOTICES_FOR_FREE,
-      category: 'for-free',
+      endpoint: NOTICES_API_ENDPOINTS.IN_GOOD_HANDS,
     },
   ];
 
@@ -43,13 +51,13 @@ const Notices = () => {
         title: 'favorite ads',
         label: 'Favorite ads',
         to: ROUTES.NOTICES_FAVORITE,
-        category: 'favorite',
+        endpoint: NOTICES_API_ENDPOINTS.FAVORITES,
       },
       {
         title: 'my ads',
         label: 'My ads',
         to: ROUTES.NOTICES_OWN,
-        category: 'own',
+        endpoint: NOTICES_API_ENDPOINTS.OWN,
       }
     );
   }
@@ -60,19 +68,24 @@ const Notices = () => {
     }
   }, [pathname, navigate]);
 
+  const onSearchHandler = query => {
+    setQuery(query);
+  };
+
   return (
     <NoticesWrapper>
       <NoticeSection>
         <Container>
           <PageTitle>Find your favorite pet</PageTitle>
 
-          <NoticesSearch />
+          <NoticesSearch onSearch={onSearchHandler} />
 
           <NoticesToolBar>
             <NoticesCategoriesNav links={noticesNavLinks} />
             <AddNoticeButton
               onClick={() => {
-                console.log('You can add new pet');
+                // console.log('You can add new pet');
+                setIsAddModalOpen(true);
               }}
               isLoggedIn={isLoggedIn}
             />
@@ -80,7 +93,21 @@ const Notices = () => {
         </Container>
       </NoticeSection>
 
-      <Outlet context={noticesNavLinks} />
+      {isAddModalOpen && (
+        // <AddPet
+        //   onClose={() => {
+        //     setIsAddModalOpen(false);
+        //   }}
+        // />
+
+        <AddNoticeModal
+          onClose={() => {
+            setIsAddModalOpen(false);
+          }}
+        />
+      )}
+
+      <Outlet context={{ noticesNavLinks, query }} />
     </NoticesWrapper>
   );
 };

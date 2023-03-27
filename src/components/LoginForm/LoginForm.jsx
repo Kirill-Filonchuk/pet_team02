@@ -5,7 +5,11 @@ import { Formik } from 'formik';
 import { ToastContainer, Slide } from 'react-toastify';
 import { logIn } from 'redux/auth/operations';
 import useAuth from '../../hooks/useAuth/useAuth';
-import { validationLogin, InputError } from 'components/FormValidation';
+import {
+  validationLogin,
+  InputError,
+  InputCorrect,
+} from 'components/FormValidation';
 import { notifyError } from 'components/Helpers/Toastify';
 import Spinner from 'components/Helpers/Spinner';
 import { BiShow, BiHide } from 'react-icons/bi';
@@ -27,7 +31,7 @@ import {
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  const { isPending } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
   const initialValues = {
@@ -46,6 +50,7 @@ const LoginForm = () => {
         password: password,
       })
     ).then(res => {
+      
       if (res.payload.code === 200) {
         navigate('/user', { replace: true });
         actions.resetForm();
@@ -69,19 +74,26 @@ const LoginForm = () => {
             validationSchema={validationLogin}
             onSubmit={handleSubmit}
           >
-            {() => (
+            {formik => (
               <FormAuth>
                 <Label>
                   <Input
+                    className={!formik.errors.email && formik.values.email !== '' ? 'success' : formik.errors.email && formik.values.email !== '' ? 'error' : 'default'}
                     name="email"
                     type="text"
                     placeholder="Email"
                     autoComplete="off"
                   />
+                  {!formik.errors.email && formik.values.email !== '' ? (
+                    <InputCorrect name="Email is correct"/>
+                  ) : (
+                    null
+                  )}
                   <InputError name="email" />
                 </Label>
                 <Label>
                   <Input
+                 className={!formik.errors.password && formik.values.password !== '' ? 'success' : formik.errors.password && formik.values.password !== '' ? 'error' : 'default'}
                     name="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Password"
@@ -90,12 +102,17 @@ const LoginForm = () => {
                   <IconShow onClick={togglePassword}>
                     {showPassword ? <BiHide /> : <BiShow />}
                   </IconShow>
+                  {!formik.errors.password && formik.values.password !== '' ? (
+                    <InputCorrect name="Password is correct"/>
+                  ) : (
+                    null
+                  )}
                   <InputError name="password" />
                 </Label>
-                {isRefreshing ? (
+                {isPending ? (
                   <Spinner />
                 ) : (
-                  <BtnFormSubmit type="submit">Login</BtnFormSubmit>
+                  <BtnFormSubmit disabled={formik.errors.email || formik.errors.password} type="submit">Login</BtnFormSubmit>
                 )}
               </FormAuth>
             )}

@@ -1,62 +1,97 @@
 import styled from 'styled-components';
-import VolnaMob1 from '../../images/home/VolnaMob1.png';
-import Pes from '../../images/home/Pes.png'
-import PesDesk from '../../images/home/Pes_d.png'
-import PesTablet from '../../images/home/Pes_t.png'
-import Wave from '../../images/home/Wave_t.png'
-import WaveDesk from '../../images/home/Wave_D.png'
-import {theme} from 'theme'
+
+import DogDx1 from '../../images/home/DogDx1.png'
+import DogDx2 from '../../images/home/DogDx2.png'
+
+import { theme } from 'theme'
+import Wave from '../../images/home/svg/Wave.svg'
+import WaveD from '../../images/home/svg/WaveD.svg'
+import Dogx1 from '../../images/home/Dogx1.png'
+import Dogx2 from '../../images/home/Dogx2.png'
 
 
 export const HeroTitle = styled.h1`
-  width: 280px;
-  height: 88px;
   font-size: 32px;
+  font-style: normal;
   font-weight: 700;
   line-height: 3, 14;
-  margin: 60px 20px 29px 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+
    ${theme.mq.tablet} {
     font-style: normal;
     font-size: 68px;
     line-height: 100px;
     width: 588px;
     height: 200px;
-    margin-top: 88px;
+
+  margin-left: 33px;
+
+
     }
     
     ${theme.mq.desktop} {
-        font-weight: 700;
+
+        font-family: 'Manrope';
+       font-style: normal;
+font-weight: 700;
+font-size: 68px;
+line-height: 100px;
+  margin-left: 16px;
+
+
      }
 `;
 
-
 export const Hero = styled.div`
-width: 100wv;
-   height: 480px;
-background-image: url('${Pes}'), url(${VolnaMob1});
-background-repeat: no-repeat;
-background-position: 20px bottom, -86px 51px;
- ${theme.mq.tablet} {
-  background-image: url('${PesTablet}') , url(${Wave});
-  height: 700px;
-  height: 1100px;
-  background-position: 80px bottom, bottom left;
 
+padding-top: 60px;
+overflow: hidden;
+max-width: 767px;
+height: 650px;
+background-image: url('${Dogx1}'), url(${Wave});
+background-repeat: no-repeat;
+background-position: center 174px, -250px 0;
+background-size: 280px 480px, 1000px 650px;
+
+@media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+      background-image: url(${Dogx2}), url(${Wave});
+
+ 
+}
+ ${theme.mq.tablet} {
+  padding-top: 88px;
+  background-image: url('${Dogx1}') , url(${Wave});
+  max-width: 1279px;
+  height: 1400px;
+  background-position: 50% 320px, 20% 0;
+
+  background-size: 600px 1000px, 1449px 1190px;
+
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+      background-image: url(${Dogx2}), url(${Wave});
+}
  }
 
  ${theme.mq.desktop} {
-  background-image: url('${PesDesk}') , url(${WaveDesk});
-  background-position: 805px bottom, bottom right;
-  height: 700px;
+
+  position:absolute;
+  width: 100%; 
+  height: 100vh;
+  max-width: 1800px;
+  background-image: url('${DogDx1}') , url(${WaveD});
+  background-position: bottom right;
+  background-size: 524px, contain;
     
+  @media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+      background-image: url(${DogDx2}), url(${WaveD});
 }
 
 `
-
-// ${theme.mq.tablet} {
-
-// }
-
-// ${theme.mq.desktop} {
-    
-// }

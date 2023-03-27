@@ -1,77 +1,117 @@
-import NoticesCardList from '../NoticesCardList';
 import Container from '../Container';
+import NoticesPaginatedList from 'components/NoticesPaginatedList';
+import useAuth from 'hooks/useAuth/useAuth';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import Paginator from 'components/Paginator';
-import { PaginatorWrapper } from './NoticesCategoriesList.styled';
-import { useWindowSize } from 'hooks/useWindowSize';
-import { useGetNoticesQuery } from 'redux/notices/noticesApi';
-import useAuth from 'hooks/useAuth/useAuth';
+import {
+  useGetNoticesQuery,
+  useGetUserDataQuery,
+  useUpdateNoticeFavoriteStatusMutation,
+} from 'redux/notices/noticesApi';
+import { useStorage } from 'hooks/useStorage';
+
+const ITEMS_PER_PAGE = 8;
 
 const NoticesCategoriesList = () => {
-  const { isLoggedIn } = useAuth();
-  const { isDesktop } = useWindowSize();
+  const { getFromStorage, updateStorage } = useStorage('query');
 
-  const noticesNavLinks = useOutletContext();
+  const { noticesNavLinks, query = '' } = useOutletContext();
   const { pathname: currentLocationPath } = useLocation();
 
   const [label, setLabel] = useState();
-  const [page, setPage] = useState(1);
-  const [category, setCategory] = useState(1);
+  const [page, setPage] = useState(() => getFromStorage()?.page ?? 1);
+  const [endpoint, setEndpoint] = useState();
+  const { isLoggedIn } = useAuth();
+
+  const [updateFavoriteStatus] = useUpdateNoticeFavoriteStatusMutation();
 
   useEffect(() => {
-    const { label, category } = noticesNavLinks.find(
+    const { label, endpoint, to } = noticesNavLinks.find(
       ({ to }) => to === currentLocationPath
     );
-    setCategory(category);
+
+    const storageRoute = getFromStorage()?.route;
+    if (storageRoute !== to) {
+      setPage(1);
+    }
+
+    updateStorage({ route: to, page: page });
+
+    setEndpoint(endpoint);
     setLabel(label);
-  }, [noticesNavLinks, currentLocationPath]);
+  }, [
+    noticesNavLinks,
+    currentLocationPath,
+    updateStorage,
+    page,
+    getFromStorage,
+  ]);
 
-  //isLoading, error!!!!
-  const { data } = useGetNoticesQuery({
-    category,
-  });
+  //GET NOTICES PER ENDPOINT (sell, lost-found, in-good-hands, favorites, own)
 
-  if (!data) {
-    return;
-  }
+  const { data, error } = useGetNoticesQuery(
+    {
+      endpoint,
+      query,
+      page: page,
+      limit: ITEMS_PER_PAGE,
+    },
+    { skip: endpoint ? false : true }
+  );
 
-  const { result: pets } = data;
+  // console.log(data);
 
-  console.log(pets);
+  const { data: userData } = useGetUserDataQuery(null, { skip: !isLoggedIn });
 
-  // Temporary useEffect -> mockAPI
-  // useEffect(() => {
-  //   const getPets = async () => {
-  //     const response = await axios.get(
-  //       'https://641493898dade07073c3d8df.mockapi.io/api/pets/pets-list'
-  //     );
-  //     // console.log(response.data);
-  //     setPets(response.data);
-  //   };
+  //UPDATE FAVORITES HANDLER
+  const onFavoriteClickHandler = async id => {
+    try {
+      await updateFavoriteStatus(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  //   getPets();
-  // }, []);
+  //FUNCTION SET isFavorite AND isMine TO PET LIST
+  const updatedPetList = (list, favorites, owns) => {
+    return list?.map(item => ({
+      ...item,
+      isFavorite: favorites?.includes(item._id) ? true : false,
+      isMine: owns?.includes(item._id) ? true : false,
+    }));
+  };
+
+  //UPDATE PET LIST BEFORE RENDER
+  const pets =
+    isLoggedIn && data && userData
+      ? updatedPetList(data.result, userData.favorite, userData.own)
+      : data?.result;
+
+  //GET TOTAL ITEM FOR PAGINATION
+  const petsTotalItem = data?.total;
+
+  // console.log(pets);
 
   return (
     <section>
       <Container>
-        <NoticesCardList label={label} list={pets} isLoggedIn={isLoggedIn} />
-
-        <PaginatorWrapper>
-          <Paginator
-            totalItems={300}
+        {error ? (
+          <div>Sorry! Something went wrong</div>
+        ) : (
+          <NoticesPaginatedList
+            label={label}
+            list={pets}
+            isLoggedIn={isLoggedIn}
+            onFavoriteClick={onFavoriteClickHandler}
+            totalItems={petsTotalItem}
             currentPage={page}
             onPageClick={page => {
-              console.log(page);
               setPage(page);
             }}
-            nearbyQtyPages={isDesktop ? 2 : 1}
-            perPage={8}
-            // shouldScrollUp
+            perPage={ITEMS_PER_PAGE}
           />
-        </PaginatorWrapper>
+        )}
       </Container>
     </section>
   );

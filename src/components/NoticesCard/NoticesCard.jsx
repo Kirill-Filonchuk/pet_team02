@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import NoticeDeleteButton from './NoticeDeleteButton';
 import OptionsTable from './OptionsTable';
 import NoticeFavoriteButton from './NoticeFavoriteButton';
+import ModalNotice from '../ModalNotice';
 import {
   Article,
   BtnWrapper,
@@ -12,12 +13,9 @@ import {
   NoticeCardButton,
   Title,
 } from './NoticesCard.styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { trimText } from 'utils/trimText';
-// import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import defaultImage from 'assets/images/pets-default-image.jpg';
-// import { useEffect } from 'react';
-// import axios from 'axios';
 
 const NO_INFO = '-';
 
@@ -33,38 +31,44 @@ const NoticesCard = ({
   isMine = false,
   isFavorite = false,
   isLoggedIn,
+  onFavoriteClick,
 }) => {
-  const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
-  // const [avatar, setAvatar] = useState(defaultImage);
+  // const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
 
-  const onFavoriteClickHandler = () => {
-    //here should be code for update favorite/ After resolve positive response
-    console.log(`card id ${_id} favorite: ${isFavoriteCard}`);
-    setIsFavoriteCard(!isFavoriteCard);
-  };
+  const [openModal, setOpenModal] = useState(false);
 
-  //TEMP --- --  EVERY TIME DOWNLOAD IMAGE
-  // useEffect(() => {
-  //   async function checkAvatarImage() {
-  //     if (petAvatarURL) {
-  //       // console.log(petAvatarURL);
-  //       const res = await axios.get(petAvatarURL);
-  //       // console.log(res.status);
-  //       if (res.status === 200) {
-  //         setAvatar(petAvatarURL);
-  //       }
+  // const [updateFavoriteStatus, { isLoading }] =
+  //   useUpdateNoticeFavoriteStatusMutation();
+
+  useEffect(() => {
+    if (openModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [openModal]);
+
+  // const onFavoriteClickHandler = async () => {
+  //   //here should be code for update favorite/ After resolve positive response
+  //   // console.log(`card id ${_id} favorite: ${isFavoriteCard}`);
+  //   // setIsFavoriteCard(!isFavoriteCard);
+  //   try {
+  //     const response = await updateFavoriteStatus(_id);
+  //     if (response.data.result) {
+  //       setIsFavoriteCard(!isFavoriteCard);
+  //       // refreshUser();
   //     }
-  //   }
 
-  //   checkAvatarImage();
-  // });
-  //TEMP --- --  EVERY TIME DOWNLOAD IMAGE
+  //     // setIsFavoriteCard()
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <>
       <Article>
         <ImageWrapper>
-          {/* <Image src={avatar} alt="title" /> */}
           <Image src={petAvatarURL || defaultImage} alt="title" />
         </ImageWrapper>
 
@@ -80,7 +84,12 @@ const NoticesCard = ({
           />
 
           <BtnWrapper>
-            <NoticeCardButton type="button">Learn more</NoticeCardButton>
+            <NoticeCardButton
+              type="button"
+              onClick={() => setOpenModal(!openModal)}
+            >
+              Learn more
+            </NoticeCardButton>
 
             {isMine && <NoticeDeleteButton id={_id} />}
           </BtnWrapper>
@@ -89,11 +98,23 @@ const NoticesCard = ({
         <Label>{label}</Label>
 
         <NoticeFavoriteButton
-          isFavorite={isFavoriteCard}
-          onClick={onFavoriteClickHandler}
+          isFavorite={isFavorite}
+          // onClick={onFavoriteClickHandler}
+          onClick={() => {
+            onFavoriteClick(_id);
+          }}
           isLoggedIn={isLoggedIn}
         />
       </Article>
+
+      {openModal && (
+        <ModalNotice
+          onClose={() => setOpenModal(false)}
+          isOpen={openModal}
+          id={_id}
+          isFavorite={isFavorite}
+        />
+      )}
     </>
   );
 };

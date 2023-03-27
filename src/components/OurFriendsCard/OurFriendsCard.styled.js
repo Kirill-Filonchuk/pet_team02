@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { theme } from 'theme';
 
 export const TitleContainer = styled('div')`
-  // min-height: 44px;
   margin-bottom: 10px;
   ${theme.mq.tablet} {
     margin-bottom: 16px;
@@ -10,7 +9,7 @@ export const TitleContainer = styled('div')`
   }
   ${theme.mq.desktop} {
     min-height: 54.8px;
-  }
+  } ;
 `;
 
 export const TitleLink = styled('a')`
@@ -66,6 +65,7 @@ export const ContactList = styled('ul')`
 `;
 export const ContactItem = styled('li')`
   margin-bottom: 4px;
+  position: relative;
   &:last-child {
     margin-bottom: 0;
   }
@@ -77,7 +77,8 @@ export const ContactItem = styled('li')`
   }
 `;
 
-export const Link = styled('a')`
+export const ContactLink = styled('a')`
+  cursor: pointer;
   display: block;
   font-family: ${theme.fonts.manrope};
   font-weight: ${theme.fontWeights.medium};
@@ -99,6 +100,59 @@ export const Link = styled('a')`
   }
 `;
 
+export const ContactText = styled('a')`
+  display: block;
+  font-family: ${theme.fonts.manrope};
+  font-weight: ${theme.fontWeights.medium};
+  font-size: 12px;
+  line-height: 1.37;
+
+  color: ${theme.colors.black};
+
+  ${theme.mq.tablet} {
+    font-size: 14px;
+  }
+  ${theme.mq.desktop} {
+    font-size: 16px;
+  }
+`;
+
 export const Address = styled('span')`
   text-decoration: underline;
+`;
+// =============ModalHours=============
+
+export const HoursList = styled('ul')`
+  position: absolute;
+  z-index: 10;
+  background-color: ${theme.colors.white};
+  border: 1px solid ${theme.colors.accent};
+  border-radius: 8px;
+  padding: 12px;
+  width: 120px;
+  box-shadow: 4px 4px 8px 0px #00000040;
+`;
+
+export const HoursItem = styled('li')`
+  margin-bottom: 4px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export const HoursContainer = styled('div')`
+  // display: flex;
+  // justify-content: space-between;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+
+  margin: 0;
+`;
+
+export const HoursText = styled('a')`
+  font-weight: ${theme.fontWeights.medium};
+  font-size: 12px;
+  line-height: 1.37;
 `;

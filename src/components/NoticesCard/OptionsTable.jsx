@@ -8,7 +8,7 @@ const OptionsTable = ({ options }) => {
         {options.map(({ key, value, isPrice }) => (
           <Tr key={key} isPrice={isPrice} hasPrice={isPrice && value}>
             <Td>{key}:</Td>
-            <Td>{value}</Td>
+            <Td>{isPrice ? `$${value}` : value}</Td>
           </Tr>
         ))}
       </tbody>

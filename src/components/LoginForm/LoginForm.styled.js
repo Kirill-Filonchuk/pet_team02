@@ -88,6 +88,15 @@ const Input = styled(Field)`
   border-radius: ${theme.radii.normal};
   outline: none;
   transition: ${theme.transitions.durations.default} ${theme.transitions.functions.default};
+  &.default {
+  border: ${theme.borders.normal} ${theme.colors.borderActive};
+  }
+  &.success {
+    border-color: green;
+  }
+  &.error {
+    border-color: red
+  }
   ${theme.mq.tablet} {
     height: 52px;
     font-size: ${theme.fontSizes[2] + 'px'};
@@ -147,9 +156,18 @@ const BtnFormSubmit = styled.button`
   background-color: ${theme.colors.accent};
   transition: ${theme.transitions.durations.default} ${theme.transitions.functions.default};
   cursor: pointer;
+  
+  &:hover:not(:disabled), &:focus:not(:disabled) {
+    box-shadow: 0 0 20px ${theme.colors.accent}
+  }
 
-  &:active {
+  &:active &:not(:disabled) {
     transform: scale(1.01);
+  }
+  &:disabled {
+    background-color: ${theme.colors.borderActive};
+    border: none;
+    cursor: default;
   }
   ${theme.mq.tablet} {
     margin-top: 0;

@@ -3,14 +3,22 @@ import Notify from 'components/Notify';
 import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import { useState } from 'react';
 import { HiTrash } from 'react-icons/hi';
+import { useDeleteNoticeMutation } from 'redux/notices/noticesApi';
 import { NoticeCardButton } from './NoticesCard.styled';
 
 const NoticeDeleteButton = ({ id }) => {
   const [isNotifyOpen, setIsNotifyOpen] = useState(false);
   const { buttonRef, position } = useNotifyPosition();
 
-  const onDeleteNotice = () => {
+  const [deleteNotice] = useDeleteNoticeMutation();
+
+  const onDeleteNotice = async () => {
     console.log('notice deleted');
+    try {
+      await deleteNotice(id);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
