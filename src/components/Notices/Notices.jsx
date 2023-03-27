@@ -4,6 +4,7 @@ import NoticesSearch from '../NoticesSearch';
 import Container from '../Container';
 import PageTitle from 'components/UIKit/PageTitle';
 import useAuth from 'hooks/useAuth/useAuth';
+import AddNoticeModal from 'components/AddNoticeModal/AddNoticeModal';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {
   NoticeSection,
@@ -13,48 +14,15 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ROUTES } from 'router';
-import {
-  NOTICES_API_ENDPOINTS,
-  // useAddNoticeMutation,
-} from 'redux/notices/noticesApi';
+import { NOTICES_API_ENDPOINTS } from 'redux/notices/noticesApi';
 import { useState } from 'react';
-// import TempAddPet from 'components/TempAddPet/TempAddPet';
-// import Notify from 'components/Notify';
-// import { useNotifyPosition } from 'hooks/useNotifyPosition';
-// import AddPet from 'components/AddPet';
-import AddNoticeModal from 'components/AddNoticeModal/AddNoticeModal';
 
 const Notices = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
-  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!!
-  // const [isAddPet, setIsAddPet] = useState(false);
-  // const { buttonRef, position } = useNotifyPosition();
-  // const [addNotice] = useAddNoticeMutation();
-
-  // const onClickAddPetTemp = async () => {
-  //   try {
-  //     await addNotice({
-  //       title: 'ANTON13-2',
-  //       name: 'Ant',
-  //       birthday: '13.07.1983',
-  //       breed: 'human',
-  //       place: 'Irpin',
-  //       sex: 'male',
-  //       category: 'sell',
-  //       //   price: '150$',
-  //       // comments: 'String whith 8 symbol min',
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!!
-
-  // const isLoggedIn = !true;
+  const [query, setQuery] = useState('');
 
   const noticesNavLinks = [
     {
@@ -100,22 +68,17 @@ const Notices = () => {
     }
   }, [pathname, navigate]);
 
+  const onSearchHandler = query => {
+    setQuery(query);
+  };
+
   return (
     <NoticesWrapper>
       <NoticeSection>
         <Container>
-          {/* <button
-            ref={buttonRef}
-            onClick={() => {
-              // console.log('You can add new pet');
-              setIsAddPet(true);
-            }}
-          >
-            BTN TEMP
-          </button> */}
           <PageTitle>Find your favorite pet</PageTitle>
 
-          <NoticesSearch />
+          <NoticesSearch onSearch={onSearchHandler} />
 
           <NoticesToolBar>
             <NoticesCategoriesNav links={noticesNavLinks} />
@@ -144,20 +107,7 @@ const Notices = () => {
         />
       )}
 
-      {/*  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!! */}
-      {/* {isAddPet && (
-        <Notify
-          position={position}
-          onClose={() => {
-            setIsAddPet(false);
-          }}
-        >
-          <button onClick={onClickAddPetTemp}>TEMP ADD BUTTON</button>
-        </Notify>
-      )} */}
-      {/*  //TEMP ADD PET ---------------- !!!!!!!!!!!!!!!!-----------------TEMP!!!!!!!!!!!!!! */}
-
-      <Outlet context={noticesNavLinks} />
+      <Outlet context={{ noticesNavLinks, query }} />
     </NoticesWrapper>
   );
 };

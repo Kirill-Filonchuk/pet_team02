@@ -1,27 +1,37 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   ClearIcon,
   IconButton,
   SearchField,
   SearchForm,
   SearchIcon,
-} from "./NoticesSearch.styled";
+} from './NoticesSearch.styled';
 
-const NoticesSearch = () => {
-  const [query, setQuery] = useState("");
+const NoticesSearch = ({ onSearch }) => {
+  const [query, setQuery] = useState('');
+  const [clear, setClear] = useState(false);
+  console.log(clear);
 
-  const onQueryChangeHandler = (e) => {
+  const onQueryChangeHandler = e => {
     setQuery(e.target.value);
   };
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    const query = e.target.elements.search.value;
-    console.log(query);
+  const onClearHandler = () => {
+    setClear(false);
+    setQuery('');
   };
 
-  const onClearHandler = () => {
-    setQuery("");
+  const onSubmitHandler = e => {
+    console.log('submit', e.target);
+    e.preventDefault();
+    const searchQuery = e.target.elements.search.value.trim();
+
+    if (searchQuery === query) {
+      return;
+    }
+
+    onSearch(query);
+    setClear(true);
   };
 
   return (
@@ -34,7 +44,7 @@ const NoticesSearch = () => {
         value={query}
       />
 
-      {!query ? (
+      {!clear ? (
         <IconButton type="submit">
           <SearchIcon />
         </IconButton>
