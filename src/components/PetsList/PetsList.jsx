@@ -1,22 +1,38 @@
-import PetsItem from 'components/PetsItem/PetsItem';
+import {PetsItem} from 'components/PetsItem/PetsItem';
+// import { HiTrash } from 'react-icons/hi';
+// import { useDispatch } from 'react-redux';
+// import { deletePet } from 'redux/pet/operations';
+// import { getPets } from 'redux/pet/selectors';
 
-export default function PetsList({ pets }) {
+ const PetsList = ({pets}) =>{
+// const pets = useSelector(getPets);
+// const dispatch = useDispatch();
+
+
   if (pets) {
+
+ 
     const elements = pets.map(
-      ({ _id, avatar, name, birthDate, breed, comments }) => {
+      ({ _id, photo, name, birthDate, breed, comment }) => {
+       
         return (
+       <>
           <PetsItem
-            key={_id}
-            id={_id}
+           key={_id}
+            _id={_id}
             name={name}
-            avatar={avatar}
+            photo={photo}
             birthDate={birthDate}
             breed={breed}
-            comments={comments}
+            comments={comment}
+            
           />
+        </>
         );
       }
     );
     return <>{elements}</>;
   }
-}
+};
+
+export default PetsList;
