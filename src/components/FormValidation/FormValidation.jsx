@@ -2,11 +2,12 @@ import * as yup from 'yup';
 import { ErrorMessage } from 'formik';
 import { Error, Correct } from './FormValidation.styled';
 
-const emailValid = /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
+const emailValid = /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,4})$/;
 const passwordValid =/(?!\s)^[^ ]{7,32}$/;
 const nameValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ][a-zA-Zа-яіїєА-ЯІЇЄ\s,'-]*$/; 
 const phoneValid = /^\+380\d{9}$/;
-const locationValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+$/;
+const locationValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+$/;
+// /^[a-zA-Zа-яіїєА-ЯІЇЄ][a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+$/
 
 // const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[^_.-]\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
