@@ -17,7 +17,7 @@ const ErrorMessages = ({ isFileNeeded }) => {
   return (
     <ErrorWrapper>
       {fields.map(field => (
-        <ErrorMessage name={field} render={msg => <li key={field}>{msg}</li>} />
+        <ErrorMessage key={field} name={field} render={msg => <li>{msg}</li>} />
       ))}
       {isFileNeeded && <li>Please, attach image file</li>}
     </ErrorWrapper>
