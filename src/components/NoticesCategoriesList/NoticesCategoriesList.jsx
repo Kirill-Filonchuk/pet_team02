@@ -6,9 +6,9 @@ import { useLocation } from 'react-router-dom';
 // import Paginator from 'components/Paginator';
 // import { useWindowSize } from 'hooks/useWindowSize';
 import {
-  useGetFavoritesQuery,
+  // useGetFavoritesQuery,
   useGetNoticesQuery,
-  useGetOwnNoticesQuery,
+  // useGetOwnNoticesQuery,
   useGetUserDataQuery,
   useUpdateNoticeFavoriteStatusMutation,
 } from 'redux/notices/noticesApi';
@@ -90,7 +90,7 @@ const NoticesCategoriesList = () => {
   // });
   // const owns = ownsData?.result.map(({ _id }) => _id);
 
-  const { data: userData } = useGetUserDataQuery();
+  const { data: userData } = useGetUserDataQuery(null, { skip: !isLoggedIn });
 
   //UPDATE FAVORITES HANDLER
   const onFavoriteClickHandler = async id => {

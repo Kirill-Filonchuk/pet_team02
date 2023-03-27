@@ -4,6 +4,7 @@ import femaleIcon from 'assets/images/female-icon.png';
 import { theme } from 'theme';
 import { Button } from 'components/UIKit/Button/Button.styled';
 import { RxPlus } from 'react-icons/rx';
+import { Field, Form } from 'formik';
 
 export const FieldLabel = styled('p')`
   font-weight: ${p => p.theme.fontWeights.medium};
@@ -25,6 +26,8 @@ export const AddPetWrapper = styled('div')`
     padding: 40px 80px;
   }
 `;
+
+export const StyledForm = styled(Form)``;
 
 export const Title = styled('h1')`
   margin-bottom: 20px;
@@ -86,7 +89,7 @@ export const CategoryLabel = styled('label')`
   }
 `;
 
-export const CategoryRadio = styled('input')`
+export const CategoryRadio = styled(Field)`
   &:checked + label {
     background-color: ${p => p.theme.colors.accent};
     color: ${p => p.theme.colors.white};
@@ -115,7 +118,7 @@ export const Label = styled('label')`
   }
 `;
 
-export const Input = styled('input')`
+export const Input = styled(Field)`
   width: 100%;
   padding: 11px 14px;
   margin-top: 8px;
@@ -299,7 +302,7 @@ export const SexList = styled('ul')`
 
 export const SexItem = styled('li')``;
 
-export const SexRadio = styled('input')`
+export const SexRadio = styled(Field)`
   &:checked + label {
     color: ${p => p.theme.colors.accent};
   }
@@ -411,7 +414,7 @@ export const UploadIcon = styled(RxPlus)`
   height: 100%;
 `;
 
-export const UploadInput = styled('input')``;
+export const UploadInput = styled(Field)``;
 
 export const CommentWrapper = styled('div')`
   margin-bottom: 40px;
@@ -425,7 +428,7 @@ export const CommentDecription = styled(FieldLabel)`
   }
 `;
 
-export const CommentsField = styled('textarea')`
+export const CommentsField = styled(Field)`
   resize: none;
   margin: 0;
   padding: 11px 14px;
