@@ -23,7 +23,6 @@ import {
   SexRadio,
   SexTitle,
   SexWrapper,
-  StyledForm,
   Title,
   ToolBar,
   UploadDescription,
@@ -48,15 +47,27 @@ const CATEGORIES = {
   LOST_FOUND: 'lost-found',
 };
 
-const firstStepInitialValues = {
+// const firstStepInitialValues = {
+//   category: '',
+//   title: '',
+//   name: '',
+//   birthday: '',
+//   breed: '',
+// };
+
+// const secondStepInitialValues = {
+//   sex: '',
+//   place: '',
+//   price: '',
+//   comments: '',
+// };
+
+const initialValues = {
   category: '',
   title: '',
   name: '',
   birthday: '',
   breed: '',
-};
-
-const secondStepInitialValues = {
   sex: '',
   place: '',
   price: '',
@@ -67,76 +78,64 @@ const AddNoticeModal = ({ onClose }) => {
   const navigate = useNavigate();
   const [addPet] = useAddNoticeMutation();
 
-  const { getFromStorage, updateStorage, clearStorage } = useStorage(
-    'add-notice-form-fields'
-  );
+  const { getFromStorage, updateStorage, clearStorage } =
+    useStorage('add-notice-fields');
+
   const [step, setStep] = useState(1);
   const [petAvatarURL, setPetAvatarURL] = useState();
-  // const [isSubmitted, setIsSubmitted] = useState(false);
+  const [fields, setFields] = useState(() => getFromStorage() || initialValues);
 
-  // console.log(isSubmitted);
-  // const [price, setPrice] = useState('');
-  //   const [avatar, setAvatar] = useState();
+  console.log(fields);
 
-  // const onPriceChange = e => {
-  //   setPrice(e.target.value);
+  // const onFirstStepSubmit = values => {
+  //   setFields(prevState => ({ ...prevState, firstStep: values }));
+  //   // updateStorage(fields);
+  //   setStep(2);
   // };
 
-  const [fields, setFields] = useState(
-    () =>
-      getFromStorage() || {
-        firstStep: firstStepInitialValues,
-        secondStep: secondStepInitialValues,
-      }
-  );
-
-  //   updateStorage(fields);
-
-  // useEffect(() => {
-  //   updateStorage(fields);
-
-  //   return () => {
-  //     if (isSubmitted) {
-  //       clearStorage();
-  //     }
+  // const onSecondStepSubmit = async (values, actions) => {
+  //   // console.log(values);
+  //   setFields(prevState => ({ ...prevState, secondStep: values }));
+  //   const data = {
+  //     ...fields.firstStep,
+  //     ...fields.secondStep,
+  //     ...values,
+  //     image: petAvatarURL,
   //   };
-  // }, [fields, updateStorage, clearStorage, isSubmitted]);
 
-  const onFirstStepSubmit = values => {
-    setFields(prevState => ({ ...prevState, firstStep: values }));
-    // updateStorage(fields);
-    setStep(2);
-  };
+  // if (data.price === '') {
+  //   delete data.price;
+  // }
 
-  const onSecondStepSubmit = async (values, actions) => {
-    // console.log(values);
-    setFields(prevState => ({ ...prevState, secondStep: values }));
-    const data = {
-      ...fields.firstStep,
-      ...fields.secondStep,
-      ...values,
-      image: petAvatarURL,
-    };
+  //   // console.log(values);
+  //   const response = await addPet(data);
+  //   if (response.data.result) {
+  //     // actions.resetForm();
+  //     // clearStorage();
+  //     // setFields({
+  //     //   firstStep: firstStepInitialValues,
+  //     //   secondStep: secondStepInitialValues,
+  //     // });
+  //     // setIsSubmitted(true);
+  //     onClose();
+  //     navigate(ROUTES.NOTICES_OWN);
+  //   }
+
+  //   // console.log(response);
+  // };
+
+  const onSubmitHandler = async (values, actions) => {
+    const data = { ...values, image: petAvatarURL };
 
     if (data.price === '') {
       delete data.price;
     }
 
-    // console.log(values);
     const response = await addPet(data);
     if (response.data.result) {
-      // actions.resetForm();
-      // clearStorage();
-      // setFields({
-      //   firstStep: firstStepInitialValues,
-      //   secondStep: secondStepInitialValues,
-      // });
-      // setIsSubmitted(true);
       onClose();
       navigate(ROUTES.NOTICES_OWN);
     }
-
-    // console.log(response);
   };
 
   const onFileChange = e => {
@@ -150,14 +149,10 @@ const AddNoticeModal = ({ onClose }) => {
     <>
       <CommonModal onClose={onClose}>
         <AddPetWrapper>
-          {/* STEP -1 */}
-          {step === 1 && (
-            <Formik
-              initialValues={fields.firstStep}
-              onSubmit={onFirstStepSubmit}
-              //   validationSchema={validationSchema}
-            >
-              <Form id="first_step_form">
+          <Formik initialValues={fields} onSubmit={onSubmitHandler}>
+            <Form>
+              {/*STEP - 1 */}
+              <div className={step !== 1 ? 'visually-hidden' : ''}>
                 <Title>Add pet</Title>
                 <Description>
                   Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit
@@ -241,11 +236,10 @@ const AddNoticeModal = ({ onClose }) => {
                 </FieldsFirstStep>
                 <ToolBar>
                   <NextButton
-                    type="submit"
-                    form="first_step_form"
-                    // onClick={() => {
-                    //   setStep(2);
-                    // }}
+                    type="button"
+                    onClick={() => {
+                      setStep(2);
+                    }}
                   >
                     Next
                   </NextButton>
@@ -258,21 +252,11 @@ const AddNoticeModal = ({ onClose }) => {
                     Cancel
                   </BackButton>
                 </ToolBar>
-              </Form>
-            </Formik>
-          )}
-          {/* =============================================================================== */}
-          {/* =============================================================================== */}
-          {/* =============================================================================== */}
-          {/* =============================================================================== */}
-          {/* STEP -2 */}
-          {step === 2 && (
-            <Formik
-              initialValues={fields.secondStep}
-              onSubmit={onSecondStepSubmit}
-              //   validationSchema={validationSchema}
-            >
-              <StyledForm id="second_step_form">
+              </div>
+
+              {/*STEP - 2 */}
+
+              <div className={step !== 2 ? 'visually-hidden' : ''}>
                 <Title>Add pet</Title>
                 <SexWrapper>
                   <SexTitle>The sex:</SexTitle>
@@ -311,7 +295,7 @@ const AddNoticeModal = ({ onClose }) => {
                     />
                   </Label>
 
-                  {fields.firstStep.category === CATEGORIES.SELL && (
+                  {fields.category === CATEGORIES.SELL && (
                     <Label>
                       Price:
                       <Input
@@ -351,9 +335,7 @@ const AddNoticeModal = ({ onClose }) => {
                   ></CommentsField>
                 </CommentWrapper>
                 <ToolBar>
-                  <NextButton type="submit" form="second_step_form">
-                    Done
-                  </NextButton>
+                  <NextButton type="submit">Done</NextButton>
                   <BackButton
                     type="button"
                     onClick={() => {
@@ -363,9 +345,9 @@ const AddNoticeModal = ({ onClose }) => {
                     Back
                   </BackButton>
                 </ToolBar>
-              </StyledForm>
-            </Formik>
-          )}
+              </div>
+            </Form>
+          </Formik>
         </AddPetWrapper>
       </CommonModal>
     </>,
