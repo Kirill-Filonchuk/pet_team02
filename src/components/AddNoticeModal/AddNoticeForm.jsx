@@ -1,5 +1,5 @@
 import { ErrorMessage, Form, useFormikContext } from 'formik';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './AddNoticeModal';
 import {
   BackButton,
@@ -9,6 +9,7 @@ import {
   CategoryRadio,
   CommentDecription,
   CommentsField,
+  CommentsFieldContainer,
   CommentWrapper,
   Description,
   ErrorWrapper,
@@ -32,14 +33,48 @@ import {
   UploadLabel,
   UploadWrapper,
 } from './AddNoticeModal.styled';
+
+// const useAutosizeTextArea = (textAreaRef, value) => {
+//   useEffect(() => {
+//     if (textAreaRef) {
+//       // We need to reset the height momentarily to get the correct scrollHeight for the textarea
+//       textAreaRef.style.height = '0px';
+//       const scrollHeight = textAreaRef.scrollHeight;
+//       console.log(scrollHeight);
+
+//       // We then set the height directly, outside of the render loop
+//       // Trying to set this with state or a ref will product an incorrect value.
+//       textAreaRef.style.height = scrollHeight + 'px';
+//     }
+//   }, [textAreaRef, value]);
+// };
+
+// export default useAutosizeTextArea;
+
 const AddNoticeForm = ({ onClose, onAvatarChange, storage, isFileNeeded }) => {
   const { updateStorage } = storage;
   const [step, setStep] = useState(1);
+
+  //   const [textAreaHeight, setTextAreaHeight] = useState();
+  const [comments, setComments] = useState('');
 
   const { values } = useFormikContext();
   const updatedValues = { ...values };
   delete updatedValues.price;
   updateStorage(updatedValues);
+
+  //   const commentsRef = useRef(null);
+  //   console.log(textAreaHeight);
+  //   useEffect(() => {
+  //     if (!commentsRef) {
+  //       return;
+  //     }
+
+  //     const scrollHeight = commentsRef.current.scrollHeight;
+  //     setTextAreaHeight(scrollHeight);
+  //   }, []);
+  //   const textAreaRef = useRef(null);
+  //   useAutosizeTextArea(textAreaRef.current, values.comments);
 
   const onNextClickHandler = () => {
     setStep(2);
@@ -192,11 +227,20 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage, isFileNeeded }) => {
         </UploadWrapper>
         <CommentWrapper>
           <CommentDecription>Comments</CommentDecription>
+
+          {/* <CommentsFieldContainer> */}
           <CommentsField
-            cols="5"
+            textLength={values.comments.length}
+            // ref={commentsRef}
+            as="textarea"
             placeholder="Type comment"
             name="comments"
+            value={comments}
+            onChange={e => {
+              setComments(e.target.value);
+            }}
           ></CommentsField>
+          {/* </CommentsFieldContainer> */}
         </CommentWrapper>
         <ToolBar>
           <NextButton type="submit">Done</NextButton>

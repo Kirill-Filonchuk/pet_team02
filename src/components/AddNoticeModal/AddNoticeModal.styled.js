@@ -428,25 +428,34 @@ export const CommentDecription = styled(FieldLabel)`
   }
 `;
 
+export const CommentsFieldContainer = styled('div')`
+  /* min-height: 40px; */
+  height: ${p => p.height} ${theme.mq.tablet} {
+    /* min-height: 113px; */
+  }
+`;
+
 export const CommentsField = styled(Field)`
-  resize: none;
+  resize: vertical;
   margin: 0;
   padding: 11px 14px;
 
   width: 100%;
-  height: 40px;
+  min-height: 40px;
+  /* height: 40px; */
+  /* height: 100%; */
+  /* height: calc(${p => p.textLength}px + 40px); */
 
   font-size: 14px;
   color: rgba(27, 27, 27, 0.6);
 
   border: 1px solid ${p => p.theme.colors.accent};
-  border-radius: ${p => p.theme.radii.normal};
+  border-radius: ${p => p.theme.radii.small};
   background-color: ${p => p.theme.colors.background};
 
   ${theme.mq.tablet} {
     padding: 16px 18px;
-    height: 113px;
-    border-radius: ${p => p.theme.radii.small};
+    min-height: 113px;
     font-size: 16px;
     line-height: 1.625;
   }
