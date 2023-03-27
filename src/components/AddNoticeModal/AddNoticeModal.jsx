@@ -42,6 +42,12 @@ import { ROUTES } from 'router';
 
 const modalRoot = document.querySelector('#modal-root');
 
+const CATEGORIES = {
+  SELL: 'sell',
+  IN_GOOD_HANDS: 'in-good-hands',
+  LOST_FOUND: 'lost-found',
+};
+
 const firstStepInitialValues = {
   category: '',
   title: '',
@@ -54,7 +60,6 @@ const secondStepInitialValues = {
   sex: '',
   place: '',
   price: '',
-  //   avatar: '',
   comments: '',
 };
 
@@ -62,12 +67,20 @@ const AddNoticeModal = ({ onClose }) => {
   const navigate = useNavigate();
   const [addPet] = useAddNoticeMutation();
 
-  const { getFromStorage, updateStorage } = useStorage(
+  const { getFromStorage, updateStorage, clearStorage } = useStorage(
     'add-notice-form-fields'
   );
   const [step, setStep] = useState(1);
   const [petAvatarURL, setPetAvatarURL] = useState();
+  // const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // console.log(isSubmitted);
+  // const [price, setPrice] = useState('');
   //   const [avatar, setAvatar] = useState();
+
+  // const onPriceChange = e => {
+  //   setPrice(e.target.value);
+  // };
 
   const [fields, setFields] = useState(
     () =>
@@ -79,13 +92,19 @@ const AddNoticeModal = ({ onClose }) => {
 
   //   updateStorage(fields);
 
-  useEffect(() => {
-    updateStorage(fields);
-  }, [fields, updateStorage]);
+  // useEffect(() => {
+  //   updateStorage(fields);
 
-  const onFirstStepSubmit = (values, actions) => {
-    console.log(values);
+  //   return () => {
+  //     if (isSubmitted) {
+  //       clearStorage();
+  //     }
+  //   };
+  // }, [fields, updateStorage, clearStorage, isSubmitted]);
+
+  const onFirstStepSubmit = values => {
     setFields(prevState => ({ ...prevState, firstStep: values }));
+    // updateStorage(fields);
     setStep(2);
   };
 
@@ -98,22 +117,34 @@ const AddNoticeModal = ({ onClose }) => {
       ...values,
       image: petAvatarURL,
     };
-    // console.log(data);
-    await addPet(data);
-    onClose();
-    navigate(ROUTES.NOTICES_OWN);
+
+    if (data.price === '') {
+      delete data.price;
+    }
+
+    // console.log(values);
+    const response = await addPet(data);
+    if (response.data.result) {
+      // actions.resetForm();
+      // clearStorage();
+      // setFields({
+      //   firstStep: firstStepInitialValues,
+      //   secondStep: secondStepInitialValues,
+      // });
+      // setIsSubmitted(true);
+      onClose();
+      navigate(ROUTES.NOTICES_OWN);
+    }
+
+    // console.log(response);
   };
 
   const onFileChange = e => {
-    const imgValue = e.target.value;
     const imgFile = e.target.files[0];
-    // setFields(prevState => ({ ...prevState, petAvatarURL: imgFile }));
-
     setPetAvatarURL(imgFile);
-
-    console.log('imgValue', imgValue);
-    console.log('imgFile', imgFile);
   };
+
+  // console.log(fields.firstStep.category);
 
   return createPortal(
     <>
@@ -139,7 +170,7 @@ const AddNoticeModal = ({ onClose }) => {
                       type="radio"
                       name="category"
                       className="visually-hidden"
-                      value="lost-found"
+                      value={CATEGORIES.LOST_FOUND}
                       onClick={e => {
                         // console.log(e.target.value);
                       }}
@@ -154,7 +185,7 @@ const AddNoticeModal = ({ onClose }) => {
                       id="in_good_hands"
                       type="radio"
                       name="category"
-                      value="in-good-hands"
+                      value={CATEGORIES.IN_GOOD_HANDS}
                       onClick={e => {
                         // console.log(e.target.value);
                       }}
@@ -170,7 +201,7 @@ const AddNoticeModal = ({ onClose }) => {
                       id="sell_"
                       type="radio"
                       name="category"
-                      value="sell"
+                      value={CATEGORIES.SELL}
                       onClick={e => {
                         // console.log(e.target.value);
                       }}
@@ -280,10 +311,18 @@ const AddNoticeModal = ({ onClose }) => {
                     />
                   </Label>
 
-                  <Label>
-                    Price:
-                    <Input type="text" placeholder="Type price" name="price" />
-                  </Label>
+                  {fields.firstStep.category === CATEGORIES.SELL && (
+                    <Label>
+                      Price:
+                      <Input
+                        type="text"
+                        placeholder="Type price"
+                        name="price"
+                        // value={price}
+                        // onChange={onPriceChange}
+                      />
+                    </Label>
+                  )}
                 </FieldsSecondStep>
                 <UploadWrapper>
                   <UploadDescription>Load the pet’s image:</UploadDescription>
