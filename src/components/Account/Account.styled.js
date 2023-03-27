@@ -38,7 +38,14 @@ export const Button = styled(NavLink)`
   align-items: center;
   margin-right: 20px;
   margin-left: auto;
-
+  transition-property: background-color, transform;
+  transition-duration: 500ms;
+  &:hover {
+    color: ${p => p.theme.colors.white};
+    background-color: ${p => p.theme.colors.accentActive};
+    text-decoration-line: none;
+    transform: scale(1.1);
+  }
   ${theme.mq.tablet} {
     display: flex;
   }
