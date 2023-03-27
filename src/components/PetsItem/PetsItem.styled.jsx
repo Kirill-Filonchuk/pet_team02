@@ -1,68 +1,99 @@
 import styled from 'styled-components';
+import { theme } from '../../theme';
+import { HiTrash } from 'react-icons/hi';
 
 export const PetItem = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
   width: 280px;
-  height: min-content;
+  height: 100%;
   background: rgba(255, 255, 255, 1);
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 40px;
   padding: 16px 20px 40px 20px;
   margin-bottom: 22px;
 
-  @media screen and (min-width: 768px) {
+  ${theme.mq.tablet} {
     flex-direction: row;
     width: 704px;
     padding: 20px;
   }
-  @media screen and (min-width: 1280px) {
+  ${theme.mq.desktop} {
     flex-direction: row;
     width: 821px;
     padding: 20px;
-  }
+  } ;
 `;
+
 export const PetImage = styled.img`
   display: block;
   width: 240px;
   height: 240px;
   border-radius: 20px;
   margin-bottom: 20px;
-  @media screen and (min-width: 768px) {
-    width: 161px;
-    height: 161px;
-    border-radius: 40px;
-    margin-right: 32px;
-    margin-bottom: 0px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 161px;
-    height: 161px;
-    border-radius: 40px;
-    margin-right: 32px;
-    margin-bottom: 0px;
-  }
-`;
-export const ListInfo = styled.ul``;
-export const ListInfoItem = styled.li`
-  color: rgba(17, 17, 17, 1);
-  font-size: 14px;
-  line-height: 1.35;
-  margin-bottom: 12px;
-  letter-spacing: 0.04em;
 
-  @media screen and (min-width: 768px) {
-    font-weight: 500;
+  ${theme.mq.tablet} {
+    width: 161px;
+    height: 161px;
+    border-radius: 40px;
+    margin-right: 32px;
+    margin-bottom: 0px;
+  }
+  ${theme.mq.desktop} {
+    width: 161px;
+    height: 161px;
+    border-radius: 40px;
+    margin-right: 32px;
+    margin-bottom: 0px;
+  } ;
+`;
+export const ListInfo = styled.ul`
+  font-weight: ${p => p.theme.fontWeights.normal};
+  font-size: 14px;
+  line-height: ${theme.lineHeights[4]};
+  letter-spacing: 0.04em;
+  width: 240px;
+  color: rgba(17, 17, 17, 1);
+
+  ${theme.mq.tablet} {
+    width: 471px;
     font-size: 16px;
     line-height: 1.375;
   }
-  @media screen and (min-width: 1280px) {
-    font-weight: 500;
+
+  ${theme.mq.desktop} {
+    width: 580px;
     font-size: 16px;
     line-height: 1.375;
+  } ;
+`;
+
+export const ListInfoItem = styled.li`
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: 12px;
   }
 `;
+
+export const ListInfoTitle = styled.span`
+  font-weight: ${theme.fontWeights.medium};
+  margin-right: 5px;
+
+  ${theme.mq.tablet} {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.375;
+  }
+  ${theme.mq.desktop} {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.375;
+    
+  } ;
+`;
+
 export const DeleteIcon = styled.span`
   display: flex;
   position: absolute;
@@ -74,39 +105,39 @@ export const DeleteIcon = styled.span`
   backdrop-filter: blur(2px);
   border-radius: 50%;
   cursor: pointer;
-  width: 0px;
-  height: 0px;
+  width: 20px;
+  height: 20px;
 
   &:hover,
   &:focus {
     background-color: rgba(245, 146, 86, 1);
   }
-
-  @media screen and (min-width: 768px) {
+  ${theme.mq.tablet} {
     position: absolute;
     top: 20px;
     right: 20px;
     width: 44px;
     height: 44px;
   }
-  @media screen and (min-width: 1280px) {
+  ${theme.mq.desktop} {
     position: absolute;
     top: 20px;
     right: 20px;
     width: 44px;
     height: 44px;
-  }
+  } ;
 `;
-export const DeleteImage = styled.img`
+export const DeleteImage = styled(HiTrash)`
   width: 17px;
   height: 17px;
+  fill: rgba(17, 17, 17, 0.6);
 
-  @media screen and (min-width: 768px) {
-    width: 20px;
-    height: 21px;
+  ${theme.mq.tablet} {
+    width: 24px;
+    height: 24px;
   }
-  @media screen and (min-width: 1280px) {
-    width: 20px;
-    height: 21px;
-  }
+  ${theme.mq.desktop} {
+    width: 24px;
+    height: 24px;
+  } ;
 `;

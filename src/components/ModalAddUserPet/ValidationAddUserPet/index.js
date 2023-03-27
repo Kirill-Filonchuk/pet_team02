@@ -1,0 +1,1 @@
+export {error, validationRegisterStepOne, validationRegisterStepTwo} from "./ValidationAddUserPet.styled"
