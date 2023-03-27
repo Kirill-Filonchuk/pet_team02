@@ -100,7 +100,7 @@ export const ContactLink = styled('a')`
   }
 `;
 
-export const ContactText = styled('p')`
+export const ContactText = styled('a')`
   display: block;
   font-family: ${theme.fonts.manrope};
   font-weight: ${theme.fontWeights.medium};
@@ -141,13 +141,17 @@ export const HoursItem = styled('li')`
 `;
 
 export const HoursContainer = styled('div')`
+  // display: flex;
+  // justify-content: space-between;
+  display: -webkit-flex;
   display: flex;
+  -webkit-justify-content: space-between;
   justify-content: space-between;
 
   margin: 0;
 `;
 
-export const HoursText = styled('p')`
+export const HoursText = styled('a')`
   font-weight: ${theme.fontWeights.medium};
   font-size: 12px;
   line-height: 1.37;
