@@ -16,7 +16,7 @@ const ITEMS_PER_PAGE = 8;
 const NoticesCategoriesList = () => {
   const { getFromStorage, updateStorage } = useStorage('query');
 
-  const { noticesNavLinks, query } = useOutletContext();
+  const { noticesNavLinks, query = '' } = useOutletContext();
   const { pathname: currentLocationPath } = useLocation();
 
   const [label, setLabel] = useState();
@@ -49,6 +49,7 @@ const NoticesCategoriesList = () => {
   ]);
 
   //GET NOTICES PER ENDPOINT (sell, lost-found, in-good-hands, favorites, own)
+
   const { data, error } = useGetNoticesQuery(
     {
       endpoint,
@@ -58,6 +59,8 @@ const NoticesCategoriesList = () => {
     },
     { skip: endpoint ? false : true }
   );
+
+  // console.log(data);
 
   const { data: userData } = useGetUserDataQuery(null, { skip: !isLoggedIn });
 

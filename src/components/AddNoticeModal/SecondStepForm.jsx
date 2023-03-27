@@ -91,7 +91,6 @@ const SecondStepForm = ({ step, values, onAvatarChange, onClickBack }) => {
 
         {/* <CommentsFieldContainer> */}
         <CommentsField
-          textLength={values.comments.length}
           as="textarea"
           placeholder="Type comment"
           name="comments"

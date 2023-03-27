@@ -17,6 +17,8 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage, isFileNeeded }) => {
     setStep(2);
   };
 
+  console.log(values);
+
   return (
     <Form>
       {/*STEP - 1 */}
