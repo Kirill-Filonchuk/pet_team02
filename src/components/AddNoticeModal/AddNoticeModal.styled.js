@@ -277,6 +277,8 @@ export const UploadLabel = styled('label')`
   display: block;
   cursor: pointer;
 
+  overflow: hidden;
+
   width: 116px;
   height: 116px;
 
@@ -306,6 +308,18 @@ export const UploadIconWrapper = styled('div')`
 
   width: 71px;
   height: 71px;
+`;
+
+export const UploadImageWrapper = styled('div')`
+  width: 100%;
+  height: 100%;
+`;
+
+export const UploadImage = styled('img')`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const UploadIcon = styled(RxPlus)`

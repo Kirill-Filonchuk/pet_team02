@@ -20,12 +20,20 @@ import {
   UploadDescription,
   UploadIcon,
   UploadIconWrapper,
+  UploadImage,
+  UploadImageWrapper,
   UploadInput,
   UploadLabel,
   UploadWrapper,
 } from './AddNoticeModal.styled';
 
-const SecondStepForm = ({ step, values, onAvatarChange, onClickBack }) => {
+const SecondStepForm = ({
+  step,
+  values,
+  onAvatarChange,
+  onClickBack,
+  avatarURL,
+}) => {
   return (
     <div className={step !== 2 ? 'visually-hidden' : ''}>
       <Title>Add pet</Title>
@@ -72,9 +80,16 @@ const SecondStepForm = ({ step, values, onAvatarChange, onClickBack }) => {
       <UploadWrapper>
         <UploadDescription>Load the pet’s image:</UploadDescription>
         <UploadLabel>
-          <UploadIconWrapper>
-            <UploadIcon />
-          </UploadIconWrapper>
+          {avatarURL ? (
+            <UploadImageWrapper>
+              <UploadImage src={avatarURL} alt="pet avatar" />
+            </UploadImageWrapper>
+          ) : (
+            <UploadIconWrapper>
+              <UploadIcon />
+            </UploadIconWrapper>
+          )}
+
           <UploadInput
             type="file"
             name="avatar"
@@ -83,9 +98,9 @@ const SecondStepForm = ({ step, values, onAvatarChange, onClickBack }) => {
           />
         </UploadLabel>
         {/* <div style={{ width: '100px', height: '100px' }}>
-            {' '}
-            <img src={URL.srcObject(petAvatarURL)} alt="avatar" />
-          </div> */}
+          {' '}
+          {avatarURL && <img src={avatarURL} alt="avatar" />}
+        </div> */}
       </UploadWrapper>
       <CommentWrapper>
         <CommentDecription>Comments</CommentDecription>
