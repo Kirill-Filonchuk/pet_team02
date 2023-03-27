@@ -1,0 +1,1 @@
+export { defaul } from './AddNoticeModal';
