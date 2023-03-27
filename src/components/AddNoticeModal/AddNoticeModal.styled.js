@@ -451,3 +451,17 @@ export const CommentsField = styled(Field)`
     line-height: 1.625;
   }
 `;
+
+export const ErrorWrapper = styled('ul')`
+  margin-top: 20px;
+
+  color: red;
+
+  & > li {
+    margin-bottom: 5px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+`;

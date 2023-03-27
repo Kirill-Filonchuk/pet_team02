@@ -1,6 +1,6 @@
-import { Form, useFormikContext } from 'formik';
+import { ErrorMessage, Form, useFormikContext } from 'formik';
 import { useState } from 'react';
-import { ADD_NOTICE_CATEGORIES } from './AddNoticeModal';
+import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './AddNoticeModal';
 import {
   BackButton,
   CategoryItem,
@@ -11,6 +11,7 @@ import {
   CommentsField,
   CommentWrapper,
   Description,
+  ErrorWrapper,
   FieldsFirstStep,
   FieldsSecondStep,
   Input,
@@ -31,7 +32,7 @@ import {
   UploadLabel,
   UploadWrapper,
 } from './AddNoticeModal.styled';
-const AddNoticeForm = ({ onClose, onAvatarChange, storage }) => {
+const AddNoticeForm = ({ onClose, onAvatarChange, storage, isFileNeeded }) => {
   const { updateStorage } = storage;
   const [step, setStep] = useState(1);
 
@@ -86,6 +87,7 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage }) => {
             <CategoryLabel htmlFor="sell_">sell</CategoryLabel>
           </CategoryItem>
         </CategoryList>
+
         <FieldsFirstStep>
           <Label>
             Tittle of ad
@@ -138,7 +140,7 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage }) => {
                 id="sex_male"
                 type="radio"
                 name="sex"
-                value="male"
+                value={ADD_NOTICE_GENDER.MALE}
                 className="visually-hidden"
               />
               <SexLabel htmlFor="sex_male" isMale>
@@ -150,7 +152,7 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage }) => {
                 id="sex_female"
                 type="radio"
                 name="sex"
-                value="female"
+                value={ADD_NOTICE_GENDER.FEMALE}
                 className="visually-hidden"
               />
               <SexLabel htmlFor="sex_female">Female</SexLabel>
@@ -184,9 +186,9 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage }) => {
             />
           </UploadLabel>
           {/* <div style={{ width: '100px', height: '100px' }}>
-                    {' '}
-                    <img src={avatar} alt="avatar" />
-                  </div> */}
+            {' '}
+            <img src={URL.srcObject(petAvatarURL)} alt="avatar" />
+          </div> */}
         </UploadWrapper>
         <CommentWrapper>
           <CommentDecription>Comments</CommentDecription>
@@ -208,6 +210,20 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage }) => {
           </BackButton>
         </ToolBar>
       </div>
+
+      <ErrorWrapper>
+        <ErrorMessage name="category" render={msg => <li>{msg}</li>} />
+        <ErrorMessage name="title" render={msg => <li>{msg}</li>} />
+        <ErrorMessage name="name" render={msg => <li>{msg}</li>} />
+        <ErrorMessage name="birthday" render={msg => <li>{msg}</li>} />
+        <ErrorMessage name="breed" render={msg => <li>{msg}</li>} />
+        <ErrorMessage name="sex" render={msg => <li>{msg}</li>} />
+        <ErrorMessage name="place" render={msg => <li>{msg}</li>} />
+        <ErrorMessage name="price" render={msg => <li>{msg}</li>} />
+        <ErrorMessage name="comments" render={msg => <li>{msg}</li>} />
+        {/* <ErrorMessage name="avatar" render={msg => <div>{msg}</div>} /> */}
+        {isFileNeeded && <li>Please, attach image file</li>}
+      </ErrorWrapper>
     </Form>
   );
 };
