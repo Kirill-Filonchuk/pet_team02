@@ -32,22 +32,17 @@ import {
   UploadWrapper,
 } from './AddNoticeModal.styled';
 const AddNoticeForm = ({ onClose, onAvatarChange, storage }) => {
-  const { getFromStorage, updateStorage, clearStorage } = storage;
+  const { updateStorage } = storage;
   const [step, setStep] = useState(1);
-  //   const [petAvatarURL, setPetAvatarURL] = useState();
 
   const { values } = useFormikContext();
-  updateStorage(values);
-  //   console.log(values);
+  const updatedValues = { ...values };
+  delete updatedValues.price;
+  updateStorage(updatedValues);
 
   const onNextClickHandler = () => {
     setStep(2);
   };
-
-  //   const onFileChange = e => {
-  //     const imgFile = e.target.files[0];
-  //     setPetAvatarURL(imgFile);
-  //   };
 
   return (
     <Form>
@@ -65,9 +60,6 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage }) => {
               name="category"
               className="visually-hidden"
               value={ADD_NOTICE_CATEGORIES.LOST_FOUND}
-              onClick={e => {
-                // console.log(e.target.value);
-              }}
             />
             <CategoryLabel htmlFor="lost_found">lost/found</CategoryLabel>
           </CategoryItem>
@@ -78,9 +70,6 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage }) => {
               type="radio"
               name="category"
               value={ADD_NOTICE_CATEGORIES.IN_GOOD_HANDS}
-              onClick={e => {
-                // console.log(e.target.value);
-              }}
               className="visually-hidden"
             />
             <CategoryLabel htmlFor="in_good_hands">in good hands</CategoryLabel>
@@ -92,9 +81,6 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage }) => {
               type="radio"
               name="category"
               value={ADD_NOTICE_CATEGORIES.SELL}
-              onClick={e => {
-                // console.log(e.target.value);
-              }}
               className="visually-hidden"
             />
             <CategoryLabel htmlFor="sell_">sell</CategoryLabel>
@@ -180,13 +166,7 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage }) => {
           {values.category === ADD_NOTICE_CATEGORIES.SELL && (
             <Label>
               Price:
-              <Input
-                type="text"
-                placeholder="Type price"
-                name="price"
-                // value={price}
-                // onChange={onPriceChange}
-              />
+              <Input type="text" placeholder="Type price" name="price" />
             </Label>
           )}
         </FieldsSecondStep>
