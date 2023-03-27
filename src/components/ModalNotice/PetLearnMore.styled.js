@@ -31,7 +31,7 @@ export const PositionWrapper = styled.div`
 `;
 
 export const PetImage = styled.img`
-  width: 100%px;
+  width: 240px;
   height: 240px;
   object-fit: cover;
   border-radius: 0px 0px 40px 40px;
@@ -127,7 +127,7 @@ export const LinkWrapper = styled.div`
   &:hover {
     color: ${p => p.theme.colors.accent};
     text-overflow: clip;
-    width: auto;
+    ${p => (p.isPhone ? 'width: 122px' : 'width: auto')};
   }
 
   ${p => p.theme.mq.tablet} {
@@ -200,6 +200,16 @@ export const ToFavoriteBtn = styled(Button)`
   background-color: ${p =>
     p.isFavorite ? p.theme.colors.accent : p.theme.colors.white};
 
+  & > svg {
+    width: 16px;
+    height: 16px;
+    fill: ${p => (p.isFavorite ? p.theme.colors.white : p.theme.colors.accent)};
+
+    transition-property: fill;
+    transition-duration: ${p => p.theme.transitions.durations.default};
+    transition-timing-function: ${p => p.theme.transitions.functions.default};
+  }
+
   &:hover {
     background-color: ${p =>
       p.isFavorite ? p.theme.colors.accent : p.theme.colors.white};
@@ -216,11 +226,11 @@ export const ToFavoriteBtn = styled(Button)`
 `;
 
 export const HeartIconForBtn = styled(AiFillHeart)`
-  width: 16px;
-  height: 16px;
-  fill: ${p => (p.favorite ? p.theme.colors.white : p.theme.colors.accent)};
+  // width: 16px;
+  // height: 16px;
+  // fill: ${p => (p.favorite ? p.theme.colors.white : p.theme.colors.accent)};
 
-  transition-property: fill;
-  transition-duration: ${p => p.theme.transitions.durations.default};
-  transition-timing-function: ${p => p.theme.transitions.functions.default};
+  // transition-property: fill;
+  // transition-duration: ${p => p.theme.transitions.durations.default};
+  // transition-timing-function: ${p => p.theme.transitions.functions.default};
 `;
