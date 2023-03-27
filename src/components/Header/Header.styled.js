@@ -90,7 +90,10 @@ export const ListMenu = styled.nav`
     background-color: #fdf7f2;
     z-index: 10;
   }
-
+  ${p => p.theme.mq.tablet} {
+    justify-content: flex-start;
+    padding-top: 88px;
+  }
   ${p => p.theme.mq.desktop} {
     display: none;
   }
@@ -142,14 +145,21 @@ export const Link = styled(NavLink)`
     letter-spacing: 0.04em;
     transition-property: transform;
     transition-duration: 500ms;
+    &:nth-child(2) {
+      margin-top: 60px;
+    }
   }
+  ${p => p.theme.mq.tablet} {
+    margin-top: 60px;
+  }
+
   ${p => p.theme.mq.desktop} {
     display: hidden;
   }
 `;
 export const LinkAuth = styled(NavLink)`
   ${p => p.theme.mq.mob} {
-    padding: 8px 28px;
+    padding: 6px 28px;
     border: 2px solid #f59256;
     border-radius: ${p => p.theme.radii.normal};
     background-color: ${p => p.theme.colors.white};
@@ -160,6 +170,7 @@ export const LinkAuth = styled(NavLink)`
     line-height: 19px;
     letter-spacing: 0.04em;
     text-decoration: none;
+    /* width: 35px; */
     color: ${p => p.theme.colors.black};
     transition-property: background-color, transform;
     transition-duration: 500ms;
@@ -167,7 +178,6 @@ export const LinkAuth = styled(NavLink)`
       margin-right: 12px;
     }
   }
-
   &.active,
   &:hover {
     color: ${p => p.theme.colors.white};
@@ -187,16 +197,17 @@ export const AuthNavigate = styled.div`
 
 export const AuthNavigateTablet = styled.div`
   display: flex;
+
   ${p => p.theme.mq.mobileOnly} {
     display: none;
   }
   ${p => p.theme.mq.desktop} {
     /* padding-top: 20px; */
-    margin-left: auto;
+    margin-left: 354px;
   }
 `;
 export const LinkAuthTablet = styled(NavLink)`
-  padding: 8px 28px;
+  padding: 6.5px 28px;
   border: 2px solid #f59256;
   border-radius: 40px;
   background-color: ${p => p.theme.colors.white};
@@ -213,9 +224,9 @@ export const LinkAuthTablet = styled(NavLink)`
   &:first-child {
     margin-right: 12px;
   }
-  &:last-child {
+  /* &:last-child {
     margin-right: 20px;
-  }
+  } */
   &.active,
   &:hover {
     color: ${p => p.theme.colors.white};
@@ -223,8 +234,34 @@ export const LinkAuthTablet = styled(NavLink)`
     text-decoration-line: none;
   }
   ${p => p.theme.mq.desktop} {
+    padding: 8px 28px;
     &:first-child {
       margin-right: 20px;
     }
+  }
+`;
+export const LinkAuthAccaunt = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  background-color: ${p => p.theme.colors.accent};
+  width: 164px;
+  padding: 6px 28px;
+  border: 2px solid #f59256;
+  border-radius: ${p => p.theme.radii.normal};
+  color: ${p => p.theme.colors.white};
+  font-size: ${p => p.theme.fontSizes[1]}px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-family: ${p => p.theme.fonts.manrope};
+  font-style: normal;
+  line-height: 19px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition-property: background-color, transform;
+  transition-duration: 500ms;
+  &:hover {
+    color: ${p => p.theme.colors.white};
+    background-color: ${p => p.theme.colors.accentActive};
+    text-decoration-line: none;
+    transform: scale(1.1);
   }
 `;

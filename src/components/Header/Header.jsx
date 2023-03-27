@@ -11,6 +11,7 @@ import {
   LinkAuth,
   AuthNavigateTablet,
   LinkAuthTablet,
+  LinkAuthAccaunt,
 } from './Header.styled';
 import { HiMenu } from 'react-icons/hi';
 import { GrClose } from 'react-icons/gr';
@@ -31,14 +32,17 @@ export const Header = () => {
     <HeaderStyle>
       <HeaderContainer>
         <Logo />
-
         <Nav />
         {isLoggedin ? (
           <Account />
         ) : (
           <AuthNavigateTablet>
-            <LinkAuthTablet to="/login">Login</LinkAuthTablet>
-            <LinkAuthTablet to="/register">Registation</LinkAuthTablet>
+            <LinkAuthTablet to="/login" style={{ width: 111 }}>
+              Login
+            </LinkAuthTablet>
+            <LinkAuthTablet to="/register" style={{ width: 181 }}>
+              Registation
+            </LinkAuthTablet>
           </AuthNavigateTablet>
         )}
         <MenuBtn onClick={toggle}>
@@ -49,24 +53,24 @@ export const Header = () => {
             <ListMenu>
               {isLoggedin ? (
                 <AuthNavigate>
-                  <LinkAuth
+                  <LinkAuthAccaunt
                     to="/user"
                     onClick={toggle}
-                    style={{
-                      display: 'flex',
-                      backgroundColor: '#F59256',
-                      color: 'white',
-                    }}
+                    style={{ width: 164 }}
                   >
                     <AccountIcon style={{ marginRight: 12 }} /> Account
-                  </LinkAuth>
+                  </LinkAuthAccaunt>
                 </AuthNavigate>
               ) : (
-                <AuthNavigate style={{ marginBottom: 20 }}>
-                  <LinkAuth to="/login" onClick={toggle}>
+                <AuthNavigate>
+                  <LinkAuth to="/login" onClick={toggle} style={{ width: 95 }}>
                     Login
                   </LinkAuth>
-                  <LinkAuth to="/register" onClick={toggle}>
+                  <LinkAuth
+                    to="/register"
+                    onClick={toggle}
+                    style={{ width: 144 }}
+                  >
                     Registation
                   </LinkAuth>
                 </AuthNavigate>
@@ -79,7 +83,7 @@ export const Header = () => {
                 Find pet
               </Link>
               <Link to="/friends" onClick={toggle}>
-                Friends
+                Our friends
               </Link>
             </ListMenu>
           </Burger>
