@@ -1,27 +1,39 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   ClearIcon,
+  ClearIconWrapper,
   IconButton,
   SearchField,
   SearchForm,
   SearchIcon,
-} from "./NoticesSearch.styled";
+} from './NoticesSearch.styled';
 
-const NoticesSearch = () => {
-  const [query, setQuery] = useState("");
+const NoticesSearch = ({ onSearch }) => {
+  const [query, setQuery] = useState('');
+  const [clear, setClear] = useState(false);
 
-  const onQueryChangeHandler = (e) => {
+  const onQueryChangeHandler = e => {
     setQuery(e.target.value);
   };
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    const query = e.target.elements.search.value;
-    console.log(query);
+  const onClearHandler = () => {
+    setClear(false);
+    setQuery('');
+    onSearch('');
   };
 
-  const onClearHandler = () => {
-    setQuery("");
+  const onSubmitHandler = e => {
+    e.preventDefault();
+    const searchQuery = e.target.elements.search.value.trim();
+
+    if (!searchQuery) {
+      return;
+    }
+
+    onSearch(searchQuery);
+    setTimeout(() => {
+      setClear(true);
+    }, 1000);
   };
 
   return (
@@ -34,15 +46,26 @@ const NoticesSearch = () => {
         value={query}
       />
 
-      {!query ? (
+      {!clear ? (
         <IconButton type="submit">
           <SearchIcon />
         </IconButton>
       ) : (
-        <IconButton type="button">
-          <ClearIcon onClick={onClearHandler} />
-        </IconButton>
+        <ClearIconWrapper>
+          <ClearIcon
+            onClick={onClearHandler}
+            tabIndex={0}
+            onKeyDownCapture={onClearHandler}
+          />
+        </ClearIconWrapper>
       )}
+
+      {/* <IconButton
+        type={!clear ? 'submit' : 'button'}
+        onClick={clear ? onClearHandler : null}
+      >
+        {!clear ? <SearchIcon /> : <ClearIcon />}
+      </IconButton> */}
     </SearchForm>
   );
 };

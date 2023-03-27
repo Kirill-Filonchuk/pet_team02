@@ -142,107 +142,6 @@ export const Input = styled(Field)`
   }
 `;
 
-// export const TextArea = styled('input')`
-//   width: 100%;
-//   padding: 11px 14px;
-//   margin-top: 8px;
-
-//   min-height: 40px;
-
-//   font-size: 14px;
-//   color: rgba(17, 17, 17, 0.6);
-
-//   border-radius: ${p => p.theme.radii.normal};
-//   border: 1px solid ${p => p.theme.colors.accent};
-//   background-color: ${p => p.theme.colors.background};
-
-//   ${theme.mq.tablet} {
-//     min-height: 113px;
-//     width: 448px;
-
-//     margin-top: 12px;
-//     font-size: 16px;
-//     line-height: 1.625;
-//   }
-
-//   &:focus,
-//   &:focus-visible {
-//     outline: 1px solid ${p => p.theme.colors.accentActive};
-//   }
-// `;
-
-// export const InputWrapper = styled.div`
-//   display: flex;
-//   margin-left: auto;
-
-//   flex-direction: column;
-
-//   cursor: pointer;
-//   padding-top: 50px;
-
-//   font-weight: ${p => p.theme.fontWeights.medium};
-//   font-size: 18px;
-//   line-height: 1.44;
-
-//   &::before {
-//     content: '';
-
-//     width: 40px;
-//     height: 40px;
-
-//     background-color: green;
-//     /* background-image: ${p => p.theme.colors.background}; */
-//     background-repeat: no-repeat;
-//     background-position: center;
-
-//     ${theme.mq.tablet} {
-//       width: 54px;
-//       height: 54px;
-//     }
-//   }
-
-//   ${theme.mq.tablet} {
-//     padding-top: 76px;
-//     font-size: 20px;
-//     line-height: 1.3;
-//   }
-// `;
-
-// export const PetsFotoLabel = styled('label')`
-//   display: block;
-//   margin-bottom: 16px;
-//   font-weight: ${p => p.theme.fontWeights.medium};
-//   font-size: 18px;
-//   line-height: 1.44;
-
-//   &:last-child {
-//     margin-bottom: 0;
-//   }
-
-//   ${theme.mq.tablet} {
-//     margin-bottom: 28px;
-//     font-size: 24px;
-//     line-height: 1.08;
-//   }
-// `;
-
-// export const InputPetsFoto = styled(Field)`
-//   margin-left: 0 auto;
-//   /* opacity: 0; */
-//   width: 116px;
-//   height: 116px;
-//   cursor: pointer;
-
-//   &:hover + button,
-//   &:focus + button {
-//     color: ${p => p.theme.colors.accent};
-//   }
-
-//   &::-webkit-file-upload-button {
-//     cursor: pointer;
-//   }
-// `;
-
 export const ToolBar = styled('div')`
   ${theme.mq.tablet} {
     display: flex;
@@ -428,26 +327,49 @@ export const CommentDecription = styled(FieldLabel)`
   }
 `;
 
+export const CommentsFieldContainer = styled('div')`
+  /* min-height: 40px; */
+  height: ${p => p.height} ${theme.mq.tablet} {
+    /* min-height: 113px; */
+  }
+`;
+
 export const CommentsField = styled(Field)`
-  resize: none;
+  resize: vertical;
   margin: 0;
   padding: 11px 14px;
 
   width: 100%;
-  height: 40px;
+  min-height: 40px;
+  /* height: 40px; */
+  /* height: 100%; */
+  /* height: calc(${p => p.textLength}px + 40px); */
 
   font-size: 14px;
   color: rgba(27, 27, 27, 0.6);
 
   border: 1px solid ${p => p.theme.colors.accent};
-  border-radius: ${p => p.theme.radii.normal};
+  border-radius: ${p => p.theme.radii.small};
   background-color: ${p => p.theme.colors.background};
 
   ${theme.mq.tablet} {
     padding: 16px 18px;
-    height: 113px;
-    border-radius: ${p => p.theme.radii.small};
+    min-height: 113px;
     font-size: 16px;
     line-height: 1.625;
+  }
+`;
+
+export const ErrorWrapper = styled('ul')`
+  margin-top: 20px;
+
+  color: red;
+
+  & > li {
+    margin-bottom: 5px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 `;

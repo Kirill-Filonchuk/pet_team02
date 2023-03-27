@@ -55,10 +55,10 @@ export const noticesApi = createApi({
 
   endpoints: builder => ({
     getNotices: builder.query({
-      query: ({ endpoint, search, page, limit }) => ({
+      query: ({ endpoint, query, page, limit }) => ({
         url: `${endpoint}`,
         params: {
-          search,
+          query,
           page,
           limit,
         },
