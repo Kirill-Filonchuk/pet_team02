@@ -71,6 +71,7 @@ const AddNoticeModal = ({ onClose }) => {
   const { getFromStorage, clearStorage } = storage;
   const [petAvatarURL, setPetAvatarURL] = useState();
   const [isFileNeeded, setIsFileNeeded] = useState(false);
+  const [avatarURL, setAvatarURL] = useState();
 
   const onSubmitHandler = async (values, actions) => {
     const data = { ...values, image: petAvatarURL };
@@ -101,6 +102,7 @@ const AddNoticeModal = ({ onClose }) => {
       return;
     }
     setPetAvatarURL(imgFile);
+    setAvatarURL(URL.createObjectURL(imgFile));
   };
 
   return createPortal(
@@ -117,6 +119,7 @@ const AddNoticeModal = ({ onClose }) => {
               onAvatarChange={onFileChange}
               storage={storage}
               isFileNeeded={isFileNeeded}
+              avatarURL={avatarURL}
             />
           </Formik>
         </AddPetWrapper>

@@ -277,6 +277,8 @@ export const UploadLabel = styled('label')`
   display: block;
   cursor: pointer;
 
+  overflow: hidden;
+
   width: 116px;
   height: 116px;
 
@@ -308,6 +310,18 @@ export const UploadIconWrapper = styled('div')`
   height: 71px;
 `;
 
+export const UploadImageWrapper = styled('div')`
+  width: 100%;
+  height: 100%;
+`;
+
+export const UploadImage = styled('img')`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export const UploadIcon = styled(RxPlus)`
   width: 100%;
   height: 100%;
@@ -334,7 +348,8 @@ export const CommentsFieldContainer = styled('div')`
   }
 `;
 
-export const CommentsField = styled(Field)`
+// export const CommentsField = styled(Field)`
+export const CommentsField = styled('textarea')`
   resize: vertical;
   margin: 0;
   padding: 11px 14px;

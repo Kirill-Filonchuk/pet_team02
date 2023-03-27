@@ -4,7 +4,13 @@ import { useState } from 'react';
 import SecondStepForm from './SecondStepForm';
 import ErrorMessages from './ErrorMessages';
 
-const AddNoticeForm = ({ onClose, onAvatarChange, storage, isFileNeeded }) => {
+const AddNoticeForm = ({
+  onClose,
+  onAvatarChange,
+  storage,
+  isFileNeeded,
+  avatarURL,
+}) => {
   const { updateStorage } = storage;
   const [step, setStep] = useState(1);
 
@@ -34,6 +40,7 @@ const AddNoticeForm = ({ onClose, onAvatarChange, storage, isFileNeeded }) => {
         onClickBack={() => {
           setStep(1);
         }}
+        avatarURL={avatarURL}
       />
       <ErrorMessages isFileNeeded={isFileNeeded} />
     </Form>
