@@ -334,7 +334,8 @@ export const CommentsFieldContainer = styled('div')`
   }
 `;
 
-export const CommentsField = styled(Field)`
+// export const CommentsField = styled(Field)`
+export const CommentsField = styled('textarea')`
   resize: vertical;
   margin: 0;
   padding: 11px 14px;

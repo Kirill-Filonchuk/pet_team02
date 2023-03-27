@@ -1,3 +1,4 @@
+import { Field } from 'formik';
 import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './AddNoticeModal';
 import {
   BackButton,
@@ -90,11 +91,25 @@ const SecondStepForm = ({ step, values, onAvatarChange, onClickBack }) => {
         <CommentDecription>Comments</CommentDecription>
 
         {/* <CommentsFieldContainer> */}
-        <CommentsField
+        {/* <CommentsField
           as="textarea"
           placeholder="Type comment"
           name="comments"
-        ></CommentsField>
+        ></CommentsField> */}
+
+        <Field name="comments">
+          {({ field, form, meta }) => {
+            return (
+              <CommentsField
+                name="comments"
+                placeholder="Type comment"
+                value={field.value}
+                onChange={field.onChange}
+              ></CommentsField>
+            );
+          }}
+        </Field>
+
         {/* </CommentsFieldContainer> */}
       </CommentWrapper>
       <ToolBar>
