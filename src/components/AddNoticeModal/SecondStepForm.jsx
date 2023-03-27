@@ -97,20 +97,9 @@ const SecondStepForm = ({
             onChange={onAvatarChange}
           />
         </UploadLabel>
-        {/* <div style={{ width: '100px', height: '100px' }}>
-          {' '}
-          {avatarURL && <img src={avatarURL} alt="avatar" />}
-        </div> */}
       </UploadWrapper>
       <CommentWrapper>
         <CommentDecription>Comments</CommentDecription>
-
-        {/* <CommentsFieldContainer> */}
-        {/* <CommentsField
-          as="textarea"
-          placeholder="Type comment"
-          name="comments"
-        ></CommentsField> */}
 
         <Field name="comments">
           {({ field, form, meta }) => {
