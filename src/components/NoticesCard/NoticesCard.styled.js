@@ -87,6 +87,11 @@ export const NoticeCardButton = styled(Button)`
       p.isDelete ? p.theme.colors.accentActive : p.theme.colors.accent};
     color: ${p => p.theme.colors.white};
   }
+
+  &:disabled {
+    border-color: grey;
+    color: grey;
+  }
 `;
 
 export const Label = styled('div')`

@@ -33,12 +33,7 @@ const NoticesCard = ({
   isLoggedIn,
   onFavoriteClick,
 }) => {
-  // const [isFavoriteCard, setIsFavoriteCard] = useState(isFavorite);
-
   const [openModal, setOpenModal] = useState(false);
-
-  // const [updateFavoriteStatus, { isLoading }] =
-  //   useUpdateNoticeFavoriteStatusMutation();
 
   useEffect(() => {
     if (openModal) {
@@ -47,23 +42,6 @@ const NoticesCard = ({
       document.body.style.overflow = 'unset';
     }
   }, [openModal]);
-
-  // const onFavoriteClickHandler = async () => {
-  //   //here should be code for update favorite/ After resolve positive response
-  //   // console.log(`card id ${_id} favorite: ${isFavoriteCard}`);
-  //   // setIsFavoriteCard(!isFavoriteCard);
-  //   try {
-  //     const response = await updateFavoriteStatus(_id);
-  //     if (response.data.result) {
-  //       setIsFavoriteCard(!isFavoriteCard);
-  //       // refreshUser();
-  //     }
-
-  //     // setIsFavoriteCard()
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <>

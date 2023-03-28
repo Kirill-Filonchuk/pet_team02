@@ -5,6 +5,7 @@ import { useWindowSize } from 'hooks/useWindowSize';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { ProgressBar } from 'react-loader-spinner';
+import { useDeleteNoticeMutation } from 'redux/notices/noticesApi';
 import {
   ListContainer,
   LoaderBox,
@@ -26,6 +27,9 @@ const NoticesPaginatedList = ({
   const { isDesktop } = useWindowSize();
 
   const [isSpinnerLoading, setIsSpinnerLoading] = useState(false);
+
+  // const [deleteNotice, { isLoading: isDeleting, error }] =
+  //   useDeleteNoticeMutation();
 
   useEffect(() => {
     if (isFetching) {
@@ -62,7 +66,7 @@ const NoticesPaginatedList = ({
           onPageClick={onPageClick}
           nearbyQtyPages={isDesktop ? 2 : 1}
           perPage={perPage}
-          shouldScrollUp
+          // shouldScrollUp
         />
       </PaginatorWrapper>
     </ListContainer>

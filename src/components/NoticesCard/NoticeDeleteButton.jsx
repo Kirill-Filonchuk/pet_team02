@@ -41,6 +41,8 @@ const NoticeDeleteButton = ({ id }) => {
         onClick={() => {
           setIsNotifyOpen(true);
         }}
+        // isDeleting={isDeleting}
+        disabled={isDeleting}
       >
         Delete
         {isDeleting ? (
