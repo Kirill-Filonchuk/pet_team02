@@ -51,7 +51,6 @@ export default function UserData({ user }) {
   const [isDisabledBtn, setIsDisabledBtn] = useState(false);
   const { email, name, birthday, phone, city, avatarURL } = user;
   const { isPending } = useAuth();
-  console.log('isPending', isPending);
 
   const handleFileChange = async e => {
     const splitToFindExtension = e.target.value.split('.');
