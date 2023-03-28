@@ -25,7 +25,8 @@ const OurFriendsCard = ({
   url,
   workDays,
 }) => {
-  const dashDottedLine = '-----------------------------------';
+  // const dashDottedLine = '-----------------------------------';
+  const dashDottedLine = '-----------------------------';
   const [openModal, setOpenModal] = useState(false);
   const [targetModal, setTargetModal] = useState(null);
   useEffect(() => {

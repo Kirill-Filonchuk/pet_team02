@@ -21,10 +21,16 @@ export const NOTICES_API_ENDPOINTS = {
 
 const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
-  async ({ url, method, data, params }) => {
+  async ({ url, method, data, params, headers }) => {
     try {
       // console.log(api.defaults.headers.common.Authorization);
-      const result = await api({ url: baseUrl + url, method, data, params });
+      const result = await api({
+        url: baseUrl + url,
+        method,
+        data,
+        params,
+        headers,
+      });
       return { data: result.data };
     } catch (axiosError) {
       let err = axiosError;
@@ -45,20 +51,27 @@ export const noticesApi = createApi({
     baseUrl: `${BASE_URL}api/notices`,
   }),
 
-  tagTypes: ['Notice', 'Favorite', 'Own'],
+  tagTypes: ['Notice', 'Favorite', 'Own', 'UserData'],
 
   endpoints: builder => ({
     getNotices: builder.query({
-      query: ({ endpoint, search, page, limit }) => ({
+      query: ({ endpoint, query, page, limit }) => ({
         url: `${endpoint}`,
         params: {
-          search,
+          query,
           page,
           limit,
         },
       }),
 
       providesTags: ['Notice'],
+    }),
+
+    getUserData: builder.query({
+      query: () => ({
+        url: `/userdata`,
+      }),
+      providesTags: ['UserData'],
     }),
 
     getNotice: builder.query({
@@ -79,7 +92,7 @@ export const noticesApi = createApi({
         url: `/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Notice', 'Own'],
+      invalidatesTags: ['Notice', 'Own', 'UserData'],
     }),
 
     addNotice: builder.mutation({
@@ -87,8 +100,11 @@ export const noticesApi = createApi({
         url: '/notice',
         method: 'POST',
         data,
+        headers: {
+          'Content-Type': 'application/json,multipart/form-data',
+        },
       }),
-      invalidatesTags: ['Notice', 'Own'],
+      invalidatesTags: ['Notice', 'Own', 'UserData'],
     }),
 
     getFavorites: builder.query({
@@ -104,13 +120,14 @@ export const noticesApi = createApi({
         url: `/${id}`,
         method: 'PATCH',
       }),
-      invalidatesTags: ['Notice', 'Favorite'],
+      invalidatesTags: ['Notice', 'Favorite', 'UserData'],
     }),
   }),
 });
 
 export const {
   useGetNoticesQuery,
+  useGetUserDataQuery,
   useGetNoticeQuery,
   useGetOwnNoticesQuery,
   useDeleteNoticeMutation,

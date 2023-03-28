@@ -16,15 +16,14 @@ export const drop = keyframes`
 
 export const LogoStyle = styled.p`
   display: inline-block;
+  font-family: 'PetlyLogo';
   font-family: ${p => p.theme.fonts.poppins};
   font-size: ${p => p.theme.fontSizes[6]}px;
   font-style: normal;
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 42px;
   letter-spacing: 0.07em;
-
   /* z-index: 11; */
-
   transition-property: transform;
   transition-duration: 900ms;
 
@@ -56,9 +55,9 @@ export const Link = styled(NavLink)`
   text-decoration: none;
   color: black;
   z-index: 11;
-  ${p => p.theme.mq.mob} {
+  /* ${p => p.theme.mq.mob} {
     margin-right: 158px;
-  }
+  } */
   ${p => p.theme.mq.tablet} {
     // margin-right: 100px;
   }

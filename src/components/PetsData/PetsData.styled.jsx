@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+
+
+
 export const PetsTitle = styled.h2`
   color: rgba(17, 17, 17, 1);
   font-weight: 500;
@@ -83,6 +86,7 @@ export const Wrapper = styled.div`
   width: inherit;
   display: flex;
   flex-direction: column;
+
   @media screen and (min-width: 768px) {
     /* display: flex;
     justify-content: center; */

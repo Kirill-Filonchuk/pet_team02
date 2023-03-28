@@ -31,15 +31,13 @@ import {
 
 import { EscButton } from 'components/UIKit/EscButton/EscButton.styled';
 import { RxCross1 } from 'react-icons/rx';
-import defaultImage from 'assets/images/pets-default-image.jpg';
+import defaultImage from '../../assets/images/pets-default-image.jpg';
 import Spinner from '../Helpers/Spinner';
 
 const PetLearnMore = ({ onClose, id, isFavorite }) => {
   const { isLoggedIn } = useAuth();
 
   const [updateFavorite] = useUpdateNoticeFavoriteStatusMutation();
-
-  // {skip: !isLoggedIn,}
 
   const { data, isLoading, isSuccess } = useGetNoticeQuery(id);
   if (!data) return;
@@ -62,6 +60,7 @@ const PetLearnMore = ({ onClose, id, isFavorite }) => {
 
   const phoneNumber = `tel:${phone}`;
   const emailAddress = `mailto:${email}`;
+  const isPhone = true;
 
   const showPrice = category === 'sell' ? true : false;
 
@@ -94,7 +93,7 @@ const PetLearnMore = ({ onClose, id, isFavorite }) => {
           <ModalNoticeCard>
             <PositionWrapper>
               <Mark>{category}</Mark>
-              <PetImage src={petAvatarURL} alt={title} />
+              <PetImage src={petAvatarURL || defaultImage} alt={title} />
 
               <DescriptionWrapper>
                 <PetTitle>{title}</PetTitle>
@@ -136,7 +135,7 @@ const PetLearnMore = ({ onClose, id, isFavorite }) => {
                   <>
                     <DescriptionContainer>
                       <PetKey>Phone:</PetKey>
-                      <LinkWrapper>
+                      <LinkWrapper isPhone={isPhone}>
                         <PetOwnerContacts href={phoneNumber}>
                           {phone}
                         </PetOwnerContacts>
@@ -150,7 +149,7 @@ const PetLearnMore = ({ onClose, id, isFavorite }) => {
                 ) : (
                   <DescriptionContainerEnd>
                     <PetKey>Phone:</PetKey>
-                    <LinkWrapper>
+                    <LinkWrapper isPhone={isPhone}>
                       <PetOwnerContacts href={phoneNumber}>
                         {phone}
                       </PetOwnerContacts>
@@ -179,7 +178,7 @@ const PetLearnMore = ({ onClose, id, isFavorite }) => {
                 isFavorite={isFavorite}
               >
                 {isFavorite ? 'Added to ' : 'Add to'}
-                <HeartIconForBtn favorite={isFavorite} />
+                <HeartIconForBtn />
               </ToFavoriteBtn>
             </BtnWrapper>
           </ModalNoticeCard>

@@ -57,11 +57,13 @@ export default function ModalAddPet({ onClose }) {
   // };
 
   //ANTON'S CODE------------------------------------
+
   // const [step, setStep] = useState(1);
   // const onAddPetSubmit = e => {
   //   e.preventDefault();
   //   // console.log(e.target.elements);
   // };
+
   //ANTON'S CODE------------------------------------
 
   return createPortal(
@@ -69,6 +71,7 @@ export default function ModalAddPet({ onClose }) {
       <CommonModal onClose={onClose}>
         <AddPetWrapper>
           <AddPetForm onClose={onClose} />
+
           {/* STEP -1 */}
           {/* {step === 1 && (
             <>
@@ -204,6 +207,7 @@ export default function ModalAddPet({ onClose }) {
               <ToolBar>
                 <NextButton
                   type="submit"
+                  form="add_pet_form"
                   onClick={() => {
                     onClose();
                   }}
