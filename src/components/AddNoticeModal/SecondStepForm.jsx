@@ -122,7 +122,7 @@ const SecondStepForm = ({
       <ToolBar>
         <NextButton type="submit">
           Done
-          {isAddingPet && <OvalSpinner size={20} />}
+          {isAddingPet && <OvalSpinner />}
         </NextButton>
         <BackButton type="button" onClick={onClickBack}>
           Back

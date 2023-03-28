@@ -1,5 +1,6 @@
 import ShouldDelete from 'components/Notifications/ShouldDelete';
 import Notify from 'components/Notify';
+import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
 import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import { useState } from 'react';
 import { HiTrash } from 'react-icons/hi';
@@ -10,7 +11,7 @@ const NoticeDeleteButton = ({ id }) => {
   const [isNotifyOpen, setIsNotifyOpen] = useState(false);
   const { buttonRef, position } = useNotifyPosition();
 
-  const [deleteNotice] = useDeleteNoticeMutation();
+  const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
 
   const onDeleteNotice = async () => {
     console.log('notice deleted');
@@ -31,7 +32,12 @@ const NoticeDeleteButton = ({ id }) => {
           setIsNotifyOpen(true);
         }}
       >
-        Delete <HiTrash size={18} />
+        Delete
+        {isDeleting ? (
+          <OvalSpinner color="#ffffff" secondaryColor="#FF6101" />
+        ) : (
+          <HiTrash size={18} />
+        )}
       </NoticeCardButton>
 
       {isNotifyOpen && (
