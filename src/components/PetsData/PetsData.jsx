@@ -8,7 +8,6 @@ import { ThreeDots } from 'react-loader-spinner';
 
 import { TfiPlus } from 'react-icons/tfi';
 // import ModalAddsPet from '../ModalAddsPet/ModalAddsPet';
-import PetsList from '../PetsList/PetsList';
 import {
   PetsTitle,
   ButtonWrapper,
@@ -18,6 +17,7 @@ import {
   Pictures,
   StyledButtonSection,
   LoaderUser,
+  // PetsList,
 } from './PetsData.styled';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -25,6 +25,7 @@ import ModalAddUserPet from 'components/ModalAddUserPet/ModalAddPet/ModalAddUser
 // import useAuth from 'hooks/useAuth/useAuth';
 // import { refreshUserPets } from 'redux/pet/operations';
 import { useGetUserPetsQuery } from 'redux/pet/userPetsApi';
+import PetsList from 'components/PetsList/PetsList';
 // import useAuth from 'hooks/useAuth/useAuth';
 // import { getPets } from 'redux/pet/selectors';
 
@@ -61,13 +62,15 @@ const PetsData = () => {
   // const loading = useSelector(selectIsLoading);
   // const error = useSelector(selectError);
   // const error = false;
-
+  console.log(data);
 if(!data){
   return
 };
 
-const pets= data.result.pets;
-
+// const pets= data.result.pets;
+const { result } = data;
+const {pets} = result;
+console.log(data);
   return (
     <Wrapper>
       <StyledButtonSection>
@@ -85,7 +88,7 @@ const pets= data.result.pets;
           isOpen={openModal}
         />
       )}
-      {/* {showModal && <ModalAddsPet setShowModal={setShowModal} />} */}
+      {console.log("----------",pets)}
       {pets.length > 0 && <PetsList pets={pets} />}
       {/* {!loading && !error && pets.length === 0 && ( */}
       {pets.length === 0 && <Pictures>You don't have any pets added.</Pictures>}

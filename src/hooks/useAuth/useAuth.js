@@ -24,7 +24,7 @@ const useAuth = () => {
     isRefreshing,
     user,
 
-    userPets,
+userPets,
 
     isPending
 
