@@ -3,8 +3,8 @@ import { ErrorMessage } from 'formik';
 import { Error, Correct } from './FormValidation.styled';
 
 const emailValid = /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,4})$/;
-const passwordValid =/(?!\s)^[^ ]{7,32}$/;
-const nameValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ][a-zA-Zа-яіїєА-ЯІЇЄ\s,'-]*$/; 
+const passwordValid =/(?!\s)^[^ ]*$/;
+const nameValid = /^[a-zA-Zа-яіїєА-ЯІЇЄ][a-zA-Zа-яіїєА-ЯІЇЄ'-]*$/;
 const phoneValid = /^\+380\d{9}$/;
 const locationValid = /^(?=[a-zA-Zа-яіїєА-ЯІЇЄ])[a-zA-Zа-яіїєА-ЯІЇЄ'-]+,\s[a-zA-Zа-яіїєА-ЯІЇЄ'-]+$/;
 
@@ -52,16 +52,16 @@ const validationRegisterStepTwo = yup.object().shape({
     .string()
     .required('Name field is required')
     .matches(nameValid, 'Name field can contain any letters')
-    .max(24, "Max 24 characters")
-    .min(1, "Min 1 character"),
+    .max(16, "Max 16 characters")
+    .min(2, "Min 2 character"),
   city: yup
     .string()
     .matches(
       locationValid,
       'Location field must contain two words separated by a comma'
     )
-    .min(5, "Min 5 characters")
-    .max(35, "Max 35 characters"),
+    .max(35, "Max 35 characters")
+    .min(5, "Min 5 characters"),
   phone: yup
     .string()
     .matches(
