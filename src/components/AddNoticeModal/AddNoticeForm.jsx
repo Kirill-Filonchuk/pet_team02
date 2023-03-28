@@ -10,6 +10,7 @@ const AddNoticeForm = ({
   storage,
   isFileNeeded,
   avatarURL,
+  isAddingPet,
 }) => {
   const { updateStorage } = storage;
   const [step, setStep] = useState(1);
@@ -41,6 +42,7 @@ const AddNoticeForm = ({
           setStep(1);
         }}
         avatarURL={avatarURL}
+        isAddingPet={isAddingPet}
       />
       <ErrorMessages isFileNeeded={isFileNeeded} />
     </Form>

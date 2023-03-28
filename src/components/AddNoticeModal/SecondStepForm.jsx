@@ -1,4 +1,6 @@
+import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
 import { Field } from 'formik';
+import { ColorRing, Oval } from 'react-loader-spinner';
 import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './AddNoticeModal';
 import {
   BackButton,
@@ -33,6 +35,7 @@ const SecondStepForm = ({
   onAvatarChange,
   onClickBack,
   avatarURL,
+  isAddingPet,
 }) => {
   return (
     <div className={step !== 2 ? 'visually-hidden' : ''}>
@@ -117,7 +120,10 @@ const SecondStepForm = ({
         {/* </CommentsFieldContainer> */}
       </CommentWrapper>
       <ToolBar>
-        <NextButton type="submit">Done</NextButton>
+        <NextButton type="submit">
+          Done
+          {isAddingPet && <OvalSpinner />}
+        </NextButton>
         <BackButton type="button" onClick={onClickBack}>
           Back
         </BackButton>

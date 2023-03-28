@@ -64,7 +64,7 @@ const validationSchema = yup.object().shape({
 
 const AddNoticeModal = ({ onClose }) => {
   const navigate = useNavigate();
-  const [addPet] = useAddNoticeMutation();
+  const [addPet, { isLoading: isAddingPet }] = useAddNoticeMutation();
 
   const storage = useStorage('add-notice-fields');
 
@@ -120,6 +120,7 @@ const AddNoticeModal = ({ onClose }) => {
               storage={storage}
               isFileNeeded={isFileNeeded}
               avatarURL={avatarURL}
+              isAddingPet={isAddingPet}
             />
           </Formik>
         </AddPetWrapper>
