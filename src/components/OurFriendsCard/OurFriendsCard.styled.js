@@ -129,7 +129,7 @@ export const HoursList = styled('ul')`
   border: 1px solid ${theme.colors.accent};
   border-radius: 8px;
   padding: 12px;
-  width: 120px;
+  min-width: 120px;
   box-shadow: 4px 4px 8px 0px #00000040;
 `;
 
@@ -147,7 +147,7 @@ export const HoursContainer = styled('div')`
   display: flex;
   -webkit-justify-content: space-between;
   justify-content: space-between;
-
+  gap: 5px;
   margin: 0;
 `;
 
