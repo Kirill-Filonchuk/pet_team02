@@ -10,7 +10,7 @@ export const HeaderStyle = styled.header`
 export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
   height: 42px;
   margin: 0 auto;
@@ -48,17 +48,22 @@ export const MenuBtn = styled.button`
   display: flex;
   cursor: pointer;
   z-index: 11;
+  padding: 0;
   background-color: transparent;
   border: ${p => p.theme.borders.none};
   transition-property: transform;
   transition-duration: 500ms;
-
+  & > svg {
+    fill: black;
+  }
   &:hover {
     color: ${p => p.theme.colors.accent};
     text-decoration-line: none;
     transform: scale(1.5);
   }
-
+  &:hover svg {
+    fill: ${p => p.theme.colors.accent};
+  }
   ${p => p.theme.mq.desktop} {
     display: none;
   }
