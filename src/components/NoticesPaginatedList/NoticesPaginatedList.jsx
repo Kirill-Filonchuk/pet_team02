@@ -1,7 +1,13 @@
 import NoticesCardList from 'components/NoticesCardList';
 import Paginator from 'components/Paginator';
+import { Loader } from 'components/UIKit/Spinners/LineBarLoader/LineBarLoader.styled';
 import { useWindowSize } from 'hooks/useWindowSize';
-import { PaginatorWrapper } from './NoticesPaginatedList.styled';
+import { ProgressBar } from 'react-loader-spinner';
+import {
+  ListContainer,
+  LoaderBox,
+  PaginatorWrapper,
+} from './NoticesPaginatedList.styled';
 
 const NoticesPaginatedList = ({
   label,
@@ -12,11 +18,18 @@ const NoticesPaginatedList = ({
   onPageClick,
   perPage,
   onFavoriteClick,
+  isFetching,
 }) => {
   const { isDesktop } = useWindowSize();
   return (
     list && (
-      <>
+      <ListContainer>
+        {isFetching && (
+          <LoaderBox>
+            <Loader />
+          </LoaderBox>
+        )}
+
         <NoticesCardList
           label={label}
           list={list}
@@ -34,7 +47,7 @@ const NoticesPaginatedList = ({
             // shouldScrollUp
           />
         </PaginatorWrapper>
-      </>
+      </ListContainer>
     )
   );
 };

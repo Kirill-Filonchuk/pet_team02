@@ -1,3 +1,4 @@
+// import { notifyError } from 'components/Helpers/Toastify';
 import ShouldDelete from 'components/Notifications/ShouldDelete';
 import Notify from 'components/Notify';
 import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
@@ -6,19 +7,28 @@ import { useState } from 'react';
 import { HiTrash } from 'react-icons/hi';
 import { useDeleteNoticeMutation } from 'redux/notices/noticesApi';
 import { NoticeCardButton } from './NoticesCard.styled';
+import { useEffect } from 'react';
+import { notifyDeletePetError } from 'components/Helpers/Toastify';
 
 const NoticeDeleteButton = ({ id }) => {
   const [isNotifyOpen, setIsNotifyOpen] = useState(false);
   const { buttonRef, position } = useNotifyPosition();
 
-  const [deleteNotice, { isLoading: isDeleting }] = useDeleteNoticeMutation();
+  const [deleteNotice, { isLoading: isDeleting, error }] =
+    useDeleteNoticeMutation();
+
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+      notifyDeletePetError('Something went wrong! Cannot delete pet');
+    }
+  }, [error]);
 
   const onDeleteNotice = async () => {
-    console.log('notice deleted');
     try {
       await deleteNotice(id);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -39,7 +49,6 @@ const NoticeDeleteButton = ({ id }) => {
           <HiTrash size={18} />
         )}
       </NoticeCardButton>
-
       {isNotifyOpen && (
         <Notify
           position={position}
