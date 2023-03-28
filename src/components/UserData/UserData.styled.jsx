@@ -117,6 +117,17 @@ export const StyledImage = styled.img`
 export const InputWrapper = styled.div`
   position: relative;
   margin-left: auto;
+
+  &:hover svg,
+  &:focus svg {
+    transform: scale(1.1);
+  }
+
+  &:hover button,
+  &:focus button {
+    color: #f59256;
+  }
+
   /* ${theme.mq.desktop}  {
     margin-left: 0;
     left: -5%;
@@ -154,9 +165,9 @@ export const EditImageBtn = styled.button`
   /* margin-right: 12px; */
   background-color: transparent;
   border: none;
-  transition: color 250ms linear, transform 250ms linear; */
+  transition: color 250ms linear;
 
-   /* ${theme.mq.desktop} {
+  /* ${theme.mq.desktop} {
     align-items:start;  
   } */
 `;
@@ -164,16 +175,12 @@ export const EditImageBtn = styled.button`
 export const EditImageIcon = styled(EditIcon)`
   width: 20px;
   height: 20px;
-
   margin-right: 4px;
 
-  /* transition: rotate 250ms linear;
-
-  &:hover,
-  &:focus {
-    transform: rotate(360deg);
-  } */
+  transition: transform 250ms linear;
 `;
+
+export const EditText = styled.div``;
 
 export const UserItemWrapper = styled.div`
   max-width: 248px;

@@ -169,7 +169,19 @@ export default function UserDataItem({
             )}
 
             {isEdit && (
-              <StyledBtn type="submit" onClick={handleSubmit}>
+              <StyledBtn
+                type="submit"
+                onClick={handleSubmit}
+                onSubmit={() => {
+                  setTimeout(function () {
+                    const element = document.getElementById('#success');
+                    if (element) {
+                      element.remove();
+                    }
+                    return;
+                  }, 3000);
+                }}
+              >
                 <BtnImageDone />
               </StyledBtn>
             )}
@@ -195,6 +207,26 @@ export default function UserDataItem({
             )}
           />
           {/* </div> */}
+          {!errors[field] &&
+          values[field] !== '' &&
+          touched[field] &&
+          initValue[field] !== values[field] ? (
+            <div
+              id="success"
+              style={{
+                color: 'green',
+                fontSize: '.6rem',
+                position: 'relative',
+                maxWidth: '55%',
+                marginBottom: '8px',
+                marginLeft: 'auto',
+                marginRight: '32px',
+                height: '20px',
+              }}
+            >
+              {field} is correct
+            </div>
+          ) : null}
         </Form>
       )}
     </Formik>

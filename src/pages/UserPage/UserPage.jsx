@@ -1,4 +1,3 @@
-
 import { MainContainer } from './UserPage.styled';
 import UserData from 'components/UserData/UserData';
 import PetsData from 'components/PetsData/PetsData';
@@ -6,12 +5,7 @@ import { useSelector } from 'react-redux';
 
 // import useAuth from '../../hooks/useAuth/useAuth';
 
-import {
-  UserContainer,
-  UserWrapper,
-  PetsWrapper,
- 
-} from './UserPage.styled';
+import { UserContainer, UserWrapper, PetsWrapper } from './UserPage.styled';
 import {
   // selectIsLoggedIn,
   selectUser,
