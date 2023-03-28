@@ -7,7 +7,7 @@ import bg_mobile from '../../images/authForm/bg_mobile_vector.svg';
 import bg_tablet from '../../images/authForm/bg_tablet_vector.svg';
 import bg_desktop from '../../images/authForm/bg_desktop_vector.svg';
 
-const Section = styled.section`
+const Section = styled.div`
 position: absolute;
 z-index: -1;
 display: flex;
@@ -20,12 +20,26 @@ background-image: url(${bg_mobile});
 background-repeat: no-repeat;
 background-size: contain;
 overflow-y: hidden;
-background-position: bottom;
+background-position: center 101%;
+
+@media (orientation: landscape) {
+min-height: calc(100vh + 200px);
+background-position: 0 190%;
+}
+
 ${theme.mq.tablet} {
   background-image: url(${bg_tablet});
+  background-position: center 100%;
+@media (orientation: landscape) {
+min-height: calc(100vh + 400px);
+}
 }
 ${theme.mq.desktop} {
   background-image: url(${bg_desktop});
+  min-height: calc(100vh + 200px);
+}
+@media (min-width: 1400px) {
+  min-height: 100vh;
 }
 `
 
@@ -53,7 +67,7 @@ const Title = styled.h2`
   letter-spacing: 0.04em;
   margin-bottom: 40px;
   ${theme.mq.tablet} {
-    font-size: ${theme.fontSizes[7] + `px`};
+    font-size: ${theme.fontSizes[8] + `px`};
     line-height: ${theme.lineHeights[3]};
     font-weight: ${theme.fontWeights.medium};
   }
