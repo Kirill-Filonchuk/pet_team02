@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 
 
-export const PetsList =styled.ul`
- display:block;
 
-
- 
-`
 
 export const PetsTitle = styled.h2`
   color: rgba(17, 17, 17, 1);

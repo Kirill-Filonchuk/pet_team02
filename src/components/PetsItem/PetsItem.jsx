@@ -13,7 +13,7 @@ import {
   DeleteImage,
   ListInfoTitle,
 } from './PetsItem.styled';
-// import { HiTrash } from 'react-icons/hi';
+
 
 export const PetsItem=({
   _id,
@@ -22,13 +22,15 @@ export const PetsItem=({
   birthDate,
   breed,
   comments,
-}) => {
-  // const dispatch = useDispatch();
+  }) => {
+  
   const[deletePet] = useDeleteUserPetMutation();
   
-  // const newDate = new Date(birthDate).toLocaleString().split(',')[0];
-
   
+
+  console.log("item",name);
+
+
   return (
     <>
       <PetItem key={_id} id={_id}>
@@ -45,8 +47,7 @@ export const PetsItem=({
                 onClick={()=>deletePet(_id)}
         >
           <DeleteImage/>
-          {/* <DeleteImage src={deleteIcon} alt="Delete Icon" /> */}
-        </DeleteIcon>
+          </DeleteIcon>
       </PetItem>
     </>
   );
