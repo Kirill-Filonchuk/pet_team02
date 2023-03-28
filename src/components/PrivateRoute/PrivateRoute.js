@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Navigate } from 'react-router';
 
 const PrivateRoute = ({ redirectTo, component: Component }) => {
-  const { isLoggedIn, isRefreshing, isPending } = useAuth();
+  const { isLoggedIn, isRefreshing } = useAuth();
 
-  if (isRefreshing || isPending) {
+  if (isRefreshing) {
     return;
   }
 

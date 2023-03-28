@@ -77,3 +77,28 @@ export const ClearIcon = styled(CgCloseO)`
   width: 100%;
   height: 100%;
 `;
+
+export const ClearIconWrapper = styled('div')`
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background-color: transparent;
+  border: none;
+
+  ${theme.mq.tablet} {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:focus,
+  &:focus-visible {
+    box-shadow: none;
+  }
+`;
