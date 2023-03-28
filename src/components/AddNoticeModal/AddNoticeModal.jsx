@@ -117,15 +117,24 @@ const AddNoticeModal = ({ onClose }) => {
             initialValues={getFromStorage() || initialValues}
             onSubmit={onSubmitHandler}
             validationSchema={validationSchema}
+            validateOnBlur
           >
-            <AddNoticeForm
-              onClose={onClose}
-              onAvatarChange={onFileChange}
-              storage={storage}
-              isFileNeeded={isFileNeeded}
-              avatarURL={avatarURL}
-              isAddingPet={isAddingPet}
-            />
+            {({ errors, touched, validateForm }) => {
+              // console.log(validateField('category'));
+              return (
+                <AddNoticeForm
+                  onClose={onClose}
+                  onAvatarChange={onFileChange}
+                  storage={storage}
+                  isFileNeeded={isFileNeeded}
+                  avatarURL={avatarURL}
+                  isAddingPet={isAddingPet}
+                  errors={errors}
+                  touched={touched}
+                  validateForm={validateForm}
+                />
+              );
+            }}
           </Formik>
         </AddPetWrapper>
       </CommonModal>

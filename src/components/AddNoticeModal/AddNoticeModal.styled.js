@@ -56,14 +56,14 @@ export const Description = styled('p')`
 `;
 
 export const CategoryList = styled('ul')`
-  margin-bottom: 32px;
+  /* margin-bottom: 32px; */
   display: flex;
   flex-wrap: wrap;
   column-gap: 8px;
   row-gap: 12px;
 
   ${theme.mq.tablet} {
-    margin-bottom: 28px;
+    /* margin-bottom: 28px; */
     column-gap: 12px;
     row-gap: 16px;
   }
@@ -98,9 +98,15 @@ export const CategoryRadio = styled(Field)`
 
 export const FieldsFirstStep = styled('div')`
   margin-bottom: 40px;
+  margin-top: 32px;
+
+  ${theme.mq.tablet} {
+    margin-top: 28px;
+  }
 `;
 
 export const Label = styled('label')`
+  /* position: relative; */
   display: block;
   margin-bottom: 16px;
   font-weight: ${p => p.theme.fontWeights.medium};
@@ -178,6 +184,11 @@ export const BackButton = styled(ModalButton)`
   color: ${p => p.theme.colors.black};
 `;
 
+//----------------------------------------STEP 2------------------------------------
+//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
+
 export const SexWrapper = styled('div')``;
 
 export const SexTitle = styled(FieldLabel)`
@@ -189,12 +200,12 @@ export const SexTitle = styled(FieldLabel)`
 `;
 
 export const SexList = styled('ul')`
-  margin-bottom: 32px;
+  /* margin-bottom: 32px; */
   display: flex;
   column-gap: 40px;
 
   ${theme.mq.tablet} {
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     column-gap: 80px;
   }
 `;
@@ -243,17 +254,17 @@ export const SexLabel = styled('label')`
   }
 `;
 
-//----------------------------------------STEP 2------------------------------------
-//----------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------
-
 export const FieldsSecondStep = styled('div')`
   margin-bottom: 16px;
+  margin-top: 32px;
 
   ${theme.mq.tablet} {
     margin-bottom: 28px;
+    margin-top: 40px;
   }
+
+  display: flex;
+  column-gap: 40px;
 `;
 
 export const UploadWrapper = styled('div')`
@@ -387,4 +398,12 @@ export const ErrorWrapper = styled('ul')`
       margin-bottom: 0;
     }
   }
+`;
+
+export const ErrorItem = styled('p')`
+  /* position: absolute; */
+  margin-top: 10px;
+  color: red;
+  padding-left: 20px;
+  font-size: 14px;
 `;
