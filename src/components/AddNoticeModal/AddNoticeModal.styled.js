@@ -262,9 +262,6 @@ export const FieldsSecondStep = styled('div')`
     margin-bottom: 28px;
     margin-top: 40px;
   }
-
-  display: flex;
-  column-gap: 40px;
 `;
 
 export const UploadWrapper = styled('div')`

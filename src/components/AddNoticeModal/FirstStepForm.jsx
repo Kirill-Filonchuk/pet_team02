@@ -16,7 +16,14 @@ import {
   ToolBar,
 } from './AddNoticeModal.styled';
 
-const FirstStepForm = ({ step, onClickNext, onClose, errors, touched }) => {
+const FirstStepForm = ({
+  step,
+  onClickNext,
+  onClose,
+  errors,
+  touched,
+  // validateForm,
+}) => {
   return (
     <div className={step !== 1 ? 'visually-hidden' : ''}>
       <Title>Add pet</Title>
@@ -100,6 +107,7 @@ const FirstStepForm = ({ step, onClickNext, onClose, errors, touched }) => {
         </Label>
       </FieldsFirstStep>
       <ToolBar>
+        {/* <NextButton type="button" onClick={validateForm}> */}
         <NextButton type="button" onClick={onClickNext}>
           Next
         </NextButton>
