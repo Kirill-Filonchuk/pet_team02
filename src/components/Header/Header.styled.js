@@ -64,6 +64,9 @@ export const MenuBtn = styled.button`
   &:hover svg {
     fill: ${p => p.theme.colors.accent};
   }
+  ${p => p.theme.mq.mobileOnly} {
+    margin-left: 158px;
+  }
   ${p => p.theme.mq.desktop} {
     display: none;
   }

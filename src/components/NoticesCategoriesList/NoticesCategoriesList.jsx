@@ -10,6 +10,9 @@ import {
   useUpdateNoticeFavoriteStatusMutation,
 } from 'redux/notices/noticesApi';
 import { useStorage } from 'hooks/useStorage';
+import { updatedPetList } from './utils/updatePetList';
+import { ToastContainer } from 'react-toastify';
+import ErrorMessage from 'components/UIKit/ErrorMessage';
 
 const ITEMS_PER_PAGE = 8;
 
@@ -50,7 +53,7 @@ const NoticesCategoriesList = () => {
 
   //GET NOTICES PER ENDPOINT (sell, lost-found, in-good-hands, favorites, own)
 
-  const { data, error } = useGetNoticesQuery(
+  const { data, error, isFetching } = useGetNoticesQuery(
     {
       endpoint,
       query,
@@ -59,8 +62,6 @@ const NoticesCategoriesList = () => {
     },
     { skip: endpoint ? false : true }
   );
-
-  // console.log(data);
 
   const { data: userData } = useGetUserDataQuery(null, { skip: !isLoggedIn });
 
@@ -73,15 +74,6 @@ const NoticesCategoriesList = () => {
     }
   };
 
-  //FUNCTION SET isFavorite AND isMine TO PET LIST
-  const updatedPetList = (list, favorites, owns) => {
-    return list?.map(item => ({
-      ...item,
-      isFavorite: favorites?.includes(item._id) ? true : false,
-      isMine: owns?.includes(item._id) ? true : false,
-    }));
-  };
-
   //UPDATE PET LIST BEFORE RENDER
   const pets =
     isLoggedIn && data && userData
@@ -91,13 +83,13 @@ const NoticesCategoriesList = () => {
   //GET TOTAL ITEM FOR PAGINATION
   const petsTotalItem = data?.total;
 
-  // console.log(pets);
-
   return (
     <section>
       <Container>
         {error ? (
-          <div>Sorry! Something went wrong</div>
+          <ErrorMessage timeout={4000}>
+            Sorry! Something went wrong! Please, try again later.
+          </ErrorMessage>
         ) : (
           <NoticesPaginatedList
             label={label}
@@ -110,9 +102,22 @@ const NoticesCategoriesList = () => {
               setPage(page);
             }}
             perPage={ITEMS_PER_PAGE}
+            isFetching={isFetching}
           />
         )}
       </Container>
+      <ToastContainer
+        position="top-center"
+        autoClose={6000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </section>
   );
 };

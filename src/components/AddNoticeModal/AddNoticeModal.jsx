@@ -38,10 +38,14 @@ const initialValues = {
 const namePattern = /^[a-zA-zа-яіїєА-ЯІЇЄ ,.'-][^\\_]+$/;
 
 const validationSchema = yup.object().shape({
-  // name: yup.string().matches(regex.name, ERRORS.NAME).required(),
-  // number: yup.string().matches(regex.number, ERRORS.NUMBER).required(),
   title: yup.string().min(6).required(),
-  name: yup.string().matches(namePattern).required(),
+  name: yup
+    .string()
+    .matches(
+      namePattern,
+      'name cannot includes digits and symbols  except punctuation'
+    )
+    .required(),
   birthday: yup.string().required(),
   breed: yup.string().min(2).max(20).required(),
   place: yup.string().min(3).required(),
@@ -64,7 +68,7 @@ const validationSchema = yup.object().shape({
 
 const AddNoticeModal = ({ onClose }) => {
   const navigate = useNavigate();
-  const [addPet] = useAddNoticeMutation();
+  const [addPet, { isLoading: isAddingPet }] = useAddNoticeMutation();
 
   const storage = useStorage('add-notice-fields');
 
@@ -120,6 +124,7 @@ const AddNoticeModal = ({ onClose }) => {
               storage={storage}
               isFileNeeded={isFileNeeded}
               avatarURL={avatarURL}
+              isAddingPet={isAddingPet}
             />
           </Formik>
         </AddPetWrapper>
