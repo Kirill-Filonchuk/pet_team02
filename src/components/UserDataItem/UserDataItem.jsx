@@ -20,22 +20,14 @@ const nameSchema = yup.object({
   name: yup
     .string()
     .min(2, 'Too Short!')
-    .max(32, 'Too Long!')
-    // .matches(/^[a-zA-Z, ]*$/g, 'Only alphabetic characters are allowed')
+    .max(16, 'Too Long!')
     .matches(
-      /^[a-zA-Zа-яіїєА-ЯІЇЄ][a-zA-Zа-яіїєА-ЯІЇЄ\s,'-]*$/,
+      /^[a-zA-Zа-яіїєА-ЯІЇЄ][a-zA-Zа-яіїєА-ЯІЇЄ'-]*$/,
       'Only alphabetic characters are allowed'
     )
     .required('Field is required!'),
 });
-// const emailSchema = yup.object({
-//   // /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/
 
-//   email: yup
-//     .string()
-//     .email('Invalid email: example@mail.com')
-//     .required('Email is required'),
-// });
 const emailSchema = yup.object().shape({
   email: yup
     .string()
@@ -51,10 +43,9 @@ const emailSchema = yup.object().shape({
 const citySchema = yup.object({
   city: yup
     .string()
-    .min(2)
-    .max(36)
+    .min(5, "Min 5 characters")
+    .max(35, "Max 35 characters")
     .matches(
-      // /(\b[a-zA-Z]+(,\s*)\s*[a-zA-Z]+\b)/g,
       /^(?=[a-zA-Zа-яіїєА-ЯІЇЄ])[a-zA-Zа-яіїєА-ЯІЇЄ'-]+,\s[a-zA-Zа-яіїєА-ЯІЇЄ'-]+$/,
       'Only in format "City, Region"'
     )
@@ -66,7 +57,6 @@ const phoneSchema = yup.object({
     .min(13, 'Phone should be in format +380671234567б must be 13 characters')
     .max(13, 'Phone should be in format +380671234567, must be 13 characters')
     .matches(
-      // /^\+[0-9]{3}\d+\d{3}\d{2}\d{2}/,
       /^\+380\d{9}$/,
       'Phone should be in format +380671234567'
     ),
