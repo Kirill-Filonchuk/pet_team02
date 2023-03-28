@@ -1,4 +1,3 @@
-
 import { MainContainer } from './UserPage.styled';
 import UserData from 'components/UserData/UserData';
 import PetsData from 'components/PetsData/PetsData';
@@ -6,16 +5,12 @@ import { useSelector } from 'react-redux';
 
 // import useAuth from '../../hooks/useAuth/useAuth';
 
-import {
-  UserContainer,
-  UserWrapper,
-  PetsWrapper,
- 
-} from './UserPage.styled';
+import { UserContainer, UserWrapper, PetsWrapper } from './UserPage.styled';
 import {
   // selectIsLoggedIn,
   selectUser,
 } from '../../redux/auth/selectors';
+import Container from 'components/Container/Container';
 
 const UserPage = () => {
   // const isLogin = useSelector(selectIsLoggedIn);
@@ -26,16 +21,19 @@ const UserPage = () => {
     <section>
       {/* {user & isLogin && (
         <> */}
-      <MainContainer>
+      <Container>
+        {/* <MainContainer> */}
         <UserContainer>
           <UserWrapper>
             <UserData user={user} />
           </UserWrapper>
-          <PetsWrapper>
-            <PetsData />
-          </PetsWrapper>
+          {/* <PetsWrapper> */}
+          <PetsData />
+          {/* </PetsWrapper> */}
         </UserContainer>
-      </MainContainer>
+
+        {/* </MainContainer> */}
+      </Container>
       {/* </>
       )} */}
     </section>
