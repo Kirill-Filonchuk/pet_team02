@@ -15,17 +15,16 @@ import {
   InputError,
   InputCorrect,
 } from 'components/FormValidation';
-
 import {
   Title,
   Label,
   Input,
   IconShow,
-  Section,
   Wrapper,
   BtnFormSubmit,
   TextLink,
   FormAuth,
+  Section
 } from 'components/LoginForm/LoginForm.styled';
 import { ButtonBack, LinkToLogin, ButtonRegister } from './RegisterForm.styled';
 
@@ -85,7 +84,6 @@ const RegisterForm = () => {
       <Container>
         <Wrapper>
           <ToastContainer transition={Slide} />
-          <Title>Registration</Title>
           <Formik
             initialValues={initialValues}
             validationSchema={
@@ -93,8 +91,9 @@ const RegisterForm = () => {
             }
             onSubmit={handleSubmit}
           >
-            {({ errors, touched, values }) => (
+            {({ errors, values }) => (
               <FormAuth>
+                <Title>Registration</Title>
                 {step === 1 && (
                   <>
                     <Label>

@@ -20,23 +20,26 @@ background-image: url(${bg_mobile});
 background-repeat: no-repeat;
 background-size: contain;
 overflow-y: hidden;
-background-position: bottom;
+background-position: center 101%;
 
 @media (orientation: landscape) {
-min-height: calc(100vh + 250px);
+min-height: calc(100vh + 200px);
+background-position: 0 190%;
 }
 
 ${theme.mq.tablet} {
   background-image: url(${bg_tablet});
+  background-position: center 100%;
 @media (orientation: landscape) {
 min-height: calc(100vh + 400px);
 }
 }
 ${theme.mq.desktop} {
   background-image: url(${bg_desktop});
-  @media (orientation: landscape) {
-height: calc(100vh + 300px);
+  min-height: calc(100vh + 200px);
 }
+@media (min-width: 1400px) {
+  min-height: 100vh;
 }
 `
 
@@ -64,7 +67,7 @@ const Title = styled.h2`
   letter-spacing: 0.04em;
   margin-bottom: 40px;
   ${theme.mq.tablet} {
-    font-size: ${theme.fontSizes[7] + `px`};
+    font-size: ${theme.fontSizes[8] + `px`};
     line-height: ${theme.lineHeights[3]};
     font-weight: ${theme.fontWeights.medium};
   }
