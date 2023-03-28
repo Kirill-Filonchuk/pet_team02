@@ -2,7 +2,6 @@ import FirstStepForm from './FirstStepForm';
 import { Form, useFormikContext } from 'formik';
 import { useState } from 'react';
 import SecondStepForm from './SecondStepForm';
-import ErrorMessages from './ErrorMessages';
 
 const AddNoticeForm = ({
   onClose,
