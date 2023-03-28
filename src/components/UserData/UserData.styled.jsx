@@ -38,8 +38,8 @@ export const Wrapper = styled.div`
   margin-bottom: 40px;
 
   ${theme.mq.tablet} {
-    position: relative;
-    /* left: -32px; */
+    /* position: relative; */
+
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -50,8 +50,8 @@ export const Wrapper = styled.div`
   }
 
   ${theme.mq.desktop} {
-    position: relative;
-    left: 0;
+    /* position: relative; */
+    /* left: 0; */
     flex-direction: column;
     width: 411px;
     padding: 20px 16px;

@@ -10,6 +10,7 @@ import {
   // selectIsLoggedIn,
   selectUser,
 } from '../../redux/auth/selectors';
+import Container from 'components/Container/Container';
 
 const UserPage = () => {
   // const isLogin = useSelector(selectIsLoggedIn);
@@ -20,16 +21,19 @@ const UserPage = () => {
     <section>
       {/* {user & isLogin && (
         <> */}
-      <MainContainer>
+      <Container>
+        {/* <MainContainer> */}
         <UserContainer>
           <UserWrapper>
             <UserData user={user} />
           </UserWrapper>
-          <PetsWrapper>
-            <PetsData />
-          </PetsWrapper>
+          {/* <PetsWrapper> */}
+          <PetsData />
+          {/* </PetsWrapper> */}
         </UserContainer>
-      </MainContainer>
+
+        {/* </MainContainer> */}
+      </Container>
       {/* </>
       )} */}
     </section>
