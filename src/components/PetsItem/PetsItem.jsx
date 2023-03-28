@@ -14,40 +14,33 @@ import {
   ListInfoTitle,
 } from './PetsItem.styled';
 
+export const PetsItem = ({ _id, photo, name, birthDate, breed, comments }) => {
+  const [deletePet] = useDeleteUserPetMutation();
 
-export const PetsItem=({
-  _id,
-  photo,
-  name,
-  birthDate,
-  breed,
-  comments,
-  }) => {
-  
-  const[deletePet] = useDeleteUserPetMutation();
-  
-  
-
-  console.log("item",name);
-
+  console.log('item', name);
 
   return (
     <>
       <PetItem key={_id} id={_id}>
         <PetImage src={photo} alt={name} />
         <ListInfo>
-          <ListInfoItem ><ListInfoTitle>Name:</ListInfoTitle> {name}</ListInfoItem>
-          <ListInfoItem ><ListInfoTitle>Date of birth:</ListInfoTitle> {birthDate}</ListInfoItem>
-          <ListInfoItem ><ListInfoTitle>Breed:</ListInfoTitle> {breed}</ListInfoItem>
-          <ListInfoItem ><ListInfoTitle>Comments:</ListInfoTitle> {comments}</ListInfoItem>
+          <ListInfoItem>
+            <ListInfoTitle>Name:</ListInfoTitle> {name}
+          </ListInfoItem>
+          <ListInfoItem>
+            <ListInfoTitle>Date of birth:</ListInfoTitle> {birthDate}
+          </ListInfoItem>
+          <ListInfoItem>
+            <ListInfoTitle>Breed:</ListInfoTitle> {breed}
+          </ListInfoItem>
+          <ListInfoItem>
+            <ListInfoTitle>Comments:</ListInfoTitle> {comments}
+          </ListInfoItem>
         </ListInfo>
 
-
-        <DeleteIcon
-                onClick={()=>deletePet(_id)}
-        >
-          <DeleteImage/>
-          </DeleteIcon>
+        <DeleteIcon onClick={() => deletePet(_id)}>
+          <DeleteImage />
+        </DeleteIcon>
       </PetItem>
     </>
   );
