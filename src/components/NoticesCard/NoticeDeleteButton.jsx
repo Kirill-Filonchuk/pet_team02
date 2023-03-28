@@ -5,7 +5,6 @@ import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
 import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import { useState } from 'react';
 import { HiTrash } from 'react-icons/hi';
-import { useDeleteNoticeMutation } from 'redux/notices/noticesApi';
 import { NoticeCardButton } from './NoticesCard.styled';
 import { useEffect } from 'react';
 import { notifyDeletePetError } from 'components/Helpers/Toastify';

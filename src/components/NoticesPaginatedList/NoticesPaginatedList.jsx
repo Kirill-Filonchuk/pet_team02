@@ -4,7 +4,6 @@ import { Loader } from 'components/UIKit/Spinners/LineBarLoader/LineBarLoader.st
 import { useWindowSize } from 'hooks/useWindowSize';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { ProgressBar } from 'react-loader-spinner';
 import { useDeleteNoticeMutation } from 'redux/notices/noticesApi';
 import {
   ListContainer,
