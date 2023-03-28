@@ -55,9 +55,9 @@ export const Link = styled(NavLink)`
   text-decoration: none;
   color: black;
   z-index: 11;
-  ${p => p.theme.mq.mob} {
+  /* ${p => p.theme.mq.mob} {
     margin-right: 158px;
-  }
+  } */
   ${p => p.theme.mq.tablet} {
     // margin-right: 100px;
   }
