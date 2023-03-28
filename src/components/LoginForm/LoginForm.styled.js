@@ -22,11 +22,21 @@ background-size: contain;
 overflow-y: hidden;
 background-position: bottom;
 
+@media (orientation: landscape) {
+min-height: calc(100vh + 250px);
+}
+
 ${theme.mq.tablet} {
   background-image: url(${bg_tablet});
+@media (orientation: landscape) {
+min-height: calc(100vh + 400px);
+}
 }
 ${theme.mq.desktop} {
   background-image: url(${bg_desktop});
+  @media (orientation: landscape) {
+height: calc(100vh + 300px);
+}
 }
 `
 
