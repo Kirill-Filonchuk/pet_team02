@@ -28,8 +28,8 @@ const NoticesPaginatedList = ({
 
   const [isSpinnerLoading, setIsSpinnerLoading] = useState(false);
 
-  // const [deleteNotice, { isLoading: isDeleting, error }] =
-  //   useDeleteNoticeMutation();
+  const [deleteNotice, { isLoading: isDeleting, error: deletingError }] =
+    useDeleteNoticeMutation();
 
   useEffect(() => {
     if (isFetching) {
@@ -39,6 +39,14 @@ const NoticesPaginatedList = ({
       }, 2000);
     }
   }, [isFetching]);
+
+  const onDeleteNotice = async id => {
+    try {
+      await deleteNotice(id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   if (!list) {
     return;
@@ -57,6 +65,9 @@ const NoticesPaginatedList = ({
         list={list}
         isLoggedIn={isLoggedIn}
         onFavoriteClick={onFavoriteClick}
+        onDeleteNotice={onDeleteNotice}
+        isDeleting={isDeleting}
+        deletingError={deletingError}
       />
 
       <PaginatorWrapper>

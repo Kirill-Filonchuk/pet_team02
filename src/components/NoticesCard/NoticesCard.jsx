@@ -32,6 +32,9 @@ const NoticesCard = ({
   isFavorite = false,
   isLoggedIn,
   onFavoriteClick,
+  onDeleteNotice,
+  isDeleting,
+  deletingError,
 }) => {
   const [openModal, setOpenModal] = useState(false);
 
@@ -69,7 +72,14 @@ const NoticesCard = ({
               Learn more
             </NoticeCardButton>
 
-            {isMine && <NoticeDeleteButton id={_id} />}
+            {isMine && (
+              <NoticeDeleteButton
+                onDeleteNotice={onDeleteNotice}
+                isDeleting={isDeleting}
+                deletingError={deletingError}
+                id={_id}
+              />
+            )}
           </BtnWrapper>
         </Meta>
 

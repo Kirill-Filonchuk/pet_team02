@@ -10,27 +10,21 @@ import { NoticeCardButton } from './NoticesCard.styled';
 import { useEffect } from 'react';
 import { notifyDeletePetError } from 'components/Helpers/Toastify';
 
-const NoticeDeleteButton = ({ id }) => {
+const NoticeDeleteButton = ({
+  id,
+  onDeleteNotice,
+  isDeleting,
+  deletingError,
+}) => {
   const [isNotifyOpen, setIsNotifyOpen] = useState(false);
   const { buttonRef, position } = useNotifyPosition();
 
-  const [deleteNotice, { isLoading: isDeleting, error }] =
-    useDeleteNoticeMutation();
-
   useEffect(() => {
-    if (error) {
-      console.log(error);
+    if (deletingError) {
+      console.log(deletingError);
       notifyDeletePetError('Something went wrong! Cannot delete pet');
     }
-  }, [error]);
-
-  const onDeleteNotice = async () => {
-    try {
-      await deleteNotice(id);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  }, [deletingError]);
 
   return (
     <>
@@ -62,7 +56,9 @@ const NoticeDeleteButton = ({ id }) => {
             onClose={() => {
               setIsNotifyOpen(false);
             }}
-            onDelete={onDeleteNotice}
+            onDelete={() => {
+              onDeleteNotice(id);
+            }}
           />
         </Notify>
       )}

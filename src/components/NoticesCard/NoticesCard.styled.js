@@ -89,8 +89,14 @@ export const NoticeCardButton = styled(Button)`
   }
 
   &:disabled {
-    border-color: grey;
-    color: grey;
+    background-color: transparent;
+    border-color: #ebe6e6;
+    color: #ebe6e6;
+
+    &:hover {
+      background-color: transparent;
+      color: #ebe6e6;
+    }
   }
 `;
 
