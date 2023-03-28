@@ -21,3 +21,10 @@ export const LoaderBox = styled('div')`
     top: -25px;
   }
 `;
+
+export const NotFound = styled('p')`
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: ${p => p.theme.colors.accentActive};
+`;

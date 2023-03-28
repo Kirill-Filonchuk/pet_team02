@@ -8,6 +8,7 @@ import { ProgressBar } from 'react-loader-spinner';
 import {
   ListContainer,
   LoaderBox,
+  NotFound,
   PaginatorWrapper,
 } from './NoticesPaginatedList.styled';
 
@@ -35,34 +36,38 @@ const NoticesPaginatedList = ({
     }
   }, [isFetching]);
 
-  return (
-    list && (
-      <ListContainer>
-        {isSpinnerLoading && (
-          <LoaderBox>
-            <Loader />
-          </LoaderBox>
-        )}
+  if (!list) {
+    return;
+  }
 
-        <NoticesCardList
-          label={label}
-          list={list}
-          isLoggedIn={isLoggedIn}
-          onFavoriteClick={onFavoriteClick}
+  return list.length > 0 ? (
+    <ListContainer>
+      {isSpinnerLoading && (
+        <LoaderBox>
+          <Loader />
+        </LoaderBox>
+      )}
+
+      <NoticesCardList
+        label={label}
+        list={list}
+        isLoggedIn={isLoggedIn}
+        onFavoriteClick={onFavoriteClick}
+      />
+
+      <PaginatorWrapper>
+        <Paginator
+          totalItems={totalItems}
+          currentPage={currentPage}
+          onPageClick={onPageClick}
+          nearbyQtyPages={isDesktop ? 2 : 1}
+          perPage={perPage}
+          shouldScrollUp
         />
-
-        <PaginatorWrapper>
-          <Paginator
-            totalItems={totalItems}
-            currentPage={currentPage}
-            onPageClick={onPageClick}
-            nearbyQtyPages={isDesktop ? 2 : 1}
-            perPage={perPage}
-            shouldScrollUp
-          />
-        </PaginatorWrapper>
-      </ListContainer>
-    )
+      </PaginatorWrapper>
+    </ListContainer>
+  ) : (
+    <NotFound>Unfortunately we found nothing per you request</NotFound>
   );
 };
 

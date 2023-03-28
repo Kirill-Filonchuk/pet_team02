@@ -12,6 +12,7 @@ import {
 import { useStorage } from 'hooks/useStorage';
 import { updatedPetList } from './utils/updatePetList';
 import { ToastContainer } from 'react-toastify';
+import ErrorMessage from 'components/UIKit/ErrorMessage';
 
 const ITEMS_PER_PAGE = 8;
 
@@ -86,7 +87,9 @@ const NoticesCategoriesList = () => {
     <section>
       <Container>
         {error ? (
-          <div>Sorry! Something went wrong</div>
+          <ErrorMessage timeout={4000}>
+            Sorry! Something went wrong! Please, try again later.
+          </ErrorMessage>
         ) : (
           <NoticesPaginatedList
             label={label}
