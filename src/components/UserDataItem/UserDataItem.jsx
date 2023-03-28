@@ -23,17 +23,30 @@ const nameSchema = yup.object({
     .max(32, 'Too Long!')
     // .matches(/^[a-zA-Z, ]*$/g, 'Only alphabetic characters are allowed')
     .matches(
-      /^[a-zA-zа-яіїєА-ЯІЇЄ ,.'-]+$/,
+      /^[a-zA-Zа-яіїєА-ЯІЇЄ][a-zA-Zа-яіїєА-ЯІЇЄ\s,'-]*$/,
       'Only alphabetic characters are allowed'
     )
     .required('Field is required!'),
 });
-const emailSchema = yup.object({
-  // /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/
+// const emailSchema = yup.object({
+//   // /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/
+
+//   email: yup
+//     .string()
+//     .email('Invalid email: example@mail.com')
+//     .required('Email is required'),
+// });
+const emailSchema = yup.object().shape({
   email: yup
     .string()
-    .email('Invalid email: example@mail.com')
-    .required('Email is required'),
+    .required('Email field is required')
+    .matches(
+      /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,4})$/,
+      "Email must contain '@', example: user@mail.com"
+    )
+    .max(70, 'Maximum 70 characters')
+    .min(10, 'Minimum 10 characters')
+    .email(),
 });
 const citySchema = yup.object({
   city: yup
@@ -42,7 +55,7 @@ const citySchema = yup.object({
     .max(36)
     .matches(
       // /(\b[a-zA-Z]+(,\s*)\s*[a-zA-Z]+\b)/g,
-      /^[a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ]+$/,
+      /^(?=[a-zA-Zа-яіїєА-ЯІЇЄ])[a-zA-Zа-яіїєА-ЯІЇЄ'-]+,\s[a-zA-Zа-яіїєА-ЯІЇЄ'-]+$/,
       'Only in format "City, Region"'
     )
     .required('Field is required!'),
@@ -50,8 +63,8 @@ const citySchema = yup.object({
 const phoneSchema = yup.object({
   phone: yup
     .string()
-    .min(13, 'Phone should be in format +380671234567')
-    .max(13, 'Phone should be in format +380671234567')
+    .min(13, 'Phone should be in format +380671234567б must be 13 characters')
+    .max(13, 'Phone should be in format +380671234567, must be 13 characters')
     .matches(
       // /^\+[0-9]{3}\d+\d{3}\d{2}\d{2}/,
       /^\+380\d{9}$/,
@@ -114,7 +127,7 @@ export default function UserDataItem({
       validationSchema={addSchema(field)}
       initialValues={initValue}
       validateOnBlur={false}
-      validateOnChange={false}
+      validateOnChange={true}
       onSubmit={values => {
         if (Object.keys(values)[0] === 'birthday') {
           setUser({ birthday: parseDateToISO(values.birthday) });
@@ -169,7 +182,19 @@ export default function UserDataItem({
             )}
 
             {isEdit && (
-              <StyledBtn type="submit" onClick={handleSubmit}>
+              <StyledBtn
+                type="submit"
+                onClick={handleSubmit}
+                onSubmit={() => {
+                  setTimeout(function () {
+                    const element = document.getElementById('#success');
+                    if (element) {
+                      element.remove();
+                    }
+                    return;
+                  }, 3000);
+                }}
+              >
                 <BtnImageDone />
               </StyledBtn>
             )}
@@ -178,6 +203,7 @@ export default function UserDataItem({
             name={field}
             render={msg => (
               <div
+                id="fail"
                 style={{
                   color: 'red',
                   fontSize: '.6rem',
@@ -195,6 +221,27 @@ export default function UserDataItem({
             )}
           />
           {/* </div> */}
+          {!errors[field] &&
+          values[field] !== '' &&
+          touched[field] &&
+          initValue[field] !== values[field] &&
+          values[field] ? (
+            <div
+              id="success"
+              style={{
+                color: 'green',
+                fontSize: '.6rem',
+                position: 'relative',
+                maxWidth: '55%',
+                marginBottom: '8px',
+                marginLeft: 'auto',
+                marginRight: '32px',
+                height: '20px',
+              }}
+            >
+              {field} is correct
+            </div>
+          ) : null}
         </Form>
       )}
     </Formik>

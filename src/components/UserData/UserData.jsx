@@ -26,6 +26,7 @@ import {
   CloseBtnWrapper,
   CloseCircleLine,
   RotatSpeinnerCont,
+  EditText,
 } from './UserData.styled.jsx';
 import { useDispatch } from 'react-redux';
 import {
@@ -103,7 +104,7 @@ export default function UserData({ user }) {
             <InputFile type="file" onChange={handleFileChange} />
             <EditImageBtn>
               <EditImageIcon />
-              <span>Edit photo</span>
+              <EditText>Edit photo</EditText>
             </EditImageBtn>
           </InputWrapper>
           {/* {avatarError ? (
