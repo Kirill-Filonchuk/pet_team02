@@ -43,23 +43,20 @@ const emailSchema = yup.object().shape({
 const citySchema = yup.object({
   city: yup
     .string()
-    .min(5, "Min 5 characters")
-    .max(35, "Max 35 characters")
+    .min(5, 'Min 5 characters')
+    .max(35, 'Max 35 characters')
     .matches(
       /^(?=[a-zA-Zа-яіїєА-ЯІЇЄ])[a-zA-Zа-яіїєА-ЯІЇЄ'-]+,\s[a-zA-Zа-яіїєА-ЯІЇЄ'-]+$/,
       'Only in format "City, Region"'
-    )
-    .required('Field is required!'),
+    ),
+  // .required('Field is required!'),
 });
 const phoneSchema = yup.object({
   phone: yup
     .string()
     .min(13, 'Phone should be in format +380671234567б must be 13 characters')
     .max(13, 'Phone should be in format +380671234567, must be 13 characters')
-    .matches(
-      /^\+380\d{9}$/,
-      'Phone should be in format +380671234567'
-    ),
+    .matches(/^\+380\d{9}$/, 'Phone should be in format +380671234567'),
 });
 const birthdaySchema = yup.object({
   birthday: yup

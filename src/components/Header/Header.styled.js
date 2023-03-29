@@ -53,15 +53,19 @@ export const MenuBtn = styled.button`
   border: ${p => p.theme.borders.none};
   transition-property: transform;
   transition-duration: 500ms;
+
   & > svg {
     fill: black;
   }
+
   &:hover {
     color: ${p => p.theme.colors.accent};
     text-decoration-line: none;
     transform: scale(1.5);
   }
   &:hover svg {
+    text-decoration: none;
+
     fill: ${p => p.theme.colors.accent};
   }
   ${p => p.theme.mq.mobileOnly} {
