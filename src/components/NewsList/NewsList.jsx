@@ -1,4 +1,4 @@
-import { Item, List } from './NewsList.styled';
+import { Item, List, CatIcon, IconContainer } from './NewsList.styled';
 import { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import axios from 'axios';
@@ -57,13 +57,21 @@ const NewsList = ({ notify, searchWord }) => {
 
   if (searchNews.length > 0) {
     return (
-      <List>
-        {searchNews.map(item => (
-          <Item key={item._id}>
-            <NewsCard {...item} />
-          </Item>
-        ))}
-      </List>
+      <>
+        {(notificationDisplayed && (
+          <IconContainer>
+            <CatIcon />
+          </IconContainer>
+        )) || (
+          <List>
+            {searchNews.map(item => (
+              <Item key={item._id}>
+                <NewsCard {...item} />
+              </Item>
+            ))}
+          </List>
+        )}
+      </>
     );
   }
 
