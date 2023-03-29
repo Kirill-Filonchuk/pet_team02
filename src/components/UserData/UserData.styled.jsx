@@ -18,6 +18,7 @@ export const UserTitle = styled.h2`
     margin-bottom: 40px;
     margin-left: 32px;
     font-family: ${p => p.theme.fonts.manrope};
+    font-size: ${p => p.theme.fontSizes[6]}px;
     line-height: ${p => p.theme.lineHeights[3]};
     color: ${p => p.theme.colors.black};
   }
