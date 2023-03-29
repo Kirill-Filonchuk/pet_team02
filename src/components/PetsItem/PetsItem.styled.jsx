@@ -32,6 +32,7 @@ export const PetImage = styled.img`
   height: 240px;
   border-radius: 20px;
   margin-bottom: 20px;
+  object-fit: cover;
 
   ${theme.mq.tablet} {
     width: 161px;
@@ -90,7 +91,6 @@ export const ListInfoTitle = styled.span`
     font-weight: 500;
     font-size: 16px;
     line-height: 1.375;
-    
   } ;
 `;
 

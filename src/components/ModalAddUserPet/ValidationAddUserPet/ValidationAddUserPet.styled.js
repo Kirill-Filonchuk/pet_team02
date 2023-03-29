@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../theme';
 
-const Error = styled.p`
+const Error = styled.div`
   position: absolute;
   display: block;
   width: 100%;

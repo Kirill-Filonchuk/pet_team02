@@ -62,7 +62,7 @@ const PetsData = () => {
   // const loading = useSelector(selectIsLoading);
   // const error = useSelector(selectError);
   // const error = false;
-  console.log(data);
+  // console.log(data);
 if(!data){
   return
 };
@@ -70,7 +70,7 @@ if(!data){
 // const pets= data.result.pets;
 const { result } = data;
 const {pets} = result;
-console.log(data);
+// console.log(data);
   return (
     <Wrapper>
       <StyledButtonSection>
@@ -88,7 +88,7 @@ console.log(data);
           isOpen={openModal}
         />
       )}
-      {console.log("----------",pets)}
+      {/* {console.log("----------",pets)} */}
       {pets.length > 0 && <PetsList pets={pets} />}
       {/* {!loading && !error && pets.length === 0 && ( */}
       {pets.length === 0 && <Pictures>You don't have any pets added.</Pictures>}

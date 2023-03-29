@@ -51,7 +51,7 @@ const AddUserPetForm = ({ onClose }) => {
 
 
   const addUserPetFile = e => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setPhoto(e.currentTarget.files[0]);
     setUrl(URL.createObjectURL(e.target.files[0]));
     

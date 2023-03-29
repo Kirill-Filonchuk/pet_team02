@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-
-
-
 export const PetsTitle = styled.h2`
   color: rgba(17, 17, 17, 1);
   font-weight: 500;
@@ -20,7 +17,7 @@ export const PetsTitle = styled.h2`
     /* margin-left: 33px; */
   }
   @media screen and (min-width: 1280px) {
-    font-size: 24px;
+    font-size: 28px;
     line-height: 1.375;
     /* width: 207px; */
     /* margin-bottom: 24px; */

@@ -17,7 +17,7 @@ import {
 export const PetsItem = ({ _id, photo, name, birthDate, breed, comments }) => {
   const [deletePet] = useDeleteUserPetMutation();
 
-  console.log('item', name);
+  // console.log('item', name);
 
   return (
     <>
