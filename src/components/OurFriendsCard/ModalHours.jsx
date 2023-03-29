@@ -9,7 +9,6 @@ import {
 const ModalHours = ({ workDays }) => {
   const days = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
   const dashDottedLine = '---------------';
-  // console.log('workDays===', workDays);
   return (
     <HoursList>
       {workDays &&
