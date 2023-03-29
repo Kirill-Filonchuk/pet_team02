@@ -24,7 +24,11 @@ const Wrapper = styled.div`
 
   ${theme.mq.tablet} {
     width: 100%;
-    padding: 40px 107px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    
+    padding-left: ${p=>(p.step===1 ? "80px " : "107px" )};
+    padding-right: ${p=>(p.step===1 ? "80px " : "107px" )};
     border-radius: ${theme.radii.normal};
     background-color: ${theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -32,20 +36,28 @@ const Wrapper = styled.div`
   ${theme.mq.desktop} {
     width: 100%;
     max-height: 100%;
+
   }
+`;
+
+const PetsPhoto = styled.img`
+  object-fit: cover;
+  width: 100%;
 `;
 
 const Title = styled.h2`
   text-align: center;
+  margin-bottom: 28px;
   color: ${theme.colors.black};
   font-family: ${theme.fonts.manrope};
   font-size: ${theme.fontSizes[5] + `px`};
   line-height: ${theme.lineHeights[4]};
-  font-weight: ${theme.fontWeights.bold};
+  font-weight: ${theme.fontWeights.medium};
   letter-spacing: 0.04em;
 
   ${theme.mq.tablet} {
-    font-size: ${theme.fontSizes[7] + `px`};
+    margin-bottom: ${p => (p.step===2 ? "20px" :  "40px")  };
+    font-size: ${theme.fontSizes[8] + `px`};
     line-height: ${theme.lineHeights[3]};
     font-weight: ${theme.fontWeights.medium};
   }
@@ -54,9 +66,21 @@ const Title = styled.h2`
   }
 `;
 
+const WrapperStepOne = styled.div`
+  & :nth-child(3) {
+    margin-bottom: 0px;
+  }
+`;
+
 const Label = styled.label`
-  margin-top: 28px;
+  position: relative;
+
   font-size: ${theme.fontSizes[3] + 'px'};
+
+  & :not(:last-child) {
+    margin-bottom: 28px;
+  }
+
   ${theme.mq.tablet} {
     margin-top: 40px;
     font-size: ${theme.fontSizes[5] + 'px'};
@@ -91,6 +115,7 @@ const Input = styled(Field)`
   }
 
   ${theme.mq.tablet} {
+    margin-top: 12px;
     height: 48px;
     font-size: ${theme.fontSizes[2] + 'px'};
     line-height: ${theme.lineHeights[4]};
@@ -106,22 +131,25 @@ const Input = styled(Field)`
 const TextFile = styled.p`
   text-align: center;
   font-size: ${theme.fontSizes[1] + 'px'};
-  margin-top: 28px;
-  font-size: ${theme.fontSizes[2] + 'px'};
+  margin-top: 20px;
+
   ${theme.mq.tablet} {
-    margin-top: 40px;
-    font-size: ${theme.fontSizes[5] + 'px'};
+    
+    font-size: ${theme.fontSizes[4] + 'px'};
   }
 `;
+
 const WrapperPhoto = styled.div`
- position: relative;
+  position: relative;
   width: 208px;
   height: 208px;
-  padding: 11px 14px;
+  overflow: hidden;
   cursor: pointer;
   margin-top: 8px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
   background-color: ${theme.colors.background};
   border: ${theme.borders.normal} ${theme.colors.borderActive};
@@ -130,48 +158,29 @@ const WrapperPhoto = styled.div`
   outline: none;
   transition: ${theme.transitions.durations.default}
     ${theme.transitions.functions.default};
+
   ${theme.mq.tablet} {
     width: 182px;
     height: 182px;
+    margin-bottom: 40px;
   }
-  ${theme.mq.desktop} {
-  }
-`
+  /* ${theme.mq.desktop} {
+  } */
+`;
 
 const LabelFile = styled.label`
-  /* position: relative;
-  width: 208px;
-  height: 208px;
-  padding: 11px 14px;
-  cursor: pointer;
-  margin-top: 8px;
-  margin-left: auto;
-  margin-right: auto;
-
-  background-color: ${theme.colors.background};
-  border: ${theme.borders.normal} ${theme.colors.borderActive};
-
-  border-radius: ${theme.radii.normal};
-  outline: none;
-  transition: ${theme.transitions.durations.default}
-    ${theme.transitions.functions.default};
-  ${theme.mq.tablet} {
-    width: 182px;
-    height: 182px;
-  }
-  ${theme.mq.desktop} {
-  } */
+   position: relative;
+   
 `;
 
 const Plus = styled(plus)`
   position: absolute;
   cursor: pointer;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(120%, 120%);
 `;
 
 const InputFile = styled(Field)`
+  position: relative;
   display: none;
   width: 208px;
   height: 208px;
@@ -191,7 +200,7 @@ const InputFile = styled(Field)`
   outline: none;
   transition: ${theme.transitions.durations.default}
     ${theme.transitions.functions.default};
-    &.default {
+  &.default {
     border: ${theme.borders.normal} ${theme.colors.borderActive};
   }
   &.success {
@@ -220,6 +229,7 @@ const Textarea = styled(Field)`
   margin-top: 8px;
   min-width: 100%;
   height: 100px;
+  resize: none;
 
   border: ${theme.borders.normal} ${theme.colors.borderActive};
   font-size: ${theme.fontSizes[1] + 'px'};
@@ -243,7 +253,9 @@ const Textarea = styled(Field)`
     border-color: red;
   }
   ${theme.mq.tablet} {
+    width: 394px;
     height: 116px;
+    margin-top: 12px;
     font-size: ${theme.fontSizes[2] + 'px'};
     line-height: ${theme.lineHeights[4]};
     padding-top: 16px;
@@ -253,15 +265,18 @@ const Textarea = styled(Field)`
     font-size: ${theme.fontSizes[3] + 'px'};
     line-height: ${theme.lineHeights[5]};
   }
-
-  ::placeholder {
-    transform: translate(0px, -35px);
-  }
 `;
 
 const WraperBtn = styled.div`
   ${theme.mq.tablet} {
-    margin-top: 40px;
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-around;
+    /* gap: 20px; */
+    height: 44px;
+  }
+  ${theme.mq.desktop} {
+    margin-top: 12px;
     display: flex;
     align-items: flex-end;
     gap: 24px;
@@ -273,8 +288,8 @@ const BtnFormSubmit = styled.button`
   width: 100%;
   height: 40px;
   border-radius: ${theme.radii.normal};
-  margin-top: 40px;
-  font-size: ${theme.fontSizes[3] + `px`};
+  margin-top: 12px;
+  font-size: ${theme.fontSizes[2] + `px`};
   line-height: ${theme.lineHeights[2]};
   color: ${theme.colors.white};
   font-family: ${theme.fonts.manrope};
@@ -291,37 +306,40 @@ const BtnFormSubmit = styled.button`
   &:focus:not(:disabled) {
     box-shadow: 0 0 20px ${theme.colors.accent};
   }
+
   &:active &:not(:disabled) {
     transform: scale(1.01);
   }
+
   &:disabled {
     background-color: ${theme.colors.borderActive};
     border: none;
     cursor: default;
   }
+
   ${theme.mq.tablet} {
+    width: 180px;
+    height: 44px;
+    margin-top: 0;
   }
+
   ${theme.mq.desktop} {
-    height: 48px;
   }
 `;
 
 const ButtonBack = styled(BtnFormSubmit)`
   width: 100%;
-  margin-top: 12px;
   height: 40px;
+
   color: ${theme.colors.black};
   background-color: transparent;
-  font-size: ${theme.fontSizes[3] + `px`};
-  ${theme.mq.desktop} {
-    height: 48px;
+  font-size: ${theme.fontSizes[2] + `px`};
+
+  ${theme.mq.tablet} {
+    width: 180px;
+    height: 44px;
   }
 `;
-
-// const LinkToLogin = styled(NavLink)`
-//   color: ${theme.colors.blueLinks};
-//   text-decoration: underline;
-// `;
 
 export {
   Title,
@@ -338,26 +356,6 @@ export {
   BtnFormSubmit,
   WraperBtn,
   WrapperPhoto,
+  PetsPhoto,
+  WrapperStepOne,
 };
-
-// ====================================++++++++++++++++++++++++++++++===
-// import styled from 'styled-components';
-// import { BtnFormSubmit } from 'components/LoginForm/LoginForm.styled';
-// import { NavLink } from 'react-router-dom';
-// import { theme } from '../../../src/theme';
-// const ButtonBack = styled(BtnFormSubmit)`
-//   width: 100%;
-//   margin-top: 0;
-//   margin-bottom: 40px;
-//   color: ${theme.colors.black};
-//   background-color: transparent;
-// `;
-// const ButtonRegister = styled(BtnFormSubmit)`
-//   margin-top: 4px;
-//   margin-bottom: 12px;
-// `;
-// const LinkToLogin = styled(NavLink)`
-//   color: ${theme.colors.blueLinks};
-//   text-decoration: underline;
-// `;
-// export { ButtonBack, LinkToLogin, ButtonRegister };

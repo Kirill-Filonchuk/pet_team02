@@ -1,134 +1,3 @@
-// // import { notifyError } from 'components/Helpers/Toastify';
-// import { useState } from 'react';
-// // import { addPet } from 'redux/pet/operations';
-// import { InputError, validationRegisterStepOne, validationRegisterStepTwo } from './ValidationAddUserPet/ValidationAddUserPet';
-// // import { useDispatch } from 'react-redux';
-// import { MultiStepForm, FormStep } from './MultiForm';
-// import {
-//   Title,
-//   TextFile,
-//   Plus,
-//   Label,
-//   LabelFile,
-//   Input,
-//   InputFile,
-//   Section,
-//   Wrapper,
-//   Textarea,
-// } from './AddUserPetForm.styled';
-// // import { notifyError } from 'components/Helpers/Toastify';
-// import { useAddUserPetMutation } from 'redux/pet/userPetsApi';
-
-// const AddUserPetForm = () => {
-
-// const [addUserPet]= useAddUserPetMutation();
-
-//  const [photo, setPhoto] = useState("");
-//   const initialValues = {
-//     name: '',
-//     birthday: '',
-//     photo: '',
-//     breed: '',
-//     comment: '',
-//   };
-// console.log(photo);
-//   const addUserPetFile = (e)=>{
-//     setPhoto(e.target.files[0]);
-//     console.log(e.target.files);
-//   };
-
-//   const handleSubmit = (values, actions) => {
-//     const { name, birthday, breed, comment } = values;
-//     alert(JSON.stringify(values, null, 2))
-//     addUserPet({name, birthday, photo, breed, comment});
-
-//   };
-
-//   return (
-//     <Section>
-//       <Wrapper>
-//         {/* <ToastContainer transition={Slide} /> */}
-//         <Title> Add Pet </Title>
-
-//         <MultiStepForm  initialValues={initialValues} onSubmit={handleSubmit}>
-//           <FormStep
-//             stepName="step1"
-//             validationSchema={validationRegisterStepOne}
-
-//           >
-//             <Label>
-//               Name pet
-//               <Input
-//                 autoComplete="off"
-//                 type="text"
-//                 name="name"
-//                 placeholder="Type name pet"
-//               />
-
-//               <InputError name="name" />
-//             </Label>
-//             <Label>
-//               {' '}
-//               Date of birth
-//               <Input
-//                 type="text"
-//                 name="birthday"
-//                 placeholder="Type date of birth"
-//                 autoComplete="off"
-//               />
-//               <InputError name="birthday" />
-//             </Label>
-//             <Label>
-//               {' '}
-//               Breed
-//               <Input
-//                 type="text"
-//                 name="breed"
-//                 placeholder="Type breed"
-//                 autoComplete="off"
-//               />
-//             </Label>
-//           </FormStep>
-
-//           <FormStep
-//             stepName="step2"
-//             validationSchema={validationRegisterStepTwo}
-//           >
-//             <TextFile>Add photo and some comments</TextFile>
-//             <LabelFile>
-//               <Plus />
-
-//               <InputFile
-//                 type="file"
-//                 name="photo"
-//                 placeholder=""
-//                 autoComplete="off"
-//                 onChange={addUserPetFile}
-//               />
-//               <InputError name="photo" />
-
-//             </LabelFile>
-//             <Label>
-//               Comments
-//               <Textarea
-//                 type="text"
-//                 name="comment"
-//                 placeholder="Type comments"
-//                 autoComplete="off"
-
-//               />
-//               <InputError name="comment" />
-//             </Label>
-//           </FormStep>
-//         </MultiStepForm>
-
-//       </Wrapper>
-//     </Section>
-//   );
-// };
-
-// export default AddUserPetForm;
-// =====================================================================
 import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 import { useNavigate } from 'react-router';
@@ -157,6 +26,8 @@ import {
   BtnFormSubmit,
   WraperBtn,
   WrapperPhoto,
+  PetsPhoto,
+  WrapperStepOne,
 } from './AddUserPetForm.styled';
 
 
@@ -187,21 +58,17 @@ const AddUserPetForm = ({ onClose }) => {
   };
 
   const handleSubmit = (values, actions) => {
-    alert(JSON.stringify(values, null, 2));
+    // alert(JSON.stringify(values, null, 2));
     const { name, birthday, breed, comment } = values;
-    console.log(values);
-    
-
-    const test = { name, birthday, photo, breed, comment };
-    console.log(test);
-    addUserPet( test ).then(res => {
-
-
-      if (res.payload.code === 201) {
+     const test = { name, birthday, photo, breed, comment };
+     addUserPet( test ).then(res => {
+      if (res.payload?.code === 201) {
         navigate('/user', { replace: true });
         actions.resetForm();
       }
     });
+onClose();
+
   };
 
   
@@ -210,9 +77,9 @@ const AddUserPetForm = ({ onClose }) => {
 
   return (
     <Section>
-      <Wrapper>
+      <Wrapper step={step}>
         <ToastContainer transition={Slide} />
-        <Title>Add pet</Title>
+        <Title step={step}>Add pet</Title>
         <Formik
           initialValues={initialValues}
           validationSchema={
@@ -223,7 +90,8 @@ const AddUserPetForm = ({ onClose }) => {
           {({ errors, touched, values }) => (
             <Form>
               {step === 1 && (
-                <>
+                <WrapperStepOne>
+                
                   <Label>
                     Name pet
                     <Input
@@ -289,6 +157,9 @@ const AddUserPetForm = ({ onClose }) => {
                     <Spinner />
                   ) : (
                     <WraperBtn>
+                      <ButtonBack type="button" onClick={onClose}>
+                        Cancel
+                      </ButtonBack>
                       <BtnFormSubmit
                         disabled={
                           errors.name || errors.birthday || errors.breed
@@ -305,20 +176,17 @@ const AddUserPetForm = ({ onClose }) => {
                         Next
                       </BtnFormSubmit>
 
-                      <ButtonBack type="button" onClick={onClose}>
-                        Cancel
-                      </ButtonBack>
                     </WraperBtn>
                   )}
-                </>
+                </WrapperStepOne>
               )}
               {step === 2 && (
                 <>
-                  <TextFile>Add photo and some comments</TextFile>
+                  <TextFile  >Add photo and some comments</TextFile>
 
-                  <WrapperPhoto style={{ width: '182px', height: '182px' }}>
+                  <WrapperPhoto >
                     {photo && (
-                      <img
+                      <PetsPhoto
                         src={url}
                         alt=" avatar"
                         style={{ width: '100%', height: '100%' }}
@@ -326,7 +194,7 @@ const AddUserPetForm = ({ onClose }) => {
                     )}
 
                     <LabelFile>
-                      {/* {url && <Plus />} */}
+                      
                       <Plus />
                       <InputFile
                         className={
@@ -344,13 +212,13 @@ const AddUserPetForm = ({ onClose }) => {
                         onChange={addUserPetFile}
                       />
                       {!errors.photo && values.photo !== '' ? (
-                        <InputCorrect photo="Photo is correct" />
+                        <InputCorrect step={step}  photo="Photo is correct" />
                       ) : null}
-                      <InputError name="photo" />
+                      <InputError step={step} name="photo" />
                     </LabelFile>
                   </WrapperPhoto>
                   <Label>
-                    {' '}
+                  
                     Comments
                     <Textarea
                       Comments
@@ -365,26 +233,27 @@ const AddUserPetForm = ({ onClose }) => {
                       name="comment"
                       placeholder="Type comments"
                       autoComplete="off"
+                      component="textarea"
                     />
                     {!errors.comment && values.comment !== '' ? (
-                      <InputCorrect name="Comment is correct" />
+                      <InputCorrect step={step} name="Comment is correct" />
                     ) : null}
-                    <InputError name="comment" />
+                    <InputError step={step} name="comment" />
                   </Label>
 
                   {isPending ? (
                     <Spinner />
                   ) : (
                     <WraperBtn>
+                      <ButtonBack type="button" onClick={prevStep}>
+                        Back
+                      </ButtonBack>
                       <BtnFormSubmit
                         disabled={errors.photo || errors.comment}
                         type="submit"
                       >
                         Done
                       </BtnFormSubmit>
-                      <ButtonBack type="button" onClick={prevStep}>
-                        Back
-                      </ButtonBack>
                     </WraperBtn>
                   )}
                 </>
@@ -392,10 +261,7 @@ const AddUserPetForm = ({ onClose }) => {
             </Form>
           )}
         </Formik>
-        {/* <TextLink>
-            <span>Already have an account? </span>
-            <LinkToLogin to="/login">Login</LinkToLogin>
-          </TextLink> */}
+        
       </Wrapper>
     </Section>
   );
