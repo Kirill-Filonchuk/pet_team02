@@ -32,7 +32,7 @@ import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './utils/constants';
 
 const SecondStepForm = ({
   step,
-  values,
+  // values,
   onAvatarChange,
   onClickBack,
   avatarURL,
@@ -40,7 +40,7 @@ const SecondStepForm = ({
   isFileNeeded,
   formik,
 }) => {
-  const { errors, touched } = formik;
+  const { errors, touched, values } = formik;
 
   return (
     <div className={step !== 2 ? 'visually-hidden' : ''}>
@@ -149,7 +149,7 @@ const SecondStepForm = ({
         {/* </CommentsFieldContainer> */}
       </CommentWrapper>
       <ToolBar>
-        <NextButton type="submit">
+        <NextButton type="submit" disabled={isAddingPet}>
           Done
           {isAddingPet && <OvalSpinner />}
         </NextButton>
