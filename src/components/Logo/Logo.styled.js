@@ -40,6 +40,7 @@ export const LogoStyle = styled.p`
       animation: ${drop} 0.5s linear forwards;
     }
   }
+
   ${p => p.theme.mq.tablet} {
     font-size: ${p => p.theme.fontSizes[7]}px;
     line-height: 48px;
@@ -55,12 +56,7 @@ export const Link = styled(NavLink)`
   text-decoration: none;
   color: black;
   z-index: 11;
-  /* ${p => p.theme.mq.mob} {
-    margin-right: 158px;
-  } */
-  ${p => p.theme.mq.tablet} {
-    // margin-right: 100px;
-  }
+
   ${p => p.theme.mq.desktop} {
     margin-right: 80px;
   }
