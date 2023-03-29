@@ -1,6 +1,5 @@
 import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
 import { ErrorMessage, Field } from 'formik';
-import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './AddNoticeModal';
 import {
   BackButton,
   CommentDecription,
@@ -28,6 +27,7 @@ import {
   UploadLabel,
   UploadWrapper,
 } from './AddNoticeModal.styled';
+import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './utils/constants';
 // import ErrorMessages from './ErrorMessages';
 
 const SecondStepForm = ({

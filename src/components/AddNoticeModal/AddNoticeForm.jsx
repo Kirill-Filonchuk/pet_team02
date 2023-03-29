@@ -2,24 +2,24 @@ import FirstStepForm from './FirstStepForm';
 import { Form, useFormikContext } from 'formik';
 import { useState } from 'react';
 import SecondStepForm from './SecondStepForm';
+import { useEffect } from 'react';
 
 const AddNoticeForm = ({
   onClose,
   onAvatarChange,
-  storage,
+  noticeStorage,
   isFileNeeded,
   avatarURL,
   isAddingPet,
   formik,
 }) => {
-  const { updateStorage } = storage;
   const [step, setStep] = useState(1);
 
   const { values } = useFormikContext();
-  // const updatedValues = { ...values };
-  // delete updatedValues.price;
-  // updateStorage(updatedValues);
-  updateStorage(values);
+
+  useEffect(() => {
+    noticeStorage.setStorageValue(values);
+  }, [values, noticeStorage]);
 
   const onNextClickHandler = () => {
     setStep(2);
@@ -32,9 +32,6 @@ const AddNoticeForm = ({
         step={step}
         onClickNext={onNextClickHandler}
         onClose={onClose}
-        // errors={errors}
-        // touched={touched}
-        // validateForm={validateForm}
         formik={formik}
       />
 
@@ -48,9 +45,6 @@ const AddNoticeForm = ({
         }}
         avatarURL={avatarURL}
         isAddingPet={isAddingPet}
-        // errors={errors}
-        // touched={touched}
-        // validateForm={validateForm}
         isFileNeeded={isFileNeeded}
         formik={formik}
       />

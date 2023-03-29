@@ -1,5 +1,4 @@
 import { ErrorMessage } from 'formik';
-import { ADD_NOTICE_CATEGORIES } from './AddNoticeModal';
 import {
   BackButton,
   CategoryItem,
@@ -15,6 +14,7 @@ import {
   Title,
   ToolBar,
 } from './AddNoticeModal.styled';
+import { ADD_NOTICE_CATEGORIES } from './utils/constants';
 
 const FirstStepForm = ({ step, onClickNext, onClose, formik }) => {
   const firstStepValidateFields = {
