@@ -30,7 +30,6 @@ import {
   WrapperStepOne,
 } from './AddUserPetForm.styled';
 
-
 const AddUserPetForm = ({ onClose }) => {
   const [step, setStep] = useState(1);
   const { isPending } = useAuth();
@@ -47,31 +46,25 @@ const AddUserPetForm = ({ onClose }) => {
     comment: '',
   };
 
-
-
-
   const addUserPetFile = e => {
     // console.log(e.target.value);
     setPhoto(e.currentTarget.files[0]);
     setUrl(URL.createObjectURL(e.target.files[0]));
-    
   };
 
   const handleSubmit = (values, actions) => {
     // alert(JSON.stringify(values, null, 2));
     const { name, birthday, breed, comment } = values;
-     const test = { name, birthday, photo, breed, comment };
-     addUserPet( test ).then(res => {
+    const test = { name, birthday, photo, breed, comment };
+    addUserPet(test).then(res => {
       if (res.payload?.code === 201) {
         navigate('/user', { replace: true });
         actions.resetForm();
       }
     });
-onClose();
-
+    onClose();
   };
 
-  
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
@@ -86,12 +79,13 @@ onClose();
             step === 1 ? validationRegisterStepOne : validationRegisterStepTwo
           }
           onSubmit={handleSubmit}
+          // validateOnBlur={false}
+          validateOnChange={true}
         >
           {({ errors, touched, values }) => (
             <Form>
               {step === 1 && (
                 <WrapperStepOne>
-                
                   <Label>
                     Name pet
                     <Input
@@ -175,16 +169,15 @@ onClose();
                       >
                         Next
                       </BtnFormSubmit>
-
                     </WraperBtn>
                   )}
                 </WrapperStepOne>
               )}
               {step === 2 && (
                 <>
-                  <TextFile  >Add photo and some comments</TextFile>
+                  <TextFile>Add photo and some comments</TextFile>
 
-                  <WrapperPhoto >
+                  <WrapperPhoto>
                     {photo && (
                       <PetsPhoto
                         src={url}
@@ -194,7 +187,6 @@ onClose();
                     )}
 
                     <LabelFile>
-                      
                       <Plus />
                       <InputFile
                         className={
@@ -212,13 +204,12 @@ onClose();
                         onChange={addUserPetFile}
                       />
                       {!errors.photo && values.photo !== '' ? (
-                        <InputCorrect step={step}  photo="Photo is correct" />
+                        <InputCorrect step={step} photo="Photo is correct" />
                       ) : null}
                       <InputError step={step} name="photo" />
                     </LabelFile>
                   </WrapperPhoto>
                   <Label>
-                  
                     Comments
                     <Textarea
                       Comments
@@ -236,9 +227,9 @@ onClose();
                       component="textarea"
                     />
                     {!errors.comment && values.comment !== '' ? (
-                      <InputCorrect step={step} name="Comment is correct" />
+                      <InputCorrect comment={"comment"} step={step} name="Comment is correct" />
                     ) : null}
-                    <InputError step={step} name="comment" />
+                    <InputError comment={"comment"} step={step} name="comment" />
                   </Label>
 
                   {isPending ? (
@@ -261,7 +252,6 @@ onClose();
             </Form>
           )}
         </Formik>
-        
       </Wrapper>
     </Section>
   );

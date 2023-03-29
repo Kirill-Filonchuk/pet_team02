@@ -26,9 +26,9 @@ const Wrapper = styled.div`
     width: 100%;
     padding-top: 40px;
     padding-bottom: 40px;
-    
-    padding-left: ${p=>(p.step===1 ? "80px " : "107px" )};
-    padding-right: ${p=>(p.step===1 ? "80px " : "107px" )};
+
+    padding-left: ${p => (p.step === 1 ? '80px ' : '107px')};
+    padding-right: ${p => (p.step === 1 ? '80px ' : '107px')};
     border-radius: ${theme.radii.normal};
     background-color: ${theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -36,7 +36,6 @@ const Wrapper = styled.div`
   ${theme.mq.desktop} {
     width: 100%;
     max-height: 100%;
-
   }
 `;
 
@@ -56,7 +55,7 @@ const Title = styled.h2`
   letter-spacing: 0.04em;
 
   ${theme.mq.tablet} {
-    margin-bottom: ${p => (p.step===2 ? "20px" :  "40px")  };
+    margin-bottom: ${p => (p.step === 2 ? '20px' : '40px')};
     font-size: ${theme.fontSizes[8] + `px`};
     line-height: ${theme.lineHeights[3]};
     font-weight: ${theme.fontWeights.medium};
@@ -134,13 +133,15 @@ const TextFile = styled.p`
   margin-top: 20px;
 
   ${theme.mq.tablet} {
-    
     font-size: ${theme.fontSizes[4] + 'px'};
   }
 `;
 
 const WrapperPhoto = styled.div`
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 208px;
   height: 208px;
   overflow: hidden;
@@ -169,14 +170,19 @@ const WrapperPhoto = styled.div`
 `;
 
 const LabelFile = styled.label`
-   position: relative;
-   
+  position: relative;
+  /* cursor: pointer; */
+  /* display: flex; */
+  /* top:50%; */
+  /* left:50% */
+  /* transform: translate(-50%, -50%); */
 `;
 
 const Plus = styled(plus)`
-  position: absolute;
+  display: flex;
+  /* position: absolute; */
   cursor: pointer;
-  transform: translate(120%, 120%);
+  /* transform: translate(120%, 120%); */
 `;
 
 const InputFile = styled(Field)`

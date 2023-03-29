@@ -14,10 +14,8 @@ import {
   ListInfoTitle,
 } from './PetsItem.styled';
 
-export const PetsItem = ({ _id, photo, name, birthDate, breed, comments }) => {
+export const PetsItem = ({ _id, photo, name, birthday, breed, comments }) => {
   const [deletePet] = useDeleteUserPetMutation();
-
-  // console.log('item', name);
 
   return (
     <>
@@ -28,7 +26,7 @@ export const PetsItem = ({ _id, photo, name, birthDate, breed, comments }) => {
             <ListInfoTitle>Name:</ListInfoTitle> {name}
           </ListInfoItem>
           <ListInfoItem>
-            <ListInfoTitle>Date of birth:</ListInfoTitle> {birthDate}
+            <ListInfoTitle>Date of birth:</ListInfoTitle> {birthday}
           </ListInfoItem>
           <ListInfoItem>
             <ListInfoTitle>Breed:</ListInfoTitle> {breed}
