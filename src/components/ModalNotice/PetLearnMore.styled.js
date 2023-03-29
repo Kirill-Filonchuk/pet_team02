@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Button } from 'components/UIKit/Button/Button.styled';
 import { Label } from 'components/NoticesCard/NoticesCard.styled';
 import { AiFillHeart } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -186,6 +187,45 @@ export const BtnWrapper = styled.div`
   }
 `;
 
+export const ContactBtnLink = styled(Link)`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 12px;
+  margin-bottom: 12px;
+  padding: 0;
+  background-color: transparent;
+
+  padding: 6px 0;
+  width: ${({ width }) => (width ? width : '100%')};
+
+  font-family: ${p => p.theme.fonts.manrope};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: 16px;
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  color: ${p => (p.color ? p.color : p.theme.colors.accent)};
+
+  background: ${p => p.theme.colors.white};
+  border: 2px solid ${p => p.theme.colors.accent};
+  border-radius: ${p => p.theme.radii.normal};
+
+  transition-property: color, background-color;
+  transition-duration: ${p => p.theme.transitions.durations.default};
+  transition-timing-function: ${p => p.theme.transitions.functions.default};
+
+  &:hover {
+    background-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
+  }
+
+  ${p => p.theme.mq.tablet} {
+    width: 160px;
+    margin-bottom: 0px;
+  }
+`;
+
 export const ContactBtn = styled(Button)`
   margin-bottom: 12px;
 
@@ -226,11 +266,4 @@ export const ToFavoriteBtn = styled(Button)`
 `;
 
 export const HeartIconForBtn = styled(AiFillHeart)`
-  // width: 16px;
-  // height: 16px;
-  // fill: ${p => (p.favorite ? p.theme.colors.white : p.theme.colors.accent)};
-
-  // transition-property: fill;
-  // transition-duration: ${p => p.theme.transitions.durations.default};
-  // transition-timing-function: ${p => p.theme.transitions.functions.default};
 `;
