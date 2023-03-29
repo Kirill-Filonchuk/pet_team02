@@ -8,13 +8,15 @@ const OurFriendsList = () => {
 
   useEffect(() => {
     const getOurFriends = async () => {
-      const response = await axios.get(
-        'https://tiny-hare-cowboy-hat.cyclic.app/api/services'
-      );
-      //   console.log('response===', response);
-      const data = response.data.result;
-      // console.log('data===', data);
-      setFriends(data);
+      try {
+        const response = await axios.get(
+          'https://tiny-hare-cowboy-hat.cyclic.app/api/services'
+        );
+        const data = response.data.result;
+        setFriends(data);
+      } catch (error) {
+        console.log(error.message);
+      }
     };
     getOurFriends();
   }, []);
