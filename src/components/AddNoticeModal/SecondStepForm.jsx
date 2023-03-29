@@ -97,12 +97,12 @@ const SecondStepForm = ({
               // onChange={formik.handleChange}
               // value={formik.values.price}
             />
+            <ErrorMessage
+              name="price"
+              render={msg => <ErrorItem>{msg}</ErrorItem>}
+            />
           </Label>
         )}
-        <ErrorMessage
-          name="price"
-          render={msg => <ErrorItem>{msg}</ErrorItem>}
-        />
       </FieldsSecondStep>
       <UploadWrapper>
         <UploadDescription>Load the pet’s image:</UploadDescription>

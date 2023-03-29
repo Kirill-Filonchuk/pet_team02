@@ -9,7 +9,10 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from 'router';
 import { StorageService } from 'Services/storageService';
 import { ADD_NOTICE_CATEGORIES, initialValues } from './utils/constants';
-import { validationSchema } from './utils/validationSchema';
+import {
+  validationSchemaCommon,
+  validationSchemaWithPrice,
+} from './utils/validationSchema';
 
 const modalRoot = document.querySelector('#modal-root');
 const noticeStorage = new StorageService('add-notice-fields');
@@ -22,6 +25,13 @@ const AddNoticeModal = ({ onClose }) => {
   const [isFileNeeded, setIsFileNeeded] = useState(false);
   const [avatarURL, setAvatarURL] = useState();
 
+  //TOGGLE VALIDATION SCHEMA
+  const [isPriceSchema, setIsPriceSchema] = useState(false);
+  const handleSwitchSchema = isSellCategory => {
+    setIsPriceSchema(isSellCategory);
+  };
+  //TOGGLE VALIDATION SCHEMA
+
   // console.log(getFromStorage());
 
   const onSubmitHandler = async (values, actions) => {
@@ -29,6 +39,7 @@ const AddNoticeModal = ({ onClose }) => {
 
     if (data.category !== ADD_NOTICE_CATEGORIES.SELL) {
       delete data.price;
+      delete data.showPrice;
     }
 
     //if no petAvatarURL - return error message
@@ -65,6 +76,10 @@ const AddNoticeModal = ({ onClose }) => {
     setAvatarURL(URL.createObjectURL(imgFile));
   };
 
+  const validationSchema = isPriceSchema
+    ? validationSchemaWithPrice
+    : validationSchemaCommon;
+
   return createPortal(
     <>
       <CommonModal onClose={onClose}>
@@ -74,11 +89,19 @@ const AddNoticeModal = ({ onClose }) => {
             onSubmit={onSubmitHandler}
             validationSchema={validationSchema}
             validateOnBlur
+            validate={values => {
+              const errors = {};
+              if (values.showPrice && !values.price) {
+                errors.price = 'price is required';
+              }
+              return errors;
+            }}
           >
             {formik => {
               return (
                 <>
                   <AddNoticeForm
+                    handleSwitchSchema={handleSwitchSchema}
                     onClose={onClose}
                     onAvatarChange={onFileChange}
                     noticeStorage={noticeStorage}
