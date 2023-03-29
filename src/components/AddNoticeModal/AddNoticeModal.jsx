@@ -10,7 +10,6 @@ import { ROUTES } from 'router';
 import { StorageService } from 'Services/storageService';
 import { ADD_NOTICE_CATEGORIES, initialValues } from './utils/constants';
 import {
-  validationSchema,
   validationSchemaCommon,
   validationSchemaWithPrice,
 } from './utils/validationSchema';

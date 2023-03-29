@@ -45,8 +45,7 @@ const FirstStepForm = ({
     return hasError;
   };
 
-  const { errors, touched, validateForm, setTouched, values, setFieldValue } =
-    formik;
+  const { errors, touched, validateForm, setTouched, values } = formik;
 
   useEffect(() => {
     if (values.category === ADD_NOTICE_CATEGORIES.SELL) {
