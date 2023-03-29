@@ -149,7 +149,7 @@ const SecondStepForm = ({
         {/* </CommentsFieldContainer> */}
       </CommentWrapper>
       <ToolBar>
-        <NextButton type="submit">
+        <NextButton type="submit" disabled={isAddingPet}>
           Done
           {isAddingPet && <OvalSpinner />}
         </NextButton>
