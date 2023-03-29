@@ -16,15 +16,7 @@ import {
   ToolBar,
 } from './AddNoticeModal.styled';
 
-const FirstStepForm = ({
-  step,
-  onClickNext,
-  onClose,
-  // errors,
-  // touched,
-  // validateForm,
-  formik,
-}) => {
+const FirstStepForm = ({ step, onClickNext, onClose, formik }) => {
   const firstStepValidateFields = {
     category: true,
     title: true,

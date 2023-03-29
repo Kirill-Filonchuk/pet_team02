@@ -10,18 +10,16 @@ const AddNoticeForm = ({
   isFileNeeded,
   avatarURL,
   isAddingPet,
-  // errors,
-  // touched,
-  // validateForm,
   formik,
 }) => {
   const { updateStorage } = storage;
   const [step, setStep] = useState(1);
 
   const { values } = useFormikContext();
-  const updatedValues = { ...values };
-  delete updatedValues.price;
-  updateStorage(updatedValues);
+  // const updatedValues = { ...values };
+  // delete updatedValues.price;
+  // updateStorage(updatedValues);
+  updateStorage(values);
 
   const onNextClickHandler = () => {
     setStep(2);

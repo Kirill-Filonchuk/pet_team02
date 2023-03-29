@@ -1,6 +1,5 @@
 import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
 import { ErrorMessage, Field } from 'formik';
-import { useEffect, useState } from 'react';
 import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './AddNoticeModal';
 import {
   BackButton,
@@ -85,16 +84,25 @@ const SecondStepForm = ({
           />
         </Label>
 
+        {/* className=
+        {values.category !== ADD_NOTICE_CATEGORIES.SELL && 'visually-hidden'} */}
+
         {values.category === ADD_NOTICE_CATEGORIES.SELL && (
           <Label>
             Price:
-            <Input type="text" placeholder="Type price" name="price" />
-            <ErrorMessage
+            <Input
+              type="text"
+              placeholder="Type price"
               name="price"
-              render={msg => <ErrorItem>{msg}</ErrorItem>}
+              // onChange={formik.handleChange}
+              // value={formik.values.price}
             />
           </Label>
         )}
+        <ErrorMessage
+          name="price"
+          render={msg => <ErrorItem>{msg}</ErrorItem>}
+        />
       </FieldsSecondStep>
       <UploadWrapper>
         <UploadDescription>Load the pet’s image:</UploadDescription>

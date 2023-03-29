@@ -32,6 +32,7 @@ const initialValues = {
   sex: '',
   place: '',
   price: '',
+  // showPrice: false,
   comments: '',
 };
 
@@ -80,9 +81,14 @@ const AddNoticeModal = ({ onClose }) => {
   const onSubmitHandler = async (values, actions) => {
     const data = { ...values, image: petAvatarURL };
 
-    if (data.price === '') {
+    if (data.category !== ADD_NOTICE_CATEGORIES.SELL) {
       delete data.price;
     }
+
+    // if (data.price === '') {
+    //   delete data.price;
+    // }
+    // delete data.showPrice;
 
     //if no petAvatarURL - return error message
     if (!petAvatarURL) {
@@ -90,12 +96,17 @@ const AddNoticeModal = ({ onClose }) => {
       return;
     }
 
-    const response = await addPet(data);
-    if (response.data.result) {
-      actions.resetForm();
-      clearStorage();
-      onClose();
-      navigate(ROUTES.NOTICES_OWN);
+    try {
+      const response = await addPet(data);
+      console.log(response);
+      if (response?.data.result) {
+        actions.resetForm();
+        clearStorage();
+        onClose();
+        navigate(ROUTES.NOTICES_OWN);
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -125,7 +136,6 @@ const AddNoticeModal = ({ onClose }) => {
             validateOnBlur
           >
             {formik => {
-              // console.log(validateForm);
               return (
                 <>
                   <AddNoticeForm
@@ -136,21 +146,8 @@ const AddNoticeModal = ({ onClose }) => {
                     setIsFileNeeded={setIsFileNeeded}
                     avatarURL={avatarURL}
                     isAddingPet={isAddingPet}
-                    // errors={errors}
-                    // touched={touched}
-                    // validateForm={validateForm}
                     formik={formik}
                   />
-                  {/* <button
-                    type="button"
-                    onClick={() => {
-                      // setFieldTouched('name', true);
-                      setTouched({ name: true, title: true });
-                      validateForm();
-                    }}
-                  >
-                    VALIDATE
-                  </button> */}
                 </>
               );
             }}
