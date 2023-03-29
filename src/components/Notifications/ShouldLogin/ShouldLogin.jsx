@@ -10,7 +10,7 @@ const ShouldLogin = () => {
   return (
     <ShouldLoginWrapper>
       <p>
-        You need to <strong>Log in</strong> to use this functionality
+        You need to <strong>Log in</strong> first.
       </p>
       <LinksList>
         <LinkItem>

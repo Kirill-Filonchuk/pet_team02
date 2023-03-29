@@ -32,7 +32,7 @@ const Notices = () => {
       endpoint: NOTICES_API_ENDPOINTS.SELL,
     },
     {
-      title: 'lost-found',
+      title: 'lost / found',
       label: 'Lost / found',
       to: ROUTES.NOTICES_LOST_FOUND,
       endpoint: NOTICES_API_ENDPOINTS.LOST_FOUND,

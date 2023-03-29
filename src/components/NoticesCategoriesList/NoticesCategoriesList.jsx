@@ -69,8 +69,6 @@ const NoticesCategoriesList = () => {
     }
   };
 
-  console.log(data);
-
   //UPDATE PET LIST BEFORE RENDER
   const pets =
     isLoggedIn && data && userData
