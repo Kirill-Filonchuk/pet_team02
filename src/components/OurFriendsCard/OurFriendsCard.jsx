@@ -25,7 +25,6 @@ const OurFriendsCard = ({
   url,
   workDays,
 }) => {
-  // const dashDottedLine = '-----------------------------------';
   const dashDottedLine = '-----------------------------';
   const [openModal, setOpenModal] = useState(false);
   const [targetModal, setTargetModal] = useState(null);
@@ -49,16 +48,6 @@ const OurFriendsCard = ({
     // console.log('closeModal');
     setOpenModal(false);
   };
-
-  // const titleCounter = title => {
-  //   const lengthTitle = 23;
-  //   if (title.length > lengthTitle) {
-  //     const titleSlice = title.slice(0, lengthTitle);
-  //     return `${titleSlice}...`;
-  //   }
-  //   return title;
-  // };
-  // console.log('workDays===', workDays);
   const days = workDays => {
     let daysIsOpen = [];
     if (workDays && workDays.length > 0) {

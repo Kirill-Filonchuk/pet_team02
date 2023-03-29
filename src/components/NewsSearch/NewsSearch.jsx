@@ -45,9 +45,7 @@ const InputNewsFindPet = ({ setSearchWord }) => {
         </IconButton>
       ) : (
         <ClearIconWrapper>
-          {/* <IconButton type="button"> */}
           <ClearIcon onClick={onClearHandler} tabIndex={0} />
-          {/* </IconButton> */}
         </ClearIconWrapper>
       )}
     </SearchForm>
