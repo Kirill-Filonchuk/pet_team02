@@ -1,4 +1,5 @@
 import { ErrorMessage } from 'formik';
+import { useEffect } from 'react';
 import {
   BackButton,
   CategoryItem,
@@ -16,7 +17,13 @@ import {
 } from './AddNoticeModal.styled';
 import { ADD_NOTICE_CATEGORIES } from './utils/constants';
 
-const FirstStepForm = ({ step, onClickNext, onClose, formik }) => {
+const FirstStepForm = ({
+  step,
+  onClickNext,
+  onClose,
+  formik,
+  handleSwitchSchema,
+}) => {
   const firstStepValidateFields = {
     category: true,
     title: true,
@@ -38,7 +45,18 @@ const FirstStepForm = ({ step, onClickNext, onClose, formik }) => {
     return hasError;
   };
 
-  const { errors, touched, validateForm, setTouched, values } = formik;
+  const { errors, touched, validateForm, setTouched, values, setFieldValue } =
+    formik;
+
+  useEffect(() => {
+    if (values.category === ADD_NOTICE_CATEGORIES.SELL) {
+      // setFieldValue('showPrice', true);
+      handleSwitchSchema(true);
+    } else {
+      // setFieldValue('showPrice', false);
+      handleSwitchSchema(false);
+    }
+  }, [handleSwitchSchema, values.category]);
 
   return (
     <div className={step !== 1 ? 'visually-hidden' : ''}>

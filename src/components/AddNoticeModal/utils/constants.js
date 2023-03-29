@@ -19,6 +19,13 @@ export const initialValues = {
   place: '',
   price: '',
   comments: '',
+  // showPrice: false,
 };
 
 export const namePattern = /^[a-zA-zа-яіїєА-ЯІЇЄ ,.'-][^\\_]+$/;
+
+export const locationPattern =
+  /^[a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+$/;
+
+export const birthdayPattern =
+  /^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.(20[2-9][0-9]|30[0-9][0-9]|31[0-2][0-9])$/;

@@ -12,6 +12,7 @@ const AddNoticeForm = ({
   avatarURL,
   isAddingPet,
   formik,
+  handleSwitchSchema,
 }) => {
   const [step, setStep] = useState(1);
 
@@ -29,6 +30,7 @@ const AddNoticeForm = ({
     <Form>
       {/*STEP - 1 */}
       <FirstStepForm
+        handleSwitchSchema={handleSwitchSchema}
         step={step}
         onClickNext={onNextClickHandler}
         onClose={onClose}
