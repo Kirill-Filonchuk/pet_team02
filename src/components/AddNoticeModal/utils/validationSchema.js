@@ -82,3 +82,5 @@ const schemaWithPrice = {
 
 export const validationSchemaCommon = yup.object().shape(commonSchema);
 export const validationSchemaWithPrice = yup.object().shape(schemaWithPrice);
+
+//test
