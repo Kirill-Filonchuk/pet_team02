@@ -94,12 +94,6 @@ const Notices = () => {
       </NoticeSection>
 
       {isAddModalOpen && (
-        // <AddPet
-        //   onClose={() => {
-        //     setIsAddModalOpen(false);
-        //   }}
-        // />
-
         <AddNoticeModal
           onClose={() => {
             setIsAddModalOpen(false);
