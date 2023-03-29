@@ -68,7 +68,7 @@ const InputError = ({ name, step, comment }) => {
       <ErrorMessage
         comment
         name={name}
-        step={step}
+        // step={step}
         render={message => <p>{message}</p>}
       />
     </Error>
@@ -76,10 +76,10 @@ const InputError = ({ name, step, comment }) => {
 };
 const InputCorrect = ({ name, step, comment }) => {
   return (
-    <Correct 
-    step={step} 
-    name={name} 
-    comment
+    <Correct
+      // step={step}
+      name={name}
+      comment
     >
       <p style={{ margin: 0 }}>{name}</p>
     </Correct>

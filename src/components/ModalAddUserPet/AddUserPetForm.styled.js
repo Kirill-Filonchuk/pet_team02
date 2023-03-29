@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Field } from 'formik';
 import { theme } from '../../theme';
 import { ReactComponent as plus } from '../../images/pet/plus.svg';
+import { ErrorItem } from 'components/AddNoticeModal/AddNoticeModal.styled';
 
 const Section = styled.section`
   width: 100%;
@@ -9,12 +10,12 @@ const Section = styled.section`
 
   ${theme.mq.tablet} {
     width: 608px;
-    max-height: 662px;
+    /* max-height: 662px; */
   }
-  ${theme.mq.desktop} {
+  /* ${theme.mq.desktop} {
     width: 100%;
     max-height: 100%;
-  } ;
+  } ; */
 `;
 
 const Wrapper = styled.div`
@@ -72,21 +73,37 @@ const WrapperStepOne = styled.div`
 `;
 
 const Label = styled.label`
+  display: block;
   position: relative;
+  margin-top: 16px;
 
   font-size: ${theme.fontSizes[3] + 'px'};
 
   & :not(:last-child) {
-    margin-bottom: 28px;
+    /* margin-bottom: 28px; */
   }
 
   ${theme.mq.tablet} {
-    margin-top: 40px;
+    margin-top: 28px;
     font-size: ${theme.fontSizes[5] + 'px'};
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+`;
+
+export const LabelTextarea = styled(Label)`
+  display: block;
+  margin-top: 20px;
+
+  ${theme.mq.tablet} {
+    margin-top: 40px;
   }
 `;
 
 const Input = styled(Field)`
+  margin: 0;
   padding: 11px 14px;
   min-width: 100%;
   margin-top: 8px;
@@ -100,8 +117,9 @@ const Input = styled(Field)`
   color: ${theme.colors.grey};
   border-radius: ${theme.radii.normal};
   outline: none;
-  transition: ${theme.transitions.durations.default}
-    ${theme.transitions.functions.default};
+
+  transition-duration: ${theme.transitions.durations.default};
+  transition-timing-function: ${theme.transitions.functions.default};
 
   &.default {
     border: ${theme.borders.normal} ${theme.colors.borderActive};
@@ -150,27 +168,38 @@ const WrapperPhoto = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 
   background-color: ${theme.colors.background};
   border: ${theme.borders.normal} ${theme.colors.borderActive};
 
   border-radius: ${theme.radii.normal};
   outline: none;
-  transition: ${theme.transitions.durations.default}
-    ${theme.transitions.functions.default};
+
+  /* transition-property: ; */
+  transition-duration: ${theme.transitions.durations.default};
+  transition-timing-function: ${theme.transitions.functions.default};
 
   ${theme.mq.tablet} {
     width: 182px;
     height: 182px;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
   }
   /* ${theme.mq.desktop} {
   } */
 `;
 
 const LabelFile = styled.label`
+  cursor: pointer;
+  display: block;
   position: relative;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   /* cursor: pointer; */
   /* display: flex; */
   /* top:50%; */
@@ -204,8 +233,10 @@ const InputFile = styled(Field)`
   color: ${theme.colors.grey};
   border-radius: ${theme.radii.normal};
   outline: none;
-  transition: ${theme.transitions.durations.default}
-    ${theme.transitions.functions.default};
+
+  transition-duration: ${theme.transitions.durations.default};
+  transition-timing-function: ${theme.transitions.functions.default};
+
   &.default {
     border: ${theme.borders.normal} ${theme.colors.borderActive};
   }
@@ -231,6 +262,7 @@ const InputFile = styled(Field)`
 `;
 
 const Textarea = styled(Field)`
+  display: block;
   padding: 12px 14px;
   margin-top: 8px;
   min-width: 100%;
@@ -246,8 +278,9 @@ const Textarea = styled(Field)`
   color: ${theme.colors.grey};
   border-radius: ${theme.radii.small};
   outline: none;
-  transition: ${theme.transitions.durations.default}
-    ${theme.transitions.functions.default};
+
+  transition-duration: ${theme.transitions.durations.default};
+  transition-timing-function: ${theme.transitions.functions.default};
 
   &.default {
     border: ${theme.borders.normal} ${theme.colors.borderActive};
@@ -268,25 +301,30 @@ const Textarea = styled(Field)`
     padding-left: 16px;
   }
   ${theme.mq.desktop} {
-    font-size: ${theme.fontSizes[3] + 'px'};
-    line-height: ${theme.lineHeights[5]};
+    /* font-size: ${theme.fontSizes[3] + 'px'}; */
+    /* line-height: ${theme.lineHeights[5]}; */
   }
 `;
 
 const WraperBtn = styled.div`
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column-reverse;
+
   ${theme.mq.tablet} {
-    margin-top: 12px;
-    display: flex;
+    /* margin-top: 12px; */
+    /* display: flex; */
+    flex-direction: row;
     justify-content: space-around;
     /* gap: 20px; */
-    height: 44px;
+    /* height: 44px; */
   }
   ${theme.mq.desktop} {
-    margin-top: 12px;
-    display: flex;
-    align-items: flex-end;
-    gap: 24px;
-    height: 44px;
+    /* margin-top: 12px; */
+    /* display: flex; */
+    /* align-items: flex-end; */
+    /* gap: 24px; */
+    /* height: 44px; */
   }
 `;
 
@@ -304,8 +342,10 @@ const BtnFormSubmit = styled.button`
   align-items: center;
   border: ${theme.borders.medium} ${theme.colors.borderActive};
   background-color: ${theme.colors.accent};
-  transition: ${theme.transitions.durations.default}
-    ${theme.transitions.functions.default};
+
+  transition-duration: ${theme.transitions.durations.default};
+  transition-timing-function: ${theme.transitions.functions.default};
+
   cursor: pointer;
 
   &:hover:not(:disabled),
@@ -345,6 +385,11 @@ const ButtonBack = styled(BtnFormSubmit)`
     width: 180px;
     height: 44px;
   }
+`;
+
+export const CustomErrorChe = styled(ErrorItem)`
+  padding-left: 0;
+  text-align: center;
 `;
 
 export {

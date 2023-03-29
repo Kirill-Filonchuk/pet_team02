@@ -10,7 +10,7 @@ import {
   Pictures,
   StyledButtonSection,
   LoaderUser,
-  } from './PetsData.styled';
+} from './PetsData.styled';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import ModalAddUserPet from 'components/ModalAddUserPet/ModalAddPet/ModalAddUserPet';
@@ -20,7 +20,7 @@ import PetsList from 'components/PetsList/PetsList';
 const PetsData = () => {
   const [openModal, setOpenModal] = useState(false);
 
-  const { data } = useGetUserPetsQuery();
+  const { data, isFetching: isLoading } = useGetUserPetsQuery();
 
   useEffect(() => {
     if (openModal) {
@@ -30,7 +30,7 @@ const PetsData = () => {
     }
   }, [openModal]);
 
-  const loading = false;
+  // const loading = true;
   if (!data) {
     return;
   }
@@ -54,9 +54,7 @@ const PetsData = () => {
           isOpen={openModal}
         />
       )}
-      {pets.length > 0 && <PetsList pets={pets} />}
-      {pets.length === 0 && <Pictures>You don't have any pets added.</Pictures>}
-      {loading && (
+      {isLoading && (
         <LoaderUser>
           <ThreeDots
             height="100"
@@ -66,6 +64,18 @@ const PetsData = () => {
           />
         </LoaderUser>
       )}
+      {pets.length > 0 && <PetsList pets={pets} />}
+      {pets.length === 0 && <Pictures>You don't have any pets added.</Pictures>}
+      {/* {loading && (
+        <LoaderUser>
+          <ThreeDots
+            height="100"
+            width="100"
+            radius="9"
+            color={'rgb(245, 146, 86)'}
+          />
+        </LoaderUser>
+      )} */}
       {/* {error && <p>Oops!</p>} */}
     </Wrapper>
   );
