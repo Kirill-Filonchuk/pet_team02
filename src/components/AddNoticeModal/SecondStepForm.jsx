@@ -1,5 +1,6 @@
 import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
 import { ErrorMessage, Field } from 'formik';
+import { useEffect, useState } from 'react';
 import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './AddNoticeModal';
 import {
   BackButton,
@@ -28,7 +29,7 @@ import {
   UploadLabel,
   UploadWrapper,
 } from './AddNoticeModal.styled';
-import ErrorMessages from './ErrorMessages';
+// import ErrorMessages from './ErrorMessages';
 
 const SecondStepForm = ({
   step,
@@ -37,11 +38,11 @@ const SecondStepForm = ({
   onClickBack,
   avatarURL,
   isAddingPet,
-  errors,
-  touched,
-  validateForm,
   isFileNeeded,
+  formik,
 }) => {
+  const { errors, touched } = formik;
+
   return (
     <div className={step !== 2 ? 'visually-hidden' : ''}>
       <Title>Add pet</Title>
@@ -149,7 +150,7 @@ const SecondStepForm = ({
         </BackButton>
       </ToolBar>
 
-      <ErrorMessages errors={errors} />
+      {/* <ErrorMessages errors={errors} /> */}
     </div>
   );
 };

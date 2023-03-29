@@ -10,9 +10,10 @@ const AddNoticeForm = ({
   isFileNeeded,
   avatarURL,
   isAddingPet,
-  errors,
-  touched,
-  validateForm,
+  // errors,
+  // touched,
+  // validateForm,
+  formik,
 }) => {
   const { updateStorage } = storage;
   const [step, setStep] = useState(1);
@@ -33,9 +34,10 @@ const AddNoticeForm = ({
         step={step}
         onClickNext={onNextClickHandler}
         onClose={onClose}
-        errors={errors}
-        touched={touched}
-        validateForm={validateForm}
+        // errors={errors}
+        // touched={touched}
+        // validateForm={validateForm}
+        formik={formik}
       />
 
       {/*STEP - 2 */}
@@ -48,10 +50,11 @@ const AddNoticeForm = ({
         }}
         avatarURL={avatarURL}
         isAddingPet={isAddingPet}
-        errors={errors}
-        touched={touched}
-        validateForm={validateForm}
+        // errors={errors}
+        // touched={touched}
+        // validateForm={validateForm}
         isFileNeeded={isFileNeeded}
+        formik={formik}
       />
     </Form>
   );

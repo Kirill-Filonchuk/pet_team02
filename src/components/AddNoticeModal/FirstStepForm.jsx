@@ -20,10 +20,34 @@ const FirstStepForm = ({
   step,
   onClickNext,
   onClose,
-  errors,
-  touched,
+  // errors,
+  // touched,
   // validateForm,
+  formik,
 }) => {
+  const firstStepValidateFields = {
+    category: true,
+    title: true,
+    name: true,
+    birthday: true,
+    breed: true,
+  };
+
+  const checkValidationErrors = (
+    firstStepValidateFields,
+    formikErrors,
+    formikValues
+  ) => {
+    let hasError = false;
+    for (let field in firstStepValidateFields) {
+      if (formikErrors[field] || formikValues[field] === '') return true;
+    }
+
+    return hasError;
+  };
+
+  const { errors, touched, validateForm, setTouched, values } = formik;
+
   return (
     <div className={step !== 1 ? 'visually-hidden' : ''}>
       <Title>Add pet</Title>
@@ -107,8 +131,19 @@ const FirstStepForm = ({
         </Label>
       </FieldsFirstStep>
       <ToolBar>
-        {/* <NextButton type="button" onClick={validateForm}> */}
-        <NextButton type="button" onClick={onClickNext}>
+        <NextButton
+          type="button"
+          onClick={() => {
+            setTouched(firstStepValidateFields);
+            validateForm();
+            if (
+              !checkValidationErrors(firstStepValidateFields, errors, values)
+            ) {
+              onClickNext();
+            }
+          }}
+        >
+          {/* <NextButton type="button" onClick={onClickNext}> */}
           Next
         </NextButton>
         <BackButton

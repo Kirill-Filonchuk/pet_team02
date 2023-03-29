@@ -62,7 +62,7 @@ const validationSchema = yup.object().shape({
     ])
     .required(),
   price: yup.string(),
-  // avatar: yup.string().required(),
+  // avatar: yup.mixed().required('File is required - che'),
   comments: yup.string().min(8).max(120).required(),
 });
 
@@ -101,6 +101,11 @@ const AddNoticeModal = ({ onClose }) => {
 
   const onFileChange = e => {
     const imgFile = e.target.files[0];
+
+    if (imgFile) {
+      setIsFileNeeded(false);
+    }
+
     const [type] = imgFile.type.split('/');
     if (type !== 'image') {
       return;
@@ -119,20 +124,34 @@ const AddNoticeModal = ({ onClose }) => {
             validationSchema={validationSchema}
             validateOnBlur
           >
-            {({ errors, touched, validateForm }) => {
-              // console.log(validateField('category'));
+            {formik => {
+              // console.log(validateForm);
               return (
-                <AddNoticeForm
-                  onClose={onClose}
-                  onAvatarChange={onFileChange}
-                  storage={storage}
-                  isFileNeeded={isFileNeeded}
-                  avatarURL={avatarURL}
-                  isAddingPet={isAddingPet}
-                  errors={errors}
-                  touched={touched}
-                  validateForm={validateForm}
-                />
+                <>
+                  <AddNoticeForm
+                    onClose={onClose}
+                    onAvatarChange={onFileChange}
+                    storage={storage}
+                    isFileNeeded={isFileNeeded}
+                    setIsFileNeeded={setIsFileNeeded}
+                    avatarURL={avatarURL}
+                    isAddingPet={isAddingPet}
+                    // errors={errors}
+                    // touched={touched}
+                    // validateForm={validateForm}
+                    formik={formik}
+                  />
+                  {/* <button
+                    type="button"
+                    onClick={() => {
+                      // setFieldTouched('name', true);
+                      setTouched({ name: true, title: true });
+                      validateForm();
+                    }}
+                  >
+                    VALIDATE
+                  </button> */}
+                </>
               );
             }}
           </Formik>
