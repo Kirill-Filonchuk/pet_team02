@@ -28,8 +28,9 @@ import {
   WrapperPhoto,
   PetsPhoto,
   WrapperStepOne,
+  LabelTextarea,
+  CustomErrorChe,
 } from './AddUserPetForm.styled';
-
 
 const AddUserPetForm = ({ onClose }) => {
   const [step, setStep] = useState(1);
@@ -39,6 +40,8 @@ const AddUserPetForm = ({ onClose }) => {
   const [photo, setPhoto] = useState('');
   const [url, setUrl] = useState('');
 
+  const [isFileNeeded, setIsFileNeeded] = useState(false);
+
   const initialValues = {
     name: '',
     birthday: '',
@@ -47,31 +50,46 @@ const AddUserPetForm = ({ onClose }) => {
     comment: '',
   };
 
-
-
-
   const addUserPetFile = e => {
+    if (e.currentTarget.files[0]) {
+      setIsFileNeeded(false);
+    }
+
     // console.log(e.target.value);
+    // const imgFile = e.target.files[0];
+
+    // if (imgFile) {
+    //   const isLarge =
+    //     (imgFile.size / 1_000_000).toFixed(2) > 1
+    //       ? alert('Image size is too large, maximum 1MB allowed.', {
+    //           autoClose: 5000,
+    //         })
+    //       : null;
+    //   if (isLarge) return;
+    // }
     setPhoto(e.currentTarget.files[0]);
     setUrl(URL.createObjectURL(e.target.files[0]));
-    
   };
 
   const handleSubmit = (values, actions) => {
+    //if no petAvatarURL - return error message
+    if (!photo) {
+      setIsFileNeeded(true);
+      return;
+    }
+
     // alert(JSON.stringify(values, null, 2));
     const { name, birthday, breed, comment } = values;
-     const test = { name, birthday, photo, breed, comment };
-     addUserPet( test ).then(res => {
+    const test = { name, birthday, photo, breed, comment };
+    addUserPet(test).then(res => {
       if (res.payload?.code === 201) {
         navigate('/user', { replace: true });
         actions.resetForm();
       }
     });
-onClose();
-
+    onClose();
   };
 
-  
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
@@ -86,12 +104,13 @@ onClose();
             step === 1 ? validationRegisterStepOne : validationRegisterStepTwo
           }
           onSubmit={handleSubmit}
+          // validateOnBlur={false}
+          validateOnChange={true}
         >
           {({ errors, touched, values }) => (
             <Form>
               {step === 1 && (
                 <WrapperStepOne>
-                
                   <Label>
                     Name pet
                     <Input
@@ -175,27 +194,24 @@ onClose();
                       >
                         Next
                       </BtnFormSubmit>
-
                     </WraperBtn>
                   )}
                 </WrapperStepOne>
               )}
               {step === 2 && (
                 <>
-                  <TextFile  >Add photo and some comments</TextFile>
+                  <TextFile>Add photo and some comments</TextFile>
 
-                  <WrapperPhoto >
-                    {photo && (
-                      <PetsPhoto
-                        src={url}
-                        alt=" avatar"
-                        style={{ width: '100%', height: '100%' }}
-                      />
-                    )}
-
+                  <WrapperPhoto>
                     <LabelFile>
-                      
-                      <Plus />
+                      {photo && (
+                        <PetsPhoto
+                          src={url}
+                          alt=" avatar"
+                          style={{ width: '100%', height: '100%' }}
+                        />
+                      )}
+                      {!photo && <Plus />}
                       <InputFile
                         className={
                           !errors.photo && values.photo !== ''
@@ -204,24 +220,26 @@ onClose();
                             ? 'error'
                             : 'default'
                         }
-                        value={values.photo}
-                        initialValues={values.photo}
+                        // value={values.photo}
                         type="file"
                         name="photo"
                         autoComplete="off"
                         onChange={addUserPetFile}
+                        accept="image/*"
                       />
                       {!errors.photo && values.photo !== '' ? (
-                        <InputCorrect step={step}  photo="Photo is correct" />
+                        <InputCorrect step={step} photo="Photo is correct" />
                       ) : null}
-                      <InputError step={step} name="photo" />
                     </LabelFile>
                   </WrapperPhoto>
-                  <Label>
-                  
+                  {isFileNeeded && (
+                    <CustomErrorChe>Please, attach image file</CustomErrorChe>
+                  )}
+
+                  <LabelTextarea>
                     Comments
                     <Textarea
-                      Comments
+                      // Comments
                       className={
                         !errors.comment && values.comment !== ''
                           ? 'success'
@@ -236,10 +254,18 @@ onClose();
                       component="textarea"
                     />
                     {!errors.comment && values.comment !== '' ? (
-                      <InputCorrect step={step} name="Comment is correct" />
+                      <InputCorrect
+                        comment={'comment'}
+                        step={step}
+                        name="Comment is correct"
+                      />
                     ) : null}
-                    <InputError step={step} name="comment" />
-                  </Label>
+                    <InputError
+                      comment={'comment'}
+                      step={step}
+                      name="comment"
+                    />
+                  </LabelTextarea>
 
                   {isPending ? (
                     <Spinner />
@@ -261,7 +287,6 @@ onClose();
             </Form>
           )}
         </Formik>
-        
       </Wrapper>
     </Section>
   );

@@ -62,29 +62,29 @@ const validationRegisterStepTwo = yup.object().shape({
     .required('Comment field is required'),
 });
 
-const InputError = ({ name, step }) => {
+const InputError = ({ name, step, comment }) => {
   return (
     <Error>
       <ErrorMessage
+        comment
         name={name}
-        step={step}
-        render={message => <p style={{ margin: 0 }}>{message}</p>}
+        // step={step}
+        render={message => <p>{message}</p>}
       />
     </Error>
   );
 };
-const InputCorrect = ({ name, step }) => {
+const InputCorrect = ({ name, step, comment }) => {
   return (
-    <Correct step={step} name={name}>
+    <Correct
+      // step={step}
+      name={name}
+      comment
+    >
       <p style={{ margin: 0 }}>{name}</p>
     </Correct>
   );
 };
-
-//  name: від 2 до 16 символів, Обов’язкове
-//  birthday: формат дд.мм.гггг,
-//  breed: від 2 до 16 символів, Обов’язкове
-//  comment: від 8 до 120 символів. Обов’язкове
 
 export {
   InputError,

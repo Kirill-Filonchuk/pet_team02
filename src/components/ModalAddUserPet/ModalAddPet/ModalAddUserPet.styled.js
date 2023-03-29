@@ -17,7 +17,7 @@ export const ModalWrapper = styled.div`
   top: 50%;
   left: 50%;
   width: 280px;
-  max-height: 662px;
+  /* max-height: 662px; */
   overflow-y: auto;
   border-radius: ${p => p.theme.radii.small};
   background-color: ${p => p.theme.colors.white};
@@ -25,12 +25,11 @@ export const ModalWrapper = styled.div`
     border-radius: ${p => p.theme.radii.normal};
   }
   ${theme.mq.tablet} {
-   width: 608px;
-max-height: 662px;
+    width: 608px;
+    /* max-height: 662px; */
   }
   ${theme.mq.desktop} {
     max-width: 608px;
-max-height: 662px;
-  }
-;
+    /* max-height: 662px; */
+  } ;
 `;
