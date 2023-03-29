@@ -27,19 +27,19 @@ const Notices = () => {
   const noticesNavLinks = [
     {
       title: 'sell',
-      label: 'Sell',
+      label: 'sell',
       to: ROUTES.NOTICES_SELL,
       endpoint: NOTICES_API_ENDPOINTS.SELL,
     },
     {
       title: 'lost / found',
-      label: 'Lost / found',
+      label: 'lost / found',
       to: ROUTES.NOTICES_LOST_FOUND,
       endpoint: NOTICES_API_ENDPOINTS.LOST_FOUND,
     },
     {
       title: 'in good hands',
-      label: 'In good hands',
+      label: 'in good hands',
       to: ROUTES.NOTICES_FOR_FREE,
       endpoint: NOTICES_API_ENDPOINTS.IN_GOOD_HANDS,
     },
@@ -49,13 +49,13 @@ const Notices = () => {
     noticesNavLinks.push(
       {
         title: 'favorite ads',
-        label: 'Favorite ads',
+        label: 'favorite ads',
         to: ROUTES.NOTICES_FAVORITE,
         endpoint: NOTICES_API_ENDPOINTS.FAVORITES,
       },
       {
         title: 'my ads',
-        label: 'My ads',
+        label: 'my ads',
         to: ROUTES.NOTICES_OWN,
         endpoint: NOTICES_API_ENDPOINTS.OWN,
       }
