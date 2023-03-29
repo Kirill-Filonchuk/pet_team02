@@ -6,6 +6,7 @@ import {
   SearchField,
   SearchForm,
   SearchIcon,
+  ClearIconWrapper,
 } from './NewsSearch.styled';
 
 const InputNewsFindPet = ({ setSearchWord }) => {
@@ -43,9 +44,11 @@ const InputNewsFindPet = ({ setSearchWord }) => {
           <SearchIcon />
         </IconButton>
       ) : (
-        <IconButton type="button">
-          <ClearIcon onClick={onClearHandler} />
-        </IconButton>
+        <ClearIconWrapper>
+          {/* <IconButton type="button"> */}
+          <ClearIcon onClick={onClearHandler} tabIndex={0} />
+          {/* </IconButton> */}
+        </ClearIconWrapper>
       )}
     </SearchForm>
   );
