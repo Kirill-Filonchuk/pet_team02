@@ -121,13 +121,13 @@ const OurFriendsCard = ({
           <ContactItem>
             {address && (
               <ContactLink href={addressUrl} target="_blank">
-                Adress: <br />
+                Address: <br />
                 {address && <Address>{contactCounter(address)}</Address>}
               </ContactLink>
             )}
             {!address && (
               <ContactText>
-                Adress: <br />
+                Address: <br />
                 {dashDottedLine}
               </ContactText>
             )}
