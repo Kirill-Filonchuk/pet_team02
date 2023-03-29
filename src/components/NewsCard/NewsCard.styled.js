@@ -62,4 +62,9 @@ export const Link = styled('a')`
 
   text-decoration: underline;
   color: ${theme.colors.accent};
+
+  transition: all 0.3s;
+  &:hover {
+    transform: scaleX(1.1);
+  }
 `;
