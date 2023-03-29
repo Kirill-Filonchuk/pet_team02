@@ -85,7 +85,8 @@ export const ListMenu = styled.nav`
     flex-direction: column;
     align-content: center;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    /* justify-content: center; */
     position: fixed;
     left: 0;
     right: 0;
@@ -197,7 +198,7 @@ export const LinkAuth = styled(NavLink)`
 
 export const AuthNavigate = styled.div`
   display: flex;
-
+  margin-top: 104px;
   ${p => p.theme.mq.tabletOnly} {
     display: none;
   }
