@@ -1,6 +1,7 @@
 import Container from '../Container';
 import NoticesPaginatedList from 'components/NoticesPaginatedList';
 import useAuth from 'hooks/useAuth/useAuth';
+import ErrorMessage from 'components/UIKit/ErrorMessage';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
@@ -9,21 +10,21 @@ import {
   useGetUserDataQuery,
   useUpdateNoticeFavoriteStatusMutation,
 } from 'redux/notices/noticesApi';
-import { useStorage } from 'hooks/useStorage';
 import { updatedPetList } from './utils/updatePetList';
 import { ToastContainer } from 'react-toastify';
-import ErrorMessage from 'components/UIKit/ErrorMessage';
+import { StorageService } from 'Services/storageService';
 
 const ITEMS_PER_PAGE = 8;
+const queryStorage = new StorageService('query');
 
 const NoticesCategoriesList = () => {
-  const { getFromStorage, updateStorage } = useStorage('query');
-
   const { noticesNavLinks, query = '' } = useOutletContext();
   const { pathname: currentLocationPath } = useLocation();
 
   const [label, setLabel] = useState();
-  const [page, setPage] = useState(() => getFromStorage()?.page ?? 1);
+  const [page, setPage] = useState(
+    () => queryStorage.getStorageValue()?.page ?? 1
+  );
   const [endpoint, setEndpoint] = useState();
   const { isLoggedIn } = useAuth();
 
@@ -34,22 +35,16 @@ const NoticesCategoriesList = () => {
       ({ to }) => to === currentLocationPath
     );
 
-    const storageRoute = getFromStorage()?.route;
+    const storageRoute = queryStorage.getStorageValue()?.route;
     if (storageRoute !== to) {
       setPage(1);
     }
 
-    updateStorage({ route: to, page: page });
+    queryStorage.setStorageValue({ route: to, page: page });
 
     setEndpoint(endpoint);
     setLabel(label);
-  }, [
-    noticesNavLinks,
-    currentLocationPath,
-    updateStorage,
-    page,
-    getFromStorage,
-  ]);
+  }, [noticesNavLinks, currentLocationPath, page]);
 
   //GET NOTICES PER ENDPOINT (sell, lost-found, in-good-hands, favorites, own)
 
