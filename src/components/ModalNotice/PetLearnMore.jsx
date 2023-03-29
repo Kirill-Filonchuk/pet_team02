@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import {
@@ -25,6 +24,7 @@ import {
   PetComment,
   BtnWrapper,
   ContactBtn,
+  ContactBtnLink,
   ToFavoriteBtn,
   HeartIconForBtn,
 } from './PetLearnMore.styled';
@@ -168,9 +168,7 @@ const PetLearnMore = ({ onClose, id, isFavorite }) => {
               {phone === null ? (
                 <ContactBtn onClick={hadleContactBtnClick}>Contact</ContactBtn>
               ) : (
-                <Link to={phoneNumber}>
-                  <ContactBtn>Contact</ContactBtn>
-                </Link>
+                <ContactBtnLink to={phoneNumber}>Contact</ContactBtnLink>
               )}
 
               <ToFavoriteBtn
