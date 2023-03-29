@@ -5,6 +5,8 @@ import {Error, Correct } from './ValidationAddUserPet.styled';
 const nameValid = /^[^\s][a-zA-Zа-яіїєА-ЯІЇЄ.'-]*$/;
 const breedValid = /^[^\s][a-zA-Zа-яіїєА-ЯІЇЄ.'-]*$/;
 const birthdayValid = /^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
+// eslint-disable-next-line no-useless-escape
+const comentValid =/^[a-zA-Zа-яА-ЯіІїЇєЄґҐ][a-zA-Zа-яА-ЯіІїЇєЄґҐ'?,.\()-@!_\s]{7,119}$/;
 
 const validationRegisterStepOne = yup.object().shape({
   name: yup
@@ -30,30 +32,35 @@ const validationRegisterStepOne = yup.object().shape({
 });
 
 const validationRegisterStepTwo = yup.object().shape({
-  // photo: yup.string().required('Photo field is required'),
+  // photo: yup.nullable().required('Photo field is required'),
 
   comment: yup
     .string()
-    .matches(/^[a-zA-Zа-яіїєА-ЯІЇЄ.'-]{8,120}$/, 'Please enter min 8 characters and max 120')
-    .max(120, 'Please enter 120 characters or less')
-    .min(8, 'Enter 8 or more characters')
+    .matches(comentValid, 'Please enter min 7 characters and max 119')
+    .min(7, 'Enter 119 or more characters')
+    .max(119, 'Please enter 120 characters or less')
     .required('Comment field is required'),
 });
 
 
-const InputError = ({ name }) => {
+const InputError = ({ name,step }) => {
   return (
     <Error>
       <ErrorMessage
         name={name}
+        step={step}
         render={message => <p style={{ margin: 0 }}>{message}</p>}
       />
     </Error>
   );
 };
-const InputCorrect = ({name}) => {
+const InputCorrect = ({name,step}) => {
   return (
-    <Correct>
+    <Correct
+    step={step}
+    name={name} 
+    >
+       
       <p style={{ margin: 0 }}>{name}</p>
     </Correct>
   );
