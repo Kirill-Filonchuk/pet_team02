@@ -1,10 +1,12 @@
-import { Field } from 'formik';
+import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
+import { ErrorMessage, Field } from 'formik';
 import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './AddNoticeModal';
 import {
   BackButton,
   CommentDecription,
   CommentsField,
   CommentWrapper,
+  ErrorItem,
   FieldsSecondStep,
   Input,
   Label,
@@ -26,6 +28,7 @@ import {
   UploadLabel,
   UploadWrapper,
 } from './AddNoticeModal.styled';
+import ErrorMessages from './ErrorMessages';
 
 const SecondStepForm = ({
   step,
@@ -33,6 +36,11 @@ const SecondStepForm = ({
   onAvatarChange,
   onClickBack,
   avatarURL,
+  isAddingPet,
+  errors,
+  touched,
+  validateForm,
+  isFileNeeded,
 }) => {
   return (
     <div className={step !== 2 ? 'visually-hidden' : ''}>
@@ -63,17 +71,27 @@ const SecondStepForm = ({
             <SexLabel htmlFor="sex_female">Female</SexLabel>
           </SexItem>
         </SexList>
+        {errors.sex && touched.sex && <ErrorItem>{errors.sex}</ErrorItem>}
       </SexWrapper>
+
       <FieldsSecondStep>
         <Label>
           Location:
           <Input type="text" placeholder="Type location" name="place" />
+          <ErrorMessage
+            name="place"
+            render={msg => <ErrorItem>{msg}</ErrorItem>}
+          />
         </Label>
 
         {values.category === ADD_NOTICE_CATEGORIES.SELL && (
           <Label>
             Price:
             <Input type="text" placeholder="Type price" name="price" />
+            <ErrorMessage
+              name="price"
+              render={msg => <ErrorItem>{msg}</ErrorItem>}
+            />
           </Label>
         )}
       </FieldsSecondStep>
@@ -97,7 +115,9 @@ const SecondStepForm = ({
             onChange={onAvatarChange}
           />
         </UploadLabel>
+        {isFileNeeded && <ErrorItem>Please, attach image file</ErrorItem>}
       </UploadWrapper>
+
       <CommentWrapper>
         <CommentDecription>Comments</CommentDecription>
 
@@ -113,15 +133,23 @@ const SecondStepForm = ({
             );
           }}
         </Field>
-
+        <ErrorMessage
+          name="comments"
+          render={msg => <ErrorItem>{msg}</ErrorItem>}
+        />
         {/* </CommentsFieldContainer> */}
       </CommentWrapper>
       <ToolBar>
-        <NextButton type="submit">Done</NextButton>
+        <NextButton type="submit">
+          Done
+          {isAddingPet && <OvalSpinner />}
+        </NextButton>
         <BackButton type="button" onClick={onClickBack}>
           Back
         </BackButton>
       </ToolBar>
+
+      <ErrorMessages errors={errors} />
     </div>
   );
 };

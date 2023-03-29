@@ -13,7 +13,7 @@ const ButtonBack = styled(BtnFormSubmit)`
 
 const ButtonRegister = styled(BtnFormSubmit)`
   margin-top: 4px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 `;
 
 const LinkToLogin = styled(NavLink)`

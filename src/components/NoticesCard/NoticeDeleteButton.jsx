@@ -1,25 +1,29 @@
+// import { notifyError } from 'components/Helpers/Toastify';
 import ShouldDelete from 'components/Notifications/ShouldDelete';
 import Notify from 'components/Notify';
+import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
 import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import { useState } from 'react';
 import { HiTrash } from 'react-icons/hi';
-import { useDeleteNoticeMutation } from 'redux/notices/noticesApi';
 import { NoticeCardButton } from './NoticesCard.styled';
+import { useEffect } from 'react';
+import { notifyDeletePetError } from 'components/Helpers/Toastify';
 
-const NoticeDeleteButton = ({ id }) => {
+const NoticeDeleteButton = ({
+  id,
+  onDeleteNotice,
+  isDeleting,
+  deletingError,
+}) => {
   const [isNotifyOpen, setIsNotifyOpen] = useState(false);
   const { buttonRef, position } = useNotifyPosition();
 
-  const [deleteNotice] = useDeleteNoticeMutation();
-
-  const onDeleteNotice = async () => {
-    console.log('notice deleted');
-    try {
-      await deleteNotice(id);
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    if (deletingError) {
+      console.log(deletingError);
+      notifyDeletePetError('Something went wrong! Cannot delete pet');
     }
-  };
+  }, [deletingError]);
 
   return (
     <>
@@ -30,10 +34,16 @@ const NoticeDeleteButton = ({ id }) => {
         onClick={() => {
           setIsNotifyOpen(true);
         }}
+        // isDeleting={isDeleting}
+        disabled={isDeleting}
       >
-        Delete <HiTrash size={18} />
+        Delete
+        {isDeleting ? (
+          <OvalSpinner color="#ffffff" secondaryColor="#FF6101" />
+        ) : (
+          <HiTrash size={18} />
+        )}
       </NoticeCardButton>
-
       {isNotifyOpen && (
         <Notify
           position={position}
@@ -45,7 +55,9 @@ const NoticeDeleteButton = ({ id }) => {
             onClose={() => {
               setIsNotifyOpen(false);
             }}
-            onDelete={onDeleteNotice}
+            onDelete={() => {
+              onDeleteNotice(id);
+            }}
           />
         </Notify>
       )}

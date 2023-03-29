@@ -198,7 +198,12 @@ export default function UserData({ user }) {
               await dispatch(updateUser({ value }));
             }}
           ></UserDataItem>
-          <LogoutBtn onClick={async () => await dispatch(logOut())}>
+          <LogoutBtn
+            onClick={async () => {
+              await dispatch(logOut());
+              document.location.reload();
+            }}
+          >
             <LogoutIcon alt="logout user" src={logoutIcon} /> Log Out
           </LogoutBtn>
         </UserItemWrapper>
