@@ -79,7 +79,7 @@ background-size: 280px 480px, 1000px 650px;
   max-width: 1279px;
   height: 1350px;
   background-position: center top 360px, center 30px;
-  background-size: 600px 1000px, 1449px 1190px;
+  background-size: 540px 1000px, 1449px 1190px;
 
   @media (min-device-pixel-ratio: 2),
   (min-resolution: 192dpi),
