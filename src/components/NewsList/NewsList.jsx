@@ -7,6 +7,7 @@ import NewsCard from 'components/NewsCard';
 const NewsList = ({ notify, searchWord }) => {
   const [news, setNews] = useState([]);
   const [searchNews, setSearchNews] = useState([]);
+  const [notificationDisplayed, setNotificationDisplayed] = useState(false);
 
   useEffect(() => {
     const getNews = async () => {
@@ -33,22 +34,26 @@ const NewsList = ({ notify, searchWord }) => {
       item.title.toLowerCase().includes(searchWord.toLowerCase())
     );
     if (searchTitleNews.length > 0) {
+      setNotificationDisplayed(false);
       return setSearchNews(searchTitleNews);
     }
     const searchDescriptionNews = news.filter(item =>
       item.description.toLowerCase().includes(searchWord.toLowerCase())
     );
     if (searchDescriptionNews.length > 0) {
+      setNotificationDisplayed(false);
       return setSearchNews(searchDescriptionNews);
     }
     if (
       searchTitleNews.length === 0 &&
       searchDescriptionNews.length === 0 &&
-      searchWord
+      searchWord &&
+      !notificationDisplayed
     ) {
       notify('No news were found for your request');
+      setNotificationDisplayed(true);
     }
-  }, [notify, news, searchWord]);
+  }, [notify, news, searchWord, notificationDisplayed]);
 
   if (searchNews.length > 0) {
     return (
