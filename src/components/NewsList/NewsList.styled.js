@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from 'theme';
+import { GiCat } from 'react-icons/gi';
 
 export const List = styled('ul')`
   list-style: none;
@@ -30,5 +31,21 @@ export const Item = styled('li')`
 
   ${theme.mq.desktop} {
     flex-basis: calc((100% - 64px) / 3);
+  }
+`;
+
+export const IconContainer = styled('div')`
+  display: flex;
+  justify-content: center;
+`;
+
+export const CatIcon = styled(GiCat)`
+  color: ${theme.colors.black};
+  width: 50%;
+  height: 50%;
+
+  ${theme.mq.desktop} {
+    width: 30%;
+    height: 30%;
   }
 `;

@@ -16,6 +16,7 @@ import {
 import { useEffect, useState } from 'react';
 import { trimText } from 'utils/trimText';
 import defaultImage from 'assets/images/pets-default-image.jpg';
+import { calculateAge } from 'utils/ageCalculation';
 
 const NO_INFO = '-';
 
@@ -26,7 +27,8 @@ const NoticesCard = ({
   title,
   breed = NO_INFO,
   place = NO_INFO,
-  age = NO_INFO,
+  // age = NO_INFO,
+  birthday = NO_INFO,
   price = '',
   isMine = false,
   isFavorite = false,
@@ -59,7 +61,7 @@ const NoticesCard = ({
             options={[
               { key: 'Breed', value: trimText(breed, 13) },
               { key: 'Place', value: trimText(place, 13) },
-              { key: 'Age', value: age },
+              { key: 'Age', value: calculateAge(birthday) },
               { key: 'Price', value: price, isPrice: true },
             ]}
           />

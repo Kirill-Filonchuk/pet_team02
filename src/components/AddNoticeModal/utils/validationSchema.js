@@ -8,7 +8,12 @@ import {
 } from './constants';
 
 const commonSchema = {
-  title: yup.string().min(2).max(48).required(),
+  title: yup
+    .string()
+    .matches(namePattern, 'Name field can contain any letters')
+    .min(2)
+    .max(48)
+    .required(),
 
   name: yup
     .string()
@@ -82,3 +87,5 @@ const schemaWithPrice = {
 
 export const validationSchemaCommon = yup.object().shape(commonSchema);
 export const validationSchemaWithPrice = yup.object().shape(schemaWithPrice);
+
+//test
