@@ -41,6 +41,11 @@ export const IconContainer = styled('div')`
 
 export const CatIcon = styled(GiCat)`
   color: ${theme.colors.black};
-  width: 20%;
-  height: 20%;
+  width: 50%;
+  height: 50%;
+
+  ${theme.mq.desktop} {
+    width: 30%;
+    height: 30%;
+  }
 `;
