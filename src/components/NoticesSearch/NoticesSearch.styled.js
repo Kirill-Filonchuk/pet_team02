@@ -54,6 +54,8 @@ export const IconButton = styled('button')`
   top: 50%;
   transform: translateY(-50%);
 
+  color: #000000;
+
   background-color: transparent;
   border: none;
 

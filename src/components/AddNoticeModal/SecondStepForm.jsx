@@ -1,6 +1,5 @@
 import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
 import { ErrorMessage, Field } from 'formik';
-import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './AddNoticeModal';
 import {
   BackButton,
   CommentDecription,
@@ -28,7 +27,8 @@ import {
   UploadLabel,
   UploadWrapper,
 } from './AddNoticeModal.styled';
-import ErrorMessages from './ErrorMessages';
+import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './utils/constants';
+// import ErrorMessages from './ErrorMessages';
 
 const SecondStepForm = ({
   step,
@@ -37,11 +37,11 @@ const SecondStepForm = ({
   onClickBack,
   avatarURL,
   isAddingPet,
-  errors,
-  touched,
-  validateForm,
   isFileNeeded,
+  formik,
 }) => {
+  const { errors, touched } = formik;
+
   return (
     <div className={step !== 2 ? 'visually-hidden' : ''}>
       <Title>Add pet</Title>
@@ -84,16 +84,25 @@ const SecondStepForm = ({
           />
         </Label>
 
+        {/* className=
+        {values.category !== ADD_NOTICE_CATEGORIES.SELL && 'visually-hidden'} */}
+
         {values.category === ADD_NOTICE_CATEGORIES.SELL && (
           <Label>
             Price:
-            <Input type="text" placeholder="Type price" name="price" />
-            <ErrorMessage
+            <Input
+              type="text"
+              placeholder="Type price"
               name="price"
-              render={msg => <ErrorItem>{msg}</ErrorItem>}
+              // onChange={formik.handleChange}
+              // value={formik.values.price}
             />
           </Label>
         )}
+        <ErrorMessage
+          name="price"
+          render={msg => <ErrorItem>{msg}</ErrorItem>}
+        />
       </FieldsSecondStep>
       <UploadWrapper>
         <UploadDescription>Load the pet’s image:</UploadDescription>
@@ -149,7 +158,7 @@ const SecondStepForm = ({
         </BackButton>
       </ToolBar>
 
-      <ErrorMessages errors={errors} />
+      {/* <ErrorMessages errors={errors} /> */}
     </div>
   );
 };
