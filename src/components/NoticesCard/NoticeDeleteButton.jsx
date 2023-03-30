@@ -1,8 +1,6 @@
 // import { notifyError } from 'components/Helpers/Toastify';
 import ShouldDelete from 'components/Notifications/ShouldDelete';
-import Notify from 'components/Notify';
 import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
-import { useNotifyPosition } from 'hooks/useNotifyPosition';
 import { useState } from 'react';
 import { HiTrash } from 'react-icons/hi';
 import {
@@ -20,7 +18,6 @@ const NoticeDeleteButton = ({
   deletingError,
 }) => {
   const [isNotifyOpen, setIsNotifyOpen] = useState(false);
-  const { buttonRef, position } = useNotifyPosition();
 
   useEffect(() => {
     if (deletingError) {
@@ -32,7 +29,6 @@ const NoticeDeleteButton = ({
   return (
     <>
       <NoticeCardButton
-        ref={buttonRef}
         type="button"
         isDelete
         onClick={() => {
