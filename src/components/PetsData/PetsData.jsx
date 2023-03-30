@@ -30,7 +30,6 @@ const PetsData = () => {
     }
   }, [openModal]);
 
-  // const loading = true;
   if (!data) {
     return;
   }
@@ -66,17 +65,6 @@ const PetsData = () => {
       )}
       {pets.length > 0 && <PetsList pets={pets} />}
       {pets.length === 0 && <Pictures>You don't have any pets added.</Pictures>}
-      {/* {loading && (
-        <LoaderUser>
-          <ThreeDots
-            height="100"
-            width="100"
-            radius="9"
-            color={'rgb(245, 146, 86)'}
-          />
-        </LoaderUser>
-      )} */}
-      {/* {error && <p>Oops!</p>} */}
     </Wrapper>
   );
 };

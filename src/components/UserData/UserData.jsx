@@ -1,9 +1,9 @@
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { RotatingLines } from 'react-loader-spinner';
-
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { RotatingLines } from 'react-loader-spinner';
+import 'react-toastify/dist/ReactToastify.css';
+
 import useAuth from 'hooks/useAuth/useAuth';
 
 import UserDataItem from '../UserDataItem/UserDataItem';
@@ -107,18 +107,6 @@ export default function UserData({ user }) {
               <EditText>Edit photo</EditText>
             </EditImageBtn>
           </InputWrapper>
-          {/* {avatarError ? (
-            <div
-              style={{
-                color: 'red',
-                fontSize: '.7rem',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-              }}
-            >
-              {avatarError}
-            </div>
-          ) : null} */}
         </ImageContainer>
 
         {isPending && (

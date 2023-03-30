@@ -1,6 +1,6 @@
-import { Item, List } from './OurFriendsList.styled';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Item, List } from './OurFriendsList.styled';
 import OurFriendsCard from 'components/OurFriendsCard';
 
 const OurFriendsList = () => {

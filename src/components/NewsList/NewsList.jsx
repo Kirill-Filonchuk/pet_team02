@@ -1,7 +1,7 @@
-import { Item, List, CatIcon, IconContainer } from './NewsList.styled';
 import { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import axios from 'axios';
+import { Item, List, CatIcon, IconContainer } from './NewsList.styled';
 import NewsCard from 'components/NewsCard';
 
 const NewsList = ({ searchWord }) => {

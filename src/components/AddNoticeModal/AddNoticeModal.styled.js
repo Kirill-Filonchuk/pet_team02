@@ -56,14 +56,12 @@ export const Description = styled('p')`
 `;
 
 export const CategoryList = styled('ul')`
-  /* margin-bottom: 32px; */
   display: flex;
   flex-wrap: wrap;
   column-gap: 8px;
   row-gap: 12px;
 
   ${theme.mq.tablet} {
-    /* margin-bottom: 28px; */
     column-gap: 12px;
     row-gap: 16px;
   }
@@ -106,7 +104,6 @@ export const FieldsFirstStep = styled('div')`
 `;
 
 export const Label = styled('label')`
-  /* position: relative; */
   display: block;
   margin-bottom: 16px;
   font-weight: ${p => p.theme.fontWeights.medium};
@@ -185,9 +182,6 @@ export const BackButton = styled(ModalButton)`
 `;
 
 //----------------------------------------STEP 2------------------------------------
-//----------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------
 
 export const SexWrapper = styled('div')``;
 
@@ -200,12 +194,10 @@ export const SexTitle = styled(FieldLabel)`
 `;
 
 export const SexList = styled('ul')`
-  /* margin-bottom: 32px; */
   display: flex;
   column-gap: 40px;
 
   ${theme.mq.tablet} {
-    /* margin-bottom: 40px; */
     column-gap: 80px;
   }
 `;
@@ -236,7 +228,6 @@ export const SexLabel = styled('label')`
     width: 40px;
     height: 40px;
 
-    /* background-color: black; */
     background-image: url(${p => (p.isMale ? maleIcon : femaleIcon)});
     background-repeat: no-repeat;
     background-position: center;
@@ -350,13 +341,11 @@ export const CommentDecription = styled(FieldLabel)`
 `;
 
 export const CommentsFieldContainer = styled('div')`
-  /* min-height: 40px; */
   height: ${p => p.height} ${theme.mq.tablet} {
-    /* min-height: 113px; */
+
   }
 `;
 
-// export const CommentsField = styled(Field)`
 export const CommentsField = styled('textarea')`
   resize: vertical;
   margin: 0;
@@ -364,9 +353,6 @@ export const CommentsField = styled('textarea')`
 
   width: 100%;
   min-height: 40px;
-  /* height: 40px; */
-  /* height: 100%; */
-  /* height: calc(${p => p.textLength}px + 40px); */
 
   font-size: 14px;
   color: rgba(27, 27, 27, 0.6);
@@ -398,7 +384,6 @@ export const ErrorWrapper = styled('ul')`
 `;
 
 export const ErrorItem = styled('p')`
-  /* position: absolute; */
   margin-top: 10px;
   color: red;
   padding-left: 20px;

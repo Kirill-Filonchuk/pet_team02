@@ -28,11 +28,9 @@ import {
   UploadWrapper,
 } from './AddNoticeModal.styled';
 import { ADD_NOTICE_CATEGORIES, ADD_NOTICE_GENDER } from './utils/constants';
-// import ErrorMessages from './ErrorMessages';
 
 const SecondStepForm = ({
   step,
-  // values,
   onAvatarChange,
   onClickBack,
   avatarURL,
@@ -84,19 +82,10 @@ const SecondStepForm = ({
           />
         </Label>
 
-        {/* className=
-        {values.category !== ADD_NOTICE_CATEGORIES.SELL && 'visually-hidden'} */}
-
         {values.category === ADD_NOTICE_CATEGORIES.SELL && (
           <Label>
             Price:
-            <Input
-              type="text"
-              placeholder="Type price"
-              name="price"
-              // onChange={formik.handleChange}
-              // value={formik.values.price}
-            />
+            <Input type="text" placeholder="Type price" name="price" />
             <ErrorMessage
               name="price"
               render={msg => <ErrorItem>{msg}</ErrorItem>}
@@ -146,7 +135,6 @@ const SecondStepForm = ({
           name="comments"
           render={msg => <ErrorItem>{msg}</ErrorItem>}
         />
-        {/* </CommentsFieldContainer> */}
       </CommentWrapper>
       <ToolBar>
         <NextButton type="submit" disabled={isAddingPet}>
@@ -157,12 +145,8 @@ const SecondStepForm = ({
           Back
         </BackButton>
       </ToolBar>
-
-      {/* <ErrorMessages errors={errors} /> */}
     </div>
   );
 };
 
 export default SecondStepForm;
-
-//test

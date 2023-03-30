@@ -1,12 +1,12 @@
-import CommonModal from 'components/UIKit/CommonModal';
-import AddNoticeForm from './AddNoticeForm';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { AddPetWrapper } from './AddNoticeModal.styled';
 import { Formik } from 'formik';
-import { useAddNoticeMutation } from 'redux/notices/noticesApi';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from 'router';
+import CommonModal from 'components/UIKit/CommonModal';
+import AddNoticeForm from './AddNoticeForm';
+import { AddPetWrapper } from './AddNoticeModal.styled';
+import { useAddNoticeMutation } from 'redux/notices/noticesApi';
 import { StorageService } from 'Services/storageService';
 import { ADD_NOTICE_CATEGORIES, initialValues } from './utils/constants';
 import {
@@ -31,8 +31,6 @@ const AddNoticeModal = ({ onClose, isOpen }) => {
     setIsPriceSchema(isSellCategory);
   };
   //TOGGLE VALIDATION SCHEMA
-
-  // console.log(getFromStorage());
 
   const onSubmitHandler = async (values, actions) => {
     const data = { ...values, image: petAvatarURL };
@@ -123,5 +121,3 @@ const AddNoticeModal = ({ onClose, isOpen }) => {
 };
 
 export default AddNoticeModal;
-
-//test

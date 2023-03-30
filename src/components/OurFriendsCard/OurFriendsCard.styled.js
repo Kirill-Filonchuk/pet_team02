@@ -29,9 +29,7 @@ export const TitleLink = styled('a')`
   &:hover {
     transform: scaleX(1.05);
   }
-  ${theme.mq.tablet} {
-    // margin-bottom: 16px;
-  }
+
   ${theme.mq.desktop} {
     font-size: 20px;
   }
@@ -141,8 +139,6 @@ export const HoursItem = styled('li')`
 `;
 
 export const HoursContainer = styled('div')`
-  // display: flex;
-  // justify-content: space-between;
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: space-between;

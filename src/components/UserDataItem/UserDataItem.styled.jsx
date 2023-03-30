@@ -6,14 +6,13 @@ import { ReactComponent as LogoDone } from '../../images/userData/done-icon.svg'
 import { theme } from 'theme';
 
 export const Wrapper = styled.div`
-  /* position: relative; */
   display: flex;
   align-items: center;
   height: 24px;
   margin-bottom: 8px;
   ${theme.mq.tablet} {
     width: auto;
-    /* margin-bottom: 15px; */
+
     height: 32px;
   }
   ${theme.mq.desktop} {
@@ -50,13 +49,12 @@ export const StyledValue = styled.p`
   padding: 4px 0 4px 24px;
   max-width: 160px;
   width: 100%;
-  /* overflow: hidden;  */
 
   ${theme.mq.tablet} {
     margin-left: 24px;
     font-size: ${p => p.theme.fontSizes[3]}px;
     line-height: 1.39;
-    /* width: 250px; */
+
     padding: 4px 0 4px 12px;
     max-width: 216px;
     width: 100%;
@@ -66,7 +64,7 @@ export const StyledValue = styled.p`
 export const StyledInput = styled(Field)`
   margin-left: 0;
   width: 160px;
-  /* height: 24px; */
+
   padding: 4px 2px 4px 16px;
   color: ${p => p.theme.colors.black};
   background: ${p => p.theme.colors.background};
@@ -77,7 +75,6 @@ export const StyledInput = styled(Field)`
   line-height: 1.33;
   outline: none;
   letter-spacing: 0.04em;
-  /* position: relative; */
 
   margin-left: 7.2px;
 
@@ -92,8 +89,7 @@ export const StyledInput = styled(Field)`
     margin-left: 23.2px;
     max-width: 216px;
     width: 100%;
-    /* width: 216px; */
-    /* height: 32px; */
+
     padding: 4px 0 4px 12px;
   }
 `;

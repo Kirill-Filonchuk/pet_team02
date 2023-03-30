@@ -32,7 +32,7 @@ export const deletePet = createAsyncThunk(
   'pets/deletePet',
   async (_id, thunkAPI) => {
     console.log('deletePet', _id);
-    
+
     try {
       const { data } = await api.delete(`api/pets/${_id}`);
       console.log(data);
@@ -59,8 +59,8 @@ export const refreshUserPets = createAsyncThunk(
       // If there is a token, add it to the HTTP header and perform the request
       // setAuthHeader(persistedToken);
       const { data } = await api.get('/api/user-pets');
-      console.log("refreshUserPets---->",data);
-          return data.result.pets;
+      console.log('refreshUserPets---->', data);
+      return data.result.pets;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

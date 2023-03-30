@@ -5,47 +5,20 @@ export const PetsTitle = styled.h2`
   font-weight: 500;
   font-size: 20px;
   line-height: 1.35;
-  /* width: 87px; */
-  /* margin-bottom: 24px; */
 
   @media screen and (min-width: 768px) {
     font-size: 28px;
     line-height: 1.375;
-    /* width: 113px; */
-    /* font-size: 28px; */
-    /* margin-bottom: 32px; */
-    /* margin-left: 33px; */
   }
   @media screen and (min-width: 1280px) {
     font-size: 28px;
     line-height: 1.375;
-    /* width: 207px; */
-    /* margin-bottom: 24px; */
-    /* margin-left: 0px; */
   }
 `;
 
 export const ButtonWrapper = styled.div`
-  /* position: absolute; */
-  /* top: 0px; */
-  /* right: 0; */
   display: flex;
   align-items: center;
-  /* margin-bottom: 31px; */
-  /* margin-top: -6px; */
-
-  @media screen and (min-width: 768px) {
-    /* position: absolute; */
-    /* top: 0px; */
-    /* right: 0; */
-    /* margin-top: 0; */
-  }
-  @media screen and (min-width: 1280px) {
-    /* position: absolute; */
-    /* top: 0px; */
-    /* right: 0px; */
-    /* margin-top: 0; */
-  }
 `;
 
 export const ButtonTitle = styled.h3`
@@ -53,7 +26,7 @@ export const ButtonTitle = styled.h3`
   font-weight: 500;
   font-size: 20px;
   line-height: 1.35;
-  /* width: 73px; */
+
   margin-right: 15px;
 `;
 
@@ -84,13 +57,6 @@ export const Wrapper = styled.div`
   width: inherit;
   display: flex;
   flex-direction: column;
-
-  @media screen and (min-width: 768px) {
-    /* display: flex;
-    justify-content: center; */
-  }
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
 export const StyledButtonSection = styled.div`
@@ -122,10 +88,5 @@ export const Pictures = styled.div`
   }
 `;
 export const LoaderUser = styled.div`
-  /* position: absolute;
-  top: 20px;
-  left: 50%;
-  z-index: 999;
-  transform: translateX(-50%); */
   margin: auto;
 `;

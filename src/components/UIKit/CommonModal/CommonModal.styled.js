@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { theme } from 'theme';
 
 export const ModalContainer = styled('div')`
-  /* max-height: 100%; */
-
   position: absolute;
   top: 50%;
   left: 50%;

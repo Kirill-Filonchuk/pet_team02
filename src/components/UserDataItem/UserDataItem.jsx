@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Form, Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { parse, isDate } from 'date-fns';
-// import { toast } from 'react-toastify';
 
 import {
   BtnImage,
@@ -49,7 +48,6 @@ const citySchema = yup.object({
       /^(?=[a-zA-Zа-яіїєА-ЯІЇЄ])[a-zA-Zа-яіїєА-ЯІЇЄ'-]+,\s[a-zA-Zа-яіїєА-ЯІЇЄ'-]+$/,
       'Only in format "City, Region"'
     ),
-  // .required('Field is required!'),
 });
 const phoneSchema = yup.object({
   phone: yup
@@ -136,13 +134,6 @@ export default function UserDataItem({
     >
       {({ values, handleSubmit, errors, touched }) => (
         <Form>
-          {/* <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              position: 'relative',
-            }}
-          > */}
           <Wrapper>
             <FieldText>{capitalize(field)}:</FieldText>
             {isEdit ? (
@@ -203,11 +194,10 @@ export default function UserDataItem({
                 }}
               >
                 {msg}
-                {/* {toast.error(msg, { autoClose: 3000 })} */}
               </div>
             )}
           />
-          {/* </div> */}
+
           {!errors[field] &&
           values[field] !== '' &&
           touched[field] &&

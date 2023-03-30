@@ -10,12 +10,9 @@ const Section = styled.section`
 
   ${theme.mq.tablet} {
     width: 608px;
-    /* max-height: 662px; */
+    
   }
-  /* ${theme.mq.desktop} {
-    width: 100%;
-    max-height: 100%;
-  } ; */
+ 
 `;
 
 const Wrapper = styled.div`
@@ -80,7 +77,7 @@ const Label = styled.label`
   font-size: ${theme.fontSizes[3] + 'px'};
 
   & :not(:last-child) {
-    /* margin-bottom: 28px; */
+    
   }
 
   ${theme.mq.tablet} {
@@ -168,25 +165,22 @@ const WrapperPhoto = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-  /* margin-bottom: 20px; */
-
+ 
   background-color: ${theme.colors.background};
   border: ${theme.borders.normal} ${theme.colors.borderActive};
 
   border-radius: ${theme.radii.normal};
   outline: none;
-
-  /* transition-property: ; */
+  
   transition-duration: ${theme.transitions.durations.default};
   transition-timing-function: ${theme.transitions.functions.default};
 
   ${theme.mq.tablet} {
     width: 182px;
     height: 182px;
-    /* margin-bottom: 40px; */
+   
   }
-  /* ${theme.mq.desktop} {
-  } */
+ 
 `;
 
 const LabelFile = styled.label`
@@ -200,18 +194,13 @@ const LabelFile = styled.label`
   align-items: center;
   justify-content: center;
 
-  /* cursor: pointer; */
-  /* display: flex; */
-  /* top:50%; */
-  /* left:50% */
-  /* transform: translate(-50%, -50%); */
 `;
 
 const Plus = styled(plus)`
   display: flex;
-  /* position: absolute; */
+  
   cursor: pointer;
-  /* transform: translate(120%, 120%); */
+  
 `;
 
 const InputFile = styled(Field)`
@@ -300,10 +289,7 @@ const Textarea = styled(Field)`
     padding-top: 16px;
     padding-left: 16px;
   }
-  ${theme.mq.desktop} {
-    /* font-size: ${theme.fontSizes[3] + 'px'}; */
-    /* line-height: ${theme.lineHeights[5]}; */
-  }
+ 
 `;
 
 const WraperBtn = styled.div`
@@ -312,20 +298,12 @@ const WraperBtn = styled.div`
   flex-direction: column-reverse;
 
   ${theme.mq.tablet} {
-    /* margin-top: 12px; */
-    /* display: flex; */
+   
     flex-direction: row;
     justify-content: space-around;
-    /* gap: 20px; */
-    /* height: 44px; */
+   
   }
-  ${theme.mq.desktop} {
-    /* margin-top: 12px; */
-    /* display: flex; */
-    /* align-items: flex-end; */
-    /* gap: 24px; */
-    /* height: 44px; */
-  }
+ 
 `;
 
 const BtnFormSubmit = styled.button`

@@ -1,12 +1,8 @@
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
-// import NoticesPage from 'pages/NoticesPage';
+
 import { createBrowserRouter } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
-// import HomePage from './pages/HomePage/HomePage';
-// import NewsPage from './pages/NewsPage/NewsPage';
-// import OurFriendsPage from './pages/OurFriendsPage/OurFriendsPage';
-// import RegisterPage from './pages/RegisterPage/RegisterPage';
-// import LoginPage from './pages/LoginPage/LoginPage';
+
 import { lazy } from 'react';
 import PrivateRoute from 'components/PrivateRoute';
 import RestrictedRoute from 'components/RestrictedRoute';

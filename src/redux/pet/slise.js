@@ -9,7 +9,7 @@ const petSlice = createSlice({
     error: null,
   },
   extraReducers: {
-  // FetchPets
+    // FetchPets
     [fetchPets.pending](state) {
       state.isLoading = true;
     },
@@ -22,12 +22,11 @@ const petSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-// AddPet
+    // AddPet
     [addPet.pending](state, action) {
       state.isLoading = true;
     },
     [addPet.fulfilled](state, action) {
-      // console.log('add fulfilled----->', action.payload);
       state.items = action.payload;
       state.isLoading = false;
       state.error = null;
@@ -36,18 +35,13 @@ const petSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-// DeletePet
+    // DeletePet
     [deletePet.pending](state) {
       state.isLoading = true;
     },
 
     [deletePet.fulfilled](state, action) {
-      console.log("stateDelete",state.items);
-      // console.log(action.payload);
-      // const index = state.items.findIndex(
-        // item => item._id === action.payload._id
-           
-      // state.items;
+      console.log('stateDelete', state.items);
 
       state.isLoading = false;
       state.error = null;
@@ -56,7 +50,7 @@ const petSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-// RefreshPets
+    // RefreshPets
     [refreshUserPets.pending](state, action) {
       state.isLoading = true;
       state.error = null;

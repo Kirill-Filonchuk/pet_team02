@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useSpring, animated, useTransition } from '@react-spring/web';
-// import PetLearnMore from './PetLearnMore';
-import { Overlay, ModalWrapper } from "./ModalAddUserPet.styled";
-// import  RegisterForm  from  "../AddUserPetForm";
+
+import { Overlay, ModalWrapper } from './ModalAddUserPet.styled';
+
 import { EscButton } from 'components/UIKit/EscButton/EscButton.styled';
 import { RxCross1 } from 'react-icons/rx';
 import AddUserPetForm from '../AddUserPetForm';
 
-
 const modalRoot = document.querySelector('#modal-root');
-
 
 const ModalAddUserPet = ({ isOpen, onClose, id }) => {
   useEffect(() => {
@@ -51,9 +49,9 @@ const ModalAddUserPet = ({ isOpen, onClose, id }) => {
             onClick={e => e.stopPropagation()}
           >
             <EscButton type="button" onClick={onClose}>
-        <RxCross1 />
-      </EscButton>
-          <AddUserPetForm onClose={onClose}></AddUserPetForm>
+              <RxCross1 />
+            </EscButton>
+            <AddUserPetForm onClose={onClose}></AddUserPetForm>
           </ModalWrapper>
         </Overlay>,
         modalRoot

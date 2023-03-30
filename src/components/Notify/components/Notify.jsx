@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Backdrop from 'components/UIKit/Backdrop';
 import { useModal } from 'hooks/useModal';
 import { useWindowSize } from 'hooks/useWindowSize';
-import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
 import { positionCalculation } from '../utils/positionCalculation';
 import { Card, CloseButton, CloseIcon } from './Notify.styled';
 

@@ -77,9 +77,7 @@ const PetLearnMore = ({ onClose, id, isFavorite }) => {
   };
 
   const hadleContactBtnClick = () => {
-    if (phone === null) {
-      toast.error('Please use the email for contact');
-    }
+    toast.error('Please use the email for contact');
   };
 
   return (
@@ -165,7 +163,7 @@ const PetLearnMore = ({ onClose, id, isFavorite }) => {
             </PetComment>
 
             <BtnWrapper>
-              {phone === null ? (
+              {phone === '' ? (
                 <ContactBtn onClick={hadleContactBtnClick}>Contact</ContactBtn>
               ) : (
                 <ContactBtnLink to={phoneNumber}>Contact</ContactBtnLink>

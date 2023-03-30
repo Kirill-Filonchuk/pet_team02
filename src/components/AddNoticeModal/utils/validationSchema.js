@@ -69,16 +69,6 @@ const commonSchema = {
     ])
     .required(),
 
-  // showPrice: yup.boolean(),
-  // price: yup.string().when('showPrice', {
-  //   is: showPrice => showPrice === true,
-  //   then: yup
-  //     .string()
-  //     .matches(/^(?!0)\d+$/, 'must be an integer and not starts with zero')
-  //     .required(),
-  // }),
-
-  // avatar: yup.mixed().required('File is required - che'),
   comments: yup.string().min(8).max(120).required(),
 };
 
@@ -93,5 +83,3 @@ const schemaWithPrice = {
 
 export const validationSchemaCommon = yup.object().shape(commonSchema);
 export const validationSchemaWithPrice = yup.object().shape(schemaWithPrice);
-
-//test

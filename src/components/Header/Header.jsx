@@ -48,7 +48,7 @@ export const Header = () => {
             </LinkAuthTablet>
           </AuthNavigateTablet>
         )}
-        <MenuBtn onClick={toggle}>
+        <MenuBtn onClick={toggle} aria-label="mobile menu">
           {isOpen ? <GrClose size={30} /> : <HiMenu size={40} />}
         </MenuBtn>
         {isOpen && (
