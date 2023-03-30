@@ -17,6 +17,20 @@ export const ModalContainer = styled('div')`
   ${theme.mq.mobileOnly} {
     border-radius: ${p => p.theme.radii.small};
   }
+
+  animation-name: appearance-animation;
+  animation-duration: 800ms;
+  animation-timing-function: ${p => p.theme.transitions.functions.default};
+
+  @keyframes appearance-animation {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 export const CloseButton = styled('button')`

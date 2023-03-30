@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Button } from 'components/UIKit/Button/Button.styled';
+import { theme } from 'theme';
 
 export const Article = styled('article')`
   position: relative;
@@ -143,4 +144,20 @@ export const Favorite = styled('button')`
   backdrop-filter: blur(2px);
   border: none;
   border-radius: 50%;
+`;
+
+export const DeleteNotificationWrapper = styled('div')`
+  padding: 70px 20px 20px 20px;
+  min-height: 150px;
+  min-width: 280px;
+  max-width: 450px;
+
+  background-color: ${p => p.theme.colors.white};
+  border: 2px solid ${p => p.theme.colors.accent};
+  border-radius: ${p => p.theme.radii.small};
+
+  ${theme.mq.mobileOnly} {
+    padding: 60px 16px 16px 20px;
+    width: 280px;
+  }
 `;
