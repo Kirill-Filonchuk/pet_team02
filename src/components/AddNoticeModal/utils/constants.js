@@ -22,7 +22,8 @@ export const initialValues = {
   // showPrice: false,
 };
 
-export const namePattern = /^[a-zA-zа-яіїєА-ЯІЇЄ ,.'-][^\\_]+$/;
+// export const namePattern = /^[a-zA-zа-яіїєА-ЯІЇЄ ,.'-][^\\_]+$/;
+export const namePattern = /^[\p{L} ,.'-]+$/u;
 export const breedPattern = /^[^\s][a-zA-Zа-яіїєА-ЯІЇЄ.'-]*$/;
 
 export const locationPattern =
