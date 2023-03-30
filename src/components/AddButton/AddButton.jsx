@@ -58,6 +58,7 @@ const AddButton = ({
           onClose={() => {
             setIsNotifyOpen(false);
           }}
+          isOpen={isNotifyOpen}
         >
           <ShouldLogin />
         </Notify>

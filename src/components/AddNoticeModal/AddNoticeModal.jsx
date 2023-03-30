@@ -17,7 +17,7 @@ import {
 const modalRoot = document.querySelector('#modal-root');
 const noticeStorage = new StorageService('add-notice-fields');
 
-const AddNoticeModal = ({ onClose }) => {
+const AddNoticeModal = ({ onClose, isOpen }) => {
   const navigate = useNavigate();
   const [addPet, { isLoading: isAddingPet }] = useAddNoticeMutation();
 
@@ -82,7 +82,7 @@ const AddNoticeModal = ({ onClose }) => {
 
   return createPortal(
     <>
-      <CommonModal onClose={onClose}>
+      <CommonModal onClose={onClose} isOpen={isOpen}>
         <AddPetWrapper>
           <Formik
             initialValues={noticeStorage.getStorageValue() || initialValues}

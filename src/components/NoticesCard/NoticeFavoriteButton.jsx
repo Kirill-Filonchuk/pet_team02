@@ -25,6 +25,7 @@ const NoticeFavoriteButton = ({ isFavorite, onClick, isLoggedIn }) => {
           onClose={() => {
             setIsNotifyOpen(false);
           }}
+          isOpen={isNotifyOpen}
         >
           <ShouldLogin />
         </Notify>

@@ -98,6 +98,7 @@ const Notices = () => {
           onClose={() => {
             setIsAddModalOpen(false);
           }}
+          isOpen={isAddModalOpen}
         />
       )}
 
