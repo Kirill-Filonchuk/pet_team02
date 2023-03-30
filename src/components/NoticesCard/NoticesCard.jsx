@@ -27,7 +27,6 @@ const NoticesCard = ({
   title,
   breed = NO_INFO,
   place = NO_INFO,
-  // age = NO_INFO,
   birthday = NO_INFO,
   price = '',
   isMine = false,
@@ -47,9 +46,6 @@ const NoticesCard = ({
       document.body.style.overflow = 'unset';
     }
   }, [openModal]);
-
-  // console.log(calculateAge(birthday));
-  // console.log(birthday);
 
   return (
     <>
