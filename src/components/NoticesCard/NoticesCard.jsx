@@ -60,7 +60,7 @@ const NoticesCard = ({
             options={[
               { key: 'Breed', value: trimText(breed, 13) },
               { key: 'Place', value: trimText(place, 13) },
-              { key: 'Age', value: calculateAge(birthday) },
+              { key: 'Age', value: trimText(calculateAge(birthday), 13) },
               { key: 'Price', value: price, isPrice: true },
             ]}
           />
