@@ -78,6 +78,8 @@ const NoticesCategoriesList = () => {
   //GET TOTAL ITEM FOR PAGINATION
   const petsTotalItem = data?.total;
 
+  console.log(data);
+
   return (
     <section>
       <Container>

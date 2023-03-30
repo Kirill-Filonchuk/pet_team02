@@ -48,6 +48,9 @@ const NoticesCard = ({
     }
   }, [openModal]);
 
+  // console.log(calculateAge(birthday));
+  // console.log(birthday);
+
   return (
     <>
       <Article>

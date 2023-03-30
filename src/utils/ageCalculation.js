@@ -1,5 +1,8 @@
 export const calculateAge = dateString => {
-  const date = new Date(dateString);
+  const [day, month, year] = dateString.split('.');
+  const isoDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+
+  const date = new Date(isoDate);
   const today = new Date();
   const diffInMs = today.getTime() - date.getTime();
   const diffInMonths = Math.round(diffInMs / 2628000000);
