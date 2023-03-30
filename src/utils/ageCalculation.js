@@ -12,9 +12,11 @@ export const calculateAge = dateString => {
   let result = '';
 
   if (diffInYears === 1) {
-    result = 'one year';
+    // result = 'one year';
+    return 'one year';
   } else if (diffInYears > 1) {
-    result = `${diffInYears} years`;
+    // result = `${diffInYears} years`;
+    return `${diffInYears} years`;
   }
 
   if (remainingMonths === 1) {
