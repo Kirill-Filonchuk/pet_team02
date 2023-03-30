@@ -14,8 +14,6 @@ export const LoaderBox = styled('div')`
   top: -40px;
   left: 0;
   width: 100%;
-  /* height: 20px; */
-  /* background-color: grey; */
 
   ${theme.mq.mobileOnly} {
     top: -25px;

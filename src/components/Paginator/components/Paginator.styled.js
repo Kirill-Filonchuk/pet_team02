@@ -43,7 +43,7 @@ export const PagButton = styled('button')`
       case 'current':
         return css`
           flex-shrink: 0;
-          /* border: 2px solid ${p => p.theme.colors.accent}; */
+
           background-color: ${p => p.theme.colors.accent};
           color: ${p => p.theme.colors.white};
         `;
@@ -59,7 +59,6 @@ export const PagButton = styled('button')`
   transition-timing-function: ${p => p.theme.transitions.functions.default};
 
   &:hover {
-    /* background-color: rgba(0, 0, 0, 0.02); */
     background-color: ${p =>
       p.type === 'current' ? p.theme.colors.accent : 'rgba(245, 146, 86, 0.2)'};
   }

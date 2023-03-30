@@ -1,8 +1,7 @@
-import FirstStepForm from './FirstStepForm';
+import { useState, useEffect } from 'react';
 import { Form, useFormikContext } from 'formik';
-import { useState } from 'react';
+import FirstStepForm from './FirstStepForm';
 import SecondStepForm from './SecondStepForm';
-import { useEffect } from 'react';
 
 const AddNoticeForm = ({
   onClose,
@@ -55,5 +54,3 @@ const AddNoticeForm = ({
 };
 
 export default AddNoticeForm;
-
-//test

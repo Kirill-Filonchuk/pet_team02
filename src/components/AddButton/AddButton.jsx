@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import ShouldLogin from 'components/Notifications/ShouldLogin/ShouldLogin';
 import Notify from 'components/Notify';
 import { useNotifyPosition } from 'hooks/useNotifyPosition';
-import PropTypes from 'prop-types';
-import { useState } from 'react';
 import {
   AddButtonStyled,
   AddButtonText,

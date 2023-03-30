@@ -49,10 +49,8 @@ const FirstStepForm = ({
 
   useEffect(() => {
     if (values.category === ADD_NOTICE_CATEGORIES.SELL) {
-      // setFieldValue('showPrice', true);
       handleSwitchSchema(true);
     } else {
-      // setFieldValue('showPrice', false);
       handleSwitchSchema(false);
     }
   }, [handleSwitchSchema, values.category]);
@@ -152,7 +150,6 @@ const FirstStepForm = ({
             }
           }}
         >
-          {/* <NextButton type="button" onClick={onClickNext}> */}
           Next
         </NextButton>
         <BackButton
@@ -169,5 +166,3 @@ const FirstStepForm = ({
 };
 
 export default FirstStepForm;
-
-//test

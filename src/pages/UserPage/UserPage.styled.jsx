@@ -4,16 +4,15 @@ import { theme } from 'theme';
 export const MainContainer = styled.div`
   width: 320px;
   margin: 0 auto;
-  /* padding: 0 20px; */
+
   ${theme.mq.tablet} {
     width: 768px;
-    /* padding: 0 32px; */
+
     margin: 0;
   }
 
   @${theme.mq.desktop} {
     width: 1280px;
-    /* padding: 0 16px; */
   }
 `;
 
@@ -39,16 +38,9 @@ export const UserContainer = styled.div`
 
 export const UserWrapper = styled.div`
   ${theme.mq.tablet} {
-    /* position: relative;
-    top: 0;
-    left: -32px; */
     margin-left: -32px;
   }
   ${theme.mq.desktop} {
-    /* position: relative;
-    top: 0;
-  
-    left: -16px; */
     margin-left: -16px;
     margin-right: 32px;
   }

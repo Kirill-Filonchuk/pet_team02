@@ -59,13 +59,6 @@ const NoticesSearch = ({ onSearch }) => {
           />
         </ClearIconWrapper>
       )}
-
-      {/* <IconButton
-        type={!clear ? 'submit' : 'button'}
-        onClick={clear ? onClearHandler : null}
-      >
-        {!clear ? <SearchIcon /> : <ClearIcon />}
-      </IconButton> */}
     </SearchForm>
   );
 };

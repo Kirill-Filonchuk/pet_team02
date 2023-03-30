@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import ModalHours from './ModalHours';
 import {
@@ -11,7 +12,6 @@ import {
   ContactText,
   Address,
 } from './OurFriendsCard.styled';
-import { useState, useEffect } from 'react';
 
 import defaultImage from 'assets/images/pets-default-image.jpg';
 
@@ -29,23 +29,20 @@ const OurFriendsCard = ({
   const [openModal, setOpenModal] = useState(false);
   const [targetModal, setTargetModal] = useState(null);
   useEffect(() => {
-    // console.log('Mount');
     window.addEventListener('click', onCloseModal);
     return () => {
-      // console.log('unmount');
       window.removeEventListener('click', onCloseModal);
     };
   });
   const onOpenModal = e => {
     setTargetModal(e.currentTarget);
     setOpenModal(true);
-    // console.log('openModal');
   };
   const onCloseModal = e => {
     if (e.target === targetModal) {
       return;
     }
-    // console.log('closeModal');
+
     setOpenModal(false);
   };
   const days = workDays => {

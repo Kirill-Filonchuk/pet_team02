@@ -1,11 +1,11 @@
-import './index.css';
-import App from 'components/App/App';
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { store, persistor } from 'redux/store';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
+import { store, persistor } from 'redux/store';
+import './index.css';
+import App from 'components/App/App';
+import { PersistGate } from 'redux-persist/integration/react';
 import { theme } from './theme';
 import ScrollToTop from 'components/Helpers/ScrollToTop';
 
@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
-          <ScrollToTop/>
+          <ScrollToTop />
           <App />
         </ThemeProvider>
       </PersistGate>

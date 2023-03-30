@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import ShouldLogin from 'components/Notifications/ShouldLogin';
 import Notify from 'components/Notify';
 import { useNotifyPosition } from 'hooks/useNotifyPosition';
-import { useState } from 'react';
 import HeartIcon from './HeartIcon';
 import { Favorite } from './NoticesCard.styled';
 

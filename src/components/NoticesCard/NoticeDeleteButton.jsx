@@ -1,4 +1,3 @@
-// import { notifyError } from 'components/Helpers/Toastify';
 import ShouldDelete from 'components/Notifications/ShouldDelete';
 import OvalSpinner from 'components/UIKit/Spinners/OvalSpinner';
 import { useState } from 'react';
@@ -34,7 +33,6 @@ const NoticeDeleteButton = ({
         onClick={() => {
           setIsNotifyOpen(true);
         }}
-        // isDeleting={isDeleting}
         disabled={isDeleting}
       >
         Delete
@@ -44,23 +42,7 @@ const NoticeDeleteButton = ({
           <HiTrash size={18} />
         )}
       </NoticeCardButton>
-      {/* {isNotifyOpen && (
-        <Notify
-          position={position}
-          onClose={() => {
-            setIsNotifyOpen(false);
-          }}
-        >
-          <ShouldDelete
-            onClose={() => {
-              setIsNotifyOpen(false);
-            }}
-            onDelete={() => {
-              onDeleteNotice(id);
-            }}
-          />
-        </Notify>
-      )} */}
+
       {isNotifyOpen && (
         <CommonModal
           onClose={() => {

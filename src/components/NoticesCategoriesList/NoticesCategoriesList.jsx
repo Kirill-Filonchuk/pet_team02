@@ -1,17 +1,17 @@
+import { useEffect, useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Container from '../Container';
 import NoticesPaginatedList from 'components/NoticesPaginatedList';
 import useAuth from 'hooks/useAuth/useAuth';
 import ErrorMessage from 'components/UIKit/ErrorMessage';
-import { useEffect, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import {
   useGetNoticesQuery,
   useGetUserDataQuery,
   useUpdateNoticeFavoriteStatusMutation,
 } from 'redux/notices/noticesApi';
 import { updatedPetList } from './utils/updatePetList';
-import { ToastContainer } from 'react-toastify';
 import { StorageService } from 'Services/storageService';
 
 const ITEMS_PER_PAGE = 8;

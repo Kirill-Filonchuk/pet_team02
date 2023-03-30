@@ -55,18 +55,6 @@ const AddUserPetForm = ({ onClose }) => {
       setIsFileNeeded(false);
     }
 
-    // console.log(e.target.value);
-    // const imgFile = e.target.files[0];
-
-    // if (imgFile) {
-    //   const isLarge =
-    //     (imgFile.size / 1_000_000).toFixed(2) > 1
-    //       ? alert('Image size is too large, maximum 1MB allowed.', {
-    //           autoClose: 5000,
-    //         })
-    //       : null;
-    //   if (isLarge) return;
-    // }
     setPhoto(e.currentTarget.files[0]);
     setUrl(URL.createObjectURL(e.target.files[0]));
   };
@@ -78,7 +66,6 @@ const AddUserPetForm = ({ onClose }) => {
       return;
     }
 
-    // alert(JSON.stringify(values, null, 2));
     const { name, birthday, breed, comment } = values;
     const test = { name, birthday, photo, breed, comment };
     addUserPet(test).then(res => {
@@ -104,7 +91,6 @@ const AddUserPetForm = ({ onClose }) => {
             step === 1 ? validationRegisterStepOne : validationRegisterStepTwo
           }
           onSubmit={handleSubmit}
-          // validateOnBlur={false}
           validateOnChange={true}
         >
           {({ errors, touched, values }) => (
@@ -124,7 +110,7 @@ const AddUserPetForm = ({ onClose }) => {
                       autoComplete="off"
                       type="text"
                       name="name"
-                      placeholder="Type date of Name"
+                      placeholder="Type name pet"
                     />
                     {!errors.name && values.name !== '' ? (
                       <InputCorrect name="Name is correct" />
@@ -220,7 +206,6 @@ const AddUserPetForm = ({ onClose }) => {
                             ? 'error'
                             : 'default'
                         }
-                        // value={values.photo}
                         type="file"
                         name="photo"
                         autoComplete="off"
@@ -239,7 +224,6 @@ const AddUserPetForm = ({ onClose }) => {
                   <LabelTextarea>
                     Comments
                     <Textarea
-                      // Comments
                       className={
                         !errors.comment && values.comment !== ''
                           ? 'success'

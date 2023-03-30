@@ -1,9 +1,5 @@
-// import { useDispatch } from 'react-redux';
-// import { deletePet } from '../../redux/auth/authOperations';
-// import { useDispatch } from 'react-redux';
 import { useDeleteUserPetMutation } from 'redux/pet/userPetsApi';
-// import deleteIcon from './delete-icon.svg';
-// import { deletePet  } from 'redux/pet/operations';
+
 import {
   PetItem,
   PetImage,

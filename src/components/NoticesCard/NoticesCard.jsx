@@ -88,7 +88,6 @@ const NoticesCard = ({
 
         <NoticeFavoriteButton
           isFavorite={isFavorite}
-          // onClick={onFavoriteClickHandler}
           onClick={() => {
             onFavoriteClick(_id);
           }}

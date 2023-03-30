@@ -23,7 +23,6 @@ const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
   async ({ url, method, data, params, headers }) => {
     try {
-      // console.log(api.defaults.headers.common.Authorization);
       const result = await api({
         url: baseUrl + url,
         method,
@@ -34,7 +33,7 @@ const axiosBaseQuery =
       return { data: result.data };
     } catch (axiosError) {
       let err = axiosError;
-      // console.log(err);
+
       return {
         error: {
           status: err.response?.status,
@@ -132,8 +131,6 @@ export const {
   useGetOwnNoticesQuery,
   useDeleteNoticeMutation,
   useAddNoticeMutation,
-  // useGetUserOwnNoticesQuery,
-  // useGetUserFavoriteNoticesQuery,
   useGetFavoritesQuery,
   useUpdateNoticeFavoriteStatusMutation,
 } = noticesApi;

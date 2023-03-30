@@ -23,7 +23,7 @@ export const LogoStyle = styled.p`
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 42px;
   letter-spacing: 0.07em;
-  /* z-index: 11; */
+
   transition-property: transform;
   transition-duration: 900ms;
 

@@ -31,7 +31,7 @@ export const UserTitle = styled.h2`
 export const Wrapper = styled.div`
   position: relative;
   min-width: 280px;
-  /* width:100% */
+
   padding: 20px 12px 20px 12px;
   background: ${p => p.theme.colors.white};
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
@@ -39,8 +39,6 @@ export const Wrapper = styled.div`
   margin-bottom: 40px;
 
   ${theme.mq.tablet} {
-    /* position: relative; */
-
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -51,8 +49,6 @@ export const Wrapper = styled.div`
   }
 
   ${theme.mq.desktop} {
-    /* position: relative; */
-    /* left: 0; */
     flex-direction: column;
     width: 411px;
     padding: 20px 16px;
@@ -82,7 +78,6 @@ export const ImageWrapper = styled.div`
   margin-bottom: 12px;
   filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
 
-  /* overflow: hidden; */
   position: relative;
 
   ${theme.mq.tablet} {
@@ -128,11 +123,6 @@ export const InputWrapper = styled.div`
   &:focus button {
     color: #f59256;
   }
-
-  /* ${theme.mq.desktop}  {
-    margin-left: 0;
-    left: -5%;
-  } */
 `;
 
 export const InputFile = styled.input`
@@ -163,14 +153,10 @@ export const EditImageBtn = styled.button`
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
-  /* margin-right: 12px; */
+
   background-color: transparent;
   border: none;
   transition: color 250ms linear;
-
-  /* ${theme.mq.desktop} {
-    align-items:start;  
-  } */
 `;
 
 export const EditImageIcon = styled(EditIcon)`

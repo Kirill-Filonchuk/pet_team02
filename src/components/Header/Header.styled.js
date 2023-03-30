@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const HeaderStyle = styled.header`
-  /* position: fixed; */
   display: flex;
   align-items: center;
   width: 100%;
@@ -14,12 +13,10 @@ export const HeaderContainer = styled.div`
   width: 100%;
   height: 42px;
   margin: 0 auto;
-  /* margin-left: auto;
-  margin-right: auto; */
   background-color: ${p => p.theme.colors.background};
   width: 320px;
   padding-top: 16px;
-  /* padding-bottom: 16px; */
+
   padding-left: 20px;
   padding-right: 20px;
 
@@ -29,13 +26,12 @@ export const HeaderContainer = styled.div`
     width: 768px;
     height: 48px;
     padding-top: 24px;
-    /* padding-bottom: 24px; */
+
     padding-left: 32px;
     padding-right: 32px;
   }
 
   ${p => p.theme.mq.desktop} {
-    /* justify-content: space-between; */
     width: 1280px;
     padding-right: 16px;
     padding-left: 16px;
@@ -46,6 +42,8 @@ export const HeaderContainer = styled.div`
 
 export const MenuBtn = styled.button`
   display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   z-index: 11;
   padding: 0;
@@ -53,6 +51,8 @@ export const MenuBtn = styled.button`
   border: ${p => p.theme.borders.none};
   transition-property: transform;
   transition-duration: 500ms;
+  width: 40px;
+  height: 40px;
 
   & > svg {
     fill: black;
@@ -78,6 +78,7 @@ export const MenuBtn = styled.button`
     display: hidden;
   }
 `;
+
 export const Burger = styled.div`
   display: flex;
   align-content: center;
@@ -90,7 +91,7 @@ export const ListMenu = styled.nav`
     align-content: center;
     align-items: center;
     justify-content: flex-start;
-    /* justify-content: center; */
+
     position: fixed;
     left: 0;
     right: 0;
@@ -99,7 +100,6 @@ export const ListMenu = styled.nav`
     height: 100%;
     padding: 16px 20px;
 
-    /* pointer-events: none; */
     background-color: #fdf7f2;
     z-index: 10;
   }
@@ -136,7 +136,6 @@ export const Link = styled(NavLink)`
   &.active {
     font-weight: ${p => p.theme.fontWeights.bold};
     color: ${p => p.theme.colors.accent};
-    /* text-decoration-line: underline; */
   }
   &:hover {
     font-weight: ${p => p.theme.fontWeights.bold};
@@ -183,7 +182,7 @@ export const LinkAuth = styled(NavLink)`
     line-height: 19px;
     letter-spacing: 0.04em;
     text-decoration: none;
-    /* width: 35px; */
+
     color: ${p => p.theme.colors.black};
     transition-property: background-color, transform;
     transition-duration: 500ms;
@@ -214,11 +213,15 @@ export const AuthNavigateTablet = styled.div`
   ${p => p.theme.mq.mobileOnly} {
     display: none;
   }
+  ${p => p.theme.mq.tablet} {
+    margin-left: auto;
+    margin-right: 25px;
+  }
   ${p => p.theme.mq.desktop} {
-    /* padding-top: 20px; */
     margin-left: 354px;
   }
 `;
+
 export const LinkAuthTablet = styled(NavLink)`
   padding: 6.5px 28px;
   border: 2px solid #f59256;
@@ -237,9 +240,7 @@ export const LinkAuthTablet = styled(NavLink)`
   &:first-child {
     margin-right: 12px;
   }
-  /* &:last-child {
-    margin-right: 20px;
-  } */
+
   &.active,
   &:hover {
     color: ${p => p.theme.colors.white};
