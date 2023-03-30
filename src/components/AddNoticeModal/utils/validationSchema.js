@@ -3,6 +3,7 @@ import { parse, isDate } from 'date-fns';
 import {
   ADD_NOTICE_CATEGORIES,
   ADD_NOTICE_GENDER,
+  breedPattern,
   locationPattern,
   namePattern,
 } from './constants';
@@ -10,21 +11,21 @@ import {
 const commonSchema = {
   title: yup
     .string()
-    .matches(namePattern, 'Name field can contain any letters')
+    .matches(namePattern, 'title field can contain any letters')
     .min(2)
     .max(48)
     .required(),
 
   name: yup
     .string()
-    .matches(namePattern, 'Name field can contain any letters')
-    .min(2, 'Min 2 character')
-    .max(16, 'Max 16 characters')
-    .required('Name field is required'),
+    .matches(namePattern, 'name field can contain any letters')
+    .min(2, 'min 2 character')
+    .max(16, 'max 16 characters')
+    .required('name field is required'),
 
   birthday: yup
     .date()
-    .test('len', 'Must be exactly DD.MM.YYYY', (value, { originalValue }) => {
+    .test('len', 'must be exactly DD.MM.YYYY', (value, { originalValue }) => {
       if (originalValue) {
         return originalValue.length === 10;
       }
@@ -36,12 +37,17 @@ const commonSchema = {
 
       return parsedDate;
     })
-    .typeError('Please enter a valid date: dd.MM.yyyy')
+    .typeError('please enter a valid date: dd.MM.yyyy')
     .required()
-    .min('01.01.1950', 'Date is too early')
+    .min('01.01.1950', 'date is too early')
     .max(new Date()),
 
-  breed: yup.string().min(2).max(24).required(),
+  breed: yup
+    .string()
+    .matches(breedPattern, 'breed field can contain any letters')
+    .min(2)
+    .max(24)
+    .required(),
 
   place: yup
     .string()
