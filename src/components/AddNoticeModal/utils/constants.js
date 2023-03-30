@@ -23,6 +23,7 @@ export const initialValues = {
 };
 
 export const namePattern = /^[a-zA-zа-яіїєА-ЯІЇЄ ,.'-][^\\_]+$/;
+export const breedPattern = /^[^\s][a-zA-Zа-яіїєА-ЯІЇЄ.'-]*$/;
 
 export const locationPattern =
   /^[a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+[,][ ][a-zA-Zа-яіїєА-ЯІЇЄ ,.'-]+$/;
