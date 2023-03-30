@@ -27,7 +27,6 @@ const NoticesCard = ({
   title,
   breed = NO_INFO,
   place = NO_INFO,
-  // age = NO_INFO,
   birthday = NO_INFO,
   price = '',
   isMine = false,
