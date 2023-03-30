@@ -30,7 +30,7 @@ const NoticesSearch = ({ onSearch }) => {
       return;
     }
 
-    onSearch(searchQuery);
+    onSearch(searchQuery.toLowerCase());
     setTimeout(() => {
       setClear(true);
     }, 1000);
