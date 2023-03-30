@@ -52,7 +52,7 @@ const commonSchema = {
   place: yup
     .string()
     .matches(locationPattern, `locattion must be like 'Irpin, Kyiv'`)
-    .min(3)
+    .min(5)
     .required(),
 
   sex: yup
