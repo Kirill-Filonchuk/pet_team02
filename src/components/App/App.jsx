@@ -10,6 +10,8 @@ const App = () => {
 
   // const { isRefreshing } = useAuth();
 
+  console.log(process.env.REACT_APP_BACK_END_API_BASE_URL);
+
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
