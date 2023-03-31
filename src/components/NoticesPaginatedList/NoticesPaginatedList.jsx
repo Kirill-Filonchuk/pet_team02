@@ -1,3 +1,4 @@
+import { notifyDeletePetError } from 'components/Helpers/Toastify';
 import NoticesCardList from 'components/NoticesCardList';
 import Paginator from 'components/Paginator';
 import { Loader } from 'components/UIKit/Spinners/LineBarLoader/LineBarLoader.styled';
@@ -43,7 +44,7 @@ const NoticesPaginatedList = ({
     try {
       await deleteNotice(id);
     } catch (err) {
-      console.log(err);
+      notifyDeletePetError('Something went wrong! Cannot delete pet');
     }
   };
 

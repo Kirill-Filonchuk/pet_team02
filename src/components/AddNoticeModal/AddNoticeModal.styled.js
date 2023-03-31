@@ -367,6 +367,11 @@ export const CommentsField = styled('textarea')`
     font-size: 16px;
     line-height: 1.625;
   }
+
+  &:focus,
+  &:focus-visible {
+    outline: 1px solid ${p => p.theme.colors.accentActive};
+  }
 `;
 
 export const ErrorWrapper = styled('ul')`
