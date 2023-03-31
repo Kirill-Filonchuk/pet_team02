@@ -13,7 +13,7 @@ import {
 } from 'redux/notices/noticesApi';
 import { updatedPetList } from './utils/updatePetList';
 import { StorageService } from 'Services/storageService';
-import { notifyError, notifyFavoriteError } from 'components/Helpers/Toastify';
+import { notifyFavoriteError } from 'components/Helpers/Toastify';
 
 const ITEMS_PER_PAGE = 8;
 const queryStorage = new StorageService('query');
