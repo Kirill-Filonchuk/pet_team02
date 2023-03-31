@@ -13,6 +13,7 @@ import {
 } from 'redux/notices/noticesApi';
 import { updatedPetList } from './utils/updatePetList';
 import { StorageService } from 'Services/storageService';
+import { notifyError, notifyFavoriteError } from 'components/Helpers/Toastify';
 
 const ITEMS_PER_PAGE = 8;
 const queryStorage = new StorageService('query');
@@ -65,7 +66,9 @@ const NoticesCategoriesList = () => {
     try {
       await updateFavoriteStatus(id);
     } catch (error) {
-      console.log(error);
+      notifyFavoriteError(
+        'Sorry, something went wrong! Please, try again later.'
+      );
     }
   };
 

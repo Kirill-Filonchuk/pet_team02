@@ -13,6 +13,7 @@ import {
   validationSchemaCommon,
   validationSchemaWithPrice,
 } from './utils/validationSchema';
+import { notifyAddNoticeError } from 'components/Helpers/Toastify';
 
 const modalRoot = document.querySelector('#modal-root');
 const noticeStorage = new StorageService('add-notice-fields');
@@ -55,7 +56,7 @@ const AddNoticeModal = ({ onClose, isOpen }) => {
         navigate(ROUTES.NOTICES_OWN);
       }
     } catch (err) {
-      console.log(err);
+      notifyAddNoticeError('Something went wrong! Cannot add notice.');
     }
   };
 

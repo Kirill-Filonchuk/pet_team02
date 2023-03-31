@@ -20,7 +20,6 @@ const NoticeDeleteButton = ({
 
   useEffect(() => {
     if (deletingError) {
-      console.log(deletingError);
       notifyDeletePetError('Something went wrong! Cannot delete pet');
     }
   }, [deletingError]);

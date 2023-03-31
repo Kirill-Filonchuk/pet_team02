@@ -43,4 +43,38 @@ const notifyDeletePetError = message =>
     type: 'error',
   });
 
-export { notifySuccess, notifyError, notifyDeletePetError };
+const notifyFavoriteError = message =>
+  toast(<p style={{ fontSize: 20, color: '#ffffff' }}>{message}</p>, {
+    position: 'top-center',
+    autoClose: 6000,
+    hideProgressBar: true,
+    newestOnTop: false,
+    closeOnClick: true,
+    rtl: false,
+    pauseOnFocusLoss: true,
+    draggable: true,
+    pauseOnHover: true,
+    type: 'error',
+  });
+
+const notifyAddNoticeError = message =>
+  toast(<p style={{ fontSize: 20, color: '#ffffff' }}>{message}</p>, {
+    position: 'top-center',
+    autoClose: 6000,
+    hideProgressBar: true,
+    newestOnTop: false,
+    closeOnClick: true,
+    rtl: false,
+    pauseOnFocusLoss: true,
+    draggable: true,
+    pauseOnHover: true,
+    type: 'error',
+  });
+
+export {
+  notifySuccess,
+  notifyError,
+  notifyDeletePetError,
+  notifyFavoriteError,
+  notifyAddNoticeError,
+};
